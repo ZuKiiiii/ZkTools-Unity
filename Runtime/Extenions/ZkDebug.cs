@@ -43,11 +43,9 @@ namespace ZkTool.Extentions
 			public void DrawDebugCone () {}
 			public void DrawDebugCrossHairs () {}
 			public void DrawDebugCylinder () {}
-			public void DrawDebugDirectionalArrow () {}
 			public void DrawDebugFloatHistory () {}
 			public void DrawDebugFloatHistory2 () {}
 			public void DrawDebugFrustum () {}
-			public void DrawDebugLine () {}
 			public void DrawDebugMesh () {}
 			public void DrawDebugPoint () {}
 			public void DrawDebugSolidp_extent () {}
@@ -80,6 +78,7 @@ namespace ZkTool.Extentions
 			public void DrawWireStar () {}
 		*/
 
+			// Rename Draw Arrow ?
 			public static void DrawDirectionalArrow (Vector3 p_start, Vector3 p_end, Color p_color, float p_arrowSize = 0.10f, float p_duration = 0.0f, bool p_depthTest = true)
 			{
 				if (p_arrowSize <= 0.0f)
@@ -96,7 +95,29 @@ namespace ZkTool.Extentions
 				DrawLine(p_end, p_end + matrix.MultiplyPoint3x4(new Vector3(arrowSqrt,0.0f, -p_arrowSize)), p_color, p_duration, p_depthTest);
 				DrawLine(p_end, p_end + matrix.MultiplyPoint3x4(new Vector3(-arrowSqrt, 0.0f, -p_arrowSize)), p_color, p_duration, p_depthTest);
 			}
-		
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static void DrawCircle (Vector3 p_center, float p_radius, Color p_color)
+			{
+				DrawCircle(p_center, p_radius, p_color, Vector3.forward);
+			}
+			
+			public static void DrawCircle (Vector3 p_center, float p_radius, Color p_color, Vector3 p_normal, int p_segments = 12, float p_duration = 0.0f, bool p_depthTest = true)
+			{
+				Vector3 right = Vector3.right;
+				Vector3 up = Vector3.Cross(right, p_normal);
+
+				float deltaAngle = (Mathf.PI * 2.0f) / p_segments;
+				float max = (Mathf.PI * 2.0f);
+				for (float angle = 0.0f; angle < max; angle += deltaAngle)
+				{
+					float nextAngle = angle + deltaAngle;
+					Vector3 start = p_center + p_radius * (right * Mathf.Cos(angle) + up * Mathf.Sin(angle));
+					Vector3 end = p_center + p_radius * (right * Mathf.Cos(nextAngle) + up * Mathf.Sin(nextAngle));
+					DrawLine(start, end, p_color, p_duration, p_depthTest);
+				}
+			}
+			
 			public static void DrawCoordinateSystem (Vector3 p_position, Quaternion p_rotation, float p_scale, float p_duration = 0.0f, bool p_depthTest = true)
 			{
 				Vector3 right = p_rotation * Vector3.right;
