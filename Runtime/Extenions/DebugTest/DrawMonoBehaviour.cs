@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ZkTool.Extentions
 {
-	public class DrawDebugMonoBehaviour : MonoBehaviour
+	public class DrawMonoBehaviour : MonoBehaviour
 	{
 		public Color color = Color.white;
 		public bool depthTest = true;
