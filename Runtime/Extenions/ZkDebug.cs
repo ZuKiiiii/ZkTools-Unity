@@ -151,17 +151,40 @@ namespace ZkTool.Extentions
 			}
 			
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static void DrawDebugBox (Vector3 p_center, Vector3 p_extent, Vector3 p_rotation, Color p_color, float p_time = 0.0f, bool p_depthTest = true)
+			public static void DrawDebugBox (Vector3 p_center, Vector3 p_extent, Vector3 p_rotation, Color p_color, float p_duration = 0.0f, bool p_depthTest = true)
 			{
-				DrawDebugBox(p_center, p_extent, Quaternion.Euler(p_rotation), p_color, p_time, p_depthTest);
+				DrawDebugBox(p_center, p_extent, Quaternion.Euler(p_rotation), p_color, p_duration, p_depthTest);
 			}
-		
+
+			public static void DrawDebugCoordinateSystem (Vector3 p_position, Quaternion p_rotation, float p_scale, float p_duration = 0.0f, bool p_depthTest = true)
+			{
+				Vector3 right = p_rotation * Vector3.right;
+				Vector3 up = p_rotation * Vector3.up;
+				Vector3 forward = p_rotation * Vector3.forward;
+				
+				DrawRay(p_position, right * p_scale, Color.red, p_duration, p_depthTest);
+				DrawRay(p_position, up * p_scale, Color.green, p_duration, p_depthTest);
+				DrawRay(p_position, forward * p_scale, Color.blue, p_duration, p_depthTest);
+			}
+			
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static void DrawDebugCoordinateSystem (Vector3 p_position, Vector3 p_rotation, float p_scale, float p_duration = 0.0f, bool p_depthTest = true)
+			{
+				DrawDebugCoordinateSystem(p_position, Quaternion.Euler(p_rotation), p_scale, p_duration, p_depthTest);
+			}
+			
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static void DrawDebugLine (Vector3 p_start, Vector3 p_end, Color p_color, float p_duration = 0.0f, bool p_depthTest = true)
 			{
 				Debug.DrawLine(p_start, p_end, p_color, p_duration, p_depthTest);
 			}
-		
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static void DrawRay (Vector3 p_start, Vector3 p_direction, Color p_color, float p_duration = 0.0f, bool p_depthTest = true)
+			{
+				Debug.DrawLine(p_start, p_start + p_direction, p_color, p_duration, p_depthTest);
+			}
+			
 		#endregion
 	}	
 }
