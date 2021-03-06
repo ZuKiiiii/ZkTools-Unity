@@ -1,16 +1,21 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace ZkTool.Extentions
 {
-	public class DrawLine1 : DrawMonoBehaviour
+	public class DrawLine2 : DrawMonoBehaviour
 	{
-		public Transform p1;
-		public Transform p2;
+		public bool loop = false;
+		public Transform[] transforms;
 
 		private void Update ()
 		{
-			if (p1 && p2 )
-				ZkDebug.DrawLine(p1.position, p2.position, color, 0.0f, depthTest);
+			List<Vector3> points = new List<Vector3>();
+			foreach (Transform tr in transforms)
+				if (tr)
+					points.Add(tr.position);
+			
+				ZkDebug.DrawLine(points.ToArray(), loop, color, 0.0f, depthTest);
 		}
 	}
 }

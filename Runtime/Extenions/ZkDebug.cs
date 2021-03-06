@@ -1,12 +1,16 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using Shapes;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace ZkTool.Extentions
 {
 	public static class ZkDebug
 	{
+		
 		#region // ==============================[Static Methods]============================== //
 		
 		/*	public void DrawArc () {}
@@ -96,26 +100,28 @@ namespace ZkTool.Extentions
 				DrawLine(p_end, p_end + matrix.MultiplyPoint3x4(new Vector3(-arrowSqrt, 0.0f, -p_arrowSize)), p_color, p_duration, p_depthTest);
 			}
 
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static void DrawCircle (Vector3 p_center, float p_radius, Color p_color)
+			public static void DrawCircle (Vector3 p_center, float p_radius, Vector3 p_xAxis, Vector3 p_yAxis, Color p_color, int p_segments = 12, float p_duration = 0.0f, bool p_depthTest = true)
 			{
-				DrawCircle(p_center, p_radius, p_color, Vector3.forward);
-			}
-			
-			public static void DrawCircle (Vector3 p_center, float p_radius, Color p_color, Vector3 p_normal, int p_segments = 12, float p_duration = 0.0f, bool p_depthTest = true)
-			{
-				Vector3 right = Vector3.right;
-				Vector3 up = Vector3.Cross(right, p_normal);
-
-				float deltaAngle = (Mathf.PI * 2.0f) / p_segments;
-				float max = (Mathf.PI * 2.0f);
-				for (float angle = 0.0f; angle < max; angle += deltaAngle)
+				p_segments = Mathf.Max(p_segments, 4);
+				float deltaAngle = Tau / p_segments;
+				
+				Vector3 start = p_center + p_radius * p_xAxis;
+				
+				for (float angle = 0.0f; angle < Tau; angle += deltaAngle)
 				{
 					float nextAngle = angle + deltaAngle;
-					Vector3 start = p_center + p_radius * (right * Mathf.Cos(angle) + up * Mathf.Sin(angle));
-					Vector3 end = p_center + p_radius * (right * Mathf.Cos(nextAngle) + up * Mathf.Sin(nextAngle));
+					Vector3 end = p_center + p_radius * (p_xAxis * Mathf.Cos(nextAngle) + p_yAxis * Mathf.Sin(nextAngle));
 					DrawLine(start, end, p_color, p_duration, p_depthTest);
+					start = end;
 				}
+			}
+			
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static void DrawCircle (Vector3 p_center, float p_radius, Vector3 p_normal, Color p_color, int p_segments = 12, float p_duration = 0.0f, bool p_depthTest = true)
+			{
+				Vector3 xAxis = Vector3.right;
+				Vector3 yAxis = Vector3.Cross(xAxis, p_normal);
+				DrawCircle(p_center, p_radius, xAxis, yAxis, p_color,p_segments, p_duration, p_depthTest);
 			}
 			
 			public static void DrawCoordinateSystem (Vector3 p_position, Quaternion p_rotation, float p_scale, float p_duration = 0.0f, bool p_depthTest = true)
@@ -209,17 +215,98 @@ namespace ZkTool.Extentions
 			{
 				DrawCube(p_center, p_extent, Quaternion.Euler(p_rotation), p_color, p_duration, p_depthTest);
 			}
-
+			
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static void DrawLine (Vector3 p_start, Vector3 p_end, Color p_color, float p_duration = 0.0f, bool p_depthTest = true)
 			{
 				Debug.DrawLine(p_start, p_end, p_color, p_duration, p_depthTest);
+			}
+			
+			public static void DrawLine (Vector3[] p_points, bool p_loop, Color p_color, float p_duration = 0.0f, bool p_depthTest = true)
+			{
+				if (p_points.Length < (p_loop ? 2 : 1))
+					return;
+					
+				for (int index = 0; index < p_points.Length - 1; ++index)
+						Debug.DrawLine(p_points[index], p_points[index+1], p_color, p_duration, p_depthTest);
+				
+				if (p_loop)
+					Debug.DrawLine(p_points.Last(), p_points.First(), p_color, p_duration, p_depthTest);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static void DrawRay (Vector3 p_start, Vector3 p_direction, Color p_color, float p_duration = 0.0f, bool p_depthTest = true)
 			{
 				Debug.DrawLine(p_start, p_start + p_direction, p_color, p_duration, p_depthTest);
+			}
+
+			public static void DrawSphere (Vector3 p_center, float p_radius, Color p_color, int p_segments = 12, float p_duration = 0.0f, bool p_depthTest = true)
+			{
+				p_segments = Mathf.Max(p_segments, 4);
+				float cosY1 = 1.0f;
+				float sinY1 = 0.0f;
+				float deltaAngle = Tau / p_segments;
+				float yAngle = deltaAngle;
+
+				for (int y = 0; y < p_segments; ++y)
+				{
+					float cosY2 = Mathf.Cos(yAngle);
+					float sinY2 = Mathf.Sin(yAngle);
+					float xAngle = deltaAngle;
+
+					Vector3 vertex1 = p_center + p_radius * new Vector3(sinY1, cosY1,0.0f);
+					Vector3 vertex3 = p_center + p_radius * new Vector3(sinY2, cosY2,0.0f);
+				
+					for (int x = 0; x < p_segments; ++x)
+					{
+						float cosX = Mathf.Cos(xAngle);
+						float sinX = Mathf.Sin(xAngle);
+			
+						Vector3 vertex2 = p_center + p_radius * new Vector3(cosX * sinY1, cosY1,sinX * sinY1);
+						Vector3 vertex4 = p_center + p_radius * new Vector3(cosX * sinY2, cosY2,sinX * sinY2);
+					
+						DrawLine(vertex1, vertex2, p_color, p_duration, p_depthTest);
+						DrawLine(vertex1, vertex3, p_color, p_duration, p_depthTest);
+			
+						vertex1 = vertex2;
+						vertex3 = vertex4;
+						xAngle += deltaAngle;
+					}
+					yAngle += deltaAngle;
+					sinY1 = sinY2;
+					cosY1 = cosY2;
+				}
+			}
+			
+		#endregion
+		
+		#region // ==============================[Mathematics]============================== //
+		
+			public const float Tau = 6.283185307179586476925286766559e+00f;
+		
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsEven (int p_value)
+			{
+				return p_value % 2 == 0;
+			}
+			
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsOdd (int p_value)
+			{
+				return p_value % 2 != 0;
+			}
+		
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			private static Vector3 SphericalToCartesian (float p_radius, float p_theta, float p_phi)
+			{
+				float sinTheta = Mathf.Sin(p_theta);
+				return new Vector3
+				(
+					p_radius * sinTheta * Mathf.Cos(p_phi),
+					p_radius * Mathf.Cos(p_theta),
+					p_radius * sinTheta * Mathf.Sin(p_phi)
+
+				); ;
 			}
 			
 		#endregion
