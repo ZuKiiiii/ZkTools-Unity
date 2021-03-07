@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using BehaviorDesigner.Runtime.Tasks.Unity.UnityDebug;
 using Shapes;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace ZkTool.Extentions
 {
@@ -124,6 +123,8 @@ namespace ZkTool.Extentions
 				DrawCircle(p_center, p_radius, xAxis, yAxis, p_color,p_segments, p_duration, p_depthTest);
 			}
 			
+			// public static void DrawCone (Vector3 p_position, Vector3 p_direction, float p_length, Color p_color, float p_angleWidth = 45.0f, float p_angleHeight = 45.0f, int p_numSide = 12, float p_duration = 0.0f, bool p_depthTest = true)
+			
 			public static void DrawCoordinateSystem (Vector3 p_position, Quaternion p_rotation, float p_scale, float p_duration = 0.0f, bool p_depthTest = true)
 			{
 				Vector3 right = p_rotation * Vector3.right;
@@ -134,7 +135,36 @@ namespace ZkTool.Extentions
 				DrawRay(p_position, up * p_scale, Color.green, p_duration, p_depthTest);
 				DrawRay(p_position, forward * p_scale, Color.blue, p_duration, p_depthTest);
 			}
-		
+
+			public static void DrawCylinder (Vector3 p_start, Vector3 p_end, float p_radius = 1.0f, Color p_color = new Color(), int p_segments = 12, float p_duration = 0.0f, bool p_depthTest = true)
+			{
+				p_segments = Mathf.Max(p_segments, 4);
+				
+				Vector3 axis = (p_end - p_start).normalized;
+				float deltaAngle = 360.0f / p_segments;
+				float angle = deltaAngle;
+				
+				GetUV(axis, out Vector3 perpendicular, out Vector3 dummy);
+				Vector3 segment = Quaternion.AngleAxis(0.0f, axis) * perpendicular * p_radius;
+				Vector3 p1 = segment + p_start;
+				Vector3 p3 = segment + p_end;
+				
+				for (int index = 0; index < p_segments; ++index)
+				{
+					segment = Quaternion.AngleAxis(angle, axis) * perpendicular * p_radius;
+					Vector3 p2 = segment + p_start;
+					Vector3 p4 = segment + p_end;
+					
+					DrawLine(p2, p4, p_color, p_duration, p_depthTest);
+					DrawLine(p1, p2, p_color, p_duration, p_depthTest);
+					DrawLine(p3, p4, p_color, p_duration, p_depthTest);
+					
+					p1 = p2;
+					p3 = p4;
+					angle += deltaAngle;
+				}
+			}
+			
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static void DrawCoordinateSystem (Vector3 p_position, Vector3 p_rotation, float p_scale, float p_duration = 0.0f, bool p_depthTest = true)
 			{
@@ -254,22 +284,22 @@ namespace ZkTool.Extentions
 					float sinY2 = Mathf.Sin(yAngle);
 					float xAngle = deltaAngle;
 
-					Vector3 vertex1 = p_center + p_radius * new Vector3(sinY1, cosY1,0.0f);
-					Vector3 vertex3 = p_center + p_radius * new Vector3(sinY2, cosY2,0.0f);
+					Vector3 p1 = p_center + p_radius * new Vector3(sinY1, cosY1,0.0f);
+					Vector3 p3 = p_center + p_radius * new Vector3(sinY2, cosY2,0.0f);
 				
 					for (int x = 0; x < p_segments; ++x)
 					{
 						float cosX = Mathf.Cos(xAngle);
 						float sinX = Mathf.Sin(xAngle);
 			
-						Vector3 vertex2 = p_center + p_radius * new Vector3(cosX * sinY1, cosY1,sinX * sinY1);
-						Vector3 vertex4 = p_center + p_radius * new Vector3(cosX * sinY2, cosY2,sinX * sinY2);
+						Vector3 p2 = p_center + p_radius * new Vector3(cosX * sinY1, cosY1,sinX * sinY1);
+						Vector3 p4 = p_center + p_radius * new Vector3(cosX * sinY2, cosY2,sinX * sinY2);
 					
-						DrawLine(vertex1, vertex2, p_color, p_duration, p_depthTest);
-						DrawLine(vertex1, vertex3, p_color, p_duration, p_depthTest);
+						DrawLine(p1, p2, p_color, p_duration, p_depthTest);
+						DrawLine(p1, p3, p_color, p_duration, p_depthTest);
 			
-						vertex1 = vertex2;
-						vertex3 = vertex4;
+						p1 = p2;
+						p3 = p4;
 						xAngle += deltaAngle;
 					}
 					yAngle += deltaAngle;
@@ -307,6 +337,21 @@ namespace ZkTool.Extentions
 					p_radius * sinTheta * Mathf.Sin(p_phi)
 
 				); ;
+			}
+
+			public static void GetUV (Vector3 p_normal, out Vector3 p_u, out Vector3 p_v)
+			{
+				float x = Math.Abs(p_normal.x);
+				float y = Math.Abs(p_normal.y);
+				float z = Math.Abs(p_normal.x);
+
+				if (y > z && y > x)
+					p_u = Vector3.right;
+				else
+					p_u = Vector3.forward;
+
+				p_u = (p_u - p_normal * Vector3.Dot(p_u, p_normal)).normalized;
+				p_v = Vector3.Cross(p_u, p_normal);
 			}
 			
 		#endregion
