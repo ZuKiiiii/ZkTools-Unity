@@ -1,8 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using BehaviorDesigner.Runtime.Tasks.Unity.UnityDebug;
-using Shapes;
 using UnityEngine;
 
 namespace ZkTool.Extentions
@@ -81,8 +80,7 @@ namespace ZkTool.Extentions
 			public void DrawWireStar () {}
 		*/
 
-			// Rename Draw Arrow ?
-			public static void DrawDirectionalArrow (Vector3 p_start, Vector3 p_end, Color p_color, float p_arrowSize = 0.10f, float p_duration = 0.0f, bool p_depthTest = true)
+			public static void DrawArrow (Vector3 p_start, Vector3 p_end, Color p_color, float p_arrowSize = 0.10f, float p_duration = 0.0f, bool p_depthTest = true)
 			{
 				if (p_arrowSize <= 0.0f)
 					p_arrowSize = 0.10f;
@@ -123,7 +121,70 @@ namespace ZkTool.Extentions
 				DrawCircle(p_center, p_radius, xAxis, yAxis, p_color,p_segments, p_duration, p_depthTest);
 			}
 			
-			// public static void DrawCone (Vector3 p_position, Vector3 p_direction, float p_length, Color p_color, float p_angleWidth = 45.0f, float p_angleHeight = 45.0f, int p_numSide = 12, float p_duration = 0.0f, bool p_depthTest = true)
+			public static void DrawCone (Vector3 p_origin, Vector3 p_direction, float p_length, Color p_color, float p_angleWidthRad = Mathf.PI / 4.0f, float p_angleHeightRad = Mathf.PI / 4.0f, int p_sideCount = 12, float p_duration = 0.0f, bool p_depthTest = true)
+			{
+				p_sideCount = Mathf.Max(p_sideCount, 4);
+				
+				float angle1 = Mathf.Clamp(p_angleHeightRad, Mathf.Epsilon, Mathf.PI - Mathf.Epsilon);
+				float angle2 = Mathf.Clamp(p_angleWidthRad, Mathf.Epsilon, Mathf.PI - Mathf.Epsilon);
+
+				float sinX_2 = Mathf.Sin(0.5f * angle1);
+				float sinY_2 = Mathf.Sin(0.5f * angle2);
+
+				float sinSqX_2 = Square(sinX_2);
+				float sinSqY_2 = Square(sinY_2);
+
+				float tanX_2 = Mathf.Tan(0.5f * angle1);
+				float tanY_2 = Mathf.Tan(0.5f * angle2);
+
+				List<Vector3> coneVertices = new List<Vector3>(p_sideCount);
+				for (int index = 0; index < p_sideCount; ++index)
+				{
+					float fraction = (float)index/(float)(p_sideCount);
+					float thi = 2.0f * Mathf.PI * fraction;
+					float phi = Mathf.Atan2(Mathf.Sin(thi) * sinY_2, Mathf.Cos(thi) * sinX_2);
+					float sinPhi = Mathf.Sin(phi);
+					float cosPhi = Mathf.Cos(phi);
+					float sinSqPhi = Square(sinPhi);
+					float cosSqPhi = Square(cosPhi);
+
+					float rSq = sinSqX_2 * sinSqY_2 / (sinSqX_2 * sinSqPhi + sinSqY_2 * cosSqPhi);
+					float r = Mathf.Sqrt(rSq);
+					float sqr = Mathf.Sqrt(1-rSq);
+					float alpha	= r * cosPhi;
+					float beta = r * sinPhi;
+
+					Vector3 vertex = new Vector3(1.0f - 2.0f * rSq, 2.0f * sqr * alpha, 2.0f * sqr * beta);
+					coneVertices.Add(vertex);
+				}
+				
+				p_direction.Normalize();
+				GetUV(p_direction, out 	Vector3 xAxis, out Vector3 yAxis);
+				Matrix4x4 coneToWorld = new Matrix4x4(p_direction * p_length, xAxis, yAxis, p_origin);
+				
+				Vector3 currentPoint = Vector3.zero;
+				Vector3 prevPoint = Vector3.zero;
+				Vector3 firstPoint = Vector3.zero;
+				for(int index = 0; index < p_sideCount; index++)
+				{
+					currentPoint = coneToWorld.MultiplyPoint3x4(coneVertices[index]);
+					DrawLine(p_origin, currentPoint, p_color, p_duration, p_depthTest);
+
+					if (index > 0)
+						DrawLine(prevPoint, currentPoint, p_color, p_duration, p_depthTest);
+					else
+						firstPoint = currentPoint;
+
+					prevPoint = currentPoint;
+				}
+				DrawLine(currentPoint, firstPoint, p_color, p_duration, p_depthTest);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static void DrawConeDegree (Vector3 p_origin, Vector3 p_direction, float p_length, Color p_color, float p_angleWidthDeg = 45.0f, float p_angleHeightDeg = 45.0f, int p_sideCount = 12, float p_duration = 0.0f, bool p_depthTest = true)
+			{
+				DrawCone(p_origin, p_direction, p_length, p_color, DegreeToRadian(p_angleWidthDeg), DegreeToRadian(p_angleHeightDeg), p_sideCount, p_duration, p_depthTest);
+			}
 			
 			public static void DrawCoordinateSystem (Vector3 p_position, Quaternion p_rotation, float p_scale, float p_duration = 0.0f, bool p_depthTest = true)
 			{
@@ -136,7 +197,7 @@ namespace ZkTool.Extentions
 				DrawRay(p_position, forward * p_scale, Color.blue, p_duration, p_depthTest);
 			}
 
-			public static void DrawCylinder (Vector3 p_start, Vector3 p_end, float p_radius = 1.0f, Color p_color = new Color(), int p_segments = 12, float p_duration = 0.0f, bool p_depthTest = true)
+			public static void DrawCylinder (Vector3 p_start, Vector3 p_end, float p_radius = 0.5f, Color p_color = new Color(), int p_segments = 12, float p_duration = 0.0f, bool p_depthTest = true)
 			{
 				p_segments = Mathf.Max(p_segments, 4);
 				
@@ -164,7 +225,8 @@ namespace ZkTool.Extentions
 					angle += deltaAngle;
 				}
 			}
-			
+
+	
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static void DrawCoordinateSystem (Vector3 p_position, Vector3 p_rotation, float p_scale, float p_duration = 0.0f, bool p_depthTest = true)
 			{
@@ -245,6 +307,67 @@ namespace ZkTool.Extentions
 			{
 				DrawCube(p_center, p_extent, Quaternion.Euler(p_rotation), p_color, p_duration, p_depthTest);
 			}
+
+		/*	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static void DrawFrustum (FrustumPlanes p_frustrumPlane, Color p_color, float p_duration = 0.0f, bool p_depthTest = true)
+			{
+				DrawFrustum(Matrix4x4.Frustum(p_frustrumPlane), p_color, p_duration, p_depthTest);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static void DrawFrustum (Vector3 p_position, Quaternion p_rotation, Vector3 p_scale, Color p_color, float p_duration = 0.0f, bool p_depthTest = true)
+			{
+				DrawFrustum(Matrix4x4.TRS(p_position, p_rotation, p_scale), p_color, p_duration, p_depthTest);
+			}
+			
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static void DrawFrustum (Vector3 p_position, Vector3 p_rotation, Vector3 p_scale, Color p_color, float p_duration = 0.0f, bool p_depthTest = true)
+			{
+				DrawFrustum(Matrix4x4.TRS(p_position, Quaternion.Euler(p_rotation), p_scale), p_color, p_duration, p_depthTest);
+			}
+			
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static void DrawFrustum (float p_left, float p_right, float p_bottom, float p_top, float p_zNear, float p_zFar, Color p_color, float p_duration = 0.0f, bool p_depthTest = true)
+			{
+				DrawFrustum(Matrix4x4.Frustum(p_left, p_right, p_bottom, p_top, p_zNear, p_zFar), p_color, p_duration, p_depthTest);
+			}
+			
+			public static void DrawFrustum (float p_fov, float p_aspect, float p_zNear, float p_zFar, Color p_color, float p_duration = 0.0f, bool p_depthTest = true)
+			{
+				DrawFrustum(Matrix4x4.Perspective(p_fov, p_aspect, p_zNear, p_zFar), p_color, p_duration, p_depthTest);
+			}
+			
+			public static void DrawFrustum (Matrix4x4 p_frustrum, Color p_color, float p_duration = 0.0f, bool p_depthTest = true)
+			{
+				p_frustrum = p_frustrum.inverse;
+				Vector3[,,] vertices = new Vector3[2,2,2];
+				for (int x = 0; x < 2; ++x)
+				{
+					for (int y = 0; y < 2; ++y)
+					{
+						for (int z = 0; z < 2; ++z)
+						{
+							Vector4 unprojectedVertex = p_frustrum * new Vector4(x != 0 ? -1.0f : 1.0f, y != 0 ? -1.0f : 1.0f, z != 0 ? 0.0f : 1.0f, 1.0f);
+							vertices[x, y, z] = unprojectedVertex / -unprojectedVertex.w;
+						}
+					}
+				}
+					
+				DrawLine(vertices[0,0,0], vertices[0,0,1], p_color, p_duration, p_depthTest);
+				DrawLine(vertices[1,0,0], vertices[1,0,1], p_color, p_duration, p_depthTest);
+				DrawLine(vertices[0,1,0], vertices[0,1,1], p_color, p_duration, p_depthTest);
+				DrawLine(vertices[1,1,0], vertices[1,1,1], p_color, p_duration, p_depthTest);
+				
+				DrawLine(vertices[0,0,0], vertices[0,1,0], p_color, p_duration, p_depthTest);
+				DrawLine(vertices[1,0,0], vertices[1,1,0], p_color, p_duration, p_depthTest);
+				DrawLine(vertices[0,0,1], vertices[0,1,1], p_color, p_duration, p_depthTest);
+				DrawLine(vertices[1,0,1], vertices[1,1,1], p_color, p_duration, p_depthTest);
+				
+				DrawLine(vertices[0,0,0], vertices[1,0,0], p_color, p_duration, p_depthTest);
+				DrawLine(vertices[0,1,0], vertices[1,1,0], p_color, p_duration, p_depthTest);
+				DrawLine(vertices[0,0,1], vertices[1,0,1], p_color, p_duration, p_depthTest);
+				DrawLine(vertices[0,1,1], vertices[1,1,1], p_color, p_duration, p_depthTest);
+			}*/
 			
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static void DrawLine (Vector3 p_start, Vector3 p_end, Color p_color, float p_duration = 0.0f, bool p_depthTest = true)
@@ -325,7 +448,19 @@ namespace ZkTool.Extentions
 			{
 				return p_value % 2 != 0;
 			}
-		
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Square (float p_value)
+			{
+				return p_value * p_value;
+			}
+			
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Cube (float p_value)
+			{
+				return p_value * p_value * p_value;
+			}
+			
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			private static Vector3 SphericalToCartesian (float p_radius, float p_theta, float p_phi)
 			{
@@ -339,6 +474,7 @@ namespace ZkTool.Extentions
 				); ;
 			}
 
+			/** a fix */
 			public static void GetUV (Vector3 p_normal, out Vector3 p_u, out Vector3 p_v)
 			{
 				float x = Math.Abs(p_normal.x);
@@ -346,15 +482,27 @@ namespace ZkTool.Extentions
 				float z = Math.Abs(p_normal.x);
 
 				if (y > z && y > x)
-					p_u = Vector3.right;
-				else
 					p_u = Vector3.forward;
+				else
+					p_u = Vector3.up;
 
 				p_u = (p_u - p_normal * Vector3.Dot(p_u, p_normal)).normalized;
 				p_v = Vector3.Cross(p_u, p_normal);
 			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float DegreeToRadian (float p_degree)
+			{
+				return Mathf.Deg2Rad * p_degree;
+			}
+
+			[MethodImpl(MethodImplOptions.NoInlining)]
+			public static Vector4 GetIJKL (this Vector3 p_this, float p_l = 1.0f)
+			{
+				return new Vector4(p_this.x, p_this.y, p_this.z, p_l);
+			}
 			
 		#endregion
-	}	
+	}
 }
 
