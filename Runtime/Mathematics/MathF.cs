@@ -31,6 +31,8 @@ namespace ZkTools.Mathematics
 
 			public const float FourPiDivThree = 4.188790204786390984616857844373f;
 
+			public const float GoldenRatio = 1.618033988749894848204586834365638117e+00f; 
+
 			public const float Gradian2Degree = 0.90f;
 
 			public const float Gradian2Radian = 0.015707963267948966192313216916e+00f;
@@ -223,6 +225,12 @@ namespace ZkTools.Mathematics
 			public static float Csc (float p_value)
 			{
 				return 1.0f / Sin(p_value);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Cvs (float p_value)
+			{
+				return 1.0f - Sin(p_value);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -798,6 +806,11 @@ namespace ZkTools.Mathematics
 				return p_radian * Turn2Radian;
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Ver (float p_value)
+			{
+				return 1.0f - Cos(p_value);
+			}
 		#endregion
 	}
 }
