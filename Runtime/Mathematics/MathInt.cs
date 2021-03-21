@@ -28,19 +28,19 @@ namespace ZkTools.Mathematics
 			{
 				return Min(Max(p_value, p_min), p_max);
 			}
-			
+
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int ClosestPowerOfTwo (int p_value)
 			{
 				return Mathf.ClosestPowerOfTwo(p_value);
 			}
-			
+
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int Cube (int p_value)
 			{
 				return Square(p_value) * p_value;
 			}
-			
+
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int DivRem (int p_a, int p_b, out int p_result)
 			{
@@ -57,13 +57,13 @@ namespace ZkTools.Mathematics
 				else
 					return GreatestCommonDivisor(b, r);
 			}
-			
+
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float InverseLerp (int p_a, int p_b, int p_value)
 			{
 				return (float)(p_value - p_a) / (float)(p_b - p_a);
 			}
-			
+
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float InverseLerpClamped (int p_a, int p_b, int p_value, float p_min = 0.0f, float p_max = 1.0f)
 			{
@@ -83,7 +83,7 @@ namespace ZkTools.Mathematics
 				}
 				return result;
 			}
-			
+
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static bool IsInsideIn (int p_value, int p_minInclusiveValue, int p_maxInclusiveValue)
 			{
@@ -101,7 +101,7 @@ namespace ZkTools.Mathematics
 			{
 				return p_minExclusiveValue < p_value && p_value < p_maxExclusiveValue;
 			}
-			
+
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static bool IsInsideExIn (int p_value, int p_minExclusiveValue, int p_maxInclusiveValue)
 			{
@@ -112,6 +112,18 @@ namespace ZkTools.Mathematics
 			public static bool IsNearlyEqual (int p_lhs, int p_rhs, int p_tolerance = 0)
 			{
 				return Abs(p_lhs - p_rhs) <= p_tolerance;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsNegative (int p_value)
+			{
+				return p_value < 0;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsNegativeOrZero (int p_value)
+			{
+				return p_value <= 0;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -153,6 +165,18 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsPositive (int p_value)
+			{
+				return p_value > 0;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsPositiveOrZero (int p_value)
+			{
+				return p_value >= 0;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static bool IsPowerOfTwo (int p_value)
 			{
 				return (p_value & (p_value-1)) == 0;
@@ -163,7 +187,7 @@ namespace ZkTools.Mathematics
 			{
 				return p_value == 0;
 			}
-			
+
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int Max (int p_a, int p_b)
 			{
@@ -181,7 +205,7 @@ namespace ZkTools.Mathematics
 			{
 				return p_values.Max();
 			}
-			
+
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int Min (int p_a, int p_b)
 			{
@@ -193,13 +217,13 @@ namespace ZkTools.Mathematics
 			{
 				return Min(Min(p_a, p_b), p_c);
 			}
-			
+
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int Min (params int[] p_values)
 			{
 				return p_values.Min();
 			}
-			
+
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int NextPowerOfTwo (int p_value)
 			{
@@ -217,13 +241,13 @@ namespace ZkTools.Mathematics
 			{
 				return p_value >= 0.0 ? 1f : -1f;
 			}
-			
+
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int Square (int p_value)
 			{
 				return p_value * p_value;
 			}
-			
+
 		#endregion
 	}
 }

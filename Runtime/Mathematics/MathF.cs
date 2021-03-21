@@ -288,6 +288,12 @@ namespace ZkTools.Mathematics
 			{
 				return p_value - Floor(p_value);
 			}
+			
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Fractional (float p_value)
+			{
+				return p_value - Trunc(p_value);
+			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float GradianToDegree (float p_gradian)
@@ -382,6 +388,18 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsNegative (float p_value)
+			{
+				return p_value < 0.0f;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsNegativeOrZero (float p_value)
+			{
+				return p_value <= 0.0f;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static bool IsOutside (float p_value, float p_min, float p_max, ERangeType p_type)
 			{
 				bool result = false;
@@ -417,6 +435,18 @@ namespace ZkTools.Mathematics
 			public static bool IsOutsideInEx (float p_value, float p_minInclusiveValue, float p_maxExclusiveValue)
 			{
 				return p_value <= p_minInclusiveValue || p_maxExclusiveValue < p_value;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsPositive (float p_value)
+			{
+				return p_value > 0.0f;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsPositiveOrZero (float p_value)
+			{
+				return p_value >= 0.0f;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
