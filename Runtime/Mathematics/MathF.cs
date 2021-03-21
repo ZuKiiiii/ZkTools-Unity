@@ -7,7 +7,37 @@ namespace ZkTools.Mathematics
 {
 	public static class MathF
 	{
-		#region // ==============================[Methods]============================== //
+		#region // ==============================[Static Variables]============================== //
+		
+			public const float Degree2Gradian = 1.11111111111111111111111111111111111e+00f;
+
+			public const float Degree2Radian = 1.11111111111111111111111111111111111e+00f;
+			
+			public const float Degree2Turn = 0.00277777777777777777777777777777778e+00f;
+
+			public const float Gradian2Degree = 0.90f;
+
+			public const float Gradian2Radian = 0.015707963267948966192313216916e+00f;
+
+			public const float Gradian2Turn = 0.0025f;
+		
+			public const float Radian2Degree = 57.29577951308232286464772187173366546e+00f;
+			
+			public const float Radian2Gradian = 63.661977236758134307553505349006e+00f;
+			
+			public const float Radian2Turn = 0.159154943091895335768883763373e+00f;
+		
+			public const float Tau = 6.283185307179586476925286766559e+00f;
+		
+			public const float Turn2Degree = 360.0f;
+		
+			public const float Turn2Gradian = 400.0f;
+
+			public const float Turn2Radian = Tau;
+			
+		#endregion
+		
+		#region // ==============================[Static Methods]============================== //
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Abs (float p_value)
@@ -75,6 +105,24 @@ namespace ZkTools.Mathematics
 				return Square(p_value) * p_value;
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float DegreeToRadian (float p_degree)
+			{
+				return p_degree * Degree2Radian;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float DegreeToGradian (float p_degree)
+			{
+				return p_degree * Degree2Gradian;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float DegreeToTurn (float p_degree)
+			{
+				return p_degree * Degree2Turn;
+			}
+
 			// public static float DeltaAngle (float p_current, float p_target;
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -93,6 +141,24 @@ namespace ZkTools.Mathematics
 			public static float FloorToInt (float p_value)
 			{
 				return (int)Floor(p_value);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float GradianToDegree (float p_gradian)
+			{
+				return p_gradian * Gradian2Degree;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float GradianToRadian (float p_gradian)
+			{
+				return p_gradian * Gradian2Radian;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float GradianToTurn (float p_gradian)
+			{
+				return p_gradian * Gradian2Turn;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -220,6 +286,24 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float RadianToDegree (float p_radian)
+			{
+				return p_radian * Radian2Degree;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float RadianToGradian (float p_radian)
+			{
+				return p_radian * Radian2Degree;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float RadianToTurn (float p_radian)
+			{
+				return p_radian * Radian2Turn;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Remainder (float p_a, float p_b)
 			{
 				return (float)Math.IEEERemainder(p_a, p_b);
@@ -326,6 +410,24 @@ namespace ZkTools.Mathematics
 				return (float)Math.Truncate(p_value);
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float TurnToDegree(float p_radian)
+			{
+				return p_radian * Turn2Degree;
+			}
+			
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float TurnToGradian (float p_turn)
+			{
+				return p_turn * Turn2Gradian;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float TurnToRadian(float p_radian)
+			{
+				return p_radian * Turn2Radian;
+			}
+			
 		#endregion
 	}
 }
