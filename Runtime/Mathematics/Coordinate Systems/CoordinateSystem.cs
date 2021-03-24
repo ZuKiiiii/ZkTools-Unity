@@ -58,8 +58,8 @@ namespace ZkTools.Mathematics.CoordinateSystems
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static void CylindricalToCartesian (float p_cylRho, float p_cylPhi, float p_cylZ, out float p_x, out float p_y, out float p_z)
 			{
-				p_x = p_cylRho * MathF.Cos(p_cylPhi);
-				p_y = p_cylRho * MathF.Sin(p_cylPhi);
+				p_x = p_cylRho * Trigo.Cos(p_cylPhi);
+				p_y = p_cylRho * Trigo.Sin(p_cylPhi);
 				p_z = p_cylZ;
 			}
 
@@ -99,7 +99,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 			public static void CylindricalToSpherical (float p_cylRho, float p_cylPhi, float p_cylZ, out float p_sphereRadius, out float p_sphereTheta, out float p_spherePhi)
 			{
 				p_sphereRadius = MathF.Sqrt(MathF.Square(p_cylRho) + MathF.Square(p_cylZ));
-				p_sphereTheta = MathF.Atan2(p_cylRho, p_cylZ);
+				p_sphereTheta = Trigo.Atan2(p_cylRho, p_cylZ);
 				p_spherePhi = p_cylPhi;
 			}
 
@@ -138,8 +138,8 @@ namespace ZkTools.Mathematics.CoordinateSystems
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static void PolarToCartesian (float p_polarRadius, float p_polarAngle,  out float p_x, out float p_y)
 			{
-				p_x = p_polarRadius * MathF.Cos(p_polarAngle);
-				p_y = p_polarRadius * MathF.Sin(p_polarAngle);
+				p_x = p_polarRadius * Trigo.Cos(p_polarAngle);
+				p_y = p_polarRadius * Trigo.Sin(p_polarAngle);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -177,10 +177,10 @@ namespace ZkTools.Mathematics.CoordinateSystems
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static void SphericalToCartesian (float p_sphereRadius, float p_sphereTheta, float p_spherePhi, out float p_x, out float p_y, out float p_z)
 			{
-				float sinTheta = MathF.Sin(p_sphereTheta);
-				p_x = p_sphereRadius * sinTheta * MathF.Cos(p_spherePhi);
-				p_y = p_sphereRadius * sinTheta * MathF.Sin(p_spherePhi);
-				p_z = MathF.Cos(p_sphereTheta);
+				float sinTheta = Trigo.Sin(p_sphereTheta);
+				p_x = p_sphereRadius * sinTheta * Trigo.Cos(p_spherePhi);
+				p_y = p_sphereRadius * sinTheta * Trigo.Sin(p_spherePhi);
+				p_z = Trigo.Cos(p_sphereTheta);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -218,9 +218,9 @@ namespace ZkTools.Mathematics.CoordinateSystems
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static void SphericalToCylindrical (float p_sphereRadius, float p_sphereTheta, float p_spherePhi, out float p_cylRho, out float p_cylPhi, out float p_cylZ)
 			{
-				p_cylRho = p_sphereRadius * MathF.Sin(p_sphereTheta);
+				p_cylRho = p_sphereRadius * Trigo.Sin(p_sphereTheta);
 				p_cylPhi = p_spherePhi;
-				p_cylZ = p_sphereRadius * MathF.Cos(p_sphereTheta);
+				p_cylZ = p_sphereRadius * Trigo.Cos(p_sphereTheta);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -259,7 +259,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 			public static void CartesianToPolar (float p_x, float p_y ,out float p_polarRadius, out float p_polarAngle)
 			{
 				p_polarRadius = MathF.Sqrt(MathF.Square(p_x) + MathF.Square(p_y));
-				p_polarAngle = MathF.Atan2(p_y, p_x);
+				p_polarAngle = Trigo.Atan2(p_y, p_x);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -298,7 +298,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 			public static void CartesianToSpherical (float p_x, float p_y, float p_z, out float p_sphereRadius, out float p_sphereTheta, out float p_spherePhi)
 			{
 				p_sphereRadius = MathF.Sqrt(MathF.Square(p_x) + MathF.Square(p_y));
-				p_sphereTheta = MathF.Atan2(p_y, p_x);
+				p_sphereTheta = Trigo.Atan2(p_y, p_x);
 				p_spherePhi = p_z;
 			}
 
@@ -338,7 +338,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 			public static void CartesianToCylindrical (float p_x, float p_y, float p_z, out float p_cylRho, out float p_cylPhi, out float p_cylZ)
 			{
 				p_cylRho = MathF.Sqrt(MathF.Square(p_x) + MathF.Square(p_y));
-				p_cylPhi = MathF.Atan2(p_y, p_x);
+				p_cylPhi = Trigo.Atan2(p_y, p_x);
 				p_cylZ = p_z;
 			}
 

@@ -65,13 +65,13 @@ namespace ZkTools.Mathematics
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float AreaToPerimeter (float p_area)
 			{
-				return MathF.Sqrt(2.0f * p_area / MathF.Tau);
+				return MathF.Sqrt(2.0f * p_area / Trigo.Tau);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float AreaToRadius (float p_area)
 			{
-				return MathF.Sqrt(2.0f * p_area / MathF.Tau);
+				return MathF.Sqrt(2.0f * p_area / Trigo.Tau);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -109,7 +109,7 @@ namespace ZkTools.Mathematics
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector2 Direction (float p_angle)
 			{
-				return new Vector2(MathF.Cos(p_angle), MathF.Sin(p_angle));
+				return new Vector2(Trigo.Cos(p_angle), Trigo.Sin(p_angle));
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -161,13 +161,13 @@ namespace ZkTools.Mathematics
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float PerimeterToArea (float p_perimeter)
 			{
-				return MathF.Square(p_perimeter) / (2.0f * MathF.Tau);
+				return MathF.Square(p_perimeter) / (2.0f * Trigo.Tau);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float PerimeterToRadius (float p_perimeter)
 			{
-				return p_perimeter / MathF.Tau;
+				return p_perimeter / Trigo.Tau;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -185,13 +185,13 @@ namespace ZkTools.Mathematics
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float RadiusToArea (float p_radius)
 			{
-				return MathF.Square(p_radius) * MathF.Pi;
+				return MathF.Square(p_radius) * Trigo.Pi;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float RadiusToPerimeter (float p_radius)
 			{
-				return p_radius * MathF.Tau;;
+				return p_radius * Trigo.Tau;;
 			}
 
 		#endregion
