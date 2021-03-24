@@ -246,14 +246,6 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static void CylindricalToSpherical (float p_cylRho, float p_cylPhi, float p_cylZ, out float p_sphereRadius, out float p_sphereTheta, out float p_spherePhi)
-			{
-				p_sphereRadius = Sqrt(Square(p_cylRho) + Square(p_cylZ));
-				p_sphereTheta = Atan2(p_cylRho, p_cylZ);
-				p_spherePhi = p_cylPhi;
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float DegreeToRadian (float p_degree)
 			{
 				return p_degree * Degree2Radian;
@@ -742,14 +734,6 @@ namespace ZkTools.Mathematics
 				}
 
 				return output;
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static void SphericalToCylindrical(float p_sphereRadius, float p_sphereTheta, float p_spherePhi, out float p_cylRho, out float p_cylPhi, out float p_cylZ)
-			{
-				p_cylRho = p_sphereRadius * Sin(p_sphereTheta);
-				p_cylPhi = p_spherePhi;
-				p_cylZ = p_sphereRadius * Cos(p_sphereTheta);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
