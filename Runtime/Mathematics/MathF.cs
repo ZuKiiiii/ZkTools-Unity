@@ -356,6 +356,12 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Negate (float p_value)
+			{
+				return 1.0f - p_value;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float PingPong (float p_value, float p_length)
 			{
 				return p_length - Mathf.Abs(Repeat(p_value, p_length * 2f) - p_length);
@@ -373,6 +379,18 @@ namespace ZkTools.Mathematics
 				return Square(p_b) - 4 * p_a * p_c;
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Quartic (float p_value)
+			{
+				return p_value * p_value * p_value * p_value;
+			}
+			
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Quintic (float p_value)
+			{
+				return p_value * p_value * p_value * p_value * p_value;
+			}
+			
 			public static float[]  QuadraticEquation (float p_a, float p_b, float p_c)
 			{
 				float delta = QuadraticDelta(p_a, p_b, p_c);

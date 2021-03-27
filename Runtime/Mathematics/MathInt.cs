@@ -225,6 +225,12 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int Negate (int p_value)
+			{
+				return 1 - p_value;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int NextPowerOfTwo (int p_value)
 			{
 				return Mathf.NextPowerOfTwo(p_value);
