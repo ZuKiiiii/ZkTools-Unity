@@ -1,7 +1,9 @@
 {
     "name": "ZkTools.Mathematics",
     "rootNamespace": "ZkTools.Mathematics",
-    "references": [],
+    "references": [
+        "GUID:08b52345d6e62f746838ad6f5c888e0d"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

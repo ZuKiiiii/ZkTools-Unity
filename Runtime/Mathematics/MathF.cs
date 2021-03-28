@@ -126,44 +126,6 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static bool IsInside (float p_value, float p_min, float p_max, ERangeType p_type)
-			{
-				bool result = false;
-				switch (p_type)
-				{
-					case ERangeType.Ex : result = IsInsideEx(p_value, p_min, p_max); break;
-					case ERangeType.ExIn : result = IsInsideExIn(p_value, p_min, p_max); break;
-					case ERangeType.In : result = IsInsideIn(p_value, p_min, p_max); break;
-					case ERangeType.InEx : result = IsInsideInEx(p_value, p_min, p_max); break;
-				}
-				return result;
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static bool IsInsideIn (float p_value, float p_minInclusiveValue, float p_maxInclusiveValue)
-			{
-				return p_minInclusiveValue <= p_value && p_value <= p_maxInclusiveValue;
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static bool IsInsideInEx (float p_value, float p_minInclusiveValue, float p_maxExclusiveValue)
-			{
-				return p_minInclusiveValue <= p_value && p_value < p_maxExclusiveValue;
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static bool IsInsideEx (float p_value, float p_minExclusiveValue, float p_maxExclusiveValue)
-			{
-				return p_minExclusiveValue < p_value && p_value < p_maxExclusiveValue;
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static bool IsInsideExIn (float p_value, float p_minExclusiveValue, float p_maxInclusiveValue)
-			{
-				return p_minExclusiveValue < p_value && p_value <= p_maxInclusiveValue;
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static bool IsNearlyEqual (float p_lhs, float p_rhs, float p_tolerance = float.Epsilon)
 			{
 				return IsNearlyZero(p_lhs - p_rhs, p_tolerance);
@@ -185,44 +147,6 @@ namespace ZkTools.Mathematics
 			public static bool IsNegativeOrZero (float p_value)
 			{
 				return p_value <= 0.0f;
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static bool IsOutside (float p_value, float p_min, float p_max, ERangeType p_type)
-			{
-				bool result = false;
-				switch (p_type)
-				{
-					case ERangeType.Ex : result = IsOutsideEx(p_value, p_min, p_max); break;
-					case ERangeType.ExIn : result = IsOutsideExIn(p_value, p_min, p_max); break;
-					case ERangeType.In : result = IsOutsideIn(p_value, p_min, p_max); break;
-					case ERangeType.InEx : result = IsOutsideInEx(p_value, p_min, p_max); break;
-				}
-				return result;
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static bool IsOutsideEx (float p_value, float p_minExclusiveValue, float p_maxExclusiveValue)
-			{
-				return p_value < p_minExclusiveValue || p_maxExclusiveValue < p_value;
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static bool IsOutsideExIn (float p_value, float p_minExclusiveValue, float p_maxInclusiveValue)
-			{
-				return p_value < p_minExclusiveValue || p_maxInclusiveValue <= p_value;
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static bool IsOutsideIn (float p_value, float p_minInclusiveValue, float p_maxInclusiveValue)
-			{
-				return p_value <= p_minInclusiveValue || p_maxInclusiveValue <= p_value;
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static bool IsOutsideInEx (float p_value, float p_minInclusiveValue, float p_maxExclusiveValue)
-			{
-				return p_value <= p_minInclusiveValue || p_maxExclusiveValue < p_value;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
