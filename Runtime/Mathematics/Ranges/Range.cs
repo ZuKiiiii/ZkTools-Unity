@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 using ZkTools.Mathematics.Extensions;
 
 namespace ZkTools.Mathematics.Ranges
@@ -8,9 +9,17 @@ namespace ZkTools.Mathematics.Ranges
 	{
 		#region // ==============================[Variables]============================== //
 
-			public float max;
+			public static readonly Range Empty = new Range(0f, 0f);
+
+			public static readonly Range Whole = new Range(float.NegativeInfinity, float.PositiveInfinity);
+
+		#endregion
+		
+		#region // ==============================[Variables]============================== //
 
 			public float min;
+
+			public float max;
 
 		#endregion
 
@@ -24,14 +33,22 @@ namespace ZkTools.Mathematics.Ranges
 				set => max = min + value;
 			}
 
+			public float Middle => (max - min) / 2.0f; 
+
 		#endregion
 
-		#region // ==============================[Properties]============================== //
+		#region // ==============================[Constructor + Destructor]============================== //
 
 			public Range (float p_min, float p_max)
 			{
 				max = p_max;
 				min = p_min;
+			}
+
+			public Range (float p_value)
+			{
+				max = p_value;
+				min = p_value;
 			}
 
 			public Range (Range p_copy)
@@ -43,6 +60,16 @@ namespace ZkTools.Mathematics.Ranges
 		#endregion
 
 		#region // ==============================[Static Methods]============================== //
+
+			public static Range Intersection (float p_lhsMin, float p_lhsMax, float p_rhsMin, float p_rhsMax)
+			{
+				return new Range(MathF.Max(p_lhsMin, p_rhsMin), MathF.Min(p_lhsMax, p_rhsMax));
+			}
+
+			public static Range Intersection (Range p_lhs, Range p_rhs)
+			{
+				return Intersection(p_lhs.min, p_lhs.max, p_rhs.min, p_rhs.max);
+			}
 
 			public static bool IsInside (float p_value, float p_min, float p_max, ERange p_range)
 			{
@@ -118,9 +145,39 @@ namespace ZkTools.Mathematics.Ranges
 				return p_value <= p_minInclusiveValue || p_maxExclusiveValue < p_value;
 			}
 
+			public static bool IsOverlapping (float p_lhsMin, float p_lhsMax, float p_rhsMin, float p_rhsMax)
+			{
+				return (p_lhsMin <= p_rhsMin && p_rhsMin <= p_lhsMax) ||  (p_rhsMin <= p_lhsMin && p_lhsMin <= p_rhsMax);
+			}
+
+			public static bool IsOverlapping (Range p_lhs, Range p_rhs)
+			{
+				return IsOverlapping(p_lhs.min, p_lhs.max, p_rhs.min, p_rhs.max);
+			}
+
+			public static Range Union (float p_lhsMin, float p_lhsMax, float p_rhsMin, float p_rhsMax)
+			{
+				return new Range(MathF.Min(p_lhsMin, p_rhsMin), MathF.Max(p_lhsMax, p_rhsMax));
+			}
+
+			public static Range Union (Range p_lhs, Range p_rhs)
+			{
+				return Union(p_lhs.min, p_lhs.max, p_rhs.min, p_rhs.max);
+			}
+
 		#endregion
 
 		#region // ==============================[Methods]============================== //
+
+			public Range Intersection (float p_min, float p_max)
+			{
+				return Intersection(this.min, this.max, p_min, p_max);
+			}
+
+			public Range Intersection (Range p_other)
+			{
+				return Intersection(this, p_other);
+			}
 
 			public bool IsInside (float p_value, ERange p_range)
 			{
@@ -182,6 +239,39 @@ namespace ZkTools.Mathematics.Ranges
 				return IsOutsideInEx(p_value, min, max);
 			}
 
+			public bool IsOverlapping (Range p_other)
+			{
+				return IsOverlapping(this, p_other);
+			}
+
+			public void Set (float p_min, float p_max)
+			{
+				min = p_min;
+				max = p_max;
+			}
+
+			public void SetEmpty ()
+			{
+				min = 0.0f;
+				max = 0.0f;
+			}
+
+			public void SetWhole ()
+			{
+				min = float.NegativeInfinity;
+				max = float.PositiveInfinity;
+			}
+
+			public Range Union (float p_min, float p_max)
+			{
+				return Union(this.min, this.max, p_min, p_max);
+			}
+
+			public Range Union (Range p_other)
+			{
+				return Union(this, p_other);
+			}
+
 		#endregion
 
 		#region // ==============================[Inherited Methods]============================== //
@@ -208,12 +298,12 @@ namespace ZkTools.Mathematics.Ranges
 			{
 				return $"[{min},{max}]";
 			}
-			
+
 			public string ToString (string p_format)
 			{
 				return $"[{min.ToString(p_format)},{max.ToString(p_format)}]";
 			}
-			
+
 			public string ToString (string p_format, IFormatProvider p_formatProvider)
 			{
 				return $"[{min.ToString(p_format, p_formatProvider)},{max.ToString(p_format, p_formatProvider)}]";
@@ -231,6 +321,96 @@ namespace ZkTools.Mathematics.Ranges
 			public static bool operator!= (Range p_lhs, Range p_rhs)
 			{
 				return !(p_lhs == p_rhs);
+			}
+
+			public static bool operator< (Range p_lhs, Range p_rhs)
+			{
+				return p_lhs.max < p_rhs.min;
+			}
+
+			public static bool operator< (Range p_lhs, float p_rhs)
+			{
+				return p_lhs.max < p_rhs;
+			}
+			
+			public static bool operator< (float p_lhs, Range p_rhs)
+			{
+				return p_rhs > p_lhs;
+			}
+
+			public static bool operator<= (Range p_lhs, Range p_rhs)
+			{
+				return p_lhs.max <= p_rhs.min;
+			}
+
+			public static bool operator<= (Range p_lhs, float p_rhs)
+			{
+				return p_lhs.max <= p_rhs;
+			}
+			
+			public static bool operator<= (float p_lhs, Range p_rhs)
+			{
+				return p_rhs >= p_lhs;
+			}
+
+			public static bool operator> (Range p_lhs, Range p_rhs)
+			{
+				return p_lhs.min > p_rhs.max;
+			}
+
+			public static bool operator> (Range p_lhs, float p_rhs)
+			{
+				return p_lhs.min > p_rhs;
+			}
+
+			public static bool operator> (float p_lhs, Range p_rhs)
+			{
+				return p_rhs < p_lhs;
+			}
+
+			public static bool operator>= (Range p_lhs, Range p_rhs)
+			{
+				return p_lhs.min >= p_rhs.max;
+			}
+
+			public static bool operator>= (Range p_lhs, float p_rhs)
+			{
+				return p_lhs.min >= p_rhs;
+			}
+
+			public static bool operator>= (float p_lhs, Range p_rhs)
+			{
+				return p_rhs <= p_lhs;
+			}
+
+			public static Range operator+ (Range p_lhs, Range p_rhs)
+			{
+				return new Range(p_lhs.min + p_rhs.min, p_lhs.max + p_rhs.max);
+			}
+
+			public static Range operator+ (Range p_lhs, float p_rhs)
+			{
+				return new Range(p_lhs.min + p_rhs, p_lhs.max + p_rhs);
+			}
+
+			public static Range operator+ (float p_lhs, Range p_rhs)
+			{
+				return new Range(p_lhs + p_rhs.min, p_lhs + p_rhs.max);
+			}
+
+			public static Range operator- (Range p_this)
+			{
+				return new Range(-p_this.max, -p_this.min);
+			}
+			
+			public static Range operator- (Range p_lhs, Range p_rhs)
+			{
+				return new Range(p_lhs.min - p_rhs.min, p_lhs.max - p_rhs.max);
+			}
+
+			public static Range operator- (Range p_lhs, float p_rhs)
+			{
+				return new Range(p_lhs.min - p_rhs, p_lhs.max - p_rhs);
 			}
 
 		#endregion
