@@ -12,25 +12,31 @@ namespace ZkTools.Mathematics
 
 			public const float CbrtPi = 1.464591887561523263020142527263790391e+00f;
 
-			public const float Degree2Gradian = 1.11111111111111111111111111111111111e+00f;
+			public const float Degree2Gradian = 200.0f / 180.0f;
 
-			public const float Degree2Radian = 1.11111111111111111111111111111111111e+00f;
+			public const float Degree2Radian = Pi /180;
 
-			public const float Degree2Turn = 0.00277777777777777777777777777777778e+00f;
+			public const float Degree2Turn = 1.0f / 360f;
 
 			public const float EPowPi = 2.314069263277926900572908636794854738e+01f;
 
-			public const float FivePiDivSix = 5.0f * Pi / 6.0f;
+			public const float ElevenPiDivSix =  11.0f * Pi / 6.0f;
 			
-			public const float FourPiDivThree = 4.188790204786390984616857844373f;
+			public const float FivePiDivFour = 5.0f * Pi / 4.0f;
+			
+			public const float FivePiDivSix = 5.0f * Pi / 6.0f;
 
-			public const float Gradian2Degree = 0.90f;
+			public const float FivePiDivThree = 5.0f * Pi / 3.0f;
+			
+			public const float FourPiDivThree = 4.0f * Pi / 3.0f;
 
-			public const float Gradian2Radian = 0.015707963267948966192313216916e+00f;
+			public const float Gradian2Degree = 180f / 200f;
 
-			public const float Gradian2Turn = 0.0025f;
+			public const float Gradian2Radian = Pi / 200f;
 
-			public const float OneDivPi = 0.318309886183790671537767526745f;
+			public const float Gradian2Turn = 1f / 400f;
+
+			public const float OneDivPi = 1 / Pi;
 
 			public const float OneDivSqrtPi = 5.641895835477562869480794515607725858e-01f;
 
@@ -38,37 +44,41 @@ namespace ZkTools.Mathematics
 
 			public const float Pi = 3.141592653589793238462643383279502884e+00f;
 
-			public const float PiDivFour = 0.78539816339744830961566084582e+00f;
+			public const float PiDivFour = Pi / 4.0f;
 
-			public const float PiDivSix = 0.5235987755982989e+00f;
+			public const float PiDivSix = Pi / 6.0f;
 
-			public const float PiDivThree = 1.0471975511965977e+00f;
+			public const float PiDivThree = Pi / 3.0f;
 
-			public const float PiDivTwo = 1.570796326794896619231321691639751442e+00f;
+			public const float PiDivTwo = Pi / 2.0f;
 
 			public const float PiSqr = 9.869604401089358618834490999876151135e+00f;
 
-			public const float Radian2Degree = 57.29577951308232286464772187173366546e+00f;
+			public const float Radian2Degree = 180f / Pi;
 
-			public const float Radian2Gradian = 63.661977236758134307553505349006e+00f;
+			public const float Radian2Gradian = 200f / Pi;
 
-			public const float Radian2Turn = 0.159154943091895335768883763373e+00f;
-			
-			public const float SinOne = 0.841470984808e+00f;
+			public const float Radian2Turn = 1f / Tau;
+
+			public const float SevenPivDivFour = 7f * Pi / 4f;
+
+			public const float SevenPiDivSix = 7f * Pi / 6;
 
 			public const float SqrtPi = 1.772453850905516027298167483341145182e+00f;
-			
-			public const float SqrtPiDivTwo = 1.253314137315500251207882642405522626e+00f;
-			
-			public const float SqrtTau = 2.5066282746310002e+00f;
-			
-			public const float SqrtThreeDivTwo = 0.8660254037844386e+00f;
-			
-			public const float SqrtTwoDivTwo = 0.7071067811865475e+00f;
-			
-			public const float Tau = 6.283185307179586476925286766559e+00f;
 
-			public const float ThreePiDivFour = 2.356194490192344928846982537459627163e+00f;
+			public const float SqrtPiDivTwo = 1.253314137315500251207882642405522626e+00f;
+
+			public const float SqrtTau = 2.5066282746310002e+00f;
+
+			public const float SqrtThreeDivTwo = 0.8660254037844386e+00f;
+
+			public const float SqrtTwoDivTwo = 0.7071067811865475e+00f;
+
+			public const float Tau = 2f * Pi;
+
+			public const float ThreePiDivTwo = 3f * Pi / 2f;
+
+			public const float ThreePiDivFour = 3f * Pi / 4f;
 
 			public const float Turn2Degree = 360.0f;
 
@@ -76,7 +86,7 @@ namespace ZkTools.Mathematics
 
 			public const float Turn2Radian = Tau;
 
-			public const float TwoPiDivThree = 2.094395102393195492308428922186335256e+00f;
+			public const float TwoPiDivThree = 2f * Pi / 3f;
 			
 		#endregion
 		
