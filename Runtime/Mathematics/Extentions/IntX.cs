@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace ZkTools.Mathematics.Extensions
 {
-	public static partial class IntX
+	public static class IntX
 	{
 		#region // ==============================[Static Methods]============================== //
 

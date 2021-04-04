@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ZkTools.Mathematics.Extensions
 {
-	public static partial class FloatX
+	public static class FloatX
 	{
 		#region // ==============================[Static Methods]============================== //
 

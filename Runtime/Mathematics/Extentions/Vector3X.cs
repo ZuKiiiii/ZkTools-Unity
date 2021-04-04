@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ZkTools.Mathematics.Extensions
 {
-	public static partial class Vector3X 
+	public static class Vector3X 
 	{
 		#region // ==============================[Static Methods]============================== //
 
@@ -112,7 +112,7 @@ namespace ZkTools.Mathematics.Extensions
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float DistanceSqr (Vector3 p_lhs, Vector3 p_rhs)
 			{
-				return p_lhs.x * p_rhs.x + p_lhs.y * p_rhs.y + p_lhs.z * p_rhs.z;
+				return MathF.Square(p_rhs.x - p_lhs.x) + MathF.Square(p_rhs.y - p_lhs.y) + MathF.Square(p_rhs.z - p_lhs.z);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
