@@ -2,7 +2,7 @@
 
 namespace ZkTools.Mathematics.Angles.Extensions
 {
-	public static partial class FloatX
+	public static class FloatX
 	{
 		#region // ==============================[Static Methods]============================== //
 

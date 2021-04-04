@@ -95,14 +95,24 @@ namespace ZkTools.Mathematics.Angles
 
 		#region // ==============================[Inherited Methods]============================== //
 
+			public int CompareTo (Turn p_other)
+			{
+				return turn.CompareTo(p_other.turn);
+			}
+
+			public override bool Equals (object p_obj)
+			{
+				return p_obj is Turn other && Equals(other);
+			}
+
 			public bool Equals (Turn p_other)
 			{
 				return this == p_other;
 			}
 
-			public int CompareTo (Turn p_other)
+			public override int GetHashCode ()
 			{
-				return turn.CompareTo(p_other.turn);
+				return turn.GetHashCode();
 			}
 
 			public override string ToString ()
