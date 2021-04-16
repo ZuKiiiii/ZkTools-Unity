@@ -121,6 +121,13 @@ namespace ZkTools.Mathematics.Extensions
 				return p_lhs.x * p_rhs.x + p_lhs.y * p_rhs.y + + p_lhs.z * p_rhs.z;
 			}
 
+			public static void Exec (ref Vector3 p_vector, Func<float, float> p_action)
+			{
+				p_vector.x = p_action?.Invoke(p_vector.x) ?? p_vector.x;
+				p_vector.y = p_action?.Invoke(p_vector.y) ?? p_vector.y;
+				p_vector.z = p_action?.Invoke(p_vector.z) ?? p_vector.z;
+			}
+			
 			public static void Exec (ref Vector3 p_vector, Func<float, float> p_xAction, Func<float, float> p_yAction, Func<float, float> p_zAction)
 			{
 				p_vector.x = p_xAction?.Invoke(p_vector.x) ?? p_vector.x;
@@ -131,8 +138,7 @@ namespace ZkTools.Mathematics.Extensions
 			// p_direction must be normalized !!!;
 			public static Vector3 ExtractDotVector (Vector3 p_vector, Vector3 p_direction)
 			{
-				float amount = Vector3.Dot(p_vector, p_direction);
-				return p_direction * amount;
+				return p_direction * Vector3.Dot(p_vector, p_direction);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
