@@ -72,6 +72,18 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Distance (float p_lhs, float p_rhs)
+			{
+				return Abs(p_lhs - p_rhs);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float DistanceSqr (float p_lhs, float p_rhs)
+			{
+				return Square(p_lhs - p_rhs);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Exp (float p_value)
 			{
 				return (float)Math.Exp(p_value);

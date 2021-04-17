@@ -10,7 +10,7 @@ namespace ZkTools.Mathematics
 		#region // ==============================[Methods]============================== //
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float Abs (int p_value)
+			public static int Abs (int p_value)
 			{
 				return Math.Abs(p_value);
 			}
@@ -31,6 +31,18 @@ namespace ZkTools.Mathematics
 			public static int Cube (int p_value)
 			{
 				return Square(p_value) * p_value;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int Distance (int p_lhs, int p_rhs)
+			{
+				return Abs(p_lhs - p_rhs);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int DistanceSqr (int p_lhs, int p_rhs)
+			{
+				return Square(p_lhs - p_rhs);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

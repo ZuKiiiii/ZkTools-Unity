@@ -147,7 +147,7 @@ namespace ZkTools.Mathematics.Ranges
 
 			public static bool IsOverlapping (float p_lhsMin, float p_lhsMax, float p_rhsMin, float p_rhsMax)
 			{
-				return (p_lhsMin <= p_rhsMin && p_rhsMin <= p_lhsMax) ||  (p_rhsMin <= p_lhsMin && p_lhsMin <= p_rhsMax);
+				return (p_lhsMin <= p_rhsMin && p_rhsMin <= p_lhsMax) || (p_rhsMin <= p_lhsMin && p_lhsMin <= p_rhsMax);
 			}
 
 			public static bool IsOverlapping (Range p_lhs, Range p_rhs)
