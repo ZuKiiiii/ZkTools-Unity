@@ -115,6 +115,13 @@ namespace ZkTools.Mathematics.Extensions
 				return MathF.Square(p_rhs.x - p_lhs.x) + MathF.Square(p_rhs.y - p_lhs.y) + MathF.Square(p_rhs.z - p_lhs.z);
 			}
 
+			//  determinant
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Det (Vector3 p_a, Vector3 p_b, Vector3 p_c)
+			{
+				return (p_a.x * p_b.y * p_c.z) + (p_a.y * p_b.z * p_c.x) + (p_a.z * p_b.x * p_c.y) - (p_a.z * p_b.y * p_c.x) - (p_a.y * p_b.x * p_c.z) - (p_a.x * p_b.z * p_c.y);
+			}
+
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Dot (Vector3 p_lhs, Vector3 p_rhs)
 			{
@@ -189,6 +196,16 @@ namespace ZkTools.Mathematics.Extensions
 				return Cross(p_lhs, p_rhs).IsZero();
 			}
 
+			public static bool IsNormalized (this Vector3 p_this)
+			{
+				return p_this.sqrMagnitude == 1.0f;
+			}
+
+			public static bool IsUnit(this Vector3 p_this, float p_epsilon = float.Epsilon)
+			{
+				return p_this.sqrMagnitude == 1.0f;
+			}
+			
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector3 InverseLerp (Vector3 p_a, Vector3 p_b, Vector3 p_value)
 			{
@@ -290,6 +307,12 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Replicate (float p_value)
+			{
+				return new Vector3(p_value, p_value, p_value);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector3 Round (Vector3 p_vector)
 			{
 				return new Vector3(MathF.Round(p_vector.x), MathF.Round(p_vector.y), MathF.Round(p_vector.z));
@@ -299,6 +322,12 @@ namespace ZkTools.Mathematics.Extensions
 			public static Vector3Int RoundToInt (Vector3 p_vector)
 			{
 				return new Vector3Int(MathF.RoundToInt(p_vector.x), MathF.RoundToInt(p_vector.y), MathF.RoundToInt(p_vector.z));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool SameDirection (Vector3 p_lhs, Vector3 p_rhs)
+			{
+				return Dot(p_lhs, p_rhs) > 0f;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -82,26 +82,10 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float Cross (Vector2 p_lhs, Vector2 p_rhs)
-			{
-				return p_lhs.x * p_rhs.y - p_lhs.y * p_rhs.x;
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector2 Direction (float p_angleRad)
 			{
 				return new Vector2(Trigo.Cos(p_angleRad), Trigo.Sin(p_angleRad));
 			}
-
-			// [MethodImpl(MethodImplOptions.AggressiveInlining)]
-			// public static float Cross (float p_lhs, Vector2 p_rhs)
-			// {
-			// }
-
-			// [MethodImpl(MethodImplOptions.AggressiveInlining)]
-			// public static float Cross (Vector2 p_lhs, float p_rhs)
-			// {
-			// }
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector2 Direction (Vector2 p_from, Vector2 p_to)
@@ -119,6 +103,13 @@ namespace ZkTools.Mathematics.Extensions
 			public static float DistanceSqr (Vector2 p_lhs, Vector2 p_rhs)
 			{
 				return MathF.Square(p_rhs.x - p_lhs.x) + MathF.Square(p_rhs.y - p_lhs.y);
+			}
+
+			//  determinant
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Det (Vector2 p_lhs, Vector2 p_rhs)
+			{
+				return p_lhs.x * p_rhs.y - p_lhs.y * p_rhs.x;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -185,9 +176,19 @@ namespace ZkTools.Mathematics.Extensions
 
 			public static bool IsCollinear (Vector2 p_lhs, Vector2 p_rhs)
 			{
-				return Cross(p_lhs, p_rhs).IsZero();
+				return Det(p_lhs, p_rhs).IsZero();
 			}
 
+			public static bool IsNormalized (this Vector3 p_this)
+			{
+				return p_this.sqrMagnitude == 1.0f;
+			}
+
+			public static bool IsUnit(this Vector3 p_this, float p_epsilon = float.Epsilon)
+			{
+				return p_this.sqrMagnitude == 1.0f;
+			}
+			
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector2 InverseLerp (Vector2 p_a, Vector2 p_b, Vector2 p_value)
 			{
@@ -242,11 +243,13 @@ namespace ZkTools.Mathematics.Extensions
 				return p_this == Vector2.zero;
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector2 Lerp (Vector2 p_a, Vector2 p_b, float p_t)
 			{
-				return Lerp(p_a, p_b, new Vector2(p_t, p_t));
+				return p_a + (p_b - p_a) * p_t;
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector2 Lerp (Vector2 p_a, Vector2 p_b, Vector2 p_t)
 			{
 				return new Vector2(MathF.Lerp(p_a.x, p_b.x, p_t.x), MathF.Lerp(p_a.y, p_b.y, p_t.y));
@@ -254,7 +257,7 @@ namespace ZkTools.Mathematics.Extensions
 
 			public static Vector2 LerpClamped (Vector2 p_a, Vector2 p_b, float p_t)
 			{
-				return LerpClamped(p_a, p_b, new Vector2(p_t, p_t));
+				return p_a + (p_b - p_a) * MathF.Clamp(p_t);
 			}
 
 			public static Vector2 LerpClamped (Vector2 p_a, Vector2 p_b, Vector2 p_t)
@@ -272,6 +275,17 @@ namespace ZkTools.Mathematics.Extensions
 				return new Vector2(MathF.Min(p_lhs.x, p_rhs.x), MathF.Min(p_lhs.y, p_rhs.y));
 			}
 
+			// Clock Wise !!!
+			public static Vector2 Perpendicular (this Vector2 p_this)
+			{
+				return new Vector2(p_this.y, -p_this.x);
+			}
+
+			public static Vector2 PerpendicularInv (this Vector2 p_this)
+			{
+				return -p_this.Perpendicular();
+			}
+
 			public static Vector2 Remap (Vector2 p_value, Vector2 p_inMin, Vector2 p_inMax, Vector2 p_outMin, Vector2 p_outMax)
 			{
 				return Lerp(p_outMin, p_outMax, InverseLerp(p_inMin, p_inMax, p_value));
@@ -286,6 +300,12 @@ namespace ZkTools.Mathematics.Extensions
 			public static Vector2 RemoveDotVector (Vector2 p_vector, Vector2 p_direction)
 			{
 				return p_vector - ExtractDotVector(p_vector, p_direction);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector2 Replicate (float p_value)
+			{
+				return new Vector2(p_value, p_value);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

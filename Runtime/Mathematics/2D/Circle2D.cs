@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using ZkTools.Mathematics.Extensions;
 
-namespace ZkTools.Mathematics
+namespace ZkTools.Mathematics.Geometry2D
 {
 	[System.Serializable]
 	public struct Circle2D : IEquatable<Circle2D>, IFormattable
