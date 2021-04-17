@@ -7,7 +7,7 @@ namespace ZkTools.Mathematics.Geometry2D
 	[Serializable]
 	public struct Segment2D : IEquatable<Segment2D>, IFormattable
 	{
-		#region // ==============================[Editable Variables]============================== //
+		#region // ==============================[Variables]============================== //
 
 			public Vector2 a;
 
@@ -22,7 +22,7 @@ namespace ZkTools.Mathematics.Geometry2D
 			public Vector2 BA => Vector2X.FromTo(b, a);
 
 			public Line2D Bisector => Line2D.Bisector(a, b);
-			
+
 			public Vector2 Center => Vector2X.Center(a, b);
 
 			public float Length => AB.magnitude;
@@ -32,6 +32,8 @@ namespace ZkTools.Mathematics.Geometry2D
 			public Line2D LineAB => new Line2D(a, AB.normalized);
 
 			public Line2D LineBA => new Line2D(b, BA.normalized);
+
+			public Segment2D Inverse => new Segment2D(b, a);
 
 		#endregion
 

@@ -6,7 +6,7 @@ namespace ZkTools.Mathematics.Geometry2D
 	[Serializable]
 	public struct Ray2D : IFormattable
 	{
-		#region // ==============================[Editable Variables]============================== //
+		#region // ==============================[Variables]============================== //
 
 			public Vector2 origin;
 

@@ -14,7 +14,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 
-		#region // ==============================[Editable Variables]============================== //
+		#region // ==============================[Variables]============================== //
 
 			public Vector2 center;
 

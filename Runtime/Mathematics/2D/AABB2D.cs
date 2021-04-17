@@ -9,7 +9,7 @@ namespace ZkTools.Mathematics.Geometry2D
 	[Serializable]
 	public struct AABB2D : IEquatable<AABB2D>, IFormattable
 	{
-		#region // ==============================[Editable Variables]============================== //
+		#region // ==============================[Variables]============================== //
 
 			public Vector2 min;
 
