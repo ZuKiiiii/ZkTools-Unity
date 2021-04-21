@@ -75,6 +75,8 @@ namespace ZkTools.Mathematics.Angles
 
 			public Turn ToTurn {get => Trigo.DegreeToGradian(degree); set => degree =Trigo.TurnToDegree(value.turn);} 
 
+			public Degree Unwinded => CalcUnwind(degree);
+
 			public float Value {get => degree; set => degree = value;}
 
 		#endregion
@@ -89,6 +91,21 @@ namespace ZkTools.Mathematics.Angles
 			public Degree (Degree p_degree)
 			{
 				degree = p_degree.degree;
+			}
+
+		#endregion
+
+		#region // ==============================[Static Methods]============================== //
+
+			public static Degree CalcUnwind (Degree p_degree)
+			{
+				while(p_degree > Half)
+					p_degree -= One;
+
+				while(p_degree < Half)
+					p_degree += One;
+
+				return p_degree;
 			}
 
 		#endregion
@@ -114,7 +131,7 @@ namespace ZkTools.Mathematics.Angles
 			{
 				return degree.GetHashCode();
 			}
-			
+
 			public override string ToString ()
 			{
 				return $"{degree}°";
@@ -129,6 +146,11 @@ namespace ZkTools.Mathematics.Angles
 			public string ToString (string p_format, IFormatProvider p_formatProvider)
 			{
 				return $"{degree.ToString(p_format, p_formatProvider)}°";
+			}
+
+			public void Unwind ()
+			{
+				degree = Unwinded;
 			}
 
 		#endregion

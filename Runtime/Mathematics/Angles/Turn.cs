@@ -75,6 +75,8 @@ namespace ZkTools.Mathematics.Angles
 
 			public Turn ToTurn {get => this; set => this = value;} 
 
+			public Turn Unwinded => CalcUnwind(turn);
+
 			public float Value {get => turn; set => turn = value;}
 
 		#endregion
@@ -89,6 +91,21 @@ namespace ZkTools.Mathematics.Angles
 			public Turn (Turn p_turn)
 			{
 				turn = p_turn.turn;
+			}
+
+		#endregion
+
+		#region // ==============================[Static Methods]============================== //
+
+			public static Turn CalcUnwind (Turn p_turn)
+			{
+				while(p_turn > Half)
+					p_turn -= One;
+
+				while(p_turn < Half)
+					p_turn += One;
+
+				return p_turn;
 			}
 
 		#endregion
@@ -129,6 +146,11 @@ namespace ZkTools.Mathematics.Angles
 			public string ToString (string p_format, IFormatProvider p_formatProvider)
 			{
 				return $"{turn.ToString(p_format, p_formatProvider)} grad";
+			}
+
+			public void Unwind ()
+			{
+				turn = Unwinded;
 			}
 
 		#endregion

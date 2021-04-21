@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using ZkTools.Mathematics.Angles;
 
 namespace ZkTools.Mathematics.Extensions
 {
@@ -8,6 +9,24 @@ namespace ZkTools.Mathematics.Extensions
 	{
 		#region // ==============================[Static Methods]============================== //
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Radian Angle (Vector2 p_from, Vector2 p_to)
+			{
+				return Trigo.Acos(Dot(p_from, p_to) / MathF.Sqrt(p_from.sqrMagnitude * p_to.sqrMagnitude));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Radian AngleCCW (Vector2 p_from, Vector2 p_to)
+			{
+				return Det(p_from, p_to) > 0 ? Angle(p_from, p_to) :Radian.One - Angle(p_from, p_to);
+			}
+			
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Radian AngleCW (Vector2 p_from, Vector2 p_to)
+			{
+				return Det(p_from, p_to) < 0 ? Angle(p_from, p_to) :Radian.One - Angle(p_from, p_to);
+			}
+			
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector2 Ceil (Vector2 p_vector)
 			{
@@ -318,6 +337,18 @@ namespace ZkTools.Mathematics.Extensions
 			public static Vector2Int RoundToInt (Vector2 p_vector)
 			{
 				return new Vector2Int(MathF.RoundToInt(p_vector.x), MathF.RoundToInt(p_vector.y));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool SameDirection (Vector2 p_lhs, Vector2 p_rhs)
+			{
+				return Dot(p_lhs, p_rhs) > 0f;
+			}
+			
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Radian SignedAngle (Vector2 p_from, Vector2 p_to)
+			{
+				return Angle(p_from, p_to) * MathF.SignPos(Det(p_from, p_to));
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

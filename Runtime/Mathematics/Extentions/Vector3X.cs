@@ -1,12 +1,31 @@
 using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using ZkTools.Mathematics.Angles;
 
 namespace ZkTools.Mathematics.Extensions
 {
 	public static class Vector3X 
 	{
 		#region // ==============================[Static Methods]============================== //
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Radian Angle (Vector3 p_from, Vector3 p_to)
+			{
+				return Trigo.Acos(Dot(p_from, p_to) / MathF.Sqrt(p_from.sqrMagnitude * p_to.sqrMagnitude));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Radian AngleCCW (Vector2 p_from, Vector2 p_to, Vector3 p_axis)
+			{
+				return Det(p_from, p_to, p_axis) > 0 ? Angle(p_from, p_to) :Radian.One - Angle(p_from, p_to);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Radian AngleCW (Vector2 p_from, Vector2 p_to, Vector3 p_axis)
+			{
+				return Det(p_from, p_to, p_axis) < 0 ? Angle(p_from, p_to) :Radian.One - Angle(p_from, p_to);
+			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector3 Ceil (Vector3 p_vector)
@@ -205,7 +224,7 @@ namespace ZkTools.Mathematics.Extensions
 			{
 				return p_this.sqrMagnitude == 1.0f;
 			}
-			
+
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector3 InverseLerp (Vector3 p_a, Vector3 p_b, Vector3 p_value)
 			{
@@ -279,7 +298,7 @@ namespace ZkTools.Mathematics.Extensions
 			{
 				return new Vector3(MathF.LerpClamped(p_a.x, p_b.x, p_t.x), MathF.LerpClamped(p_a.y, p_b.y, p_t.y), MathF.LerpClamped(p_a.z, p_b.z, p_t.z));
 			}
-			
+
 			public static Vector3 Max (Vector3 p_lhs, Vector3 p_rhs)
 			{
 				return new Vector3(MathF.Max(p_lhs.x, p_rhs.x), MathF.Max(p_lhs.y, p_rhs.y), MathF.Max(p_lhs.z, p_rhs.z));
@@ -328,6 +347,18 @@ namespace ZkTools.Mathematics.Extensions
 			public static bool SameDirection (Vector3 p_lhs, Vector3 p_rhs)
 			{
 				return Dot(p_lhs, p_rhs) > 0f;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Radian SignedAngle (Vector3 p_from, Vector3 p_to)
+			{
+				return SignedAngle(p_from, p_to, Cross(p_from, p_to));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Radian SignedAngle (Vector3 p_from, Vector3 p_to, Vector3 p_axis)
+			{
+				return Angle(p_from, p_to) * MathF.SignPos(Det(p_from, p_to, p_axis));
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

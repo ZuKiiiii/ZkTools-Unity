@@ -75,6 +75,8 @@ namespace ZkTools.Mathematics.Angles
 
 			public Turn ToTurn {get => Trigo.RadianToTurn(radian); set => radian = Trigo.TurnToRadian(value.turn);}
 
+			public Radian Unwinded => CalcUnwind(radian);
+
 			public float Value {get => radian; set => radian = value;}
 
 			#endregion
@@ -89,6 +91,21 @@ namespace ZkTools.Mathematics.Angles
 			public Radian (Radian p_radian)
 			{
 				radian = p_radian.radian;
+			}
+
+		#endregion
+
+		#region // ==============================[Static Methods]============================== //
+
+			public static Radian CalcUnwind (Radian p_radian)
+			{
+				while(p_radian > Half)
+					p_radian -= One;
+
+				while(p_radian < Half)
+					p_radian += One;
+
+				return p_radian;
 			}
 
 		#endregion
@@ -114,7 +131,7 @@ namespace ZkTools.Mathematics.Angles
 			{
 				return radian.GetHashCode();
 			}
-			
+
 			public override string ToString ()
 			{
 				return $"{radian} rad";
@@ -129,6 +146,11 @@ namespace ZkTools.Mathematics.Angles
 			public string ToString (string p_format, IFormatProvider p_formatProvider)
 			{
 				return $"{radian.ToString(p_format, p_formatProvider)} rad";
+			}
+
+			public void Unwind ()
+			{
+				radian = Unwinded;
 			}
 
 		#endregion

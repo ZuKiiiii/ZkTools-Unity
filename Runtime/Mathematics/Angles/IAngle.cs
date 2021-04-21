@@ -22,12 +22,16 @@ namespace ZkTools.Mathematics.Angles
 
 			public Turn ToTurn {get; set;}
 
+			public T Unwinded {get;}
+			
 			public float Value {get; set;}
 
 		#endregion
 
 		#region // ==============================[Methods]============================== //
 
+			public void Unwind ();
+		
 			public string ToString (string p_format);
 
 		#endregion

@@ -75,6 +75,8 @@ namespace ZkTools.Mathematics.Angles
 
 			public Turn ToTurn {get => Trigo.GradianToTurn(gradian); set => gradian = Trigo.TurnToGradian(value.turn);} 
 
+			public Gradian Unwinded => CalcUnwind(gradian);
+
 			public float Value {get => gradian; set => gradian = value;}
 
 			#endregion
@@ -89,6 +91,21 @@ namespace ZkTools.Mathematics.Angles
 			public Gradian (Gradian p_gradian)
 			{
 				gradian = p_gradian.gradian;
+			}
+
+		#endregion
+
+		#region // ==============================[Static Methods]============================== //
+
+			public static Gradian CalcUnwind (Gradian p_gradian)
+			{
+				while(p_gradian > Half)
+					p_gradian -= One;
+
+				while(p_gradian < Half)
+					p_gradian += One;
+
+				return p_gradian;
 			}
 
 		#endregion
@@ -114,7 +131,7 @@ namespace ZkTools.Mathematics.Angles
 			{
 				return gradian.GetHashCode();
 			}
-			
+
 			public override string ToString ()
 			{
 				return $"{gradian} grad";
@@ -129,6 +146,11 @@ namespace ZkTools.Mathematics.Angles
 			public string ToString (string p_format, IFormatProvider p_formatProvider)
 			{
 				return $"{gradian.ToString(p_format, p_formatProvider)} grad";
+			}
+
+			public void Unwind ()
+			{
+				gradian = Unwinded;
 			}
 
 		#endregion
