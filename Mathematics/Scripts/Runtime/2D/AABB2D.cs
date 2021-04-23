@@ -386,7 +386,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 			public void Expand (float p_minExp, float p_maxExp)
 			{
-				
+				throw new NotImplementedException();
 			}
 
 			public void Expand (Vector2 p_values)

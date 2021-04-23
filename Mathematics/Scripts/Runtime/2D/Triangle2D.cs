@@ -1,6 +1,9 @@
 ﻿using System;
 using UnityEngine;
+using ZkTools.Mathematics.Angles;
+using ZkTools.Mathematics.CoordinateSystems;
 using ZkTools.Mathematics.Extensions;
+using Vector2X = ZkTools.Mathematics.Extensions.Vector2X;
 
 namespace ZkTools.Mathematics.Geometry2D
 {
@@ -27,7 +30,45 @@ namespace ZkTools.Mathematics.Geometry2D
 
 			public Vector2 AdirC => AtoC.normalized;
 
-			public float Area => CalcArea(a, b , c);
+			public Radian AngleA
+			{
+				get
+				{
+					float aSqr = Vector2X.FromTo(b, c).sqrMagnitude;
+					float bSqr = Vector2X.FromTo(c, a).sqrMagnitude;
+					float cSqr = Vector2X.FromTo(a, b).sqrMagnitude;
+
+					return Trigo.Acos((bSqr + cSqr - aSqr) / (Mathf.Sqrt(bSqr) * Mathf.Sqrt(cSqr)));
+				}
+			}
+
+			public Radian AngleB
+			{
+				get
+				{
+					float aSqr = Vector2X.FromTo(b, c).sqrMagnitude;
+					float bSqr = Vector2X.FromTo(c, a).sqrMagnitude;
+					float cSqr = Vector2X.FromTo(a, b).sqrMagnitude;
+
+					return Trigo.Acos((aSqr + cSqr - bSqr) / (Mathf.Sqrt(aSqr) * Mathf.Sqrt(cSqr)));
+				}
+			}
+
+			public Radian AngleC
+			{
+				get
+				{
+					float aSqr = Vector2X.FromTo(b, c).sqrMagnitude;
+					float bSqr = Vector2X.FromTo(c, a).sqrMagnitude;
+					float cSqr = Vector2X.FromTo(a, b).sqrMagnitude;
+
+					return Trigo.Acos((aSqr + bSqr - cSqr) / (Mathf.Sqrt(aSqr) * Mathf.Sqrt(bSqr)));
+				}
+			}
+
+			public Radian[] Angles => CalcAngles(a, b, c);
+
+			public float Area => CalcArea(a, b, c);
 
 			public Vector2 AtoB => Vector2X.FromTo(a, b);
 
@@ -61,6 +102,8 @@ namespace ZkTools.Mathematics.Geometry2D
 
 			public Vector2 CtoB => Vector2X.FromTo(c, b);
 
+			public float Determinant => Vector2X.Det(Vector2X.FromTo(a,b), Vector2X.FromTo(a,c));
+
 			public Vector2[] DirectionsCW => new Vector2[3] {AdirB, BdirC, CdirA};
 
 			public Vector2[] DirectionsCCW => new Vector2[3] {AdirC, CdirB, BdirC};
@@ -80,7 +123,7 @@ namespace ZkTools.Mathematics.Geometry2D
 			public Line2D[] LinesCW => new Line2D[3] {LineAB, LineBC, LineCA};
 
 			public Line2D[] LinesCCW => new Line2D[3] {LineAC, LineCB, LineBC};
-			
+
 			public Circle2D InCircle => CalcInCircle(a, b, c);
 
 			public Segment2D[] SegmentsCW => new Segment2D[3] {AB, BC, CA};
@@ -114,50 +157,10 @@ namespace ZkTools.Mathematics.Geometry2D
 			}
 
 			public Vector2[] Vertices => new Vector2[3] {a, b, c};
-			
+
 			public Vector2[] VectorsCW => new Vector2[3] {AtoB, BtoC, CtoA};
 
 			public Vector2[] VectorsCCW => new Vector2[3] {AtoC, CtoB, BtoC};
-			
-		#endregion
-
-		#region // ==============================[Properties]============================== //
-
-			public float CalcArea (Vector2 p_a, Vector2 p_b, Vector2 p_c)
-			{
-				return Math.Abs(CalcSignedArea(p_a, p_b, p_c));
-			}
-
-			public float CalcArea (float p_width, float p_height)
-			{
-				return (p_width * p_height) * 0.5f;
-			}
-
-			public float CalcArea(Vector2 p_size)
-			{
-				return CalcArea(p_size.x, p_size.y);
-			}
-
-			public Circle2D CalcInCircle (Vector2 p_a, Vector2 p_b, Vector2 p_c)
-			{
-				float distAB = Vector2.Distance(p_a, p_b);
-				float distBC = Vector2.Distance(p_b, p_c);
-				float distCA = Vector2.Distance(p_c, p_a);
-
-				float perimeter = distAB + distBC + distCA;
-
-				Vector2 inCenter = (a * distBC + b * distCA + c * distAB) / perimeter;
-
-				float s = perimeter * 0.5f;
-				float radius = MathF.Sqrt((s - distBC) * (s - distCA) * (s - distAB) / s);
-
-				return new Circle2D(inCenter, radius);
-			}
-
-			public float CalcSignedArea (Vector2 p_a, Vector2 p_b, Vector2 p_c)
-			{
-				return Vector3X.Cross(b - a, c - a).magnitude * 0.5f;
-			}
 
 		#endregion
 
@@ -169,6 +172,65 @@ namespace ZkTools.Mathematics.Geometry2D
 				b = p_b;
 				c = p_c;
 			}
+
+		#endregion
+
+		#region // ==============================[Static Methods]============================== //
+
+			public static Radian[] CalcAngles (Vector2 p_a, Vector2 p_b, Vector2 p_c)
+			{
+				float aSqr = Vector2X.FromTo(p_b, p_c).sqrMagnitude;
+				float bSqr = Vector2X.FromTo(p_c, p_a).sqrMagnitude;
+				float cSqr = Vector2X.FromTo(p_a, p_b).sqrMagnitude;
+				float twoC = 2.0f * Mathf.Sqrt(cSqr);
+
+				Radian radA = Trigo.Acos((bSqr + cSqr - aSqr) / (MathF.Sqrt(bSqr) * twoC));
+				Radian radB = Trigo.Acos((aSqr + cSqr - bSqr) / (MathF.Sqrt(aSqr) * twoC));
+				Radian radC = Radian.Half - radA - radB;
+
+				return new Radian[3] {radA, radB, radC};
+			}
+
+			public static float CalcArea (Vector2 p_a, Vector2 p_b, Vector2 p_c)
+			{
+				return Math.Abs(CalcSignedArea(p_a, p_b, p_c));
+			}
+
+			public static float CalcArea (float p_width, float p_height)
+			{
+				return (p_width * p_height) * 0.5f;
+			}
+
+			public static float CalcArea(Vector2 p_size)
+			{
+				return CalcArea(p_size.x, p_size.y);
+			}
+
+			public static Circle2D CalcInCircle (Vector2 p_a, Vector2 p_b, Vector2 p_c)
+			{
+				float distAB = Vector2.Distance(p_a, p_b);
+				float distBC = Vector2.Distance(p_b, p_c);
+				float distCA = Vector2.Distance(p_c, p_a);
+
+				float perimeter = distAB + distBC + distCA;
+
+				Vector2 inCenter = (p_a * distBC + p_b * distCA + p_c * distAB) / perimeter;
+
+				float s = perimeter * 0.5f;
+				float radius = MathF.Sqrt((s - distBC) * (s - distCA) * (s - distAB) / s);
+
+				return new Circle2D(inCenter, radius);
+			}
+
+			public static float CalcSignedArea (Vector2 p_a, Vector2 p_b, Vector2 p_c)
+			{
+				return Vector2X.Det(p_b - p_a, p_c - p_a) * 0.5f;
+			}
+
+		#endregion
+
+		#region // ==============================[Static Methods]============================== //
+
 
 		#endregion
 	}
