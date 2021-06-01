@@ -106,6 +106,7 @@ namespace ZkTools.Mathematics.Extensions
 				return new Vector3 (p_lhs.y * p_rhs.z - p_lhs.z * p_rhs.y, p_lhs.z * p_rhs.x - p_lhs.x * p_rhs.z, p_lhs.x * p_rhs.y - p_lhs.y * p_rhs.x);
 			}
 
+			//  determinant
 			// [MethodImpl(MethodImplOptions.AggressiveInlining)]
 			// public static float Cross (float p_lhs, Vector3 p_rhs)
 			// {
@@ -115,6 +116,18 @@ namespace ZkTools.Mathematics.Extensions
 			// public static float Cross (Vector3 p_lhs, float p_rhs)
 			// {
 			// }
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Det (Vector3 p_a, Vector3 p_b, Vector3 p_c)
+			{
+				return (p_a.x * p_b.y * p_c.z) + (p_a.y * p_b.z * p_c.x) + (p_a.z * p_b.x * p_c.y) - (p_a.z * p_b.y * p_c.x) - (p_a.y * p_b.x * p_c.z) - (p_a.x * p_b.z * p_c.y);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Dot (Vector3 p_lhs, Vector3 p_rhs)
+			{
+				return p_lhs.x * p_rhs.x + p_lhs.y * p_rhs.y + + p_lhs.z * p_rhs.z;
+			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector3 Direction (Vector3 p_from, Vector3 p_to)
@@ -134,17 +147,29 @@ namespace ZkTools.Mathematics.Extensions
 				return MathF.Square(p_rhs.x - p_lhs.x) + MathF.Square(p_rhs.y - p_lhs.y) + MathF.Square(p_rhs.z - p_lhs.z);
 			}
 
-			//  determinant
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float Det (Vector3 p_a, Vector3 p_b, Vector3 p_c)
+			public static Vector3 DivSafe (Vector3 p_dividend, float p_divisor, float p_defaultValue = 0.0f)
 			{
-				return (p_a.x * p_b.y * p_c.z) + (p_a.y * p_b.z * p_c.x) + (p_a.z * p_b.x * p_c.y) - (p_a.z * p_b.y * p_c.x) - (p_a.y * p_b.x * p_c.z) - (p_a.x * p_b.z * p_c.y);
+				return DivSafe(p_dividend, p_divisor, Replicate(p_defaultValue));
 			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float Dot (Vector3 p_lhs, Vector3 p_rhs)
+		
+			public static Vector3 DivSafe (Vector3 p_dividend, float p_divisor, Vector3 p_defaultValue)
 			{
-				return p_lhs.x * p_rhs.x + p_lhs.y * p_rhs.y + + p_lhs.z * p_rhs.z;
+				return p_divisor.IsZero() ? p_defaultValue : p_dividend / p_divisor;
+			}
+		
+			public static Vector3 DivSafe (Vector3 p_dividend, Vector3 p_divisor, float p_defaultValue = 0.0f)
+			{
+				return DivSafe(p_dividend, p_divisor, Replicate(p_defaultValue));
+			}
+		
+			public static Vector3 DivSafe (Vector3 p_dividend, Vector3 p_divisor, Vector3 p_defaultValue)
+			{
+				return new Vector3
+				(
+					MathF.DivSafe(p_dividend.x, p_divisor.x, p_defaultValue.x),
+					MathF.DivSafe(p_dividend.y, p_divisor.y, p_defaultValue.y),
+					MathF.DivSafe(p_dividend.z, p_divisor.z, p_defaultValue.z)
+				);
 			}
 
 			public static void Exec (ref Vector3 p_vector, Func<float, float> p_action)

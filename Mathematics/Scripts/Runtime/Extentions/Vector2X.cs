@@ -26,7 +26,7 @@ namespace ZkTools.Mathematics.Extensions
 			{
 				return Det(p_from, p_to) < 0 ? Angle(p_from, p_to) :Radian.One - Angle(p_from, p_to);
 			}
-			
+
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector2 Ceil (Vector2 p_vector)
 			{
@@ -100,6 +100,19 @@ namespace ZkTools.Mathematics.Extensions
 				return magnitudeSquared < MathF.Square(p_minMagnitude) ? p_this * (MathF.InvSqrt(magnitudeSquared) * p_minMagnitude) : p_this;
 			}
 
+			//  determinant
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Det (Vector2 p_lhs, Vector2 p_rhs)
+			{
+				return p_lhs.x * p_rhs.y - p_lhs.y * p_rhs.x;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Dot (Vector2 p_lhs, Vector2 p_rhs)
+			{
+				return p_lhs.x * p_rhs.x + p_lhs.y * p_rhs.y;
+			}
+			
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector2 Direction (float p_angleRad)
 			{
@@ -124,19 +137,36 @@ namespace ZkTools.Mathematics.Extensions
 				return MathF.Square(p_rhs.x - p_lhs.x) + MathF.Square(p_rhs.y - p_lhs.y);
 			}
 
-			//  determinant
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float Det (Vector2 p_lhs, Vector2 p_rhs)
+			public static Vector2 DivSafe (Vector2 p_dividend, float p_divisor, float p_defaultValue = 0.0f)
 			{
-				return p_lhs.x * p_rhs.y - p_lhs.y * p_rhs.x;
+				return DivSafe(p_dividend, p_divisor, Replicate(p_defaultValue));
+			}
+		
+			public static Vector2 DivSafe (Vector2 p_dividend, float p_divisor, Vector2 p_defaultValue)
+			{
+				return p_divisor.IsZero() ? p_defaultValue : p_dividend / p_divisor;
+			}
+		
+			public static Vector2 DivSafe (Vector2 p_dividend, Vector2 p_divisor, float p_defaultValue = 0.0f)
+			{
+				return DivSafe(p_dividend, p_divisor, Replicate(p_defaultValue));
+			}
+		
+			public static Vector2 DivSafe (Vector2 p_dividend, Vector2 p_divisor, Vector2 p_defaultValue)
+			{
+				return new Vector2
+				(
+					MathF.DivSafe(p_dividend.x, p_divisor.x, p_defaultValue.x),
+					MathF.DivSafe(p_dividend.y, p_divisor.y, p_defaultValue.y)
+				);
 			}
 
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float Dot (Vector2 p_lhs, Vector2 p_rhs)
+			public static void Exec (ref Vector2 p_vector, Func<float, float> p_action)
 			{
-				return p_lhs.x * p_rhs.x + p_lhs.y * p_rhs.y;
+				p_vector.x = p_action?.Invoke(p_vector.x) ?? p_vector.x;
+				p_vector.y = p_action?.Invoke(p_vector.y) ?? p_vector.y;
 			}
-
+			
 			public static void Exec (ref Vector2 p_vector, Func<float, float> p_xAction, Func<float, float> p_yAction)
 			{
 				p_vector.x = p_xAction?.Invoke(p_vector.x) ?? p_vector.x;
@@ -203,7 +233,7 @@ namespace ZkTools.Mathematics.Extensions
 				return p_this.sqrMagnitude == 1.0f;
 			}
 
-			public static bool IsUnit(this Vector3 p_this, float p_epsilon = float.Epsilon)
+			public static bool IsUnit (this Vector3 p_this, float p_epsilon = float.Epsilon)
 			{
 				return p_this.sqrMagnitude == 1.0f;
 			}
