@@ -1,7 +1,4 @@
-
 using System;
-using Dest.Math;
-using UnityEditorInternal;
 using UnityEngine;
 
 namespace ZkTools.Mathematics
@@ -717,7 +714,7 @@ namespace ZkTools.Mathematics
 			// SmoothStep
 			public static float SmoothStep (float p_t)
 			{
-				return MathF.Square(p_t) * 3f - 2f * p_t;
+				return MathF.Square(p_t) * (3f - 2f * p_t);
 			}
 
 			public static float SmoothStep (float p_from, float p_to, float p_t)
@@ -731,7 +728,6 @@ namespace ZkTools.Mathematics
 				return MathF.Floor(p_value * p_step) / p_step;
 			}
 
-			
 		#endregion
 	}
 }
