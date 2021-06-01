@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace ZkTools.Mathematics
 {
+	/**
+	 * 
+	 */
 	public static class MathF
 	{
 		#region // ==============================[Static Variables]============================== //
@@ -20,7 +23,7 @@ namespace ZkTools.Mathematics
 			public const float Half = 5e-01f;
 
 			public const float OneDivE = EPowMinusOne;
-			
+
 			public const float SqrtE = 1.648721270700128146848650787814163571e+00f;
 
 			public const float SqrtThree = 1.732050807568877293527446341506e+00f;
@@ -35,52 +38,139 @@ namespace ZkTools.Mathematics
 
 		#region // ==============================[Static Methods]============================== //
 
+			/**
+			 * <summary>
+			 * Computes the absolute value of a floating point number.
+			 * </summary>
+			 * <param name="p_value"> Floating point number to convert. </param>
+			 * <returns> If p_value >= 0, returns p_value otherwise -p_value </returns>
+			 */
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Abs (float p_value)
 			{
 				return Math.Abs(p_value);
 			}
 
+			/**
+			 * <summary>
+			 * Computes the cubic root of the value given.
+			 * </summary>
+			 * <param name="p_value"> Floating point value whose cube root is computed. </param>
+			 * <returns> The cubic root of p_value. Equivalent to Root(p_value, 3) = Pow(p_value, 1/3) </returns>
+			 */
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Cbrt (float p_value)
 			{
 				return Root(p_value, 3);
 			}
 
+			/// <summary>
+			/// Converts a value given to the nearest greater or equal integer.
+			/// </summary>
+			/// <param name="p_value"> Floating point value to convert. </param>
+			/// <returns> An integer greater or equal to 'p_value. </returns>
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Ceil (float p_value)
 			{
 				return (float)Math.Ceiling(p_value);
 			}
 
+			/// <summary>
+			/// Converts a value given to the nearest greater or equal integer.
+			/// </summary>
+			/// <param name="p_value"> Floating point value to convert. </param>
+			/// <returns> An integer greater or equal to 'p_value. </returns>
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int CeilToInt (float p_value)
 			{
 				return (int)Ceil(p_value);
 			}
 
+			/// <summary>
+			/// Clamps the value given between two value given min and max included.
+			/// </summary>
+			/// <param name="p_value"> The value to clamp. </param>
+			/// <param name="p_min"> The minimum limit (Default value = 0.0f). </param>
+			/// <param name="p_max"> The maximum limit (Default value = 1.0f). </param>
+			/// <returns> The float result inside the range [p_min, p_max]. </returns>
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Clamp (float p_value, float p_min = 0.0f, float p_max = 1.0f)
 			{
 				return Min(Max(p_value, p_min), p_max);
 			}
 
+			/// <summary>
+			/// Computes a value with the magnitude of first argument with the sign of the second.
+			/// </summary>
+			/// <param name="p_value"> Floating point value with the magnitude of the resulting value.</param>
+			/// <param name="p_sign"> Floating point value with the sign of the resulting value. </param>
+			/// <returns> The value with the magnitude of p_value with the sign of p_sign. </returns>
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float CopySign (float p_value, float p_sign)
+			{
+				return (float)CopySign((double)p_value, (double)p_sign);
+			}
+
+			/// <summary>
+			/// Computes a value with the magnitude of first argument with the sign of the second.
+			/// </summary>
+			/// <param name="p_value"> Floating point value with the magnitude of the resulting value.</param>
+			/// <param name="p_sign"> Floating point value with the sign of the resulting value. </param>
+			/// <returns> The value with the magnitude of p_value with the sign of p_sign. </returns>
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static double CopySign (double p_value, double p_sign)
+			{
+				const long signMask = 1L << 63;
+
+				long valueBits = BitConverter.DoubleToInt64Bits(p_value);
+				long signBits = BitConverter.DoubleToInt64Bits(p_sign);
+
+				// Remove sign from p_value and remove everything but keep the sign from p_sign.
+				valueBits &= ~signMask;
+				signBits &= signMask;
+
+				return BitConverter.Int64BitsToDouble(valueBits | signBits);
+			}
+
+			/// <summary>
+			/// Computes the cube of the value.
+			/// </summary>
+			/// <param name="p_value"> Floating point value whose the cube is computed. </param>
+			/// <returns> The cube of p_value : p_value*p_value*p_value = p_value^3. </returns>
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Cube (float p_value)
 			{
 				return Square(p_value) * p_value;
 			}
 
+			/// <summary>
+			/// Computes the distance between two given values (Always positive !).
+			/// </summary>
+			/// <param name="p_lhs"> The first value with which the distance is calculated. </param>
+			/// <param name="p_rhs"> The second value with which the distance is calculated. </param>
+			/// <returns> The distance between p_lhs and p_rhs. </returns>
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Distance (float p_lhs, float p_rhs)
 			{
-				return Abs(p_lhs - p_rhs);
+				return Abs(SignedDistance(p_lhs, p_rhs));
 			}
 
+			/// <summary>
+			/// Computes the squared distance between two given values.
+			/// </summary>
+			/// <param name="p_lhs"> The first value with which the distance is calculated. </param>
+			/// <param name="p_rhs"> The second value with which the distance is calculated. </param>
+			/// <returns> The squared distance between p_lhs and p_rhs. </returns>
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float DistanceSqr (float p_lhs, float p_rhs)
 			{
-				return Square(p_lhs - p_rhs);
+				return Square(SignedDistance(p_lhs, p_rhs));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float DivSafe (float p_diviend, float p_divisor, float p_defaultValue = 0.0f)
+			{
+				return IsZero(p_divisor) ? p_defaultValue : p_diviend / p_divisor;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -106,11 +196,17 @@ namespace ZkTools.Mathematics
 			{
 				return p_value - Floor(p_value);
 			}
-			
+
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Fractional (float p_value)
 			{
 				return p_value - Trunc(p_value);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float IEEERemainder (float p_a, float p_b)
+			{
+				return (float)Math.IEEERemainder(p_a, p_b);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -274,7 +370,7 @@ namespace ZkTools.Mathematics
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static void Modf (float p_value, out float p_intPart, out float p_fracPart)
 			{
-				p_intPart = Floor(p_value);
+				p_intPart = Trunc(p_value);
 				p_fracPart = p_value - p_intPart;
 			}
 
@@ -288,13 +384,14 @@ namespace ZkTools.Mathematics
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float MoveTowards (float p_current, float p_target, float p_maxDelta)
 			{
-				return Abs(p_target - p_current) <=  p_maxDelta ? p_target : p_current + SignPos(p_target - p_current) * p_maxDelta;
+				float signedDistance = SignedDistance(p_current, p_target);
+				return Abs(signedDistance) <=  p_maxDelta ? p_target : p_current + SignPos(signedDistance) * p_maxDelta;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Negate (float p_value)
 			{
-				return 1.0f - p_value;
+				return -p_value;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -315,19 +412,7 @@ namespace ZkTools.Mathematics
 				return Square(p_b) - 4 * p_a * p_c;
 			}
 
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float Quartic (float p_value)
-			{
-				return p_value * p_value * p_value * p_value;
-			}
-			
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float Quintic (float p_value)
-			{
-				return p_value * p_value * p_value * p_value * p_value;
-			}
-			
-			public static float[]  QuadraticEquation (float p_a, float p_b, float p_c)
+			public static float[] QuadraticEquation (float p_a, float p_b, float p_c)
 			{
 				float delta = QuadraticDelta(p_a, p_b, p_c);
 				switch (Sign(delta))
@@ -337,16 +422,28 @@ namespace ZkTools.Mathematics
 					{
 						float sqrtDelta = Sqrt(delta);
 						float a2 = 2 * p_a;
-						return new float[] {-p_b -  sqrtDelta / a2, -p_b + sqrtDelta / a2};
+						return new float[] {-p_b - sqrtDelta / a2, -p_b + sqrtDelta / a2};
 					}
 				}
 				return new float[] {};
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Quartic (float p_value)
+			{
+				return p_value * p_value * p_value * p_value;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Quintic (float p_value)
+			{
+				return p_value * p_value * p_value * p_value * p_value;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Remainder (float p_a, float p_b)
 			{
-				return (float)Math.IEEERemainder(p_a, p_b);
+				return p_a % p_b;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -397,6 +494,11 @@ namespace ZkTools.Mathematics
 				return Math.Sign(p_value);
 			}
 
+			public static float SignedDistance (float p_from, float p_to)
+			{
+				return p_to - p_from;
+			}
+			
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float SignPos (float p_value)
 			{

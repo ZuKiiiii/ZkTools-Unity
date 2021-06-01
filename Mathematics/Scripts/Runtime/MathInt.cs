@@ -28,6 +28,18 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int CopySign (int p_value, int p_sign)
+			{
+				const int signMask = 1 << 31;
+
+				// Remove sign from p_value and remove everything but keep the sign from p_sign.
+				p_value &= ~signMask;
+				p_sign &= signMask;
+
+				return p_value | p_sign;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int Cube (int p_value)
 			{
 				return Square(p_value) * p_value;
