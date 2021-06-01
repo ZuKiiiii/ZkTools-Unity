@@ -1,5 +1,5 @@
 {
-    "name": "EditMode",
+    "name": "ZkTools.Mathematics.UnitTests.Editor",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",

@@ -2,7 +2,7 @@ using System;
 using NUnit.Framework;
 using UnityEngine;
 
-namespace ZkTools.Mathematics.Editor.UnitTest
+namespace ZkTools.Mathematics.UnitTests.Editor
 {
 	internal class UTMathF
 	{
