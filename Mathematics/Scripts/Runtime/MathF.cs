@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using UnityEngine;
 
 namespace ZkTools.Mathematics
 {
 	/**
-	 * 
+	 *
 	 */
 	public static class MathF
 	{
@@ -18,7 +17,7 @@ namespace ZkTools.Mathematics
 
 			public const float EPowMinusOne = 3.678794411714423215955237701614608674e-01f;
 
-			public const float GoldenRatio = 1.618033988749894848204586834365638117e+00f; 
+			public const float GoldenRatio = 1.618033988749894848204586834365638117e+00f;
 
 			public const float Half = 5e-01f;
 
@@ -168,9 +167,9 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float DivSafe (float p_diviend, float p_divisor, float p_defaultValue = 0.0f)
+			public static float DivSafe (float p_dividend, float p_divisor, float p_defaultValue = 0.0f)
 			{
-				return IsZero(p_divisor) ? p_defaultValue : p_diviend / p_divisor;
+				return IsZero(p_divisor) ? p_defaultValue : p_dividend / p_divisor;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -397,7 +396,7 @@ namespace ZkTools.Mathematics
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float PingPong (float p_value, float p_length)
 			{
-				return p_length - Mathf.Abs(Repeat(p_value, p_length * 2f) - p_length);
+				return p_length - Abs(Repeat(p_value, p_length * 2f) - p_length);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -461,7 +460,7 @@ namespace ZkTools.Mathematics
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Repeat (float p_value, float p_length)
 			{
-				return Clamp(p_value - Mathf.Floor(p_value / p_length) * p_length, 0.0f, p_length);
+				return Clamp(p_value - Floor(p_value / p_length) * p_length, 0.0f, p_length);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -494,11 +493,12 @@ namespace ZkTools.Mathematics
 				return Math.Sign(p_value);
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float SignedDistance (float p_from, float p_to)
 			{
 				return p_to - p_from;
 			}
-			
+
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float SignPos (float p_value)
 			{
@@ -525,7 +525,7 @@ namespace ZkTools.Mathematics
 				float output = p_target + ( change + temp ) * exp;
 
 				// Prevent overshooting
-				if (originalTo - p_current > 0.0F == output > originalTo) 
+				if (originalTo - p_current > 0.0F == output > originalTo)
 				{
 					output = originalTo;
 					p_currentVelocity = (output - originalTo) / p_deltaTime;
@@ -561,4 +561,3 @@ namespace ZkTools.Mathematics
 		#endregion
 	}
 }
-// copy sign

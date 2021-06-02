@@ -7,7 +7,7 @@ namespace ZkTools.Mathematics
 {
 	public static class MathInt
 	{
-		#region // ==============================[Methods]============================== //
+		#region // ==============================[Static Methods]============================== //
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int Abs (int p_value)
@@ -30,13 +30,7 @@ namespace ZkTools.Mathematics
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int CopySign (int p_value, int p_sign)
 			{
-				const int signMask = 1 << 31;
-
-				// Remove sign from p_value and remove everything but keep the sign from p_sign.
-				p_value &= ~signMask;
-				p_sign &= signMask;
-
-				return p_value | p_sign;
+				return (int)MathF.CopySign(p_value, p_sign);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -48,48 +42,51 @@ namespace ZkTools.Mathematics
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int Distance (int p_lhs, int p_rhs)
 			{
-				return Abs(p_lhs - p_rhs);
+				return Abs(SignedDistance(p_lhs, p_rhs));
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int DistanceSqr (int p_lhs, int p_rhs)
 			{
-				return Square(p_lhs - p_rhs);
+				return Square(SignedDistance(p_lhs, p_rhs));
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static int DivRem (int p_a, int p_b, out int p_result)
+			public static int DivRem (int p_dividend, int p_divisor, out int p_remainder)
 			{
-				return Math.DivRem(p_a, p_b, out p_result);
-			}
-
-			public static int GreatestCommonDivisor (int p_dividend, int p_divisor)
-			{
-				int a = Max(p_dividend, p_divisor);
-				int b = Min(p_dividend, p_divisor);
-				int e = DivRem(a, b, out int r);
-				if (r == 0)
-					return b;
-				else
-					return GreatestCommonDivisor(b, r);
+				return Math.DivRem(p_dividend, p_divisor, out p_remainder);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float InverseLerp (int p_a, int p_b, int p_value)
+			public static DivRemResult DivRem (int p_dividend, int p_divisor)
 			{
-				return (float)(p_value - p_a) / (float)(p_b - p_a);
+				DivRemResult result = new DivRemResult();
+				result.result = DivRem(p_dividend, p_divisor, out result.remainder);
+				return result;
 			}
 
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float InverseLerpClamped (int p_a, int p_b, int p_value, float p_min = 0.0f, float p_max = 1.0f)
+			public static int GreatestCommonDivisor (int p_a, int p_b)
 			{
-				return MathF.Clamp(InverseLerp(p_a, p_b, p_value), p_min, p_max);
+				int remainder = 0;
+				while (p_b != 0)
+				{
+					remainder = p_a % p_b;
+					p_a = p_b;
+					p_b = remainder;
+				}
+				return p_a;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static bool IsNearlyEqual (int p_lhs, int p_rhs, int p_tolerance = 0)
 			{
 				return Abs(p_lhs - p_rhs) <= p_tolerance;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsNearlyZero (int p_value,  int p_tolerance = 0)
+			{
+				return Abs(p_value) <= p_tolerance;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -135,13 +132,13 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float Max (int p_a, int p_b, int p_c)
+			public static int Max (int p_a, int p_b, int p_c)
 			{
 				return Max(Max(p_a, p_b), p_c);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float Max (params int[] p_values)
+			public static int Max (params int[] p_values)
 			{
 				return p_values.Max();
 			}
@@ -153,7 +150,7 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float Min (int p_a, int p_b, int p_c)
+			public static int Min (int p_a, int p_b, int p_c)
 			{
 				return Min(Min(p_a, p_b), p_c);
 			}
@@ -167,7 +164,7 @@ namespace ZkTools.Mathematics
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int Negate (int p_value)
 			{
-				return 1 - p_value;
+				return -p_value;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -177,21 +174,60 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int PingPong (int p_value, int p_length)
+			{
+				return p_length - Abs(Repeat(p_value, p_length * 2) - p_length);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int Repeat (int p_value, int p_length)
+			{
+				return Clamp(p_value - MathF.FloorToInt(p_value / (float)p_length) * p_length, 0, p_length);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int Sign (int p_value)
 			{
 				return Math.Sign(p_value);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float SignPos (int p_value)
+			public static int SignedDistance (int p_from, int p_to)
 			{
-				return p_value >= 0.0 ? 1f : -1f;
+				return p_to - p_from;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int SignPos (int p_value)
+			{
+				return p_value >= 0 ? 1 : -1;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int Square (int p_value)
 			{
 				return p_value * p_value;
+			}
+
+		#endregion
+	}
+
+	public struct DivRemResult
+	{
+		#region // ==============================[Variables]============================== //
+
+			public int remainder;
+
+			public int result;
+
+		#endregion
+
+		#region // ==============================[Constructor + Destructor]============================== //
+
+			public DivRemResult (int p_result, int p_remainder)
+			{
+				remainder = p_remainder;
+				result = p_result;
 			}
 
 		#endregion

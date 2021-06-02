@@ -729,5 +729,9 @@ namespace ZkTools.Mathematics
 			}
 
 		#endregion
+		
+		/// Add Easing With Vector
+		/// Add Inverse Easing (float, Vector2, Vector3, Vector4)
+		/// Add Clamped
 	}
 }

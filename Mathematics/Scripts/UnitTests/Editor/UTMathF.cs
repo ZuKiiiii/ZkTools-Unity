@@ -21,7 +21,7 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 				Assert.AreEqual(2.06585f, MathF.Abs(-2.06585f));
 				Assert.AreNotEqual(-2.06585f, MathF.Abs(-2.06585f));
 				Assert.AreNotEqual(-2.06585f, MathF.Abs(-2.06585f));
-				
+
 				Assert.AreEqual(551.51351f, MathF.Abs(551.51351f));
 				Assert.AreEqual(551.51351f, MathF.Abs(-551.51351f));
 				Assert.AreNotEqual(-551.51351f, MathF.Abs(551.51351f));
@@ -76,24 +76,24 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 			}
 
 			[Test]
-			public void Cube()
+			public void Cube ()
 			{
 				Assert.AreEqual(216f, MathF.Cube(6.0f), delta);
 				Assert.AreEqual(-278445077f, MathF.Cube(-653f), delta);
 			}
 
 			[Test]
-			public void Distance()
+			public void Distance ()
 			{
 				Assert.AreEqual(5.0f, MathF.Distance(10.0f, 5.0f));
 				Assert.AreEqual(5.0f, MathF.Distance(5.0f, 10.0f));
-				
+
 				Assert.AreEqual(5.0f, MathF.Distance(-10.0f, -5.0f));
 				Assert.AreEqual(5.0f, MathF.Distance(-5.0f, -10.0f));
-				
+
 				Assert.AreEqual(15.0f, MathF.Distance(-10.0f, 5.0f));
 				Assert.AreEqual(15.0f, MathF.Distance(5.0f, -10.0f));
-				
+
 				Assert.AreEqual(15.0f, MathF.Distance(10.0f, -5.0f));
 				Assert.AreEqual(15.0f, MathF.Distance(-5.0f, 10.0f));
 			}
@@ -103,13 +103,13 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 			{
 				Assert.AreEqual(25.0f, MathF.DistanceSqr(10.0f, 5.0f));
 				Assert.AreEqual(25.0f, MathF.DistanceSqr(5.0f, 10.0f));
-				
+
 				Assert.AreEqual(25.0f, MathF.DistanceSqr(-10.0f, -5.0f));
 				Assert.AreEqual(25.0f, MathF.DistanceSqr(-5.0f, -10.0f));
-				
+
 				Assert.AreEqual(225.0f, MathF.DistanceSqr(-10.0f, 5.0f));
 				Assert.AreEqual(225.0f, MathF.DistanceSqr(5.0f, -10.0f));
-				
+
 				Assert.AreEqual(225.0f, MathF.DistanceSqr(10.0f, -5.0f));
 				Assert.AreEqual(225.0f, MathF.DistanceSqr(-5.0f, 10.0f));
 			}
@@ -212,7 +212,7 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 				Assert.AreEqual(0.7f, MathF.InverseLerp(0.0f, 1.0f, 0.7f));
 				Assert.AreEqual(1.0f, MathF.InverseLerp(0.0f, 1.0f, 1.0f));
 				Assert.AreEqual(1.2f, MathF.InverseLerp(0.0f, 1.0f, 1.2f));
-				
+
 				Assert.AreEqual(2.2f, MathF.InverseLerp(1.0f, 0.0f, -1.2f));
 				Assert.AreEqual(1.7f, MathF.InverseLerp(1.0f, 0.0f, -0.7f));
 				Assert.AreEqual(1.5f, MathF.InverseLerp(1.0f, 0.0f, -0.5f));
@@ -239,7 +239,7 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 				Assert.AreEqual(0.7f, MathF.InverseLerpClamped(0.0f, 1.0f, 0.7f));
 				Assert.AreEqual(1.0f, MathF.InverseLerpClamped(0.0f, 1.0f, 1.0f));
 				Assert.AreEqual(1.0f, MathF.InverseLerpClamped(0.0f, 1.0f, 1.2f));
-				
+
 				Assert.AreEqual(1.0f, MathF.InverseLerpClamped(1.0f, 0.0f, -1.2f));
 				Assert.AreEqual(1.0f, MathF.InverseLerpClamped(1.0f, 0.0f, -0.7f));
 				Assert.AreEqual(1.0f, MathF.InverseLerpClamped(1.0f, 0.0f, -0.5f));
@@ -280,14 +280,14 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 				Assert.AreEqual(true, MathF.IsNearlyZero(1.1f, 1.3f));
 				Assert.AreEqual(false, MathF.IsNearlyZero(1.1f, -1.0f));
 
-				
+
 				Assert.AreEqual(false, MathF.IsNearlyZero(0.1f));
 				Assert.AreEqual(false, MathF.IsNearlyZero(0.1f, 0.04f));
 				Assert.AreEqual(true, MathF.IsNearlyZero(0.1f, 0.1f));
 				Assert.AreEqual(true, MathF.IsNearlyZero(0.1f, 0.3f));
 				Assert.AreEqual(false, MathF.IsNearlyZero(0.1f, -1.0f));
 
-				
+
 				Assert.AreEqual(true, MathF.IsNearlyZero(0.0f));
 				Assert.AreEqual(true, MathF.IsNearlyZero(0.0f, 0.5f));
 				Assert.AreEqual(false, MathF.IsNearlyZero(0.0f, -1.0f));
@@ -295,14 +295,14 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 				Assert.AreEqual(true, MathF.IsNearlyZero(-0.0f));
 				Assert.AreEqual(true, MathF.IsNearlyZero(-0.0f, 0.5f));
 				Assert.AreEqual(false, MathF.IsNearlyZero(-0.0f, -1.0f));
-			
+
 
 				Assert.AreEqual(false, MathF.IsNearlyZero(-1.1f));
 				Assert.AreEqual(false, MathF.IsNearlyZero(-1.1f, 0.4f));
 				Assert.AreEqual(true, MathF.IsNearlyZero(-1.1f, 1.1f));
 				Assert.AreEqual(true, MathF.IsNearlyZero(-1.1f, 1.3f));
 				Assert.AreEqual(false, MathF.IsNearlyZero(-1.1f, -1.3f));
-				
+
 				Assert.AreEqual(false, MathF.IsNearlyZero(-0.1f));
 				Assert.AreEqual(false, MathF.IsNearlyZero(-0.1f, 0.04f));
 				Assert.AreEqual(true, MathF.IsNearlyZero(-0.1f, 0.1f));
@@ -379,7 +379,7 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 				Assert.AreEqual(0.7f, MathF.Lerp(0.0f, 1.0f, 0.7f));
 				Assert.AreEqual(1.0f, MathF.Lerp(0.0f, 1.0f, 1.0f));
 				Assert.AreEqual(1.2f, MathF.Lerp(0.0f, 1.0f, 1.2f));
-				
+
 				Assert.AreEqual(-1.2f, MathF.Lerp(1.0f, 0.0f, 2.2f));
 				Assert.AreEqual(-0.7f, MathF.Lerp(1.0f, 0.0f, 1.7f), delta);
 				Assert.AreEqual(-0.5f, MathF.Lerp(1.0f, 0.0f, 1.5f), delta);
@@ -406,7 +406,7 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 				Assert.AreEqual(0.7f, MathF.LerpClamped(0.0f, 1.0f, 0.7f));
 				Assert.AreEqual(1.0f, MathF.LerpClamped(0.0f, 1.0f, 1.0f));
 				Assert.AreEqual(1.0f, MathF.LerpClamped(0.0f, 1.0f, 1.2f));
-				
+
 				Assert.AreEqual(0.0f, MathF.LerpClamped(1.0f, 0.0f, 2.2f));
 				Assert.AreEqual(0.0f, MathF.LerpClamped(1.0f, 0.0f, 1.7f));
 				Assert.AreEqual(0.0f, MathF.LerpClamped(1.0f, 0.0f, 1.5f));
@@ -500,7 +500,7 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 				MathF.Modf(3.14151617f, out float intPart1, out float fracPart1);
 				Assert.AreEqual(3.0f, intPart1, delta);
 				Assert.AreEqual(0.14151617f, fracPart1, delta);
-				
+
 				// Assert 02
 				MathF.Modf(-3.14151617f, out float intPart2, out float fracPart2);
 				Assert.AreEqual(-3.0f, intPart2, delta);
@@ -554,8 +554,10 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 				Assert.AreEqual(9.0f, MathF.QuadraticDelta(-2.0f, 7.0f, -5.0f));
 			}
 
+			[Test]
 			public void QuadraticEquation ()
 			{
+				Assert.Fail("QuadraticEquation UnitTest not implemented");
 			}
 
 			[Test]
@@ -672,13 +674,13 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 			{
 				Assert.AreEqual(-5.0f, MathF.SignedDistance(10.0f, 5.0f));
 				Assert.AreEqual(5.0f, MathF.SignedDistance(5.0f, 10.0f));
-				
+
 				Assert.AreEqual(5.0f, MathF.SignedDistance(-10.0f, -5.0f));
 				Assert.AreEqual(-5.0f, MathF.SignedDistance(-5.0f, -10.0f));
-				
+
 				Assert.AreEqual(15.0f, MathF.SignedDistance(-10.0f, 5.0f));
 				Assert.AreEqual(-15.0f, MathF.SignedDistance(5.0f, -10.0f));
-				
+
 				Assert.AreEqual(-15.0f, MathF.SignedDistance(10.0f, -5.0f));
 				Assert.AreEqual(15.0f, MathF.SignedDistance(-5.0f, 10.0f));
 			}
@@ -691,8 +693,10 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 				Assert.AreEqual(-1.0f, MathF.SignPos(-21.0f));
 			}
 
+			[Test]
 			public void SmoothDamp ()
 			{
+				Assert.Fail("SmoothDamp UnitTest not implemented");
 			}
 
 			[Test]

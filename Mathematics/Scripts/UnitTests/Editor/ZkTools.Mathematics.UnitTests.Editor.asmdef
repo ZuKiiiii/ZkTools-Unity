@@ -1,6 +1,6 @@
 {
     "name": "ZkTools.Mathematics.UnitTests.Editor",
-    "rootNamespace": "",
+    "rootNamespace": "ZkTools.Mathematics.UnitTests.Editor",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
