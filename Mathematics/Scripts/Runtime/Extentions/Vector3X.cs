@@ -5,7 +5,7 @@ using ZkTools.Mathematics.Angles;
 
 namespace ZkTools.Mathematics.Extensions
 {
-	public static class Vector3X 
+	public static class Vector3X
 	{
 		#region // ==============================[Static Methods]============================== //
 
@@ -124,6 +124,12 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Div (Vector3 p_a, Vector3 p_b)
+			{
+				return new Vector3(p_a.x / p_b.x, p_a.y / p_b.y, p_a.z / p_b.z);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Dot (Vector3 p_lhs, Vector3 p_rhs)
 			{
 				return p_lhs.x * p_rhs.x + p_lhs.y * p_rhs.y + + p_lhs.z * p_rhs.z;
@@ -151,17 +157,17 @@ namespace ZkTools.Mathematics.Extensions
 			{
 				return DivSafe(p_dividend, p_divisor, Replicate(p_defaultValue));
 			}
-		
+
 			public static Vector3 DivSafe (Vector3 p_dividend, float p_divisor, Vector3 p_defaultValue)
 			{
 				return p_divisor.IsZero() ? p_defaultValue : p_dividend / p_divisor;
 			}
-		
+
 			public static Vector3 DivSafe (Vector3 p_dividend, Vector3 p_divisor, float p_defaultValue = 0.0f)
 			{
 				return DivSafe(p_dividend, p_divisor, Replicate(p_defaultValue));
 			}
-		
+
 			public static Vector3 DivSafe (Vector3 p_dividend, Vector3 p_divisor, Vector3 p_defaultValue)
 			{
 				return new Vector3
@@ -178,7 +184,7 @@ namespace ZkTools.Mathematics.Extensions
 				p_vector.y = p_action?.Invoke(p_vector.y) ?? p_vector.y;
 				p_vector.z = p_action?.Invoke(p_vector.z) ?? p_vector.z;
 			}
-			
+
 			public static void Exec (ref Vector3 p_vector, Func<float, float> p_xAction, Func<float, float> p_yAction, Func<float, float> p_zAction)
 			{
 				p_vector.x = p_xAction?.Invoke(p_vector.x) ?? p_vector.x;
@@ -245,7 +251,7 @@ namespace ZkTools.Mathematics.Extensions
 				return p_this.sqrMagnitude == 1.0f;
 			}
 
-			public static bool IsUnit(this Vector3 p_this, float p_epsilon = float.Epsilon)
+			public static bool IsUnit (this Vector3 p_this, float p_epsilon = float.Epsilon)
 			{
 				return p_this.sqrMagnitude == 1.0f;
 			}
@@ -253,7 +259,7 @@ namespace ZkTools.Mathematics.Extensions
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector3 InverseLerp (Vector3 p_a, Vector3 p_b, Vector3 p_value)
 			{
-				return new Vector3(MathF.InverseLerp(p_a.x, p_b.x, p_value.x), MathF.InverseLerp(p_a.y, p_b.y, p_value.y), MathF.InverseLerp(p_a.z, p_b.z, p_value.z));
+				return Div(p_value - p_a, p_b - p_a);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -306,7 +312,7 @@ namespace ZkTools.Mathematics.Extensions
 
 			public static Vector3 Lerp (Vector3 p_a, Vector3 p_b, float p_t)
 			{
-				return Lerp(p_a, p_b, new Vector3(p_t, p_t, p_t));
+				return p_a + (p_b - p_a) * p_t;
 			}
 
 			public static Vector3 Lerp (Vector3 p_a, Vector3 p_b, Vector3 p_t)
@@ -391,7 +397,7 @@ namespace ZkTools.Mathematics.Extensions
 			{
 				return p_this.normalized * p_magnitude;
 			}
-			
+
 		#endregion
 	}
 }
