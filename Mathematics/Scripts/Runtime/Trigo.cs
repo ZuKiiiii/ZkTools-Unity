@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
-using UnityEngine;
 using ZkTools.Mathematics.Angles;
 
 namespace ZkTools.Mathematics
 {
+	/// <summary>
+	///
+	/// </summary>
 	public static class Trigo
 	{
 		#region // ==============================[Static Variables]============================== //
@@ -22,13 +24,13 @@ namespace ZkTools.Mathematics
 			public const float EPowPi = 2.314069263277926900572908636794854738e+01f;
 
 			public const float ElevenPiDivSix =  11.0f * Pi / 6.0f;
-			
+
 			public const float FivePiDivFour = 5.0f * Pi / 4.0f;
-			
+
 			public const float FivePiDivSix = 5.0f * Pi / 6.0f;
 
 			public const float FivePiDivThree = 5.0f * Pi / 3.0f;
-			
+
 			public const float FourPiDivThree = 4.0f * Pi / 3.0f;
 
 			public const float Gradian2Degree = 180f / 200f;
@@ -188,7 +190,7 @@ namespace ZkTools.Mathematics
 			{
 				return 0.5f * MathF.Ln((1.0f + p_value) / (1.0f - p_value));
 			}
-		
+
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Cos (float p_value)
 			{
@@ -312,7 +314,7 @@ namespace ZkTools.Mathematics
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float RadianToGradian (float p_radian)
 			{
-				return p_radian * Radian2Degree;
+				return p_radian * Radian2Gradian;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
