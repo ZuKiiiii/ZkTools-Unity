@@ -63,7 +63,7 @@ namespace ZkTools.Mathematics.Angles
 
 			public float gradian;
 
-		#endregion 
+		#endregion
 
 		#region // ==============================[Properties]============================== //
 
@@ -73,7 +73,7 @@ namespace ZkTools.Mathematics.Angles
 
 			public Radian ToRadian {get => Trigo.GradianToRadian(gradian); set => gradian = Trigo.RadianToGradian(value.radian);}
 
-			public Turn ToTurn {get => Trigo.GradianToTurn(gradian); set => gradian = Trigo.TurnToGradian(value.turn);} 
+			public Turn ToTurn {get => Trigo.GradianToTurn(gradian); set => gradian = Trigo.TurnToGradian(value.turn);}
 
 			public Gradian Unwinded => CalcUnwind(gradian);
 
@@ -192,7 +192,17 @@ namespace ZkTools.Mathematics.Angles
 				return p_this.gradian;
 			}
 
+			public static implicit operator double (Gradian p_this)
+			{
+				return p_this.gradian;
+			}
+
 			public static implicit operator Gradian (float p_gradian)
+			{
+				return new Gradian(p_gradian);
+			}
+
+			public static implicit operator Gradian (double p_gradian)
 			{
 				return new Gradian(p_gradian);
 			}

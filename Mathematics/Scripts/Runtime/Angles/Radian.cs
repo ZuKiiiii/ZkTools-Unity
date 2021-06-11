@@ -63,7 +63,7 @@ namespace ZkTools.Mathematics.Angles
 
 			public float radian;
 
-		#endregion 
+		#endregion
 
 		#region // ==============================[Properties]============================== //
 
@@ -192,7 +192,17 @@ namespace ZkTools.Mathematics.Angles
 				return p_this.radian;
 			}
 
+			public static implicit operator double (Radian p_this)
+			{
+				return p_this.radian;
+			}
+
 			public static implicit operator Radian (float p_radian)
+			{
+				return new Radian(p_radian);
+			}
+
+			public static implicit operator Radian (double p_radian)
 			{
 				return new Radian(p_radian);
 			}

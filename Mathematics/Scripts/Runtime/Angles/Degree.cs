@@ -63,7 +63,7 @@ namespace ZkTools.Mathematics.Angles
 
 			public float degree;
 
-		#endregion 
+		#endregion
 
 		#region // ==============================[Properties]============================== //
 
@@ -73,7 +73,7 @@ namespace ZkTools.Mathematics.Angles
 
 			public Radian ToRadian {get => Trigo.DegreeToRadian(degree); set => degree =Trigo.RadianToDegree(value.radian);}
 
-			public Turn ToTurn {get => Trigo.DegreeToGradian(degree); set => degree =Trigo.TurnToDegree(value.turn);} 
+			public Turn ToTurn {get => Trigo.DegreeToGradian(degree); set => degree =Trigo.TurnToDegree(value.turn);}
 
 			public Degree Unwinded => CalcUnwind(degree);
 
@@ -192,7 +192,17 @@ namespace ZkTools.Mathematics.Angles
 				return p_this.degree;
 			}
 
+			public static implicit operator double (Degree p_this)
+			{
+				return p_this.degree;
+			}
+
 			public static implicit operator Degree (float p_degree)
+			{
+				return new Degree(p_degree);
+			}
+
+			public static implicit operator Degree (double p_degree)
 			{
 				return new Degree(p_degree);
 			}
