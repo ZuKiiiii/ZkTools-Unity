@@ -116,7 +116,7 @@ namespace ZkTools.Mathematics
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float AcscH (float p_value)
 			{
-				return MathF.Ln((1.0f + MathF.Sqrt(1.0f + MathF.Square(p_value))) / p_value);
+				return MathF.Ln(MathF.Inv(p_value) + MathF.Sqrt(MathF.Inv(p_value * p_value) + 1.0f));
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
