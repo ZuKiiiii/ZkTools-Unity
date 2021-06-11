@@ -144,7 +144,7 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Radian AngleFromOppositeAdjacent (float p_opposite, float p_adjacent)
+			public static Radian AngleFromAdjacentOpposite (float p_adjacent, float p_opposite)
 			{
 				return Trigo.Atan(p_opposite / p_adjacent);
 			}
@@ -288,6 +288,12 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float OppositeFromAdjacentHypotenuse (float p_adjacent, float p_hypotenuse)
+			{
+				return MathF.Sqrt(MathF.Square(p_hypotenuse) - MathF.Square(p_adjacent));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float OppositeFromAngleAdjacent (Radian p_angle, float p_adjacent)
 			{
 				return Trigo.Tan(p_angle) * p_adjacent;
@@ -297,12 +303,6 @@ namespace ZkTools.Mathematics
 			public static float OppositeFromAngleHypotenuse (Radian p_angle, float p_hypotenuse)
 			{
 				return Trigo.Sin(p_angle) * p_hypotenuse;
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float OppositeFromAdjacentHypotenuse (float p_adjacent, float p_hypotenuse)
-			{
-				return MathF.Sqrt(MathF.Square(p_hypotenuse) - MathF.Square(p_adjacent));
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

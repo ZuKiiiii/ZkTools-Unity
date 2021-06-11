@@ -7,6 +7,12 @@ namespace ZkTools.Mathematics.Angles.Extensions
 		#region // ==============================[Static Methods]============================== //
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Inv (this float p_this)
+			{
+				return MathF.Inv(p_this);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Degree ToDegree (this float p_this)
 			{
 				return p_this;
