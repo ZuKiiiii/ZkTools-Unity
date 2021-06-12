@@ -171,6 +171,16 @@ namespace ZkTools.Mathematics.Swizzling
 				return p_this.GetIXKL(p_ik.x, p_ik.y, p_l);
 			}
 
+			public static Vector4 GetIXKL (this Vector2 p_this, float p_i, Vector2 p_kl)
+			{
+				return p_this.GetIXKL(p_i, p_kl.x, p_kl.y);
+			}
+
+			public static Vector4 GetIXKL (this Vector2 p_this, Vector3 p_ikl)
+			{
+				return p_this.GetIXKL(p_ikl.x, p_ikl.y, p_ikl.z);
+			}
+
 			public static Vector4 GetIXKX (this Vector2 p_this, float p_i = 0.0f, float p_k = 0.0f)
 			{
 				return new Vector4(p_i, p_this.x, p_k, p_this.x);
@@ -639,6 +649,11 @@ namespace ZkTools.Mathematics.Swizzling
 			public static Vector4 GetYXKL (this Vector2 p_this, float p_k = 0.0f, float p_l = 0.0f)
 			{
 				return new Vector4(p_this.y, p_this.x, p_k, p_l);
+			}
+
+			public static Vector4 GetYXKL (this Vector2 p_this, Vector2 p_kl)
+			{
+				return p_this.GetYXKL(p_kl.x, p_kl.y);
 			}
 
 			public static Vector4 GetYXKX (this Vector2 p_this, float p_k = 0.0f)
