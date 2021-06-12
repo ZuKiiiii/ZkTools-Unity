@@ -6,6 +6,26 @@ namespace ZkTools.Mathematics.Swizzling
 	{
 		#region // ==============================[Methods]============================== //
 
+			public static Vector4 GetIJKW (this Vector4 p_this, float p_i = 0.0f, float p_j = 0.0f, float p_k = 0.0f)
+			{
+				return new Vector4(p_i, p_j, p_k, p_this.w);
+			}
+
+			public static Vector4 GetIJKW (this Vector4 p_this, Vector2 p_ij, float p_k = 0.0f)
+			{
+				return p_this.GetIJKW(p_ij.x, p_ij.y, p_k);
+			}
+
+			public static Vector4 GetIJKW (this Vector4 p_this, float p_i, Vector2 p_jk)
+			{
+				return p_this.GetIJKW(p_i, p_jk.x, p_jk.y);
+			}
+
+			public static Vector4 GetIJKW (this Vector4 p_this, Vector3 p_ijk)
+			{
+				return p_this.GetIJKW(p_ijk.x, p_ijk.y, p_ijk.z);
+			}
+
 			public static Vector4 GetIJKX (this Vector4 p_this, float p_i = 0.0f, float p_j = 0.0f, float p_k = 0.0f)
 			{
 				return new Vector4(p_i, p_j, p_k, p_this.x);
@@ -94,6 +114,16 @@ namespace ZkTools.Mathematics.Swizzling
 			public static Vector4 GetIJWL (this Vector4 p_this, Vector3 p_ijl)
 			{
 				return p_this.GetIJWL(p_ijl.x, p_ijl.y, p_ijl.z);
+			}
+
+			public static Vector4 GetIJWW (this Vector4 p_this, float p_i = 0.0f, float p_j = 0.0f)
+			{
+				return new Vector4(p_i, p_j, p_this.w, p_this.w);
+			}
+
+			public static Vector4 GetIJWW (this Vector4 p_this, Vector2 p_ij)
+			{
+				return p_this.GetIJWW(p_ij.x, p_ij.y);
 			}
 
 			public static Vector4 GetIJWX (this Vector4 p_this, float p_i = 0.0f, float p_j = 0.0f)
@@ -336,6 +366,221 @@ namespace ZkTools.Mathematics.Swizzling
 				return p_this.GetIJZZ(p_ik.x, p_ik.y);
 			}
 
+			public static Vector2 GetIW (this Vector4 p_this, float p_i = 0.0f)
+			{
+				return new Vector2(p_i, p_this.w);
+			}
+
+			public static Vector3 GetIWK (this Vector4 p_this, float p_i = 0.0f, float p_k = 0.0f)
+			{
+				return new Vector3(p_i, p_this.w, p_k);
+			}
+
+			public static Vector3 GetIWK (this Vector4 p_this, Vector2 p_ik)
+			{
+				return p_this.GetIWK(p_ik.x, p_ik.y);
+			}
+
+			public static Vector4 GetIWKL (this Vector4 p_this, float p_i = 0.0f, float p_k = 0.0f, float p_l = 0.0f)
+			{
+				return new Vector4(p_i, p_this.w, p_k, p_l);
+			}
+
+			public static Vector4 GetIWKL (this Vector4 p_this, Vector2 p_ik, float p_l = 0.0f)
+			{
+				return p_this.GetIWKL(p_ik.x, p_ik.y, p_l);
+			}
+
+			public static Vector4 GetIWKL (this Vector4 p_this, float p_i, Vector2 p_kl)
+			{
+				return p_this.GetIWKL(p_i, p_kl.x, p_kl.y);
+			}
+
+			public static Vector4 GetIWKL (this Vector4 p_this, Vector3 p_ikl)
+			{
+				return p_this.GetIWKL(p_ikl.x, p_ikl.y, p_ikl.z);
+			}
+
+			public static Vector4 GetIWKW (this Vector4 p_this, float p_i = 0.0f, float p_k = 0.0f)
+			{
+				return new Vector4(p_i, p_this.w, p_k, p_this.w);
+			}
+
+			public static Vector4 GetIWKW (this Vector4 p_this, Vector2 p_ik)
+			{
+				return p_this.GetIWKW(p_ik.x, p_ik.y);
+			}
+
+			public static Vector4 GetIWKX (this Vector4 p_this, float p_i = 0.0f, float p_k = 0.0f)
+			{
+				return new Vector4(p_i, p_this.w, p_k, p_this.x);
+			}
+
+			public static Vector4 GetIWKX (this Vector4 p_this, Vector2 p_ik)
+			{
+				return p_this.GetIWKX(p_ik.x, p_ik.y);
+			}
+
+			public static Vector4 GetIWKY (this Vector4 p_this, float p_i = 0.0f, float p_k = 0.0f)
+			{
+				return new Vector4(p_i, p_this.w, p_k, p_this.y);
+			}
+
+			public static Vector4 GetIWKY (this Vector4 p_this, Vector2 p_ik)
+			{
+				return p_this.GetIWKY(p_ik.x, p_ik.y);
+			}
+
+			public static Vector4 GetIWKZ (this Vector4 p_this, float p_i = 0.0f, float p_k = 0.0f)
+			{
+				return new Vector4(p_i, p_this.w, p_k, p_this.z);
+			}
+
+			public static Vector4 GetIWKZ (this Vector4 p_this, Vector2 p_ik)
+			{
+				return p_this.GetIWKZ(p_ik.x, p_ik.y);
+			}
+
+			public static Vector3 GetIWW (this Vector4 p_this, float p_i = 0.0f)
+			{
+				return new Vector3(p_i, p_this.w, p_this.w);
+			}
+
+			public static Vector4 GetIWWL (this Vector4 p_this, float p_i = 0.0f, float p_l = 0.0f)
+			{
+				return new Vector4(p_i, p_this.w, p_this.w, p_l);
+			}
+
+			public static Vector4 GetIWWL (this Vector4 p_this, Vector2 p_il)
+			{
+				return p_this.GetIWWL(p_il.x, p_il.y);
+			}
+
+			public static Vector4 GetIWWW (this Vector4 p_this, float p_i = 0.0f)
+			{
+				return new Vector4(p_i, p_this.w, p_this.w, p_this.w);
+			}
+
+			public static Vector4 GetIWWX (this Vector4 p_this, float p_i = 0.0f)
+			{
+				return new Vector4(p_i, p_this.w, p_this.w, p_this.x);
+			}
+
+			public static Vector4 GetIWWY (this Vector4 p_this, float p_i = 0.0f)
+			{
+				return new Vector4(p_i, p_this.w, p_this.w, p_this.y);
+			}
+
+			public static Vector4 GetIWWZ (this Vector4 p_this,float p_i = 0.0f)
+			{
+				return new Vector4(p_i, p_this.w, p_this.w, p_this.z);
+			}
+
+			public static Vector3 GetIWX (this Vector4 p_this, float p_i = 0.0f)
+			{
+				return new Vector3(p_i, p_this.w, p_this.x);
+			}
+
+			public static Vector4 GetIWXL (this Vector4 p_this, float p_i = 0.0f, float p_l = 0.0f)
+			{
+				return new Vector4(p_i, p_this.w, p_this.x, p_l);
+			}
+
+			public static Vector4 GetIWXL (this Vector4 p_this, Vector2 p_il)
+			{
+				return p_this.GetIWXL(p_il.x, p_il.y);
+			}
+
+			public static Vector4 GetIWXW (this Vector4 p_this, float p_i = 0.0f)
+			{
+				return new Vector4(p_i, p_this.w, p_this.w, p_this.w);
+			}
+
+			public static Vector4 GetIWXX (this Vector4 p_this, float p_i = 0.0f)
+			{
+				return new Vector4(p_i, p_this.w, p_this.w, p_this.x);
+			}
+
+			public static Vector4 GetIWXY (this Vector4 p_this, float p_i = 0.0f)
+			{
+				return new Vector4(p_i, p_this.w, p_this.w, p_this.y);
+			}
+
+			public static Vector4 GetIWXZ (this Vector4 p_this,float p_i = 0.0f)
+			{
+				return new Vector4(p_i, p_this.w, p_this.w, p_this.z);
+			}
+
+			public static Vector3 GetIWY (this Vector4 p_this, float p_i = 0.0f)
+			{
+				return new Vector3(p_i, p_this.w, p_this.y);
+			}
+
+			public static Vector4 GetIWYL (this Vector4 p_this, float p_i = 0.0f, float p_l = 0.0f)
+			{
+				return new Vector4(p_i, p_this.w, p_this.y, p_l);
+			}
+
+			public static Vector4 GetIWYL (this Vector4 p_this, Vector2 p_il)
+			{
+				return p_this.GetIWYL(p_il.x, p_il.y);
+			}
+
+			public static Vector4 GetIWYW (this Vector4 p_this, float p_i = 0.0f)
+			{
+				return new Vector4(p_i, p_this.w, p_this.y, p_this.w);
+			}
+
+			public static Vector4 GetIWYX (this Vector4 p_this, float p_i = 0.0f)
+			{
+				return new Vector4(p_i, p_this.w, p_this.y, p_this.x);
+			}
+
+			public static Vector4 GetIWYY (this Vector4 p_this, float p_i = 0.0f)
+			{
+				return new Vector4(p_i, p_this.w, p_this.y, p_this.y);
+			}
+
+			public static Vector4 GetIWYZ (this Vector4 p_this, float p_i = 0.0f)
+			{
+				return new Vector4(p_i, p_this.w, p_this.y, p_this.z);
+			}
+
+			public static Vector3 GetIWZ (this Vector4 p_this, float p_i = 0.0f)
+			{
+				return new Vector3(p_i, p_this.w, p_this.z);
+			}
+
+			public static Vector4 GetIWZL (this Vector4 p_this, float p_i = 0.0f, float p_l = 0.0f)
+			{
+				return new Vector4(p_i, p_this.w, p_this.z, p_l);
+			}
+
+			public static Vector4 GetIWZL (this Vector4 p_this, Vector2 p_il)
+			{
+				return p_this.GetIWZL(p_il.x, p_il.y);
+			}
+
+			public static Vector4 GetIWZW (this Vector4 p_this, float p_i = 0.0f)
+			{
+				return new Vector4(p_i, p_this.w, p_this.z, p_this.w);
+			}
+
+			public static Vector4 GetIWZX (this Vector4 p_this, float p_i = 0.0f)
+			{
+				return new Vector4(p_i, p_this.w, p_this.z, p_this.x);
+			}
+
+			public static Vector4 GetIWZY (this Vector4 p_this, float p_i = 0.0f)
+			{
+				return new Vector4(p_i, p_this.w, p_this.z, p_this.y);
+			}
+
+			public static Vector4 GetIWZZ (this Vector4 p_this, float p_i = 0.0f)
+			{
+				return new Vector4(p_i, p_this.w, p_this.z, p_this.z);
+			}
+
 			public static Vector2 GetIX (this Vector4 p_this, float p_i = 0.0f)
 			{
 				return new Vector2(p_i, p_this.x);
@@ -363,12 +608,12 @@ namespace ZkTools.Mathematics.Swizzling
 
 			public static Vector4 GetIXKL (this Vector4 p_this, float p_i, Vector2 p_kl)
 			{
-				return p_this.GetIJZL(p_i, p_kl.x, p_kl.y);
+				return p_this.GetIXKL(p_i, p_kl.x, p_kl.y);
 			}
 
 			public static Vector4 GetIXKL (this Vector4 p_this, Vector3 p_ikl)
 			{
-				return p_this.GetIJZL(p_ikl.x, p_ikl.y, p_ikl.z);
+				return p_this.GetIXKL(p_ikl.x, p_ikl.y, p_ikl.z);
 			}
 
 			public static Vector4 GetIXKW (this Vector4 p_this, float p_i = 0.0f, float p_k = 0.0f)
@@ -413,12 +658,12 @@ namespace ZkTools.Mathematics.Swizzling
 
 			public static Vector3 GetIXW (this Vector4 p_this, float p_i = 0.0f)
 			{
-				return new Vector3(p_i, p_this.w, p_this.x);
+				return new Vector3(p_i, p_this.x, p_this.w);
 			}
 
 			public static Vector4 GetIXWL (this Vector4 p_this, float p_i = 0.0f, float p_l = 0.0f)
 			{
-				return new Vector4(p_i, p_this.w, p_this.x, p_l);
+				return new Vector4(p_i, p_this.x, p_this.w, p_l);
 			}
 
 			public static Vector4 GetIXWL (this Vector4 p_this, Vector2 p_il)
@@ -981,6 +1226,16 @@ namespace ZkTools.Mathematics.Swizzling
 				return new Vector4(p_i, p_this.z, p_this.z, p_this.z);
 			}
 
+			public static Vector4 GetWJKW (this Vector4 p_this, float p_j = 0.0f, float p_k = 0.0f)
+			{
+				return new Vector4(p_this.w, p_j, p_k, p_this.w);
+			}
+
+			public static Vector4 GetWJKW (this Vector4 p_this, Vector2 p_jk)
+			{
+				return p_this.GetWJKW(p_jk.x, p_jk.y);
+			}
+
 			public static Vector4 GetWJKX (this Vector4 p_this, float p_j = 0.0f, float p_k = 0.0f)
 			{
 				return new Vector4(p_this.w, p_j, p_k, p_this.x);
@@ -1024,6 +1279,11 @@ namespace ZkTools.Mathematics.Swizzling
 			public static Vector4 GetWJWL (this Vector4 p_this, Vector2 p_jl)
 			{
 				return p_this.GetWJWL(p_jl.x, p_jl.y);
+			}
+
+			public static Vector4 GetWJWW (this Vector4 p_this, float p_j = 0.0f)
+			{
+				return new Vector4(p_this.w, p_j, p_this.w, p_this.w);
 			}
 
 			public static Vector4 GetWJWX (this Vector4 p_this, float p_j = 0.0f)
@@ -1146,6 +1406,166 @@ namespace ZkTools.Mathematics.Swizzling
 				return new Vector4(p_this.w, p_j, p_this.z, p_this.z);
 			}
 
+			public static Vector2 GetWW (this Vector4 p_this)
+			{
+				return new Vector3(p_this.w, p_this.w);
+			}
+
+			public static Vector3 GetWWK (this Vector4 p_this, float p_k = 0.0f)
+			{
+				return new Vector3(p_this.w, p_this.w, p_k);
+			}
+
+			public static Vector4 GetWWKL (this Vector4 p_this, float p_k = 0.0f, float p_l = 0.0f)
+			{
+				return new Vector4(p_this.w, p_this.w, p_k, p_l);
+			}
+
+			public static Vector4 GetWWKL (this Vector4 p_this, Vector2 p_kl)
+			{
+				return p_this.GetWWKL(p_kl.x, p_kl.y);
+			}
+
+			public static Vector4 GetWWKW (this Vector4 p_this, float p_k = 0.0f)
+			{
+				return new Vector4(p_this.w, p_this.w, p_k, p_this.w);
+			}
+
+			public static Vector4 GetWWKX (this Vector4 p_this, float p_k = 0.0f)
+			{
+				return new Vector4(p_this.w, p_this.w, p_k, p_this.x);
+			}
+
+			public static Vector4 GetWWKY (this Vector4 p_this, float p_k = 0.0f)
+			{
+				return new Vector4(p_this.w, p_this.w, p_k, p_this.y);
+			}
+
+			public static Vector4 GetWWKZ (this Vector4 p_this, float p_k = 0.0f)
+			{
+				return new Vector4(p_this.w, p_this.w, p_k, p_this.z);
+			}
+
+			public static Vector3 GetWWW (this Vector4 p_this)
+			{
+				return new Vector3(p_this.w, p_this.w, p_this.w);
+			}
+
+			public static Vector4 GetWWWL (this Vector4 p_this, float p_l = 0.0f)
+			{
+				return new Vector4(p_this.w, p_this.w, p_this.w, p_l);
+			}
+
+			public static Vector4 GetWWWW (this Vector4 p_this)
+			{
+				return new Vector4(p_this.w, p_this.w, p_this.w, p_this.w);
+			}
+
+			public static Vector4 GetWWWX (this Vector4 p_this)
+			{
+				return new Vector4(p_this.w, p_this.w, p_this.w, p_this.x);
+			}
+
+			public static Vector4 GetWWWY (this Vector4 p_this)
+			{
+				return new Vector4(p_this.w, p_this.w, p_this.w, p_this.y);
+			}
+
+			public static Vector4 GetWWWZ (this Vector4 p_this)
+			{
+				return new Vector4(p_this.w, p_this.w, p_this.w, p_this.z);
+			}
+
+			public static Vector3 GetWWX (this Vector4 p_this)
+			{
+				return new Vector3(p_this.w, p_this.w, p_this.x);
+			}
+
+			public static Vector4 GetWWXL (this Vector4 p_this, float p_l = 0.0f)
+			{
+				return new Vector4(p_this.w, p_this.w, p_this.x, p_l);
+			}
+
+			public static Vector4 GetWWXW (this Vector4 p_this)
+			{
+				return new Vector4(p_this.w, p_this.w, p_this.x, p_this.w);
+			}
+
+			public static Vector4 GetWWXX (this Vector4 p_this)
+			{
+				return new Vector4(p_this.w, p_this.w, p_this.x, p_this.x);
+			}
+
+			public static Vector4 GetWWXY (this Vector4 p_this)
+			{
+				return new Vector4(p_this.w, p_this.w, p_this.x, p_this.y);
+			}
+
+			public static Vector4 GetWWXZ (this Vector4 p_this)
+			{
+				return new Vector4(p_this.w, p_this.w, p_this.x, p_this.z);
+			}
+
+			public static Vector3 GetWWY (this Vector4 p_this)
+			{
+				return new Vector3(p_this.w, p_this.w, p_this.y);
+			}
+
+			public static Vector4 GetWWYL (this Vector4 p_this, float p_l = 0.0f)
+			{
+				return new Vector4(p_this.w, p_this.w, p_this.y, p_l);
+			}
+
+			public static Vector4 GetWWYW (this Vector4 p_this)
+			{
+				return new Vector4(p_this.w, p_this.w, p_this.y, p_this.w);
+			}
+
+			public static Vector4 GetWWYX (this Vector4 p_this)
+			{
+				return new Vector4(p_this.w, p_this.w, p_this.y, p_this.x);
+			}
+
+			public static Vector4 GetWWYY (this Vector4 p_this)
+			{
+				return new Vector4(p_this.w, p_this.w, p_this.y, p_this.y);
+			}
+
+			public static Vector4 GetWWYZ (this Vector4 p_this)
+			{
+				return new Vector4(p_this.w, p_this.w, p_this.y, p_this.z);
+			}
+
+			public static Vector3 GetWWZ (this Vector4 p_this)
+			{
+				return new Vector3(p_this.w, p_this.w, p_this.z);
+			}
+
+			public static Vector4 GetWWZL (this Vector4 p_this, float p_l = 0.0f)
+			{
+				return new Vector4(p_this.w, p_this.w, p_this.z, p_l);
+			}
+
+			public static Vector4 GetWWZW (this Vector4 p_this)
+			{
+				return new Vector4(p_this.w, p_this.w, p_this.z, p_this.w);
+			}
+
+			public static Vector4 GetWWZX (this Vector4 p_this)
+			{
+				return new Vector4(p_this.w, p_this.w, p_this.z, p_this.x);
+			}
+
+			public static Vector4 GetWWZY (this Vector4 p_this)
+			{
+				return new Vector4(p_this.w, p_this.w, p_this.z, p_this.y);
+			}
+
+			public static Vector4 GetWWZZ (this Vector4 p_this)
+			{
+				return new Vector4(p_this.w, p_this.w, p_this.z, p_this.z);
+			}
+
 			public static Vector2 GetWX (this Vector4 p_this)
 			{
 				return new Vector2(p_this.w, p_this.x);
@@ -1163,7 +1583,7 @@ namespace ZkTools.Mathematics.Swizzling
 
 			public static Vector4 GetWXKL (this Vector4 p_this, Vector2 p_kl)
 			{
-				return p_this.GetWJZL(p_kl.x, p_kl.y);
+				return p_this.GetWXKL(p_kl.x, p_kl.y);
 			}
 
 			public static Vector4 GetWXKW (this Vector4 p_this, float p_k = 0.0f)
@@ -1188,12 +1608,12 @@ namespace ZkTools.Mathematics.Swizzling
 
 			public static Vector3 GetWXW (this Vector4 p_this)
 			{
-				return new Vector3(p_this.w, p_this.w, p_this.x);
+				return new Vector3(p_this.w, p_this.x, p_this.w);
 			}
 
 			public static Vector4 GetWXWL (this Vector4 p_this, float p_l = 0.0f)
 			{
-				return new Vector4(p_this.w, p_this.w, p_this.x, p_l);
+				return new Vector4(p_this.w, p_this.x, p_this.w, p_l);
 			}
 
 			public static Vector4 GetWXWW (this Vector4 p_this)
@@ -1318,7 +1738,7 @@ namespace ZkTools.Mathematics.Swizzling
 
 			public static Vector4 GetWYWL (this Vector4 p_this, float p_l = 0.0f)
 			{
-				return new Vector4(p_this.w, p_this.y, p_this.x, p_l);
+				return new Vector4(p_this.w, p_this.y, p_this.w, p_l);
 			}
 
 			public static Vector4 GetWYWW (this Vector4 p_this)
@@ -1478,7 +1898,7 @@ namespace ZkTools.Mathematics.Swizzling
 
 			public static Vector4 GetWZWL (this Vector4 p_this, float p_l = 0.0f)
 			{
-				return new Vector4(p_this.w, p_this.z, p_this.x, p_l);
+				return new Vector4(p_this.w, p_this.z, p_this.w, p_l);
 			}
 
 			public static Vector4 GetWZWW (this Vector4 p_this)
@@ -1626,6 +2046,16 @@ namespace ZkTools.Mathematics.Swizzling
 				return new Vector4(p_this.w, p_this.z, p_this.z, p_this.z);
 			}
 
+			public static Vector4 GetXJKW (this Vector4 p_this, float p_j = 0.0f, float p_k = 0.0f)
+			{
+				return new Vector4(p_this.x, p_j, p_k, p_this.w);
+			}
+
+			public static Vector4 GetXJKW (this Vector4 p_this, Vector2 p_jk)
+			{
+				return p_this.GetXJKW(p_jk.x, p_jk.y);
+			}
+
 			public static Vector4 GetXJKX (this Vector4 p_this, float p_j = 0.0f, float p_k = 0.0f)
 			{
 				return new Vector4(p_this.x, p_j, p_k, p_this.x);
@@ -1669,6 +2099,11 @@ namespace ZkTools.Mathematics.Swizzling
 			public static Vector4 GetXJWL (this Vector4 p_this, Vector2 p_jl)
 			{
 				return p_this.GetXJWL(p_jl.x, p_jl.y);
+			}
+
+			public static Vector4 GetXJWW (this Vector4 p_this, float p_j = 0.0f)
+			{
+				return new Vector4(p_this.x, p_j, p_this.w, p_this.w);
 			}
 
 			public static Vector4 GetXJWX (this Vector4 p_this, float p_j = 0.0f)
@@ -1791,6 +2226,166 @@ namespace ZkTools.Mathematics.Swizzling
 				return new Vector4(p_this.x, p_j, p_this.z, p_this.z);
 			}
 
+			public static Vector2 GetXW (this Vector4 p_this)
+			{
+				return new Vector2(p_this.x, p_this.w);
+			}
+
+			public static Vector3 GetXWK (this Vector4 p_this, float p_k = 0.0f)
+			{
+				return new Vector3(p_this.x, p_this.w, p_k);
+			}
+
+			public static Vector4 GetXWKL (this Vector4 p_this, float p_k = 0.0f, float p_l = 0.0f)
+			{
+				return new Vector4(p_this.x, p_this.w, p_k, p_l);
+			}
+
+			public static Vector4 GetXWKL (this Vector4 p_this, Vector2 p_kl)
+			{
+				return p_this.GetXWKL(p_kl.x, p_kl.y);
+			}
+
+			public static Vector4 GetXWKW (this Vector4 p_this, float p_k = 0.0f)
+			{
+				return new Vector4(p_this.x, p_this.w, p_k, p_this.w);
+			}
+
+			public static Vector4 GetXWKX (this Vector4 p_this, float p_k = 0.0f)
+			{
+				return new Vector4(p_this.x, p_this.w, p_k, p_this.x);
+			}
+
+			public static Vector4 GetXWKY (this Vector4 p_this, float p_k = 0.0f)
+			{
+				return new Vector4(p_this.x, p_this.w, p_k, p_this.y);
+			}
+
+			public static Vector4 GetXWKZ (this Vector4 p_this, float p_k = 0.0f)
+			{
+				return new Vector4(p_this.x, p_this.w, p_k, p_this.z);
+			}
+
+			public static Vector3 GetXWW (this Vector4 p_this)
+			{
+				return new Vector3(p_this.x, p_this.w, p_this.w);
+			}
+
+			public static Vector4 GetXWWL (this Vector4 p_this, float p_l = 0.0f)
+			{
+				return new Vector4(p_this.x, p_this.w, p_this.w, p_l);
+			}
+
+			public static Vector4 GetXWWW (this Vector4 p_this)
+			{
+				return new Vector4(p_this.x, p_this.w, p_this.w, p_this.w);
+			}
+
+			public static Vector4 GetXWWX (this Vector4 p_this)
+			{
+				return new Vector4(p_this.x, p_this.w, p_this.w, p_this.x);
+			}
+
+			public static Vector4 GetXWWY (this Vector4 p_this)
+			{
+				return new Vector4(p_this.x, p_this.w, p_this.w, p_this.y);
+			}
+
+			public static Vector4 GetXWWZ (this Vector4 p_this)
+			{
+				return new Vector4(p_this.x, p_this.w, p_this.w, p_this.z);
+			}
+
+			public static Vector3 GetXWX (this Vector4 p_this)
+			{
+				return new Vector3(p_this.x, p_this.w, p_this.x);
+			}
+
+			public static Vector4 GetXWXL (this Vector4 p_this, float p_l = 0.0f)
+			{
+				return new Vector4(p_this.x, p_this.w, p_this.x, p_l);
+			}
+
+			public static Vector4 GetXWXW (this Vector4 p_this)
+			{
+				return new Vector4(p_this.x, p_this.w, p_this.x, p_this.w);
+			}
+
+			public static Vector4 GetXWXX (this Vector4 p_this)
+			{
+				return new Vector4(p_this.x, p_this.w, p_this.x, p_this.x);
+			}
+
+			public static Vector4 GetXWXY (this Vector4 p_this)
+			{
+				return new Vector4(p_this.x, p_this.w, p_this.x, p_this.y);
+			}
+
+			public static Vector4 GetXWXZ (this Vector4 p_this)
+			{
+				return new Vector4(p_this.x, p_this.w, p_this.x, p_this.z);
+			}
+
+			public static Vector3 GetXWY (this Vector4 p_this)
+			{
+				return new Vector3(p_this.x, p_this.w, p_this.y);
+			}
+
+			public static Vector4 GetXWYL (this Vector4 p_this, float p_l = 0.0f)
+			{
+				return new Vector4(p_this.x, p_this.w, p_this.y, p_l);
+			}
+
+			public static Vector4 GetXWYW (this Vector4 p_this)
+			{
+				return new Vector4(p_this.x, p_this.w, p_this.y, p_this.w);
+			}
+
+			public static Vector4 GetXWYX (this Vector4 p_this)
+			{
+				return new Vector4(p_this.x, p_this.w, p_this.y, p_this.x);
+			}
+
+			public static Vector4 GetXWYY (this Vector4 p_this)
+			{
+				return new Vector4(p_this.x, p_this.w, p_this.y, p_this.y);
+			}
+
+			public static Vector4 GetXWYZ (this Vector4 p_this)
+			{
+				return new Vector4(p_this.x, p_this.w, p_this.y, p_this.z);
+			}
+
+			public static Vector3 GetXWZ (this Vector4 p_this)
+			{
+				return new Vector3(p_this.x, p_this.w, p_this.z);
+			}
+
+			public static Vector4 GetXWZL (this Vector4 p_this, float p_l = 0.0f)
+			{
+				return new Vector4(p_this.x, p_this.w, p_this.z, p_l);
+			}
+
+			public static Vector4 GetXWZW (this Vector4 p_this)
+			{
+				return new Vector4(p_this.x, p_this.w, p_this.z, p_this.w);
+			}
+
+			public static Vector4 GetXWZX (this Vector4 p_this)
+			{
+				return new Vector4(p_this.x, p_this.w, p_this.z, p_this.x);
+			}
+
+			public static Vector4 GetXWZY (this Vector4 p_this)
+			{
+				return new Vector4(p_this.x, p_this.w, p_this.z, p_this.y);
+			}
+
+			public static Vector4 GetXWZZ (this Vector4 p_this)
+			{
+				return new Vector4(p_this.x, p_this.w, p_this.z, p_this.z);
+			}
+
 			public static Vector2 GetXX (this Vector4 p_this)
 			{
 				return new Vector2(p_this.x, p_this.x);
@@ -1808,7 +2403,7 @@ namespace ZkTools.Mathematics.Swizzling
 
 			public static Vector4 GetXXKL (this Vector4 p_this, Vector2 p_kl)
 			{
-				return p_this.GetXJZL(p_kl.x, p_kl.y);
+				return p_this.GetXXKL(p_kl.x, p_kl.y);
 			}
 
 			public static Vector4 GetXXKW (this Vector4 p_this, float p_k = 0.0f)
@@ -1833,12 +2428,12 @@ namespace ZkTools.Mathematics.Swizzling
 
 			public static Vector3 GetXXW (this Vector4 p_this)
 			{
-				return new Vector3(p_this.x, p_this.w, p_this.x);
+				return new Vector3(p_this.x, p_this.x, p_this.w);
 			}
 
 			public static Vector4 GetXXWL (this Vector4 p_this, float p_l = 0.0f)
 			{
-				return new Vector4(p_this.x, p_this.w, p_this.x, p_l);
+				return new Vector4(p_this.x, p_this.x, p_this.w, p_l);
 			}
 
 			public static Vector4 GetXXWW (this Vector4 p_this)
@@ -2271,6 +2866,16 @@ namespace ZkTools.Mathematics.Swizzling
 				return new Vector4(p_this.x, p_this.z, p_this.z, p_this.z);
 			}
 
+			public static Vector4 GetYJKW (this Vector4 p_this, float p_j = 0.0f, float p_k = 0.0f)
+			{
+				return new Vector4(p_this.y, p_j, p_k, p_this.w);
+			}
+
+			public static Vector4 GetYJKW (this Vector4 p_this, Vector2 p_jk)
+			{
+				return p_this.GetYJKW(p_jk.x, p_jk.y);
+			}
+
 			public static Vector4 GetYJKX (this Vector4 p_this, float p_j = 0.0f, float p_k = 0.0f)
 			{
 				return new Vector4(p_this.y, p_j, p_k, p_this.x);
@@ -2314,6 +2919,11 @@ namespace ZkTools.Mathematics.Swizzling
 			public static Vector4 GetYJWL (this Vector4 p_this, Vector2 p_jl)
 			{
 				return p_this.GetYJWL(p_jl.x, p_jl.y);
+			}
+
+			public static Vector4 GetYJWW (this Vector4 p_this, float p_j = 0.0f)
+			{
+				return new Vector4(p_this.y, p_j, p_this.w, p_this.w);
 			}
 
 			public static Vector4 GetYJWX (this Vector4 p_this, float p_j = 0.0f)
@@ -2453,7 +3063,7 @@ namespace ZkTools.Mathematics.Swizzling
 
 			public static Vector4 GetYXKL (this Vector4 p_this, Vector2 p_kl)
 			{
-				return p_this.GetYJZL(p_kl.x, p_kl.y);
+				return p_this.GetYXKL(p_kl.x, p_kl.y);
 			}
 
 			public static Vector4 GetYXKW (this Vector4 p_this, float p_k = 0.0f)
@@ -2476,14 +3086,174 @@ namespace ZkTools.Mathematics.Swizzling
 				return new Vector4(p_this.y, p_this.x, p_k, p_this.z);
 			}
 
-			public static Vector3 GetYXW (this Vector4 p_this)
+			public static Vector2 GetYW (this Vector4 p_this)
+			{
+				return new Vector2(p_this.y, p_this.w);
+			}
+
+			public static Vector3 GetYWK (this Vector4 p_this, float p_k = 0.0f)
+			{
+				return new Vector3(p_this.y, p_this.w, p_k);
+			}
+
+			public static Vector4 GetYWKL (this Vector4 p_this, float p_k = 0.0f, float p_l = 0.0f)
+			{
+				return new Vector4(p_this.y, p_this.w, p_k, p_l);
+			}
+
+			public static Vector4 GetYWKL (this Vector4 p_this, Vector2 p_kl)
+			{
+				return p_this.GetYWKL(p_kl.x, p_kl.y);
+			}
+
+			public static Vector4 GetYWKW (this Vector4 p_this, float p_k = 0.0f)
+			{
+				return new Vector4(p_this.y, p_this.w, p_k, p_this.w);
+			}
+
+			public static Vector4 GetYWKX (this Vector4 p_this, float p_k = 0.0f)
+			{
+				return new Vector4(p_this.y, p_this.w, p_k, p_this.x);
+			}
+
+			public static Vector4 GetYWKY (this Vector4 p_this, float p_k = 0.0f)
+			{
+				return new Vector4(p_this.y, p_this.w, p_k, p_this.y);
+			}
+
+			public static Vector4 GetYWKZ (this Vector4 p_this, float p_k = 0.0f)
+			{
+				return new Vector4(p_this.y, p_this.w, p_k, p_this.z);
+			}
+
+			public static Vector3 GetYWW (this Vector4 p_this)
+			{
+				return new Vector3(p_this.y, p_this.w, p_this.w);
+			}
+
+			public static Vector4 GetYWWL (this Vector4 p_this, float p_l = 0.0f)
+			{
+				return new Vector4(p_this.y, p_this.w, p_this.w, p_l);
+			}
+
+			public static Vector4 GetYWWW (this Vector4 p_this)
+			{
+				return new Vector4(p_this.y, p_this.w, p_this.w, p_this.w);
+			}
+
+			public static Vector4 GetYWWX (this Vector4 p_this)
+			{
+				return new Vector4(p_this.y, p_this.w, p_this.w, p_this.x);
+			}
+
+			public static Vector4 GetYWWY (this Vector4 p_this)
+			{
+				return new Vector4(p_this.y, p_this.w, p_this.w, p_this.y);
+			}
+
+			public static Vector4 GetYWWZ (this Vector4 p_this)
+			{
+				return new Vector4(p_this.y, p_this.w, p_this.w, p_this.z);
+			}
+
+			public static Vector3 GetYWX (this Vector4 p_this)
 			{
 				return new Vector3(p_this.y, p_this.w, p_this.x);
 			}
 
-			public static Vector4 GetYXWL (this Vector4 p_this, float p_l = 0.0f)
+			public static Vector4 GetYWXL (this Vector4 p_this, float p_l = 0.0f)
 			{
 				return new Vector4(p_this.y, p_this.w, p_this.x, p_l);
+			}
+
+			public static Vector4 GetYWXW (this Vector4 p_this)
+			{
+				return new Vector4(p_this.y, p_this.w, p_this.x, p_this.w);
+			}
+
+			public static Vector4 GetYWXX (this Vector4 p_this)
+			{
+				return new Vector4(p_this.y, p_this.w, p_this.x, p_this.x);
+			}
+
+			public static Vector4 GetYWXY (this Vector4 p_this)
+			{
+				return new Vector4(p_this.y, p_this.w, p_this.x, p_this.y);
+			}
+
+			public static Vector4 GetYWXZ (this Vector4 p_this)
+			{
+				return new Vector4(p_this.y, p_this.w, p_this.x, p_this.z);
+			}
+
+			public static Vector3 GetYWY (this Vector4 p_this)
+			{
+				return new Vector3(p_this.y, p_this.w, p_this.y);
+			}
+
+			public static Vector4 GetYWYL (this Vector4 p_this, float p_l = 0.0f)
+			{
+				return new Vector4(p_this.y, p_this.w, p_this.y, p_l);
+			}
+
+			public static Vector4 GetYWYW (this Vector4 p_this)
+			{
+				return new Vector4(p_this.y, p_this.w, p_this.y, p_this.w);
+			}
+
+			public static Vector4 GetYWYX (this Vector4 p_this)
+			{
+				return new Vector4(p_this.y, p_this.w, p_this.y, p_this.x);
+			}
+
+			public static Vector4 GetYWYY (this Vector4 p_this)
+			{
+				return new Vector4(p_this.y, p_this.w, p_this.y, p_this.y);
+			}
+
+			public static Vector4 GetYWYZ (this Vector4 p_this)
+			{
+				return new Vector4(p_this.y, p_this.w, p_this.y, p_this.z);
+			}
+
+			public static Vector3 GetYWZ (this Vector4 p_this)
+			{
+				return new Vector3(p_this.y, p_this.w, p_this.z);
+			}
+
+			public static Vector4 GetYWZL (this Vector4 p_this, float p_l = 0.0f)
+			{
+				return new Vector4(p_this.y, p_this.w, p_this.z, p_l);
+			}
+
+			public static Vector4 GetYWZW (this Vector4 p_this)
+			{
+				return new Vector4(p_this.y, p_this.w, p_this.z, p_this.w);
+			}
+
+			public static Vector4 GetYWZX (this Vector4 p_this)
+			{
+				return new Vector4(p_this.y, p_this.w, p_this.z, p_this.x);
+			}
+
+			public static Vector4 GetYWZY (this Vector4 p_this)
+			{
+				return new Vector4(p_this.y, p_this.w, p_this.z, p_this.y);
+			}
+
+			public static Vector4 GetYWZZ (this Vector4 p_this)
+			{
+				return new Vector4(p_this.y, p_this.w, p_this.z, p_this.z);
+			}
+
+			public static Vector3 GetYXW (this Vector4 p_this)
+			{
+				return new Vector3(p_this.y, p_this.x, p_this.w);
+			}
+
+			public static Vector4 GetYXWL (this Vector4 p_this, float p_l = 0.0f)
+			{
+				return new Vector4(p_this.y, p_this.x, p_this.w, p_l);
 			}
 
 			public static Vector4 GetYXWW (this Vector4 p_this)
@@ -2916,6 +3686,16 @@ namespace ZkTools.Mathematics.Swizzling
 				return new Vector4(p_this.y, p_this.z, p_this.z, p_this.z);
 			}
 
+			public static Vector4 GetZJKW (this Vector4 p_this, float p_j = 0.0f, float p_k = 0.0f)
+			{
+				return new Vector4(p_this.z, p_j, p_k, p_this.w);
+			}
+
+			public static Vector4 GetZJKW (this Vector4 p_this, Vector2 p_jk)
+			{
+				return p_this.GetZJKW(p_jk.x, p_jk.y);
+			}
+
 			public static Vector4 GetZJKX (this Vector4 p_this, float p_j = 0.0f, float p_k = 0.0f)
 			{
 				return new Vector4(p_this.z, p_j, p_k, p_this.x);
@@ -2959,6 +3739,11 @@ namespace ZkTools.Mathematics.Swizzling
 			public static Vector4 GetZJWL (this Vector4 p_this, Vector2 p_jl)
 			{
 				return p_this.GetZJWL(p_jl.x, p_jl.y);
+			}
+
+			public static Vector4 GetZJWW (this Vector4 p_this, float p_j = 0.0f)
+			{
+				return new Vector4(p_this.z, p_j, p_this.w, p_this.w);
 			}
 
 			public static Vector4 GetZJWX (this Vector4 p_this, float p_j = 0.0f)
@@ -3081,6 +3866,166 @@ namespace ZkTools.Mathematics.Swizzling
 				return new Vector4(p_this.z, p_j, p_this.z, p_this.z);
 			}
 
+			public static Vector2 GetZW (this Vector4 p_this)
+			{
+				return new Vector2(p_this.z, p_this.w);
+			}
+
+			public static Vector3 GetZWW (this Vector4 p_this)
+			{
+				return new Vector3(p_this.z, p_this.w, p_this.w);
+			}
+
+			public static Vector4 GetZWWL (this Vector4 p_this, float p_l = 0.0f)
+			{
+				return new Vector4(p_this.z, p_this.w, p_this.w, p_l);
+			}
+
+			public static Vector4 GetZWWW (this Vector4 p_this)
+			{
+				return new Vector4(p_this.z, p_this.w, p_this.w, p_this.w);
+			}
+
+			public static Vector4 GetZWWX (this Vector4 p_this)
+			{
+				return new Vector4(p_this.z, p_this.w, p_this.w, p_this.x);
+			}
+
+			public static Vector4 GetZWWY (this Vector4 p_this)
+			{
+				return new Vector4(p_this.z, p_this.w, p_this.w, p_this.y);
+			}
+
+			public static Vector4 GetZWWZ (this Vector4 p_this)
+			{
+				return new Vector4(p_this.z, p_this.w, p_this.w, p_this.z);
+			}
+
+			public static Vector3 GetZWK (this Vector4 p_this, float p_k = 0.0f)
+			{
+				return new Vector3(p_this.z, p_this.w, p_k);
+			}
+
+			public static Vector4 GetZWKL (this Vector4 p_this, float p_k = 0.0f, float p_l = 0.0f)
+			{
+				return new Vector4(p_this.z, p_this.w, p_k, p_l);
+			}
+
+			public static Vector4 GetZWKL (this Vector4 p_this, Vector2 p_kl)
+			{
+				return p_this.GetZWKL(p_kl.x, p_kl.y);
+			}
+
+			public static Vector4 GetZWKW (this Vector4 p_this, float p_k = 0.0f)
+			{
+				return new Vector4(p_this.z, p_this.w, p_k, p_this.w);
+			}
+
+			public static Vector4 GetZWKX (this Vector4 p_this, float p_k = 0.0f)
+			{
+				return new Vector4(p_this.z, p_this.w, p_k, p_this.x);
+			}
+
+			public static Vector4 GetZWKY (this Vector4 p_this, float p_k = 0.0f)
+			{
+				return new Vector4(p_this.z, p_this.w, p_k, p_this.y);
+			}
+
+			public static Vector4 GetZWKZ (this Vector4 p_this, float p_k = 0.0f)
+			{
+				return new Vector4(p_this.z, p_this.w, p_k, p_this.z);
+			}
+
+			public static Vector3 GetZWX (this Vector4 p_this)
+			{
+				return new Vector3(p_this.z, p_this.w, p_this.x);
+			}
+
+			public static Vector4 GetZWXL (this Vector4 p_this, float p_l = 0.0f)
+			{
+				return new Vector4(p_this.z, p_this.w, p_this.x, p_l);
+			}
+
+			public static Vector4 GetZWXW (this Vector4 p_this)
+			{
+				return new Vector4(p_this.z, p_this.w, p_this.x, p_this.w);
+			}
+
+			public static Vector4 GetZWXX (this Vector4 p_this)
+			{
+				return new Vector4(p_this.z, p_this.w, p_this.x, p_this.x);
+			}
+
+			public static Vector4 GetZWXY (this Vector4 p_this)
+			{
+				return new Vector4(p_this.z, p_this.w, p_this.x, p_this.y);
+			}
+
+			public static Vector4 GetZWXZ (this Vector4 p_this)
+			{
+				return new Vector4(p_this.z, p_this.w, p_this.x, p_this.z);
+			}
+
+			public static Vector3 GetZWY (this Vector4 p_this)
+			{
+				return new Vector3(p_this.z, p_this.w, p_this.y);
+			}
+
+			public static Vector4 GetZWYL (this Vector4 p_this, float p_l = 0.0f)
+			{
+				return new Vector4(p_this.z, p_this.w, p_this.y, p_l);
+			}
+
+			public static Vector4 GetZWYW (this Vector4 p_this)
+			{
+				return new Vector4(p_this.z, p_this.w, p_this.y, p_this.w);
+			}
+
+			public static Vector4 GetZWYX (this Vector4 p_this)
+			{
+				return new Vector4(p_this.z, p_this.w, p_this.y, p_this.x);
+			}
+
+			public static Vector4 GetZWYY (this Vector4 p_this)
+			{
+				return new Vector4(p_this.z, p_this.w, p_this.y, p_this.y);
+			}
+
+			public static Vector4 GetZWYZ (this Vector4 p_this)
+			{
+				return new Vector4(p_this.z, p_this.w, p_this.y, p_this.z);
+			}
+
+			public static Vector3 GetZWZ (this Vector4 p_this)
+			{
+				return new Vector3(p_this.z, p_this.w, p_this.z);
+			}
+
+			public static Vector4 GetZWZL (this Vector4 p_this, float p_l = 0.0f)
+			{
+				return new Vector4(p_this.z, p_this.w, p_this.z, p_l);
+			}
+
+			public static Vector4 GetZWZW (this Vector4 p_this)
+			{
+				return new Vector4(p_this.z, p_this.w, p_this.z, p_this.w);
+			}
+
+			public static Vector4 GetZWZX (this Vector4 p_this)
+			{
+				return new Vector4(p_this.z, p_this.w, p_this.z, p_this.x);
+			}
+
+			public static Vector4 GetZWZY (this Vector4 p_this)
+			{
+				return new Vector4(p_this.z, p_this.w, p_this.z, p_this.y);
+			}
+
+			public static Vector4 GetZWZZ (this Vector4 p_this)
+			{
+				return new Vector4(p_this.z, p_this.w, p_this.z, p_this.z);
+			}
+
 			public static Vector2 GetZX (this Vector4 p_this)
 			{
 				return new Vector2(p_this.z, p_this.x);
@@ -3098,7 +4043,7 @@ namespace ZkTools.Mathematics.Swizzling
 
 			public static Vector4 GetZXKL (this Vector4 p_this, Vector2 p_kl)
 			{
-				return p_this.GetZJZL(p_kl.x, p_kl.y);
+				return p_this.GetZXKL(p_kl.x, p_kl.y);
 			}
 
 			public static Vector4 GetZXKW (this Vector4 p_this, float p_k = 0.0f)
@@ -3123,12 +4068,12 @@ namespace ZkTools.Mathematics.Swizzling
 
 			public static Vector3 GetZXW (this Vector4 p_this)
 			{
-				return new Vector3(p_this.z, p_this.w, p_this.x);
+				return new Vector3(p_this.z, p_this.x, p_this.w);
 			}
 
 			public static Vector4 GetZXWL (this Vector4 p_this, float p_l = 0.0f)
 			{
-				return new Vector4(p_this.z, p_this.w, p_this.x, p_l);
+				return new Vector4(p_this.z, p_this.x, p_this.w, p_l);
 			}
 
 			public static Vector4 GetZXWW (this Vector4 p_this)
@@ -3318,7 +4263,7 @@ namespace ZkTools.Mathematics.Swizzling
 
 			public static Vector4 GetZYXL (this Vector4 p_this, float p_l = 0.0f)
 			{
-				return new Vector4(p_this.z, p_this.y, p_this.w, p_l);
+				return new Vector4(p_this.z, p_this.y, p_this.x, p_l);
 			}
 
 			public static Vector4 GetZYXW (this Vector4 p_this)

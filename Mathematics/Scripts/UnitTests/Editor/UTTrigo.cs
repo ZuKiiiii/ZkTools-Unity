@@ -1,6 +1,4 @@
-﻿
-using NUnit.Framework;
-using UnityEngine;
+﻿using NUnit.Framework;
 using ZkTools.Mathematics.Angles.Extensions;
 
 namespace ZkTools.Mathematics.UnitTests.Editor
