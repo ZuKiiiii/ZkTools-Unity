@@ -3046,46 +3046,6 @@ namespace ZkTools.Mathematics.Swizzling
 				return new Vector4(p_this.y, p_j, p_this.z, p_this.z);
 			}
 
-			public static Vector2 GetYX (this Vector4 p_this)
-			{
-				return new Vector2(p_this.y, p_this.x);
-			}
-
-			public static Vector3 GetYXK (this Vector4 p_this, float p_k = 0.0f)
-			{
-				return new Vector3(p_this.y, p_this.x, p_k);
-			}
-
-			public static Vector4 GetYXKL (this Vector4 p_this, float p_k = 0.0f, float p_l = 0.0f)
-			{
-				return new Vector4(p_this.y, p_this.x, p_k, p_l);
-			}
-
-			public static Vector4 GetYXKL (this Vector4 p_this, Vector2 p_kl)
-			{
-				return p_this.GetYXKL(p_kl.x, p_kl.y);
-			}
-
-			public static Vector4 GetYXKW (this Vector4 p_this, float p_k = 0.0f)
-			{
-				return new Vector4(p_this.y, p_this.x, p_k, p_this.w);
-			}
-
-			public static Vector4 GetYXKX (this Vector4 p_this, float p_k = 0.0f)
-			{
-				return new Vector4(p_this.y, p_this.x, p_k, p_this.x);
-			}
-
-			public static Vector4 GetYXKY (this Vector4 p_this, float p_k = 0.0f)
-			{
-				return new Vector4(p_this.y, p_this.x, p_k, p_this.y);
-			}
-
-			public static Vector4 GetYXKZ (this Vector4 p_this, float p_k = 0.0f)
-			{
-				return new Vector4(p_this.y, p_this.x, p_k, p_this.z);
-			}
-
 			public static Vector2 GetYW (this Vector4 p_this)
 			{
 				return new Vector2(p_this.y, p_this.w);
@@ -3244,6 +3204,46 @@ namespace ZkTools.Mathematics.Swizzling
 			public static Vector4 GetYWZZ (this Vector4 p_this)
 			{
 				return new Vector4(p_this.y, p_this.w, p_this.z, p_this.z);
+			}
+
+			public static Vector2 GetYX (this Vector4 p_this)
+			{
+				return new Vector2(p_this.y, p_this.x);
+			}
+
+			public static Vector3 GetYXK (this Vector4 p_this, float p_k = 0.0f)
+			{
+				return new Vector3(p_this.y, p_this.x, p_k);
+			}
+
+			public static Vector4 GetYXKL (this Vector4 p_this, float p_k = 0.0f, float p_l = 0.0f)
+			{
+				return new Vector4(p_this.y, p_this.x, p_k, p_l);
+			}
+
+			public static Vector4 GetYXKL (this Vector4 p_this, Vector2 p_kl)
+			{
+				return p_this.GetYXKL(p_kl.x, p_kl.y);
+			}
+
+			public static Vector4 GetYXKW (this Vector4 p_this, float p_k = 0.0f)
+			{
+				return new Vector4(p_this.y, p_this.x, p_k, p_this.w);
+			}
+
+			public static Vector4 GetYXKX (this Vector4 p_this, float p_k = 0.0f)
+			{
+				return new Vector4(p_this.y, p_this.x, p_k, p_this.x);
+			}
+
+			public static Vector4 GetYXKY (this Vector4 p_this, float p_k = 0.0f)
+			{
+				return new Vector4(p_this.y, p_this.x, p_k, p_this.y);
+			}
+
+			public static Vector4 GetYXKZ (this Vector4 p_this, float p_k = 0.0f)
+			{
+				return new Vector4(p_this.y, p_this.x, p_k, p_this.z);
 			}
 
 			public static Vector3 GetYXW (this Vector4 p_this)
