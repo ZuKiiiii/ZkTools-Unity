@@ -221,6 +221,7 @@ namespace ZkTools.Mathematics
 				return 1.0f / Sin(p_value);
 			}
 
+			// coversine
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Cvs (float p_value)
 			{
@@ -377,6 +378,7 @@ namespace ZkTools.Mathematics
 				return p_radian * Turn2Radian;
 			}
 
+			// Versine
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Ver (float p_value)
 			{
