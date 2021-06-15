@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using ZkTools.Mathematics.Angles;
 using ZkTools.Mathematics.Swizzling;
 
 namespace ZkTools.Mathematics.CoordinateSystems
@@ -13,10 +14,10 @@ namespace ZkTools.Mathematics.CoordinateSystems
 			public float radius;
 
 			/** The inclination (or polar angle) is the angle between the zenith direction and the line segment OP.*/
-			public float theta;
+			public Radian theta;
 
 			/** The azimuth(or azimuthal angle) is the signed angle measured from the azimuth reference direction to the orthogonal projection of the line segment OP on the reference plane. */
-			public float phi;
+			public Radian phi;
 
 		#endregion
 
@@ -27,11 +28,11 @@ namespace ZkTools.Mathematics.CoordinateSystems
 			public SphericalCoord Spherical => this;
 
 			public Vector2 Vector2 => CoordinateSystem.SphericalToCartesian(this);
-			
+
 			public Vector3 Vector3 => CoordinateSystem.SphericalToCartesian(this);
-		
+
 		#endregion
-		
+
 		#region // ==============================[Constructor + Destructor]============================== //
 
 			public SphericalCoord (float p_radius, float p_theta, float p_phi)
@@ -64,7 +65,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 			}
 
 		#endregion
-		
+
 		#region // ==============================[Inherited Methods]============================== //
 
 			public bool Equals (SphericalCoord p_other)

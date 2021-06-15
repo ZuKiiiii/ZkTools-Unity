@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using ZkTools.Mathematics.Angles;
 using ZkTools.Mathematics.Swizzling;
 
 namespace ZkTools.Mathematics.CoordinateSystems
@@ -7,14 +8,34 @@ namespace ZkTools.Mathematics.CoordinateSystems
 	[System.Serializable]
 	public struct CylindricalCoord : IEquatable<CylindricalCoord>, IFormattable
 	{
+		#region // ==============================[Static Variables]============================== //
+
+			public static readonly CylindricalCoord Backward = Vector3.back.ToCylindrical();
+
+			public static readonly CylindricalCoord Down = Vector3.down.ToCylindrical();
+
+			public static readonly CylindricalCoord Forward = Vector3.forward.ToCylindrical();
+
+			public static readonly CylindricalCoord Left = Vector3.left.ToCylindrical();
+
+			public static readonly CylindricalCoord One = Vector3.one.ToCylindrical();
+
+			public static readonly CylindricalCoord Right = Vector3.right.ToCylindrical();
+
+			public static readonly CylindricalCoord Up = Vector3.up.ToCylindrical();
+
+			public static readonly CylindricalCoord Zero = new CylindricalCoord(0.0f, 0.0f, 0.0f);
+
+		#endregion
+
 		#region // ==============================[Editable Variables]============================== //
 
 			/** The axial distance or radial distance ρ is the Euclidean distance from the z-axis to the point P. **/
 			public float rho;
 
 			/** The azimuth φ is the angle between the reference direction on the chosen plane and the line from the origin to the projection of P on the plane. **/
-			public float phi;
-			
+			public Radian phi;
+
 			/** The axial coordinate or height z is the signed distance from the chosen plane to the point P. **/
 			public float z;
 
@@ -25,14 +46,14 @@ namespace ZkTools.Mathematics.CoordinateSystems
 			public SphericalCoord Spherical => CoordinateSystem.CylindricalToSpherical(this);
 
 			public Vector2 Vector2 => CoordinateSystem.CylindricalToCartesian(this);
-			
+
 			public Vector3 Vector3 => CoordinateSystem.CylindricalToCartesian(this);
 
 		#endregion
 
 		#region // ==============================[Constructor + Destructor]============================== //
 
-			public CylindricalCoord (float p_rho, float p_phi, float p_z)
+			public CylindricalCoord (float p_rho, Radian p_phi, float p_z)
 			{
 				rho = p_rho;
 				phi = p_phi;
