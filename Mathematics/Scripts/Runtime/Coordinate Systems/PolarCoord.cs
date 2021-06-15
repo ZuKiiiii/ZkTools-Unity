@@ -120,9 +120,9 @@ namespace ZkTools.Mathematics.CoordinateSystems
 				return !(p_lhs == p_rhs);
 			}
 
-			public static implicit operator PolarCoord (Vector2 p_vector3)
+			public static implicit operator PolarCoord (Vector2 p_vector2)
 			{
-				return p_vector3.ToPolar();
+				return p_vector2.ToPolar();
 			}
 
 			public static implicit operator Vector2 (PolarCoord p_this)

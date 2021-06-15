@@ -13,10 +13,10 @@ namespace ZkTools.Mathematics.CoordinateSystems
 			/** The radius or radial distance is the Euclidean distance from the origin O to P. */
 			public float radius;
 
-			/** The inclination (or polar angle) is the angle between the zenith direction and the line segment OP.*/
+			/** The azimuth (or azimuthal angle) is the signed angle measured from the azimuth reference direction to the orthogonal projection of the line segment OP on the reference plane. */
 			public Radian theta;
 
-			/** The azimuth(or azimuthal angle) is the signed angle measured from the azimuth reference direction to the orthogonal projection of the line segment OP on the reference plane. */
+			/** The inclination (or polar angle) is the angle between the zenith direction and the line segment OP.*/
 			public Radian phi;
 
 		#endregion

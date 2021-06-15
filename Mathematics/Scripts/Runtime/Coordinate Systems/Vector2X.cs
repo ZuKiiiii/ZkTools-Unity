@@ -17,7 +17,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static PolarCoord ToPolar (this Vector2 p_this)
 			{
-				return CoordinateSystem.PolarToCartesian(p_this);
+				return CoordinateSystem.CartesianToPolar(p_this);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

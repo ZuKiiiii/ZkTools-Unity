@@ -1,11 +1,10 @@
 {
-    "name": "ZkTools.Mathematics.UnitTests.Editor",
-    "rootNamespace": "ZkTools.Mathematics.UnitTests.Editor",
+    "name": "ZkTools.Mathematics.UnitTests",
+    "rootNamespace": "ZkTools.Mathematics.UnitTests",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "ZkTools.Mathematics",
-        "ZkTools.Mathematics.UnitTests"
+        "ZkTools.Mathematics"
     ],
     "includePlatforms": [
         "Editor"

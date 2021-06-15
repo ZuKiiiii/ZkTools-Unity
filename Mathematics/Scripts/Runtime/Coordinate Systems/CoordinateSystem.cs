@@ -47,27 +47,27 @@ namespace ZkTools.Mathematics.CoordinateSystems
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static void CartesianToCylindrical (float p_x, float p_y, float p_z, out CylindricalCoord p_cylindricalCoord)
 			{
-				CartesianToCylindrical(p_x, p_y, p_z,out p_cylindricalCoord.rho, out p_cylindricalCoord.phi, out p_cylindricalCoord.z);
+				CartesianToCylindrical(p_x, p_y, p_z, out p_cylindricalCoord.rho, out p_cylindricalCoord.theta, out p_cylindricalCoord.z);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static void CartesianToCylindrical (Vector3 p_vector3, out CylindricalCoord p_cylindricalCoord)
 			{
-				CartesianToCylindrical(p_vector3.x, p_vector3.y, p_vector3.z, out p_cylindricalCoord.rho, out p_cylindricalCoord.phi, out p_cylindricalCoord.z);
+				CartesianToCylindrical(p_vector3.x, p_vector3.y, p_vector3.z, out p_cylindricalCoord.rho, out p_cylindricalCoord.theta, out p_cylindricalCoord.z);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static void CartesianToCylindrical (float p_x, float p_y, float p_z, out float p_cylRho, out Radian p_cylPhi, out float p_cylZ)
+			public static void CartesianToCylindrical (float p_x, float p_y, float p_z, out float p_cylRho, out Radian p_cylTheta, out float p_cylZ)
 			{
 				p_cylRho = MathF.Sqrt(MathF.Square(p_x) + MathF.Square(p_y));
-				p_cylPhi = Trigo.Atan2(p_y, p_x);
+				p_cylTheta = Trigo.Atan2(p_y, p_x);
 				p_cylZ = p_z;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static void CartesianToCylindrical (Vector3 p_vector3, out float p_cylRho, out Radian p_cylPhi, out float p_cylZ)
+			public static void CartesianToCylindrical (Vector3 p_vector3, out float p_cylRho, out Radian p_cylTheta, out float p_cylZ)
 			{
-				CartesianToCylindrical(p_vector3.x, p_vector3.y, p_vector3.z, out p_cylRho, out p_cylPhi, out p_cylZ);
+				CartesianToCylindrical(p_vector3.x, p_vector3.y, p_vector3.z, out p_cylRho, out p_cylTheta, out p_cylZ);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -138,9 +138,9 @@ namespace ZkTools.Mathematics.CoordinateSystems
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static void CartesianToSpherical (float p_x, float p_y, float p_z, out float p_sphereRadius, out Radian p_sphereTheta, out Radian p_spherePhi)
 			{
-				p_sphereRadius = MathF.Sqrt(MathF.Square(p_x) + MathF.Square(p_y));
+				p_sphereRadius = MathF.Sqrt(MathF.Square(p_x) + MathF.Square(p_y) + MathF.Square(p_z));
 				p_sphereTheta = Trigo.Atan2(p_y, p_x);
-				p_spherePhi = p_z;
+				p_spherePhi = p_z == 0.0f ? 0.0f : Trigo.Acos(p_z / p_sphereRadius);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -150,83 +150,83 @@ namespace ZkTools.Mathematics.CoordinateSystems
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Vector3 CylindricalToCartesian (float p_cylRho, Radian p_cylPhi, float p_cylZ)
+			public static Vector3 CylindricalToCartesian (float p_cylRho, Radian p_cylTheta, float p_cylZ)
 			{
-				CylindricalToCartesian(p_cylRho, p_cylPhi, p_cylZ, out Vector3 vector3);
+				CylindricalToCartesian(p_cylRho, p_cylTheta, p_cylZ, out Vector3 vector3);
 				return vector3;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector3 CylindricalToCartesian (CylindricalCoord p_cylindricalCoord)
 			{
-				CylindricalToCartesian(p_cylindricalCoord.rho, p_cylindricalCoord.phi, p_cylindricalCoord.z, out Vector3 Vector3);
+				CylindricalToCartesian(p_cylindricalCoord.rho, p_cylindricalCoord.theta, p_cylindricalCoord.z, out Vector3 Vector3);
 				return Vector3;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static void CylindricalToCartesian (float p_cylRho, Radian p_cylPhi, float p_cylZ, out Vector3 p_vector3)
+			public static void CylindricalToCartesian (float p_cylRho, Radian p_cylTheta, float p_cylZ, out Vector3 p_vector3)
 			{
-				CylindricalToCartesian(p_cylRho, p_cylPhi, p_cylZ, out p_vector3.x, out p_vector3.y, out p_vector3.z);
+				CylindricalToCartesian(p_cylRho, p_cylTheta, p_cylZ, out p_vector3.x, out p_vector3.y, out p_vector3.z);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static void CylindricalToCartesian (CylindricalCoord p_cylindricalCoord, out Vector3 p_vector3)
 			{
-				CylindricalToCartesian(p_cylindricalCoord.rho, p_cylindricalCoord.phi, p_cylindricalCoord.z, out p_vector3.x, out p_vector3.y, out p_vector3.z);
+				CylindricalToCartesian(p_cylindricalCoord.rho, p_cylindricalCoord.theta, p_cylindricalCoord.z, out p_vector3.x, out p_vector3.y, out p_vector3.z);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static void CylindricalToCartesian (float p_cylRho, Radian p_cylPhi, float p_cylZ, out float p_x, out float p_y, out float p_z)
+			public static void CylindricalToCartesian (float p_cylRho, Radian p_cylTheta, float p_cylZ, out float p_x, out float p_y, out float p_z)
 			{
-				p_x = p_cylRho * Trigo.Cos(p_cylPhi);
-				p_y = p_cylRho * Trigo.Sin(p_cylPhi);
+				p_x = p_cylRho * Trigo.Cos(p_cylTheta);
+				p_y = p_cylRho * Trigo.Sin(p_cylTheta);
 				p_z = p_cylZ;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static void CylindricalToCartesian (CylindricalCoord p_cylindricalCoord, out float p_x, out float p_y, out float p_z)
 			{
-				CylindricalToCartesian(p_cylindricalCoord.rho, p_cylindricalCoord.phi, p_cylindricalCoord.z, out p_x, out p_y, out p_z);
+				CylindricalToCartesian(p_cylindricalCoord.rho, p_cylindricalCoord.theta, p_cylindricalCoord.z, out p_x, out p_y, out p_z);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static SphericalCoord CylindricalToSpherical (float p_cylRho, Radian p_cylPhi, float p_cylZ)
+			public static SphericalCoord CylindricalToSpherical (float p_cylRho, Radian p_cylTheta, float p_cylZ)
 			{
-				CylindricalToSpherical(p_cylRho, p_cylPhi, p_cylZ, out SphericalCoord sphericalCoord);
+				CylindricalToSpherical(p_cylRho, p_cylTheta, p_cylZ, out SphericalCoord sphericalCoord);
 				return sphericalCoord;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static SphericalCoord CylindricalToSpherical (CylindricalCoord p_cylindricalCoord)
 			{
-				CylindricalToSpherical(p_cylindricalCoord.rho, p_cylindricalCoord.phi, p_cylindricalCoord.z, out SphericalCoord sphericalCoord);
+				CylindricalToSpherical(p_cylindricalCoord.rho, p_cylindricalCoord.theta, p_cylindricalCoord.z, out SphericalCoord sphericalCoord);
 				return sphericalCoord;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static void CylindricalToSpherical (float p_cylRho, Radian p_cylPhi, float p_cylZ, out SphericalCoord p_sphericalCoord)
+			public static void CylindricalToSpherical (float p_cylRho, Radian p_cylTheta, float p_cylZ, out SphericalCoord p_sphericalCoord)
 			{
-				CylindricalToSpherical(p_cylRho, p_cylPhi, p_cylZ, out p_sphericalCoord.radius, out p_sphericalCoord.theta, out p_sphericalCoord.phi);
+				CylindricalToSpherical(p_cylRho, p_cylTheta, p_cylZ, out p_sphericalCoord.radius, out p_sphericalCoord.theta, out p_sphericalCoord.phi);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static void CylindricalToSpherical (CylindricalCoord p_cylindricalCoord, out SphericalCoord p_sphericalCoord)
 			{
-				CylindricalToSpherical(p_cylindricalCoord.rho, p_cylindricalCoord.phi, p_cylindricalCoord.z, out p_sphericalCoord.radius, out p_sphericalCoord.theta, out p_sphericalCoord.phi);
+				CylindricalToSpherical(p_cylindricalCoord.rho, p_cylindricalCoord.theta, p_cylindricalCoord.z, out p_sphericalCoord.radius, out p_sphericalCoord.theta, out p_sphericalCoord.phi);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static void CylindricalToSpherical (float p_cylRho, Radian p_cylPhi, float p_cylZ, out float p_sphereRadius, out Radian p_sphereTheta, out Radian p_spherePhi)
+			public static void CylindricalToSpherical (float p_cylRho, Radian p_cylTheta, float p_cylZ, out float p_sphereRadius, out Radian p_sphereTheta, out Radian p_spherePhi)
 			{
 				p_sphereRadius = MathF.Sqrt(MathF.Square(p_cylRho) + MathF.Square(p_cylZ));
-				p_sphereTheta = Trigo.Atan2(p_cylRho, p_cylZ);
-				p_spherePhi = p_cylPhi;
+				p_sphereTheta = p_cylTheta;
+				p_spherePhi = Trigo.Atan2(p_cylRho, p_cylZ);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static void CylindricalToSpherical (CylindricalCoord p_cylindricalCoord, out float p_sphereRadius, out Radian p_sphereTheta, out Radian p_spherePhi)
 			{
-				CylindricalToSpherical(p_cylindricalCoord.rho, p_cylindricalCoord.phi, p_cylindricalCoord.z, out p_sphereRadius, out p_sphereTheta, out p_spherePhi);
+				CylindricalToSpherical(p_cylindricalCoord.rho, p_cylindricalCoord.theta, p_cylindricalCoord.z, out p_sphereRadius, out p_sphereTheta, out p_spherePhi);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -297,10 +297,9 @@ namespace ZkTools.Mathematics.CoordinateSystems
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static void SphericalToCartesian (float p_sphereRadius, Radian p_sphereTheta, Radian p_spherePhi, out float p_x, out float p_y, out float p_z)
 			{
-				float sinTheta = Trigo.Sin(p_sphereTheta);
-				p_x = p_sphereRadius * sinTheta * Trigo.Cos(p_spherePhi);
-				p_y = p_sphereRadius * sinTheta * Trigo.Sin(p_spherePhi);
-				p_z = Trigo.Cos(p_sphereTheta);
+				p_x = p_sphereRadius * Trigo.Cos(p_sphereTheta) * Trigo.Sin(p_spherePhi);
+				p_y = p_sphereRadius * Trigo.Sin(p_sphereTheta) * Trigo.Sin(p_spherePhi);
+				p_z = p_sphereRadius * Trigo.Cos(p_spherePhi);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -326,27 +325,27 @@ namespace ZkTools.Mathematics.CoordinateSystems
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static void SphericalToCylindrical (float p_sphereRadius, Radian p_sphereTheta, Radian p_spherePhi, out CylindricalCoord p_cylindricalCoord)
 			{
-				SphericalToCylindrical(p_sphereRadius, p_sphereTheta, p_spherePhi, out p_cylindricalCoord.rho, out p_cylindricalCoord.phi, out p_cylindricalCoord.z);
+				SphericalToCylindrical(p_sphereRadius, p_sphereTheta, p_spherePhi, out p_cylindricalCoord.rho, out p_cylindricalCoord.theta, out p_cylindricalCoord.z);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static void SphericalToCylindrical (SphericalCoord p_sphericalCoord, out CylindricalCoord p_cylindricalCoord)
 			{
-				SphericalToCylindrical(p_sphericalCoord.radius, p_sphericalCoord.theta, p_sphericalCoord.phi, out p_cylindricalCoord.rho, out p_cylindricalCoord.phi, out p_cylindricalCoord.z);
+				SphericalToCylindrical(p_sphericalCoord.radius, p_sphericalCoord.theta, p_sphericalCoord.phi, out p_cylindricalCoord.rho, out p_cylindricalCoord.theta, out p_cylindricalCoord.z);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static void SphericalToCylindrical (float p_sphereRadius, Radian p_sphereTheta, Radian p_spherePhi, out float p_cylRho, out Radian p_cylPhi, out float p_cylZ)
+			public static void SphericalToCylindrical (float p_sphereRadius, Radian p_sphereTheta, Radian p_spherePhi, out float p_cylRho, out Radian p_cylTheta, out float p_cylZ)
 			{
-				p_cylRho = p_sphereRadius * Trigo.Sin(p_sphereTheta);
-				p_cylPhi = p_spherePhi;
-				p_cylZ = p_sphereRadius * Trigo.Cos(p_sphereTheta);
+				p_cylRho = p_sphereRadius * Trigo.Sin(p_spherePhi);
+				p_cylTheta = p_sphereTheta;
+				p_cylZ = p_sphereRadius * Trigo.Cos(p_spherePhi);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static void SphericalToCylindrical (SphericalCoord p_sphericalCoord, out float p_cylRho, out Radian p_cylPhi, out float p_cylZ)
+			public static void SphericalToCylindrical (SphericalCoord p_sphericalCoord, out float p_cylRho, out Radian p_cylTheta, out float p_cylZ)
 			{
-				SphericalToCylindrical(p_sphericalCoord.radius, p_sphericalCoord.theta, p_sphericalCoord.phi, out p_cylRho, out p_cylPhi, out p_cylZ);
+				SphericalToCylindrical(p_sphericalCoord.radius, p_sphericalCoord.theta, p_sphericalCoord.phi, out p_cylRho, out p_cylTheta, out p_cylZ);
 			}
 
 		#endregion

@@ -33,8 +33,8 @@ namespace ZkTools.Mathematics.CoordinateSystems
 			/** The axial distance or radial distance ρ is the Euclidean distance from the z-axis to the point P. **/
 			public float rho;
 
-			/** The azimuth φ is the angle between the reference direction on the chosen plane and the line from the origin to the projection of P on the plane. **/
-			public Radian phi;
+			/** The azimuth is the angle between the reference direction on the chosen plane and the line from the origin to the projection of P on the plane. **/
+			public Radian theta;
 
 			/** The axial coordinate or height z is the signed distance from the chosen plane to the point P. **/
 			public float z;
@@ -53,33 +53,33 @@ namespace ZkTools.Mathematics.CoordinateSystems
 
 		#region // ==============================[Constructor + Destructor]============================== //
 
-			public CylindricalCoord (float p_rho, Radian p_phi, float p_z)
+			public CylindricalCoord (float p_rho, Radian p_theta, float p_z)
 			{
 				rho = p_rho;
-				phi = p_phi;
+				theta = p_theta;
 				z = p_z;
 			}
 
 			public CylindricalCoord (CylindricalCoord p_copy)
 			{
 				rho = p_copy.rho;
-				phi = p_copy.phi;
+				theta = p_copy.theta;
 				z = p_copy.z;
 			}
 
 			public CylindricalCoord (SphericalCoord p_sphericalCoord)
 			{
-				CoordinateSystem.SphericalToCylindrical(p_sphericalCoord, out rho, out phi, out z);
+				CoordinateSystem.SphericalToCylindrical(p_sphericalCoord, out rho, out theta, out z);
 			}
 
 			public CylindricalCoord (Vector2 p_vector2, float p_z)
 			{
-				CoordinateSystem.CartesianToCylindrical(p_vector2.GetXYK(p_z), out rho, out phi, out z);
+				CoordinateSystem.CartesianToCylindrical(p_vector2.GetXYK(p_z), out rho, out theta, out z);
 			}
 
 			public CylindricalCoord (Vector3 p_vector3)
 			{
-				CoordinateSystem.CartesianToCylindrical(p_vector3, out rho, out phi, out z);
+				CoordinateSystem.CartesianToCylindrical(p_vector3, out rho, out theta, out z);
 			}
 
 		#endregion
@@ -88,7 +88,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 
 			public bool Equals (CylindricalCoord p_other)
 			{
-				return rho.Equals(p_other.rho) && phi.Equals(p_other.phi) && z.Equals(p_other.z);
+				return rho.Equals(p_other.rho) && theta.Equals(p_other.theta) && z.Equals(p_other.z);
 			}
 
 			public override bool Equals (object p_obj)
@@ -101,7 +101,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 				unchecked
 				{
 					var hashCode = rho.GetHashCode();
-					hashCode = (hashCode * 397) ^ phi.GetHashCode();
+					hashCode = (hashCode * 397) ^ theta.GetHashCode();
 					hashCode = (hashCode * 397) ^ z.GetHashCode();
 					return hashCode;
 				}
@@ -109,17 +109,17 @@ namespace ZkTools.Mathematics.CoordinateSystems
 
 			public override string ToString ()
 			{
-				return "CylindiralCoord (" + rho + "," + phi + "," + z + ")";
+				return "CylindiralCoord (" + rho + "," + theta + "," + z + ")";
 			}
 
 			public string ToString (string p_format)
 			{
-				return "CylindiralCoord (" + rho.ToString(p_format) + "," + phi.ToString(p_format) + "," + z.ToString(p_format) + ")";
+				return "CylindiralCoord (" + rho.ToString(p_format) + "," + theta.ToString(p_format) + "," + z.ToString(p_format) + ")";
 			}
 
 			public string ToString (string p_format, IFormatProvider p_formatProvider)
 			{
-				return "CylindiralCoord (" + rho.ToString(p_format, p_formatProvider) + "," + phi.ToString(p_format, p_formatProvider) + "," + z.ToString(p_format, p_formatProvider) + ")";
+				return "CylindiralCoord (" + rho.ToString(p_format, p_formatProvider) + "," + theta.ToString(p_format, p_formatProvider) + "," + z.ToString(p_format, p_formatProvider) + ")";
 			}
 
 		#endregion
@@ -128,7 +128,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 
 			public static bool operator== (CylindricalCoord p_lhs, CylindricalCoord p_rhs)
 			{
-				return p_lhs.rho == p_rhs.rho && p_lhs.phi == p_rhs.phi && p_lhs.z == p_rhs.z;
+				return p_lhs.rho == p_rhs.rho && p_lhs.theta == p_rhs.theta && p_lhs.z == p_rhs.z;
 			}
 
 			public static bool operator!= (CylindricalCoord p_lhs, CylindricalCoord p_rhs)
