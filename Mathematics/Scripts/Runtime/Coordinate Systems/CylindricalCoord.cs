@@ -31,13 +31,13 @@ namespace ZkTools.Mathematics.CoordinateSystems
 		#region // ==============================[Editable Variables]============================== //
 
 			/** The axial distance or radial distance ρ is the Euclidean distance from the z-axis to the point P. **/
-			public float rho;
+			public float radius;
 
 			/** The azimuth is the angle between the reference direction on the chosen plane and the line from the origin to the projection of P on the plane. **/
-			public Radian theta;
+			public Radian angle;
 
 			/** The axial coordinate or height z is the signed distance from the chosen plane to the point P. **/
-			public float z;
+			public float height;
 
 		#endregion
 
@@ -53,33 +53,28 @@ namespace ZkTools.Mathematics.CoordinateSystems
 
 		#region // ==============================[Constructor + Destructor]============================== //
 
-			public CylindricalCoord (float p_rho, Radian p_theta, float p_z)
+			public CylindricalCoord (float p_radius, Radian p_angle, float p_height)
 			{
-				rho = p_rho;
-				theta = p_theta;
-				z = p_z;
+				radius = p_radius;
+				angle = p_angle;
+				height = p_height;
 			}
 
 			public CylindricalCoord (CylindricalCoord p_copy)
 			{
-				rho = p_copy.rho;
-				theta = p_copy.theta;
-				z = p_copy.z;
+				radius = p_copy.radius;
+				angle = p_copy.angle;
+				height = p_copy.height;
 			}
 
 			public CylindricalCoord (SphericalCoord p_sphericalCoord)
 			{
-				CoordinateSystem.SphericalToCylindrical(p_sphericalCoord, out rho, out theta, out z);
-			}
-
-			public CylindricalCoord (Vector2 p_vector2, float p_z)
-			{
-				CoordinateSystem.CartesianToCylindrical(p_vector2.GetXYK(p_z), out rho, out theta, out z);
+				CoordinateSystem.SphericalToCylindrical(p_sphericalCoord, out radius, out angle, out height);
 			}
 
 			public CylindricalCoord (Vector3 p_vector3)
 			{
-				CoordinateSystem.CartesianToCylindrical(p_vector3, out rho, out theta, out z);
+				CoordinateSystem.CartesianToCylindrical(p_vector3, out radius, out angle, out height);
 			}
 
 		#endregion
@@ -88,7 +83,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 
 			public bool Equals (CylindricalCoord p_other)
 			{
-				return rho.Equals(p_other.rho) && theta.Equals(p_other.theta) && z.Equals(p_other.z);
+				return radius.Equals(p_other.radius) && angle.Equals(p_other.angle) && height.Equals(p_other.height);
 			}
 
 			public override bool Equals (object p_obj)
@@ -100,26 +95,26 @@ namespace ZkTools.Mathematics.CoordinateSystems
 			{
 				unchecked
 				{
-					var hashCode = rho.GetHashCode();
-					hashCode = (hashCode * 397) ^ theta.GetHashCode();
-					hashCode = (hashCode * 397) ^ z.GetHashCode();
+					var hashCode = radius.GetHashCode();
+					hashCode = (hashCode * 397) ^ angle.GetHashCode();
+					hashCode = (hashCode * 397) ^ height.GetHashCode();
 					return hashCode;
 				}
 			}
 
 			public override string ToString ()
 			{
-				return "CylindiralCoord (" + rho + "," + theta + "," + z + ")";
+				return "CylindiralCoord (" + radius + "," + angle + "," + height + ")";
 			}
 
 			public string ToString (string p_format)
 			{
-				return "CylindiralCoord (" + rho.ToString(p_format) + "," + theta.ToString(p_format) + "," + z.ToString(p_format) + ")";
+				return "CylindiralCoord (" + radius.ToString(p_format) + "," + angle.ToString(p_format) + "," + height.ToString(p_format) + ")";
 			}
 
 			public string ToString (string p_format, IFormatProvider p_formatProvider)
 			{
-				return "CylindiralCoord (" + rho.ToString(p_format, p_formatProvider) + "," + theta.ToString(p_format, p_formatProvider) + "," + z.ToString(p_format, p_formatProvider) + ")";
+				return "CylindiralCoord (" + radius.ToString(p_format, p_formatProvider) + "," + angle.ToString(p_format, p_formatProvider) + "," + height.ToString(p_format, p_formatProvider) + ")";
 			}
 
 		#endregion
@@ -128,7 +123,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 
 			public static bool operator== (CylindricalCoord p_lhs, CylindricalCoord p_rhs)
 			{
-				return p_lhs.rho == p_rhs.rho && p_lhs.theta == p_rhs.theta && p_lhs.z == p_rhs.z;
+				return p_lhs.radius == p_rhs.radius && p_lhs.angle == p_rhs.angle && p_lhs.height == p_rhs.height;
 			}
 
 			public static bool operator!= (CylindricalCoord p_lhs, CylindricalCoord p_rhs)

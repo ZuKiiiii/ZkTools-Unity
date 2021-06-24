@@ -2,6 +2,7 @@
 
 namespace ZkTools.Mathematics.Angles
 {
+	[System.Serializable]
 	public struct Radian : IAngle<Radian>
 	{
 		#region // ==============================[Constants]============================== //

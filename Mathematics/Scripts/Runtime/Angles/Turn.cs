@@ -2,6 +2,7 @@
 
 namespace ZkTools.Mathematics.Angles
 {
+	[System.Serializable]
 	public struct Turn : IAngle<Turn>
 	{
 		#region // ==============================[Constants]============================== //

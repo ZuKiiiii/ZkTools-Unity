@@ -88,44 +88,44 @@ namespace ZkTools.Mathematics.UnitTests
 
 			public static void AreEqual (CylindricalCoord p_expected, CylindricalCoord p_actual)
 			{
-				Assert.AreEqual(p_expected.rho, p_actual.rho);
-				Assert.AreEqual(p_expected.theta, p_actual.theta);
-				Assert.AreEqual(p_expected.z, p_actual.z);
+				Assert.AreEqual(p_expected.radius, p_actual.radius);
+				Assert.AreEqual(p_expected.angle, p_actual.angle);
+				Assert.AreEqual(p_expected.height, p_actual.height);
 			}
 
 			public static void AreEqual (CylindricalCoord p_expected, CylindricalCoord p_actual, float p_delta)
 			{
-				Assert.AreEqual(p_expected.rho, p_actual.rho, p_delta);
-				Assert.AreEqual(p_expected.theta, p_actual.theta, p_delta);
-				Assert.AreEqual(p_expected.z, p_actual.z, p_delta);
+				Assert.AreEqual(p_expected.radius, p_actual.radius, p_delta);
+				Assert.AreEqual(p_expected.angle, p_actual.angle, p_delta);
+				Assert.AreEqual(p_expected.height, p_actual.height, p_delta);
 			}
 
 			public static void AreEqual (CylindricalCoord p_expected, CylindricalCoord p_actual, float p_delta, string p_message)
 			{
-				Assert.AreEqual(p_expected.rho, p_actual.rho, p_delta, p_message);
-				Assert.AreEqual(p_expected.theta, p_actual.theta, p_delta, p_message);
-				Assert.AreEqual(p_expected.z, p_actual.z, p_delta, p_message);
+				Assert.AreEqual(p_expected.radius, p_actual.radius, p_delta, p_message);
+				Assert.AreEqual(p_expected.angle, p_actual.angle, p_delta, p_message);
+				Assert.AreEqual(p_expected.height, p_actual.height, p_delta, p_message);
 			}
 
 			public static void AreEqual (CylindricalCoord p_expected, CylindricalCoord p_actual, float p_delta, string p_message, params object[] p_args)
 			{
-				Assert.AreEqual(p_expected.rho, p_actual.rho, p_delta, p_message, p_args);
-				Assert.AreEqual(p_expected.theta, p_actual.theta, p_delta, p_message, p_args);
-				Assert.AreEqual(p_expected.z, p_actual.z, p_delta, p_message, p_args);
+				Assert.AreEqual(p_expected.radius, p_actual.radius, p_delta, p_message, p_args);
+				Assert.AreEqual(p_expected.angle, p_actual.angle, p_delta, p_message, p_args);
+				Assert.AreEqual(p_expected.height, p_actual.height, p_delta, p_message, p_args);
 			}
 
 			public static void AreEqual (CylindricalCoord p_expected, CylindricalCoord p_actual, string p_message)
 			{
-				Assert.AreEqual(p_expected.rho, p_actual.rho, p_message);
-				Assert.AreEqual(p_expected.theta, p_actual.theta, p_message);
-				Assert.AreEqual(p_expected.z, p_actual.z, p_message);
+				Assert.AreEqual(p_expected.radius, p_actual.radius, p_message);
+				Assert.AreEqual(p_expected.angle, p_actual.angle, p_message);
+				Assert.AreEqual(p_expected.height, p_actual.height, p_message);
 			}
 
 			public static void AreEqual (CylindricalCoord p_expected, CylindricalCoord p_actual, string p_message, params object[] p_args)
 			{
-				Assert.AreEqual(p_expected.rho, p_actual.rho, p_message, p_args);
-				Assert.AreEqual(p_expected.theta, p_actual.theta, p_message, p_args);
-				Assert.AreEqual(p_expected.z, p_actual.z, p_message, p_args);
+				Assert.AreEqual(p_expected.radius, p_actual.radius, p_message, p_args);
+				Assert.AreEqual(p_expected.angle, p_actual.angle, p_message, p_args);
+				Assert.AreEqual(p_expected.height, p_actual.height, p_message, p_args);
 			}
 
 			public static void AreEqual (SphericalCoord p_expected, SphericalCoord p_actual)
