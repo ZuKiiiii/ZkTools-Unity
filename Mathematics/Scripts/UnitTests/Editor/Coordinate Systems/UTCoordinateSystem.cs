@@ -38,9 +38,6 @@ namespace ZkTools.Mathematics.UnitTests.Editor.CoordinateSystems
 				CoordinateSystem.CartesianToCylindrical(Vec4, out float cylRho4, out Radian cylPhi4, out float cylZ4);
 				CylindricalCoord result4 = new CylindricalCoord(cylRho4, cylPhi4, cylZ4);
 				AssertX.AreEqual(expected4, result4, delta);
-
-				Debug.Log(CoordinateSystem.SphericalToCartesian(1.0f, Trigo.DegreeToRadian(0.0f), Trigo.DegreeToRadian(45.0f)).ToString("F6"));
-				Debug.Log(CoordinateSystem.CartesianToSpherical(1.0f, 0.0f, 0.0f).ToString("F6"));
 			}
 
 			[Test]
@@ -72,22 +69,22 @@ namespace ZkTools.Mathematics.UnitTests.Editor.CoordinateSystems
 			public void CartesianToSpherical ()
 			{
 				Vector3 Vec1 = new Vector3(-2.0f, 5.0f, -2.0f);
-				SphericalCoord expected1 =  new SphericalCoord(5.744562646538f, 1.9513027039073f, 1.9263989097754f);
+				SphericalCoord expected1 =  new SphericalCoord(5.744562646538f, -2.3561944901923f, 0.51480595511981f);
 				SphericalCoord result1 = CoordinateSystem.CartesianToSpherical(Vec1);
 				AssertX.AreEqual(expected1, result1, delta);
 
 				Vector3 Vec2 = new Vector3(-3.809651922f, -1.219242484f, 4.0f);
-				SphericalCoord expected2 = new SphericalCoord(5.6568542496328f, -2.8318530719191f, 0.78539816342227f);
+				SphericalCoord expected2 = new SphericalCoord(5.6568542496328f, 2.3318258755197f, 1.7880346255426f);
 				SphericalCoord result2 = CoordinateSystem.CartesianToSpherical(Vec2.x, Vec2.y, Vec2.z);
 				AssertX.AreEqual(expected2, result2, delta);
 
 				Vector3 Vec3 = new Vector3(4.999804132f, 0.04425654645f, 6.0f);
-				SphericalCoord expected3 = new SphericalCoord(7.8102496759238f, 0.008851424870996f, 0.69473827619934f);
+				SphericalCoord expected3 = new SphericalCoord(7.8102496759238f, 0.87607731661242f, 1.5651298263464f);
 				CoordinateSystem.CartesianToSpherical(Vec3, out SphericalCoord result3);
 				AssertX.AreEqual(expected3, result3, delta);
 
 				Vector3 Vec4 = new Vector3(4.999804132f, 0.04425654645f, 6.0f);
-				SphericalCoord expected4 = new SphericalCoord(7.8102496759238f, 0.008851424870996f, 0.69473827619934f);
+				SphericalCoord expected4 = new SphericalCoord(7.8102496759238f, 0.87607731661242f, 1.5651298263464f);
 				CoordinateSystem.CartesianToSpherical(Vec4, out float sphereRho4, out Radian spherePhi4, out Radian sphereZ4);
 				SphericalCoord result4 = new SphericalCoord(sphereRho4, spherePhi4, sphereZ4);
 				AssertX.AreEqual(expected4, result4, delta);
@@ -121,23 +118,23 @@ namespace ZkTools.Mathematics.UnitTests.Editor.CoordinateSystems
 			[Test]
 			public void CylindricalToSpherical ()
 			{
-				CylindricalCoord cyl1 = new CylindricalCoord(3.0f, 60, 4.0f);
-				SphericalCoord expected1 = new SphericalCoord(5.0f, 0.6435011088f, 60.0f);
+				CylindricalCoord cyl1 = new CylindricalCoord(3.0f, 60.0f , 4.0f);
+				SphericalCoord expected1 = new SphericalCoord(5.0f, 60.0f, 0.6435011088f);
 				SphericalCoord result1 = CoordinateSystem.CylindricalToSpherical(cyl1);
 				AssertX.AreEqual(expected1, result1, delta);
 
 				CylindricalCoord cyl2 = new CylindricalCoord(-6.0f, 20.0f, 52.0f);
-				SphericalCoord expected2 = new SphericalCoord(52.34500931f, -0.1148766054f, 20.0f);
+				SphericalCoord expected2 = new SphericalCoord(52.34500931f, 20.0f, -0.1148766054f);
 				SphericalCoord result2 = CoordinateSystem.CylindricalToSpherical(cyl2.radius, cyl2.angle, cyl2.height);
 				AssertX.AreEqual(expected2, result2, delta);
 
 				CylindricalCoord cyl3 = new CylindricalCoord(23.0f, -52.0f, 3.0f);
-				SphericalCoord expected3 = new SphericalCoord(23.19482701f, 1.44109379f, -52f);
+				SphericalCoord expected3 = new SphericalCoord(23.19482701f, -52f, 1.44109379f);
 				CoordinateSystem.CylindricalToSpherical(cyl3, out SphericalCoord result3);
 				AssertX.AreEqual(expected3, result3, delta);
 
 				CylindricalCoord cyl4 = new CylindricalCoord(-32.0f, -52.0f, -3.0f);
-				SphericalCoord expected4 = new SphericalCoord(32.14031736f, -1.664273108f, -52f);
+				SphericalCoord expected4 = new SphericalCoord(32.14031736f, -52f, -1.664273108f);
 				CoordinateSystem.CylindricalToSpherical(cyl4, out float radius4, out Radian theta4, out Radian phi4);
 				SphericalCoord result4 = new SphericalCoord(radius4, theta4, phi4);
 				AssertX.AreEqual(expected4, result4, delta);
@@ -171,22 +168,22 @@ namespace ZkTools.Mathematics.UnitTests.Editor.CoordinateSystems
 			[Test]
 			public void SphericalToCartesian ()
 			{
-				SphericalCoord sphere1 = new SphericalCoord(5.744562646538f, 0.69073f, 1.9263989097754f);
-				Vector3 expected1 =  new Vector3(4.150783455f, 3.430888618f, -2.0f);
+				SphericalCoord sphere1 = new SphericalCoord(5.744562646538f, -2.3561944901923f, 0.51480595511981f);
+				Vector3 expected1 =  new Vector3(-2.0f, 5.0f, -2.0f);
 				Vector3 result1 = CoordinateSystem.SphericalToCartesian(sphere1);
 				AssertX.AreEqual(expected1, result1, delta);
 
-				SphericalCoord sphere2 = new SphericalCoord(5.6568542496328f, -2.8318530719191f, 0.78539816342227f);
+				SphericalCoord sphere2 = new SphericalCoord(5.6568542496328f, 2.3318258755197f, 1.7880346255426f);
 				Vector3 expected2 = new Vector3(-3.809651922f, -1.219242484f, 4.0f);
 				Vector3 result2 = CoordinateSystem.SphericalToCartesian(sphere2.radius, sphere2.theta, sphere2.phi);
 				AssertX.AreEqual(expected2, result2, delta);
 
-				SphericalCoord sphere3 = new SphericalCoord(7.8102496759238f, 0.008851424870996f, 0.69473827619934f);
+				SphericalCoord sphere3 = new SphericalCoord(7.8102496759238f, 0.87607731661242f, 1.5651298263464f);
 				Vector3 expected3 = new Vector3(4.999804132f, 0.04425654645f, 6.0f);
 				CoordinateSystem.SphericalToCartesian(sphere3, out Vector3 result3);
 				AssertX.AreEqual(expected3, result3, delta);
 
-				SphericalCoord sphere4 = new SphericalCoord(7.8102496759238f, 0.008851424870996f, 0.69473827619934f);
+				SphericalCoord sphere4 = new SphericalCoord(7.8102496759238f, 0.87607731661242f, 1.5651298263464f);
 				Vector3 expected4 = new Vector3(4.999804132f, 0.04425654645f, 6.0f);
 				CoordinateSystem.SphericalToCartesian(sphere4, out float x4, out float y4, out float z4);
 				Vector3 result4 = new Vector3(x4, y4, z4);
@@ -196,22 +193,22 @@ namespace ZkTools.Mathematics.UnitTests.Editor.CoordinateSystems
 			[Test]
 			public void SphericalToCylindrical ()
 			{
-				SphericalCoord sphere1 = new SphericalCoord(5.0f, 0.6435011088f, 60.0f);
+				SphericalCoord sphere1 = new SphericalCoord(5.0f, 60.0f, 0.6435011088f);
 				CylindricalCoord expected1 = new CylindricalCoord(3.0f, 60, 4.0f);
 				CylindricalCoord result1 = CoordinateSystem.SphericalToCylindrical(sphere1);
 				AssertX.AreEqual(expected1, result1, delta);
 
-				SphericalCoord sphere2 = new SphericalCoord(52.34500931f, -0.1148766054f, 20.0f);
+				SphericalCoord sphere2 = new SphericalCoord(52.34500931f, 20.0f, -0.1148766054f);
 				CylindricalCoord expected2 = new CylindricalCoord(-6.0f, 20.0f, 52.0f);
 				CylindricalCoord result2 = CoordinateSystem.SphericalToCylindrical(sphere2.radius, sphere2.theta, sphere2.phi);
 				AssertX.AreEqual(expected2, result2, delta);
 
-				SphericalCoord sphere3 = new SphericalCoord(23.19482701f, 1.44109379f, -52f);
+				SphericalCoord sphere3 = new SphericalCoord(23.19482701f, -52f, 1.44109379f);
 				CylindricalCoord expected3 = new CylindricalCoord(23.0f, -52.0f, 3.0f);
 				CoordinateSystem.SphericalToCylindrical(sphere3, out CylindricalCoord result3);
 				AssertX.AreEqual(expected3, result3, delta);
 
-				SphericalCoord sphere4 = new SphericalCoord(32.14031736f, -1.664273108f, -52f);
+				SphericalCoord sphere4 = new SphericalCoord(32.14031736f, -52f, -1.664273108f);
 				CylindricalCoord expected4 = new CylindricalCoord(-32.0f, -52.0f, -3.0f);
 				CoordinateSystem.SphericalToCylindrical(sphere4, out float rho4, out Radian phi4, out float z4);
 				CylindricalCoord result4 = new CylindricalCoord(rho4, phi4, z4);
