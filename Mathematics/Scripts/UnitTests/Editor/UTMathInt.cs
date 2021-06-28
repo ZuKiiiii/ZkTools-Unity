@@ -94,6 +94,12 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 			}
 
 			[Test]
+			public void Div ()
+			{
+				Assert.Fail();
+			}
+
+			[Test]
 			public void DivRem ()
 			{
 				// Assert 01
@@ -116,6 +122,12 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 			}
 
 			[Test]
+			public void DivSafe ()
+			{
+				Assert.Fail();
+			}
+
+			[Test]
 			public void GreatestCommonDivisor ()
 			{
 				Assert.AreEqual(4, MathInt.GreatestCommonDivisor(8,12));
@@ -134,6 +146,30 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 			}
 
 			[Test]
+			public void IsGreater ()
+			{
+				Assert.Fail();
+			}
+
+			[Test]
+			public void IsGreaterEqual ()
+			{
+				Assert.Fail();
+			}
+
+			[Test]
+			public void IsLess ()
+			{
+				Assert.Fail();
+			}
+
+			[Test]
+			public void IsLessEqual ()
+			{
+				Assert.Fail();
+			}
+
+			[Test]
 			public void IsNearlyEqual ()
 			{
 				Assert.AreEqual(true, MathInt.IsNearlyEqual(5, 5));
@@ -148,6 +184,30 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 				Assert.AreEqual(false, MathInt.IsNearlyEqual(5, 5, -1));
 				Assert.AreEqual(false, MathInt.IsNearlyEqual(5, 5, -2));
 
+			}
+
+			[Test]
+			public void IsNearlyGreater ()
+			{
+				Assert.Fail();
+			}
+
+			[Test]
+			public void IsNearlyGreaterEqual ()
+			{
+				Assert.Fail();
+			}
+
+			[Test]
+			public void IsNearlyLess ()
+			{
+				Assert.Fail();
+			}
+
+			[Test]
+			public void IsNearlyLessEqual ()
+			{
+				Assert.Fail();
 			}
 
 			[Test]
@@ -246,6 +306,12 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 				Assert.AreEqual(0, MathInt.Min(0, 1));
 				Assert.AreEqual(0, MathInt.Min(0, 1, 2));
 				Assert.AreEqual(0, MathInt.Min(new int[] {0, 1, 2, 3, 4}));
+			}
+
+			[Test]
+			public void Mul ()
+			{
+				Assert.Fail();
 			}
 
 			[Test]

@@ -27,6 +27,12 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 			}
 
 			[Test]
+			public void Add ()
+			{
+				Assert.Fail();
+			}
+
+			[Test]
 			public void Cbrt ()
 			{
 				Assert.AreEqual(1.9879272712443317f, MathF.Cbrt(7.856f), delta);
@@ -110,6 +116,12 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 
 				Assert.AreEqual(225.0f, MathF.DistanceSqr(10.0f, -5.0f));
 				Assert.AreEqual(225.0f, MathF.DistanceSqr(-5.0f, 10.0f));
+			}
+
+			[Test]
+			public void Div ()
+			{
+				Assert.Fail();
 			}
 
 			[Test]
@@ -260,6 +272,30 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 			}
 
 			[Test]
+			public void IsGreater ()
+			{
+				Assert.Fail();
+			}
+
+			[Test]
+			public void IsGreaterEqual ()
+			{
+				Assert.Fail();
+			}
+
+			[Test]
+			public void IsLess ()
+			{
+				Assert.Fail();
+			}
+
+			[Test]
+			public void IsLessEqual ()
+			{
+				Assert.Fail();
+			}
+
+			[Test]
 			public void IsNearlyEqual ()
 			{
 				Assert.AreEqual(true, MathF.IsNearlyEqual(1.0f, 1.0f));
@@ -267,6 +303,30 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 				Assert.AreEqual(false, MathF.IsNearlyEqual(1.0f, 1.2f, 0.1f));
 				Assert.AreEqual(true, MathF.IsNearlyEqual(1.0f, 1.2f, 0.3f));
 				Assert.AreEqual(false, MathF.IsNearlyEqual(1.0f, 1.2f, -0.3f));
+			}
+
+			[Test]
+			public void IsNearlyGreater ()
+			{
+				Assert.Fail();
+			}
+
+			[Test]
+			public void IsNearlyGreaterEqual ()
+			{
+				Assert.Fail();
+			}
+
+			[Test]
+			public void IsNearlyLess ()
+			{
+				Assert.Fail();
+			}
+
+			[Test]
+			public void IsNearlyLessEqual ()
+			{
+				Assert.Fail();
 			}
 
 			[Test]
@@ -503,6 +563,12 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 				MathF.Modf(-3.14151617f, out float intPart2, out float fracPart2);
 				Assert.AreEqual(-3.0f, intPart2, delta);
 				Assert.AreEqual(-0.14151617f, fracPart2, delta);
+			}
+
+			[Test]
+			public void Mul ()
+			{
+				Assert.Fail();
 			}
 
 			[Test]

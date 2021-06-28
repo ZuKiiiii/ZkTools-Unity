@@ -5,7 +5,11 @@ using System.Runtime.CompilerServices;
 namespace ZkTools.Mathematics
 {
 	/**
-	 *
+	 * TODO :
+	 * - IsNearlyGreater
+	 * - IsNearlyLess
+	 * - IsNearlyGreaterEqual
+	 * - IsNearlyLess Equal
 	 */
 	public static class MathF
 	{
@@ -48,6 +52,19 @@ namespace ZkTools.Mathematics
 			public static float Abs (float p_value)
 			{
 				return Math.Abs(p_value);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Add (float p_lhs, float p_rhs)
+			{
+				return p_lhs + p_rhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Add (ref float p_lhs, float p_rhs)
+			{
+				p_lhs += p_rhs;
+				return p_lhs;
 			}
 
 			/**
@@ -167,9 +184,29 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Div (float p_dividend, float p_divisor)
+			{
+				return p_dividend / p_divisor;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Div (ref float p_dividend, float p_divisor)
+			{
+				p_dividend /= p_divisor;
+				return p_dividend;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float DivSafe (float p_dividend, float p_divisor, float p_defaultValue = 0.0f)
 			{
 				return IsZero(p_divisor) ? p_defaultValue : p_dividend / p_divisor;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float DivSafe (ref float p_dividend, float p_divisor, float p_defaultValue = 0.0f)
+			{
+				p_dividend = DivSafe(p_dividend, p_divisor, p_defaultValue);
+				return p_dividend;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -233,9 +270,57 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsGreater (float p_lhs, float p_rhs)
+			{
+				return p_lhs > p_rhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsGreaterEqual (float p_lhs, float p_rhs)
+			{
+				return p_lhs >= p_rhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsLess (float p_lhs, float p_rhs)
+			{
+				return p_lhs < p_rhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsLessEqual (float p_lhs, float p_rhs)
+			{
+				return p_lhs <= p_rhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static bool IsNearlyEqual (float p_lhs, float p_rhs, float p_tolerance = float.Epsilon)
 			{
 				return IsNearlyZero(p_lhs - p_rhs, p_tolerance);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsNearlyGreater (float p_lhs, float p_rhs, float p_tolerance = float.Epsilon)
+			{
+				return p_lhs > p_rhs - p_tolerance;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsNearlyGreaterEqual (float p_lhs, float p_rhs, float p_tolerance = float.Epsilon)
+			{
+				return p_lhs >= p_rhs - p_tolerance;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsNearlyLess (float p_lhs, float p_rhs, float p_tolerance = float.Epsilon)
+			{
+				return p_lhs <= p_rhs + p_tolerance;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsNearlyLessEqual (float p_lhs, float p_rhs, float p_tolerance = float.Epsilon)
+			{
+				return p_lhs <= p_rhs + p_tolerance;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -385,6 +470,18 @@ namespace ZkTools.Mathematics
 			{
 				float signedDistance = SignedDistance(p_current, p_target);
 				return Abs(signedDistance) <=  p_maxDelta ? p_target : p_current + SignPos(signedDistance) * p_maxDelta;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Mul (float p_lhs, float p_rhs)
+			{
+				return p_lhs * p_rhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Mul (ref float p_lhs, float p_rhs)
+			{
+				return p_lhs *= p_rhs;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -544,6 +641,18 @@ namespace ZkTools.Mathematics
 			public static float Square (float p_value)
 			{
 				return p_value * p_value;
+			}
+
+			public static float Sub (float p_lhs, float p_rhs)
+			{
+				return p_lhs - p_rhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Sub (ref float p_lhs, float p_rhs)
+			{
+				p_lhs -= p_rhs;
+				return p_lhs;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
