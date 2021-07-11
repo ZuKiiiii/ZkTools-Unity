@@ -12,7 +12,7 @@ namespace ZkTools.Mathematics.Angles
 
 	public interface IAngle<T> : IEquatable<T>, IComparable<T>, IFormattable
 	{
-		#region // ==============================[Properties]============================== //
+		#region ==============================[Properties]==============================
 
 			public Degree ToDegree {get; set;}
 
@@ -28,7 +28,7 @@ namespace ZkTools.Mathematics.Angles
 
 		#endregion
 
-		#region // ==============================[Methods]============================== //
+		#region ==============================[Methods]==============================
 
 			public void Unwind ();
 		

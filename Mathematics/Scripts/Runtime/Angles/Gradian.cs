@@ -5,7 +5,7 @@ namespace ZkTools.Mathematics.Angles
 	[System.Serializable]
 	public struct Gradian : IAngle<Gradian>
 	{
-		#region // ==============================[Constants]============================== //
+		#region ==============================[Constants]==============================
 
 			// 0 //
 			public const float Zero = 0.0f;
@@ -60,13 +60,13 @@ namespace ZkTools.Mathematics.Angles
 
 		#endregion
 
-		#region // ==============================[Variables]============================== //
+		#region ==============================[Variables]==============================
 
 			public float gradian;
 
 		#endregion
 
-		#region // ==============================[Properties]============================== //
+		#region ==============================[Properties]==============================
 
 			public Degree ToDegree {get => Trigo.GradianToDegree(gradian); set => gradian = Trigo.DegreeToGradian(value.degree);}
 
@@ -82,7 +82,7 @@ namespace ZkTools.Mathematics.Angles
 
 			#endregion
 
-		#region // ==============================[Constructor + Destructor]============================== //
+		#region ==============================[Constructor + Destructor]==============================
 
 			public Gradian (float p_gradian)
 			{
@@ -96,7 +96,7 @@ namespace ZkTools.Mathematics.Angles
 
 		#endregion
 
-		#region // ==============================[Static Methods]============================== //
+		#region ==============================[Static Methods]==============================
 
 			public static Gradian CalcUnwind (Gradian p_gradian)
 			{
@@ -111,7 +111,7 @@ namespace ZkTools.Mathematics.Angles
 
 		#endregion
 
-		#region // ==============================[Inherited Methods]============================== //
+		#region ==============================[Inherited Methods]==============================
 
 			public bool Equals (Gradian p_other)
 			{
@@ -156,7 +156,7 @@ namespace ZkTools.Mathematics.Angles
 
 		#endregion
 
-		#region // ==============================[Operators]============================== //
+		#region ==============================[Operators]==============================
 
 			public static bool operator== (Gradian p_lhs, Gradian p_rhs)
 			{

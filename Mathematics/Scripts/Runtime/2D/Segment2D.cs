@@ -7,7 +7,7 @@ namespace ZkTools.Mathematics.Geometry2D
 	[Serializable]
 	public struct Segment2D : IEquatable<Segment2D>, IFormattable
 	{
-		#region // ==============================[Variables]============================== //
+		#region ==============================[Variables]==============================
 
 			public Vector2 a;
 
@@ -15,7 +15,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 
-		#region // ==============================[Properties]============================== //
+		#region ==============================[Properties]==============================
 
 			public Vector2 AB => Vector2X.FromTo(a, b);
 
@@ -37,7 +37,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 
-		#region // ==============================[Constructor + Destructor]============================== //
+		#region ==============================[Constructor + Destructor]==============================
 
 			public Segment2D (Vector2 p_a, Vector2 p_b)
 			{
@@ -59,7 +59,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 
-		#region // ==============================[Static Methods]============================== //
+		#region ==============================[Static Methods]==============================
 
 			public static float Distance (Segment2D p_lhs, Segment2D p_rhs)
 			{
@@ -128,7 +128,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 
-		#region // ==============================[Methods]============================== //
+		#region ==============================[Methods]==============================
 
 			public float Distance (Vector2 p_point)
 			{
@@ -175,7 +175,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 
-		#region // ==============================[Inherited Methods]============================== //
+		#region ==============================[Inherited Methods]==============================
 
 			public bool Equals(Segment2D p_other)
 			{

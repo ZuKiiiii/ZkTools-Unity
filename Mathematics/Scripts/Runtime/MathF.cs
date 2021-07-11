@@ -13,7 +13,7 @@ namespace ZkTools.Mathematics
 	 */
 	public static class MathF
 	{
-		#region // ==============================[Static Variables]============================== //
+		#region ==============================[Static Variables]==============================
 
 			public const float E = 2.718281828459045235360287471352662497e+00f;
 
@@ -39,7 +39,7 @@ namespace ZkTools.Mathematics
 
 		#endregion
 
-		#region // ==============================[Static Methods]============================== //
+		#region ==============================[Static Methods]==============================
 
 			/**
 			 * <summary>

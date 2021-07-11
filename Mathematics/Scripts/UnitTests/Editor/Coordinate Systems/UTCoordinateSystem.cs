@@ -7,13 +7,13 @@ namespace ZkTools.Mathematics.UnitTests.Editor.CoordinateSystems
 {
 	internal class UTCoordinateSystem
 	{
-		#region // ==============================[Static Variables]============================== //
+		#region ==============================[Static Variables]==============================
 
 			private const float delta = 1e-5f;
 
 		#endregion
 
-		#region // ==============================[Methods]============================== //
+		#region ==============================[Methods]==============================
 
 			[Test]
 			public void CartesianToCylindrical ()

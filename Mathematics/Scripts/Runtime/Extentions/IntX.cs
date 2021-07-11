@@ -8,7 +8,7 @@ namespace ZkTools.Mathematics.Extensions
 {
 	public static class IntX
 	{
-		#region // ==============================[Static Methods]============================== //
+		#region ==============================[Static Methods]==============================
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static bool IsNearlyEqual (this int p_this, int p_other, int p_tolerance)

@@ -5,7 +5,7 @@ namespace ZkTools.Mathematics.Angles
 	[System.Serializable]
 	public struct Turn : IAngle<Turn>
 	{
-		#region // ==============================[Constants]============================== //
+		#region ==============================[Constants]==============================
 
 			// 0 //
 			public const float Zero = 0.0f;
@@ -60,13 +60,13 @@ namespace ZkTools.Mathematics.Angles
 
 		#endregion
 
-		#region // ==============================[Variables]============================== //
+		#region ==============================[Variables]==============================
 
 			public float turn;
 
 		#endregion
 
-		#region // ==============================[Properties]============================== //
+		#region ==============================[Properties]==============================
 
 			public Degree ToDegree {get => Trigo.TurnToDegree(turn); set => turn = Trigo.DegreeToTurn(value.degree);}
 
@@ -82,7 +82,7 @@ namespace ZkTools.Mathematics.Angles
 
 		#endregion
 
-		#region // ==============================[Constructor + Destructor]============================== //
+		#region ==============================[Constructor + Destructor]==============================
 
 			public Turn (float p_turn)
 			{
@@ -96,7 +96,7 @@ namespace ZkTools.Mathematics.Angles
 
 		#endregion
 
-		#region // ==============================[Static Methods]============================== //
+		#region ==============================[Static Methods]==============================
 
 			public static Turn CalcUnwind (Turn p_turn)
 			{
@@ -111,7 +111,7 @@ namespace ZkTools.Mathematics.Angles
 
 		#endregion
 
-		#region // ==============================[Inherited Methods]============================== //
+		#region ==============================[Inherited Methods]==============================
 
 			public int CompareTo (Turn p_other)
 			{
@@ -156,7 +156,7 @@ namespace ZkTools.Mathematics.Angles
 
 		#endregion
 
-		#region // ==============================[Operators]============================== //
+		#region ==============================[Operators]==============================
 
 			public static bool operator== (Turn p_lhs, Turn p_rhs)
 			{

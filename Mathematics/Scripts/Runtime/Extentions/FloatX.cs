@@ -7,7 +7,7 @@ namespace ZkTools.Mathematics.Extensions
 {
 	public static class FloatX
 	{
-		#region // ==============================[Static Methods]============================== //
+		#region ==============================[Static Methods]==============================
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static bool IsNearlyEqual (this float p_this, float p_other, float p_tolerance = float.Epsilon)

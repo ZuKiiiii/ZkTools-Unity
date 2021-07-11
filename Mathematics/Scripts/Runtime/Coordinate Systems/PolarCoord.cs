@@ -8,7 +8,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 	[System.Serializable]
 	public struct PolarCoord : IEquatable<PolarCoord>, IFormattable
 	{
-		#region // ==============================[Static Variables]============================== //
+		#region ==============================[Static Variables]==============================
 
 			public static readonly PolarCoord Down = Vector2.down.ToPolar();
 
@@ -24,7 +24,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 
 		#endregion
 
-		#region // ==============================[Editable Variables]============================== //
+		#region ==============================[Editable Variables]==============================
 
 			public float radius;
 
@@ -32,7 +32,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 
 		#endregion
 
-		#region // ==============================[Properties]============================== //
+		#region ==============================[Properties]==============================
 
 			public Vector2 Vector2 => CoordinateSystem.PolarToCartesian(this);
 
@@ -40,7 +40,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 
 		#endregion
 
-		#region // ==============================[Constructor + Destructor]============================== //
+		#region ==============================[Constructor + Destructor]==============================
 
 			public PolarCoord (float p_radius, Radian p_angle)
 			{
@@ -66,7 +66,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 
 		#endregion
 
-		#region // ==============================[Inherited Methods]============================== //
+		#region ==============================[Inherited Methods]==============================
 
 			public bool Equals (PolarCoord p_other)
 			{
@@ -108,7 +108,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 
 		#endregion
 
-		#region // ==============================[Operators]============================== //
+		#region ==============================[Operators]==============================
 
 			public static bool operator== (PolarCoord p_lhs, PolarCoord p_rhs)
 			{

@@ -5,13 +5,13 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 {
 	internal class UTTrigo
 	{
-		#region // ==============================[Static Variables]============================== //
+		#region ==============================[Static Variables]==============================
 
 			private const float delta = 1e-4f;
 
 		#endregion
 
-		#region // ==============================[Methods]============================== //
+		#region ==============================[Methods]==============================
 
 			[Test]
 			public void Acos ()

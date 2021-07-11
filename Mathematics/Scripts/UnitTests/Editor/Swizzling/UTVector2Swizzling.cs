@@ -6,7 +6,7 @@ namespace ZkTools.Mathematics.UnitTests.Editor.Swizzling
 {
 	internal class UTVector2Swizzling
 	{
-		#region //,============================[Static Variables]============================== //
+		#region //,============================[Static Variables]==============================
 
 			private static readonly float F1 = -1.0f;
 			private static readonly float F2 = -2.0f;
@@ -14,7 +14,7 @@ namespace ZkTools.Mathematics.UnitTests.Editor.Swizzling
 
 		#endregion
 
-		#region //,============================[Methods]============================== //
+		#region //,============================[Methods]==============================
 
 			[Test]
 			public static void GetIJX ()

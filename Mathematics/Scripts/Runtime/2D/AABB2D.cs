@@ -9,7 +9,7 @@ namespace ZkTools.Mathematics.Geometry2D
 	[Serializable]
 	public struct AABB2D : IEquatable<AABB2D>, IFormattable
 	{
-		#region // ==============================[Variables]============================== //
+		#region ==============================[Variables]==============================
 
 			public Vector2 min;
 
@@ -17,7 +17,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 		
-		#region // ==============================[Properties]============================== //
+		#region ==============================[Properties]==============================
 
 			public float Area => Width * Height;
 
@@ -131,7 +131,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 
-		#region // ==============================[Constructor + Destructor]============================== //
+		#region ==============================[Constructor + Destructor]==============================
 
 			public AABB2D (float p_x, float p_y)
 			{
@@ -165,7 +165,7 @@ namespace ZkTools.Mathematics.Geometry2D
 			
 		#endregion
 
-		#region // ==============================[Static Methods]============================== //
+		#region ==============================[Static Methods]==============================
 
 			public static float Distance (AABB2D p_aabb, Vector2 p_point)
 			{
@@ -342,7 +342,7 @@ namespace ZkTools.Mathematics.Geometry2D
 			
 		#endregion
 
-		#region // ==============================[Methods]============================== //
+		#region ==============================[Methods]==============================
 
 			public void ClosestPoint (Vector2 p_point)
 			{
@@ -494,7 +494,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 
-		#region // ==============================[Inherited Methods]============================== //
+		#region ==============================[Inherited Methods]==============================
 
 			public bool Equals (AABB2D other)
 			{
@@ -521,7 +521,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 
-		#region // ==============================[Operators]============================== //
+		#region ==============================[Operators]==============================
 
 			public static bool operator== (AABB2D p_lhs, AABB2D p_rhs)
 			{

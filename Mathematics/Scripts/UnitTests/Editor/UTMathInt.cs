@@ -6,7 +6,7 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 {
 	internal class UTMathInt
 	{
-		#region // ==============================[Methods]============================== //
+		#region ==============================[Methods]==============================
 
 			[Test]
 			public void Abs ()

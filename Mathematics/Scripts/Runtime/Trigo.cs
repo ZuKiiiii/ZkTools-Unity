@@ -9,7 +9,7 @@ namespace ZkTools.Mathematics
 	/// </summary>
 	public static class Trigo
 	{
-		#region // ==============================[Static Variables]============================== //
+		#region ==============================[Static Variables]==============================
 
 			public const float CosOne = 5.403023058681397174009366074429766037e-01f;
 
@@ -93,7 +93,7 @@ namespace ZkTools.Mathematics
 
 		#endregion
 
-		#region // ==============================[Static Methods]============================== //
+		#region ==============================[Static Methods]==============================
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Acos (float p_value)

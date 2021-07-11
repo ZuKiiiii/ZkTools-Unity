@@ -4,7 +4,7 @@ namespace ZkTools.Mathematics.Angles.Extensions
 {
 	public static class DoubleX
 	{
-		#region // ==============================[Static Methods]============================== //
+		#region ==============================[Static Methods]==============================
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Degree ToDegree (this double p_this)

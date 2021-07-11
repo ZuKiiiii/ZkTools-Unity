@@ -5,7 +5,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 {
 	public static partial class Vector2X
 	{
-		#region // ==============================[Methods]============================== //
+		#region ==============================[Methods]==============================
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static CylindricalCoord ToCylindrical (this Vector3 p_this)

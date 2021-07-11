@@ -6,7 +6,7 @@ namespace ZkTools.Mathematics.Geometry2D
 	[Serializable]
 	public struct Ray2D : IFormattable
 	{
-		#region // ==============================[Variables]============================== //
+		#region ==============================[Variables]==============================
 
 			public Vector2 origin;
 
@@ -14,7 +14,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 
-		#region // ==============================[Constructor + Destructor]============================== //
+		#region ==============================[Constructor + Destructor]==============================
 
 			public Ray2D (Vector2 p_direction)
 			{
@@ -30,7 +30,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 
-		#region // ==============================[Static Methods]============================== //
+		#region ==============================[Static Methods]==============================
 
 			public static float Distance (Ray2D p_lhs, Ray2D p_rhs)
 			{
@@ -109,7 +109,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 
-		#region // ==============================[Methods]============================== //
+		#region ==============================[Methods]==============================
 
 			public float Distance (Vector2 p_point)
 			{
@@ -144,7 +144,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 
-		#region // ==============================[Methods]============================== //
+		#region ==============================[Methods]==============================
 
 			public string ToString (string p_format, IFormatProvider p_formatProvider)
 			{
@@ -153,7 +153,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 
-		#region // ==============================[Operatord]============================== //
+		#region ==============================[Operatord]==============================
 
 			public static implicit operator Ray2D (UnityEngine.Ray2D p_unityRay)
 			{

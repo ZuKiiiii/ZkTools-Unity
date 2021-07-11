@@ -4,7 +4,7 @@ namespace ZkTools.Mathematics.Swizzling
 {
 	public static class Vector3Swizzling
 	{
-		#region // ==============================[Methods]============================== //
+		#region ==============================[Methods]==============================
 
 			public static Vector4 GetIJKX (this Vector3 p_this, float p_i = 0.0f, float p_j = 0.0f, float p_k = 0.0f)
 			{

@@ -4,7 +4,7 @@ namespace ZkTools.Mathematics
 {
 	public static class Vector4X
 	{
-		#region // ==============================[Static Methods]============================== //
+		#region ==============================[Static Methods]==============================
 
 			public static Vector4 Lerp (Vector4 p_a, Vector4 p_b, float p_t)
 			{

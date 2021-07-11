@@ -7,7 +7,7 @@ namespace ZkTools.Mathematics.Ranges
 	[System.Serializable]
 	public struct Range : IEquatable<Range>, IFormattable
 	{
-		#region // ==============================[Variables]============================== //
+		#region ==============================[Variables]==============================
 
 			public static readonly Range Empty = new Range(0f, 0f);
 
@@ -15,7 +15,7 @@ namespace ZkTools.Mathematics.Ranges
 
 		#endregion
 		
-		#region // ==============================[Variables]============================== //
+		#region ==============================[Variables]==============================
 
 			public float min;
 
@@ -23,7 +23,7 @@ namespace ZkTools.Mathematics.Ranges
 
 		#endregion
 
-		#region // ==============================[Properties]============================== //
+		#region ==============================[Properties]==============================
 
 			public bool IsValid => (max - min).IsPositiveOrZero();
 
@@ -37,7 +37,7 @@ namespace ZkTools.Mathematics.Ranges
 
 		#endregion
 
-		#region // ==============================[Constructor + Destructor]============================== //
+		#region ==============================[Constructor + Destructor]==============================
 
 			public Range (float p_min, float p_max)
 			{
@@ -59,7 +59,7 @@ namespace ZkTools.Mathematics.Ranges
 
 		#endregion
 
-		#region // ==============================[Static Methods]============================== //
+		#region ==============================[Static Methods]==============================
 
 			public static Range Intersection (float p_lhsMin, float p_lhsMax, float p_rhsMin, float p_rhsMax)
 			{
@@ -167,7 +167,7 @@ namespace ZkTools.Mathematics.Ranges
 
 		#endregion
 
-		#region // ==============================[Methods]============================== //
+		#region ==============================[Methods]==============================
 
 			public Range Intersection (float p_min, float p_max)
 			{
@@ -274,7 +274,7 @@ namespace ZkTools.Mathematics.Ranges
 
 		#endregion
 
-		#region // ==============================[Inherited Methods]============================== //
+		#region ==============================[Inherited Methods]==============================
 
 			public override bool Equals (object obj)
 			{
@@ -311,7 +311,7 @@ namespace ZkTools.Mathematics.Ranges
 
 		#endregion
 
-		#region // ==============================[Operators]============================== //
+		#region ==============================[Operators]==============================
 
 			public static bool operator== (Range p_lhs, Range p_rhs)
 			{

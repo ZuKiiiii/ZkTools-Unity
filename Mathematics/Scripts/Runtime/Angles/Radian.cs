@@ -5,7 +5,7 @@ namespace ZkTools.Mathematics.Angles
 	[System.Serializable]
 	public struct Radian : IAngle<Radian>
 	{
-		#region // ==============================[Constants]============================== //
+		#region ==============================[Constants]==============================
 
 			// 0 //
 			public const float Zero = 0.0f;
@@ -60,13 +60,13 @@ namespace ZkTools.Mathematics.Angles
 
 		#endregion
 
-		#region // ==============================[Variables]============================== //
+		#region ==============================[Variables]==============================
 
 			public float radian;
 
 		#endregion
 
-		#region // ==============================[Properties]============================== //
+		#region ==============================[Properties]==============================
 
 			public Degree ToDegree {get => Trigo.RadianToDegree(radian); set => radian = Trigo.DegreeToRadian(value.degree);}
 
@@ -82,7 +82,7 @@ namespace ZkTools.Mathematics.Angles
 
 			#endregion
 
-		#region // ==============================[Constructor + Destructor]============================== //
+		#region ==============================[Constructor + Destructor]==============================
 
 			public Radian (float p_radian)
 			{
@@ -96,7 +96,7 @@ namespace ZkTools.Mathematics.Angles
 
 		#endregion
 
-		#region // ==============================[Static Methods]============================== //
+		#region ==============================[Static Methods]==============================
 
 			public static Radian CalcUnwind (Radian p_radian)
 			{
@@ -111,7 +111,7 @@ namespace ZkTools.Mathematics.Angles
 
 		#endregion
 
-		#region // ==============================[Inherited Methods]============================== //
+		#region ==============================[Inherited Methods]==============================
 
 			public int CompareTo (Radian p_other)
 			{
@@ -156,7 +156,7 @@ namespace ZkTools.Mathematics.Angles
 
 		#endregion
 
-		#region // ==============================[Operators]============================== //
+		#region ==============================[Operators]==============================
 
 			public static bool operator== (Radian p_lhs, Radian p_rhs)
 			{

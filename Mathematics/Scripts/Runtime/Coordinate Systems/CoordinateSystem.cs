@@ -28,7 +28,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 
 	public static class CoordinateSystem
 	{
-		#region // ==============================[Static Methods]============================== //
+		#region ==============================[Static Methods]==============================
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static CylindricalCoord CartesianToCylindrical (float p_x, float p_y, float p_z)

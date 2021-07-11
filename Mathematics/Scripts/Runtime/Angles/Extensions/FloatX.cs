@@ -4,7 +4,7 @@ namespace ZkTools.Mathematics.Angles.Extensions
 {
 	public static class FloatX
 	{
-		#region // ==============================[Static Methods]============================== //
+		#region ==============================[Static Methods]==============================
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Inv (this float p_this)

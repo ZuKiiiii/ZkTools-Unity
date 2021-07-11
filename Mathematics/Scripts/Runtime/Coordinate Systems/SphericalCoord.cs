@@ -8,7 +8,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 	[System.Serializable]
 	public struct SphericalCoord : IEquatable<SphericalCoord>, IFormattable
 	{
-		#region // ==============================[Editable Variables]============================== //
+		#region ==============================[Editable Variables]==============================
 
 			/** The radius or radial distance is the Euclidean distance from the origin O to P. */
 			public float radius;
@@ -21,7 +21,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 
 		#endregion
 
-		#region // ==============================[Properties]============================== //
+		#region ==============================[Properties]==============================
 
 			public CylindricalCoord Cylindrical => CoordinateSystem.SphericalToCylindrical(this);
 
@@ -33,7 +33,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 
 		#endregion
 
-		#region // ==============================[Constructor + Destructor]============================== //
+		#region ==============================[Constructor + Destructor]==============================
 
 			public SphericalCoord (float p_radius, float p_theta, float p_phi)
 			{
@@ -66,7 +66,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 
 		#endregion
 
-		#region // ==============================[Inherited Methods]============================== //
+		#region ==============================[Inherited Methods]==============================
 
 			public bool Equals (SphericalCoord p_other)
 			{
@@ -106,7 +106,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 
 		#endregion
 
-		#region // ==============================[Operators]============================== //
+		#region ==============================[Operators]==============================
 
 			public static bool operator== (SphericalCoord p_lhs, SphericalCoord p_rhs)
 			{

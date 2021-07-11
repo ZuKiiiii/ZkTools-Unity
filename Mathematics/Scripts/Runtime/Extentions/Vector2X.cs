@@ -7,7 +7,7 @@ namespace ZkTools.Mathematics.Extensions
 {
 	public static class Vector2X
 	{
-		#region // ==============================[Static Methods]============================== //
+		#region ==============================[Static Methods]==============================
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Radian Angle (Vector2 p_from, Vector2 p_to)

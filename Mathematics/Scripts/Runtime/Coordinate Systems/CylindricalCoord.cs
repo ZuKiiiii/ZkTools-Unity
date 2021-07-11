@@ -8,7 +8,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 	[System.Serializable]
 	public struct CylindricalCoord : IEquatable<CylindricalCoord>, IFormattable
 	{
-		#region // ==============================[Static Variables]============================== //
+		#region ==============================[Static Variables]==============================
 
 			public static readonly CylindricalCoord Backward = Vector3.back.ToCylindrical();
 
@@ -28,7 +28,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 
 		#endregion
 
-		#region // ==============================[Editable Variables]============================== //
+		#region ==============================[Editable Variables]==============================
 
 			/** The axial distance or radial distance ρ is the Euclidean distance from the z-axis to the point P. **/
 			public float radius;
@@ -41,7 +41,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 
 		#endregion
 
-		#region // ==============================[Properties]============================== //
+		#region ==============================[Properties]==============================
 
 			public SphericalCoord Spherical => CoordinateSystem.CylindricalToSpherical(this);
 
@@ -51,7 +51,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 
 		#endregion
 
-		#region // ==============================[Constructor + Destructor]============================== //
+		#region ==============================[Constructor + Destructor]==============================
 
 			public CylindricalCoord (float p_radius, Radian p_angle, float p_height)
 			{
@@ -79,7 +79,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 
 		#endregion
 
-		#region // ==============================[Inherited Methods]============================== //
+		#region ==============================[Inherited Methods]==============================
 
 			public bool Equals (CylindricalCoord p_other)
 			{
@@ -119,7 +119,7 @@ namespace ZkTools.Mathematics.CoordinateSystems
 
 		#endregion
 
-		#region // ==============================[Operators]============================== //
+		#region ==============================[Operators]==============================
 
 			public static bool operator== (CylindricalCoord p_lhs, CylindricalCoord p_rhs)
 			{

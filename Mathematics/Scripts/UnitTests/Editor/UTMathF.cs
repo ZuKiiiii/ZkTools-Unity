@@ -4,13 +4,13 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 {
 	internal class UTMathF
 	{
-		#region // ==============================[Static Variables]============================== //
+		#region ==============================[Static Variables]==============================
 
 			private const float delta = 1e-6f;
 
 		#endregion
 
-		#region // ==============================[Methods]============================== //
+		#region ==============================[Methods]==============================
 
 			[Test]
 			public void Abs ()

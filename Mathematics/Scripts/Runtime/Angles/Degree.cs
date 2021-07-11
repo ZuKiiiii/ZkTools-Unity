@@ -5,7 +5,7 @@ namespace ZkTools.Mathematics.Angles
 	[System.Serializable]
 	public struct Degree : IAngle<Degree>
 	{
-		#region // ==============================[Constants]============================== //
+		#region ==============================[Constants]==============================
 
 			// 0 //
 			public const float Zero = 0f;
@@ -60,13 +60,13 @@ namespace ZkTools.Mathematics.Angles
 
 		#endregion
 
-		#region // ==============================[Variables]============================== //
+		#region ==============================[Variables]==============================
 
 			public float degree;
 
 		#endregion
 
-		#region // ==============================[Properties]============================== //
+		#region ==============================[Properties]==============================
 
 			public Degree ToDegree {get => this; set => this = value;}
 
@@ -82,7 +82,7 @@ namespace ZkTools.Mathematics.Angles
 
 		#endregion
 
-		#region // ==============================[Constructor + Destructor]============================== //
+		#region ==============================[Constructor + Destructor]==============================
 
 			public Degree (float p_degree)
 			{
@@ -96,7 +96,7 @@ namespace ZkTools.Mathematics.Angles
 
 		#endregion
 
-		#region // ==============================[Static Methods]============================== //
+		#region ==============================[Static Methods]==============================
 
 			public static Degree CalcUnwind (Degree p_degree)
 			{
@@ -111,7 +111,7 @@ namespace ZkTools.Mathematics.Angles
 
 		#endregion
 
-		#region // ==============================[Inherited Methods]============================== //
+		#region ==============================[Inherited Methods]==============================
 
 			public int CompareTo (Degree p_other)
 			{
@@ -156,7 +156,7 @@ namespace ZkTools.Mathematics.Angles
 
 		#endregion
 
-		#region // ==============================[Operators]============================== //
+		#region ==============================[Operators]==============================
 
 			public static bool operator== (Degree p_lhs, Degree p_rhs)
 			{

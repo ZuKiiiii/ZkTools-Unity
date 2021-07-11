@@ -7,7 +7,7 @@ namespace ZkTools.Mathematics
 {
 	public static class MathInt
 	{
-		#region // ==============================[Static Methods]============================== //
+		#region ==============================[Static Methods]==============================
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int Abs (int p_value)
@@ -313,7 +313,7 @@ namespace ZkTools.Mathematics
 
 	public struct DivRemResult
 	{
-		#region // ==============================[Variables]============================== //
+		#region ==============================[Variables]==============================
 
 			public int remainder;
 
@@ -321,7 +321,7 @@ namespace ZkTools.Mathematics
 
 		#endregion
 
-		#region // ==============================[Constructor + Destructor]============================== //
+		#region ==============================[Constructor + Destructor]==============================
 
 			public DivRemResult (int p_result, int p_remainder)
 			{

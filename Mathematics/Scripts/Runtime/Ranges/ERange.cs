@@ -19,7 +19,7 @@ namespace ZkTools.Mathematics.Ranges
 
 	public static class ERangeX
 	{
-		#region // ==============================[Static Methods]============================== //
+		#region ==============================[Static Methods]==============================
 
 			public static ERange Convert (ERangeSide p_start, ERangeSide p_end)
 			{

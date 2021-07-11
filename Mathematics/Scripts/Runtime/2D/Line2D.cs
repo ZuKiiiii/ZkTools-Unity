@@ -7,7 +7,7 @@ namespace ZkTools.Mathematics.Geometry2D
 	[System.Serializable]
 	public struct Line2D : IEquatable<Line2D>, IFormattable
 	{
-		#region // ==============================[Static Variables]============================== //
+		#region ==============================[Static Variables]==============================
 
 			public static readonly Line2D Down = new Line2D(Vector2.zero, Vector2.down);
 
@@ -19,7 +19,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 
-		#region // ==============================[Variables]============================== //
+		#region ==============================[Variables]==============================
 
 			public Vector2 origin;
 
@@ -28,7 +28,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 
-		#region // ==============================[Constructor + Destructor]============================== //
+		#region ==============================[Constructor + Destructor]==============================
 
 			public Line2D (Vector2 p_direction)
 			{
@@ -44,7 +44,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 
-		#region // ==============================[Static Methods]============================== //
+		#region ==============================[Static Methods]==============================
 
 			public static Line2D Bisector (Vector2 p_a, Vector2 p_b)
 			{
@@ -153,7 +153,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 
-		#region // ==============================[Methods]============================== //
+		#region ==============================[Methods]==============================
 
 			public float Distance (Vector2 p_point)
 			{
@@ -202,7 +202,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 
-		#region // ==============================[Inherited Methods]============================== //
+		#region ==============================[Inherited Methods]==============================
 
 			public bool Equals(Line2D other)
 			{

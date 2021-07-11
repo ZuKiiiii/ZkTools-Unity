@@ -7,7 +7,7 @@ namespace ZkTools
 		where T1 : IEquatable<T1>
 		where T2 : IEquatable<T2>
 	{
-		#region // ==============================[Constructor + Destructor]============================== //
+		#region ==============================[Constructor + Destructor]==============================
 
 			public T1 first;
 
@@ -15,7 +15,7 @@ namespace ZkTools
 
 		#endregion
 
-		#region // ==============================[Constructor + Destructor]============================== //
+		#region ==============================[Constructor + Destructor]==============================
 
 			public Pair (T1 p_first, T2 p_second)
 			{
@@ -31,7 +31,7 @@ namespace ZkTools
 
 		#endregion
 
-		#region // ==============================[Inherited Methods]============================== //
+		#region ==============================[Inherited Methods]==============================
 
 			public bool Equals (Pair<T1, T2> p_other)
 			{
@@ -54,7 +54,7 @@ namespace ZkTools
 
 		#endregion
 
-		#region // ==============================[Operators]============================== //
+		#region ==============================[Operators]==============================
 
 			public static bool operator== (Pair<T1, T2> p_lhs, Pair<T1, T2> p_rhs)
 			{

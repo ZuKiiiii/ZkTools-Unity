@@ -8,13 +8,13 @@ namespace ZkTools.Mathematics.Geometry2D
 	[System.Serializable]
 	public struct Circle2D : IEquatable<Circle2D>, IFormattable
 	{
-		#region // ==============================[Editable Variables]============================== //
+		#region ==============================[Editable Variables]==============================
 
 			public static Circle2D Trigonometric = new Circle2D(Vector2.zero, 1.0f);
 
 		#endregion
 
-		#region // ==============================[Variables]============================== //
+		#region ==============================[Variables]==============================
 
 			public Vector2 center;
 
@@ -22,7 +22,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 
-		#region // ==============================[Constructor + Destructor]============================== //
+		#region ==============================[Constructor + Destructor]==============================
 
 			public Circle2D (Circle2D p_circle)
 			{
@@ -53,7 +53,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 		
-		#region // ==============================[Properties]============================== //
+		#region ==============================[Properties]==============================
 
 			public float Area => RadiusToArea(radius);
 		
@@ -61,7 +61,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 			#endregion
 		
-		#region // ==============================[Static Methods]============================== //
+		#region ==============================[Static Methods]==============================
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float AreaToPerimeter (float p_area)
@@ -197,7 +197,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 		
-		#region // ==============================[Methods]============================== //
+		#region ==============================[Methods]==============================
 
 			public float Distance (Vector2 p_point)
 			{
@@ -253,7 +253,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 
-		#region // ==============================[Operator]============================== //
+		#region ==============================[Operator]==============================
 
 			public static bool operator== (Circle2D p_lhs, Circle2D p_rhs)
 			{
@@ -267,7 +267,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 
-		#region // ==============================[Inherited Methods]============================== //
+		#region ==============================[Inherited Methods]==============================
 
 			public bool Equals (Circle2D p_other)
 			{

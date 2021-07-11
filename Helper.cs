@@ -4,7 +4,7 @@ namespace ZkTools
 {
 	public class Helper
 	{
-		#region // ==============================[Methods]============================== //
+		#region ==============================[Methods]==============================
 
 			public static T Consume<T> (ref T p_value) where T : new()
 			{

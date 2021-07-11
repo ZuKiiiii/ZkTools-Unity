@@ -10,7 +10,7 @@ namespace ZkTools.Mathematics.Geometry2D
 	[Serializable]
 	public class Triangle2D : MonoBehaviour
 	{
-		#region // ==============================[Variables]============================== //
+		#region ==============================[Variables]==============================
 
 			public Vector2 a;
 
@@ -20,7 +20,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 
-		#region // ==============================[Properties]============================== //
+		#region ==============================[Properties]==============================
 
 			public Segment2D AB => new Segment2D(a, b);
 
@@ -164,7 +164,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 
-		#region // ==============================[Constructor + Destructor]============================== //
+		#region ==============================[Constructor + Destructor]==============================
 
 			public Triangle2D(Vector2 p_a, Vector2 p_b, Vector2 p_c)
 			{
@@ -175,7 +175,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 
-		#region // ==============================[Static Methods]============================== //
+		#region ==============================[Static Methods]==============================
 
 			public static Radian[] CalcAngles (Vector2 p_a, Vector2 p_b, Vector2 p_c)
 			{
@@ -229,7 +229,7 @@ namespace ZkTools.Mathematics.Geometry2D
 
 		#endregion
 
-		#region // ==============================[Static Methods]============================== //
+		#region ==============================[Static Methods]==============================
 
 
 		#endregion

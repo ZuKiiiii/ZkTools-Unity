@@ -50,7 +50,7 @@ namespace ZkTools.Mathematics
 
 	public static class Easing
 	{
-		#region // ====================================[]==================================== //
+		#region ====================================[]====================================
 
 			private const float C1 = 1.70158f;
 
@@ -64,7 +64,7 @@ namespace ZkTools.Mathematics
 
 		#endregion
 
-		#region // ==============================[Static Methods]============================== //
+		#region ==============================[Static Methods]==============================
 
 			public static float Array (float p_t, params float[] p_array)
 			{

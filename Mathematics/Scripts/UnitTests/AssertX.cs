@@ -6,7 +6,7 @@ namespace ZkTools.Mathematics.UnitTests
 {
 	public static class AssertX
 	{
-		#region // ==============================[Static Methods]============================== //
+		#region ==============================[Static Methods]==============================
 
 			public static void AreEqual (Vector2 p_expected, Vector2 p_actual)
 			{
