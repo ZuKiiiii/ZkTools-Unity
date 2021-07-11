@@ -19,6 +19,24 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 			}
 
 			[Test]
+			public void Add ()
+			{
+				Assert.AreEqual(6 + 5, MathInt.Add(6, 5));
+				Assert.AreEqual(2 + 5, MathInt.Add(2, 5));
+				Assert.AreEqual(6 + 2, MathInt.Add(6, 2));
+				Assert.AreEqual(2 + 2, MathInt.Add(2, 2));
+
+				int a = 6;
+				int b = 2;
+				int c = 6;
+				int d = 2;
+				Assert.AreEqual(6 + 5, MathInt.Add(ref a, 5));
+				Assert.AreEqual(2 + 5, MathInt.Add(ref b, 5));
+				Assert.AreEqual(6 + 2, MathInt.Add(ref c, 2));
+				Assert.AreEqual(2 + 2, MathInt.Add(ref d, 2));
+			}
+
+			[Test]
 			public void Clamp ()
 			{
 				Assert.AreEqual(0, MathInt.Clamp(-5, 0, 10));
@@ -96,7 +114,19 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 			[Test]
 			public void Div ()
 			{
-				Assert.Fail();
+				Assert.AreEqual(6 / 5, MathInt.Div(6, 5));
+				Assert.AreEqual(2 / 5, MathInt.Div(2, 5));
+				Assert.AreEqual(6 / 2, MathInt.Div(6, 2));
+				Assert.AreEqual(2 / 2, MathInt.Div(2, 2));
+
+				int a = 6;
+				int b = 2;
+				int c = 6;
+				int d = 2;
+				Assert.AreEqual(6 / 5, MathInt.Div(ref a, 5));
+				Assert.AreEqual(2 / 5, MathInt.Div(ref b, 5));
+				Assert.AreEqual(6 / 2, MathInt.Div(ref c, 2));
+				Assert.AreEqual(2 / 2, MathInt.Div(ref d, 2));
 			}
 
 			[Test]
@@ -124,7 +154,11 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 			[Test]
 			public void DivSafe ()
 			{
-				Assert.Fail();
+				Assert.AreEqual(5 / 2, MathInt.DivSafe(5, 2));
+				Assert.AreEqual(0, MathInt.DivSafe(5, 0));
+				Assert.AreEqual(2, MathInt.DivSafe(5, 0, 2));
+				Assert.AreEqual(-5 / 2, MathInt.DivSafe(-5, 2));
+				Assert.AreEqual(5 / -2, MathInt.DivSafe(5, -2));
 			}
 
 			[Test]
@@ -148,25 +182,33 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 			[Test]
 			public void IsGreater ()
 			{
-				Assert.Fail();
+				Assert.AreEqual(1 > 2, MathInt.IsGreater(1, 2));
+				Assert.AreEqual(1 > 1, MathInt.IsGreater(1, 1));
+				Assert.AreEqual(2 > 1, MathInt.IsGreater(2, 1));
 			}
 
 			[Test]
 			public void IsGreaterEqual ()
 			{
-				Assert.Fail();
+				Assert.AreEqual(1 >= 2, MathInt.IsGreaterEqual(1, 2));
+				Assert.AreEqual(1 >= 1, MathInt.IsGreaterEqual(1, 1));
+				Assert.AreEqual(2 >= 1, MathInt.IsGreaterEqual(2, 1));
 			}
 
 			[Test]
 			public void IsLess ()
 			{
-				Assert.Fail();
+				Assert.AreEqual(1 < 2, MathInt.IsLess(1, 2));
+				Assert.AreEqual(1 < 1, MathInt.IsLess(1, 1));
+				Assert.AreEqual(2 < 1, MathInt.IsLess(2, 1));
 			}
 
 			[Test]
 			public void IsLessEqual ()
 			{
-				Assert.Fail();
+				Assert.AreEqual(1 <= 2, MathInt.IsLessEqual(1, 2));
+				Assert.AreEqual(1 <= 1, MathInt.IsLessEqual(1, 1));
+				Assert.AreEqual(2 <= 1, MathInt.IsLessEqual(2, 1));
 			}
 
 			[Test]
@@ -186,28 +228,72 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 
 			}
 
-			[Test]
+[Test]
 			public void IsNearlyGreater ()
 			{
-				Assert.Fail();
+				Assert.AreEqual(false, MathInt.IsNearlyGreater(1, 2));
+				Assert.AreEqual(false, MathInt.IsNearlyGreater(1, 2, 0));
+				Assert.AreEqual(false, MathInt.IsNearlyGreater(1, 2, 1));
+				Assert.AreEqual(true, MathInt.IsNearlyGreater(1, 2, 2));
+				Assert.AreEqual(false, MathInt.IsNearlyGreater(1, 1));
+				Assert.AreEqual(false, MathInt.IsNearlyGreater(1, 1, 0));
+				Assert.AreEqual(true, MathInt.IsNearlyGreater(1, 1, 1));
+				Assert.AreEqual(true, MathInt.IsNearlyGreater(1, 1, 2));
+				Assert.AreEqual(true, MathInt.IsNearlyGreater(2, 1));
+				Assert.AreEqual(true, MathInt.IsNearlyGreater(2, 1, 0));
+				Assert.AreEqual(true, MathInt.IsNearlyGreater(2, 1, 1));
+				Assert.AreEqual(true, MathInt.IsNearlyGreater(2, 1, 2));
 			}
 
 			[Test]
 			public void IsNearlyGreaterEqual ()
 			{
-				Assert.Fail();
+				Assert.AreEqual(false, MathInt.IsNearlyGreaterEqual(1, 2));
+				Assert.AreEqual(false, MathInt.IsNearlyGreaterEqual(1, 2, 0));
+				Assert.AreEqual(true, MathInt.IsNearlyGreaterEqual(1, 2, 1));
+				Assert.AreEqual(true, MathInt.IsNearlyGreaterEqual(1, 2, 2));
+				Assert.AreEqual(true, MathInt.IsNearlyGreaterEqual(1, 1));
+				Assert.AreEqual(true, MathInt.IsNearlyGreaterEqual(1, 1, 0));
+				Assert.AreEqual(true, MathInt.IsNearlyGreaterEqual(1, 1, 1));
+				Assert.AreEqual(true, MathInt.IsNearlyGreaterEqual(1, 1, 2));
+				Assert.AreEqual(true, MathInt.IsNearlyGreaterEqual(2, 1));
+				Assert.AreEqual(true, MathInt.IsNearlyGreaterEqual(2, 1, 0));
+				Assert.AreEqual(true, MathInt.IsNearlyGreaterEqual(2, 1, 1));
+				Assert.AreEqual(true, MathInt.IsNearlyGreaterEqual(2, 1, 2));
 			}
 
 			[Test]
 			public void IsNearlyLess ()
 			{
-				Assert.Fail();
+				Assert.AreEqual(true, MathInt.IsNearlyLess(1, 2));
+				Assert.AreEqual(true, MathInt.IsNearlyLess(1, 2, 0));
+				Assert.AreEqual(true, MathInt.IsNearlyLess(1, 2, 1));
+				Assert.AreEqual(true, MathInt.IsNearlyLess(1, 2, 2));
+				Assert.AreEqual(false, MathInt.IsNearlyLess(1, 1));
+				Assert.AreEqual(false, MathInt.IsNearlyLess(1, 1, 0));
+				Assert.AreEqual(true, MathInt.IsNearlyLess(1, 1, 1));
+				Assert.AreEqual(true, MathInt.IsNearlyLess(1, 1, 2));
+				Assert.AreEqual(false, MathInt.IsNearlyLess(2, 1));
+				Assert.AreEqual(false, MathInt.IsNearlyLess(2, 1, 0));
+				Assert.AreEqual(false, MathInt.IsNearlyLess(2, 1, 1));
+				Assert.AreEqual(true, MathInt.IsNearlyLess(2, 1, 2));
 			}
 
 			[Test]
 			public void IsNearlyLessEqual ()
 			{
-				Assert.Fail();
+				Assert.AreEqual(true, MathInt.IsNearlyLessEqual(1, 2));
+				Assert.AreEqual(true, MathInt.IsNearlyLessEqual(1, 2, 0));
+				Assert.AreEqual(true, MathInt.IsNearlyLessEqual(1, 2, 1));
+				Assert.AreEqual(true, MathInt.IsNearlyLessEqual(1, 2, 2));
+				Assert.AreEqual(true, MathInt.IsNearlyLessEqual(1, 1));
+				Assert.AreEqual(true, MathInt.IsNearlyLessEqual(1, 1, 0));
+				Assert.AreEqual(true, MathInt.IsNearlyLessEqual(1, 1, 1));
+				Assert.AreEqual(true, MathInt.IsNearlyLessEqual(1, 1, 2));
+				Assert.AreEqual(false, MathInt.IsNearlyLessEqual(2, 1));
+				Assert.AreEqual(false, MathInt.IsNearlyLessEqual(2, 1, 0));
+				Assert.AreEqual(true, MathInt.IsNearlyLessEqual(2, 1, 1));
+				Assert.AreEqual(true, MathInt.IsNearlyLessEqual(2, 1, 2));
 			}
 
 			[Test]
@@ -311,9 +397,20 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 			[Test]
 			public void Mul ()
 			{
-				Assert.Fail();
-			}
+				Assert.AreEqual(6 * 5, MathInt.Mul(6, 5));
+				Assert.AreEqual(2 * 5, MathInt.Mul(2, 5));
+				Assert.AreEqual(6 * 2, MathInt.Mul(6, 2));
+				Assert.AreEqual(2 * 2, MathInt.Mul(2, 2));
 
+				int a = 6;
+				int b = 2;
+				int c = 6;
+				int d = 2;
+				Assert.AreEqual(6 * 5, MathInt.Mul(ref a, 5));
+				Assert.AreEqual(2 * 5, MathInt.Mul(ref b, 5));
+				Assert.AreEqual(6 * 2, MathInt.Mul(ref c, 2));
+				Assert.AreEqual(2 * 2, MathInt.Mul(ref d, 2));
+			}
 			[Test]
 			public void Negate ()
 			{

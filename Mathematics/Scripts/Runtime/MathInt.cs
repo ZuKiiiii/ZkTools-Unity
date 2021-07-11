@@ -16,6 +16,19 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int Add (int p_lhs, int p_rhs)
+			{
+				return p_lhs + p_rhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Add (ref int p_lhs, int p_rhs)
+			{
+				p_lhs += p_rhs;
+				return p_lhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int Clamp (int p_value, int p_min = 0, int p_max = 1)
 			{
 				return Min(Max(p_value, p_min), p_max);
@@ -52,6 +65,19 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int Div (int p_dividend, int p_divisor)
+			{
+				return p_dividend / p_divisor;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int Div (ref int p_dividend, int p_divisor)
+			{
+				p_dividend /= p_divisor;
+				return p_dividend;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int DivRem (int p_dividend, int p_divisor, out int p_remainder)
 			{
 				return Math.DivRem(p_dividend, p_divisor, out p_remainder);
@@ -63,6 +89,19 @@ namespace ZkTools.Mathematics
 				DivRemResult result = new DivRemResult();
 				result.result = DivRem(p_dividend, p_divisor, out result.remainder);
 				return result;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int DivSafe (int p_dividend, int p_divisor, int p_defaultValue = 0)
+			{
+				return IsZero(p_divisor) ? p_defaultValue : p_dividend / p_divisor;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int DivSafe (ref int p_dividend, int p_divisor, int p_defaultValue = 0)
+			{
+				p_dividend = DivSafe(p_dividend, p_divisor, p_defaultValue);
+				return p_dividend;
 			}
 
 			public static int GreatestCommonDivisor (int p_a, int p_b)
@@ -78,9 +117,57 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsGreater (int p_lhs, int p_rhs)
+			{
+				return p_lhs > p_rhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsGreaterEqual (int p_lhs, int p_rhs)
+			{
+				return p_lhs >= p_rhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsLess (int p_lhs, int p_rhs)
+			{
+				return p_lhs < p_rhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsLessEqual (int p_lhs, int p_rhs)
+			{
+				return p_lhs <= p_rhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static bool IsNearlyEqual (int p_lhs, int p_rhs, int p_tolerance = 0)
 			{
 				return Abs(p_lhs - p_rhs) <= p_tolerance;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsNearlyGreater (int p_lhs, int p_rhs, int p_tolerance = 0)
+			{
+				return p_lhs > p_rhs - p_tolerance;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsNearlyGreaterEqual (int p_lhs, int p_rhs, int p_tolerance = 0)
+			{
+				return p_lhs >= p_rhs - p_tolerance;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsNearlyLess (int p_lhs, int p_rhs, int p_tolerance = 0)
+			{
+				return p_lhs < p_rhs + p_tolerance;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsNearlyLessEqual (int p_lhs, int p_rhs, int p_tolerance = 0)
+			{
+				return p_lhs <= p_rhs + p_tolerance;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -159,6 +246,18 @@ namespace ZkTools.Mathematics
 			public static int Min (params int[] p_values)
 			{
 				return p_values.Min();
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int Mul (int p_lhs, int p_rhs)
+			{
+				return p_lhs * p_rhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int Mul (ref int p_lhs, int p_rhs)
+			{
+				return p_lhs *= p_rhs;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

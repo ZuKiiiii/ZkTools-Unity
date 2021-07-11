@@ -314,7 +314,7 @@ namespace ZkTools.Mathematics
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static bool IsNearlyLess (float p_lhs, float p_rhs, float p_tolerance = float.Epsilon)
 			{
-				return p_lhs <= p_rhs + p_tolerance;
+				return p_lhs < p_rhs + p_tolerance;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

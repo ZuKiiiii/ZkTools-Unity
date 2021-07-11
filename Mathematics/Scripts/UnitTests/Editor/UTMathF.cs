@@ -29,7 +29,19 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 			[Test]
 			public void Add ()
 			{
-				Assert.Fail();
+				Assert.AreEqual(6.0f + 5.0f, MathF.Add(6.0f, 5.0f));
+				Assert.AreEqual(2.0f + 5.0f, MathF.Add(2.0f, 5.0f));
+				Assert.AreEqual(6.0f + 2.0f, MathF.Add(6.0f, 2.0f));
+				Assert.AreEqual(2.0f + 2.0f, MathF.Add(2.0f, 2.0f));
+
+				float a = 6.0f;
+				float b = 2.0f;
+				float c = 6.0f;
+				float d = 2.0f;
+				Assert.AreEqual(6.0f + 5.0f, MathF.Add(ref a, 5.0f));
+				Assert.AreEqual(2.0f + 5.0f, MathF.Add(ref b, 5.0f));
+				Assert.AreEqual(6.0f + 2.0f, MathF.Add(ref c, 2.0f));
+				Assert.AreEqual(2.0f + 2.0f, MathF.Add(ref d, 2.0f));
 			}
 
 			[Test]
@@ -121,7 +133,19 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 			[Test]
 			public void Div ()
 			{
-				Assert.Fail();
+				Assert.AreEqual(6.0f / 5.0f, MathF.Div(6.0f, 5.0f));
+				Assert.AreEqual(2.0f / 5.0f, MathF.Div(2.0f, 5.0f));
+				Assert.AreEqual(6.0f / 2.0f, MathF.Div(6.0f, 2.0f));
+				Assert.AreEqual(2.0f / 2.0f, MathF.Div(2.0f, 2.0f));
+
+				float a = 6.0f;
+				float b = 2.0f;
+				float c = 6.0f;
+				float d = 2.0f;
+				Assert.AreEqual(6.0f / 5.0f, MathF.Div(ref a, 5.0f));
+				Assert.AreEqual(2.0f / 5.0f, MathF.Div(ref b, 5.0f));
+				Assert.AreEqual(6.0f / 2.0f, MathF.Div(ref c, 2.0f));
+				Assert.AreEqual(2.0f / 2.0f, MathF.Div(ref d, 2.0f));
 			}
 
 			[Test]
@@ -274,25 +298,33 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 			[Test]
 			public void IsGreater ()
 			{
-				Assert.Fail();
+				Assert.AreEqual(1.0f > 2.0f, MathF.IsGreater(1.0f, 2.0f));
+				Assert.AreEqual(1.0f > 1.0f, MathF.IsGreater(1.0f, 1.0f));
+				Assert.AreEqual(2.0f > 1.0f, MathF.IsGreater(2.0f, 1.0f));
 			}
 
 			[Test]
 			public void IsGreaterEqual ()
 			{
-				Assert.Fail();
+				Assert.AreEqual(1.0f >= 2.0f, MathF.IsGreaterEqual(1.0f, 2.0f));
+				Assert.AreEqual(1.0f >= 1.0f, MathF.IsGreaterEqual(1.0f, 1.0f));
+				Assert.AreEqual(2.0f >= 1.0f, MathF.IsGreaterEqual(2.0f, 1.0f));
 			}
 
 			[Test]
 			public void IsLess ()
 			{
-				Assert.Fail();
+				Assert.AreEqual(1.0f < 2.0f, MathF.IsLess(1.0f, 2.0f));
+				Assert.AreEqual(1.0f < 1.0f, MathF.IsLess(1.0f, 1.0f));
+				Assert.AreEqual(2.0f < 1.0f, MathF.IsLess(2.0f, 1.0f));
 			}
 
 			[Test]
 			public void IsLessEqual ()
 			{
-				Assert.Fail();
+				Assert.AreEqual(1.0f <= 2.0f, MathF.IsLessEqual(1.0f, 2.0f));
+				Assert.AreEqual(1.0f <= 1.0f, MathF.IsLessEqual(1.0f, 1.0f));
+				Assert.AreEqual(2.0f <= 1.0f, MathF.IsLessEqual(2.0f, 1.0f));
 			}
 
 			[Test]
@@ -308,25 +340,69 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 			[Test]
 			public void IsNearlyGreater ()
 			{
-				Assert.Fail();
+				Assert.AreEqual(false, MathF.IsNearlyGreater(1.0f, 2.0f));
+				Assert.AreEqual(false, MathF.IsNearlyGreater(1.0f, 2.0f, 0.9f));
+				Assert.AreEqual(false, MathF.IsNearlyGreater(1.0f, 2.0f, 1.0f));
+				Assert.AreEqual(true, MathF.IsNearlyGreater(1.0f, 2.0f, 1.1f));
+				Assert.AreEqual(false, MathF.IsNearlyGreater(1.0f, 1.0f));
+				Assert.AreEqual(true, MathF.IsNearlyGreater(1.0f, 1.0f, 0.9f));
+				Assert.AreEqual(true, MathF.IsNearlyGreater(1.0f, 1.0f, 1.0f));
+				Assert.AreEqual(true, MathF.IsNearlyGreater(1.0f, 1.0f, 1.1f));
+				Assert.AreEqual(true, MathF.IsNearlyGreater(2.0f, 1.0f));
+				Assert.AreEqual(true, MathF.IsNearlyGreater(2.0f, 1.0f, 0.9f));
+				Assert.AreEqual(true, MathF.IsNearlyGreater(2.0f, 1.0f, 1.0f));
+				Assert.AreEqual(true, MathF.IsNearlyGreater(2.0f, 1.0f, 1.1f));
 			}
 
 			[Test]
 			public void IsNearlyGreaterEqual ()
 			{
-				Assert.Fail();
+				Assert.AreEqual(false, MathF.IsNearlyGreaterEqual(1.0f, 2.0f));
+				Assert.AreEqual(false, MathF.IsNearlyGreaterEqual(1.0f, 2.0f, 0.9f));
+				Assert.AreEqual(true, MathF.IsNearlyGreaterEqual(1.0f, 2.0f, 1.0f));
+				Assert.AreEqual(true, MathF.IsNearlyGreaterEqual(1.0f, 2.0f, 1.1f));
+				Assert.AreEqual(true, MathF.IsNearlyGreaterEqual(1.0f, 1.0f));
+				Assert.AreEqual(true, MathF.IsNearlyGreaterEqual(1.0f, 1.0f, 0.9f));
+				Assert.AreEqual(true, MathF.IsNearlyGreaterEqual(1.0f, 1.0f, 1.0f));
+				Assert.AreEqual(true, MathF.IsNearlyGreaterEqual(1.0f, 1.0f, 1.1f));
+				Assert.AreEqual(true, MathF.IsNearlyGreaterEqual(2.0f, 1.0f));
+				Assert.AreEqual(true, MathF.IsNearlyGreaterEqual(2.0f, 1.0f, 0.9f));
+				Assert.AreEqual(true, MathF.IsNearlyGreaterEqual(2.0f, 1.0f, 1.0f));
+				Assert.AreEqual(true, MathF.IsNearlyGreaterEqual(2.0f, 1.0f, 1.1f));
 			}
 
 			[Test]
 			public void IsNearlyLess ()
 			{
-				Assert.Fail();
+				Assert.AreEqual(true, MathF.IsNearlyLess(1.0f, 2.0f));
+				Assert.AreEqual(true, MathF.IsNearlyLess(1.0f, 2.0f, 0.9f));
+				Assert.AreEqual(true, MathF.IsNearlyLess(1.0f, 2.0f, 1.0f));
+				Assert.AreEqual(true, MathF.IsNearlyLess(1.0f, 2.0f, 1.1f));
+				Assert.AreEqual(false, MathF.IsNearlyLess(1.0f, 1.0f));
+				Assert.AreEqual(true, MathF.IsNearlyLess(1.0f, 1.0f, 0.9f));
+				Assert.AreEqual(true, MathF.IsNearlyLess(1.0f, 1.0f, 1.0f));
+				Assert.AreEqual(true, MathF.IsNearlyLess(1.0f, 1.0f, 1.1f));
+				Assert.AreEqual(false, MathF.IsNearlyLess(2.0f, 1.0f));
+				Assert.AreEqual(false, MathF.IsNearlyLess(2.0f, 1.0f, 0.9f));
+				Assert.AreEqual(false, MathF.IsNearlyLess(2.0f, 1.0f, 1.0f));
+				Assert.AreEqual(true, MathF.IsNearlyLess(2.0f, 1.0f, 1.1f));
 			}
 
 			[Test]
 			public void IsNearlyLessEqual ()
 			{
-				Assert.Fail();
+				Assert.AreEqual(true, MathF.IsNearlyLessEqual(1.0f, 2.0f));
+				Assert.AreEqual(true, MathF.IsNearlyLessEqual(1.0f, 2.0f, 0.9f));
+				Assert.AreEqual(true, MathF.IsNearlyLessEqual(1.0f, 2.0f, 1.0f));
+				Assert.AreEqual(true, MathF.IsNearlyLessEqual(1.0f, 2.0f, 1.1f));
+				Assert.AreEqual(true, MathF.IsNearlyLessEqual(1.0f, 1.0f));
+				Assert.AreEqual(true, MathF.IsNearlyLessEqual(1.0f, 1.0f, 0.9f));
+				Assert.AreEqual(true, MathF.IsNearlyLessEqual(1.0f, 1.0f, 1.0f));
+				Assert.AreEqual(true, MathF.IsNearlyLessEqual(1.0f, 1.0f, 1.1f));
+				Assert.AreEqual(false, MathF.IsNearlyLessEqual(2.0f, 1.0f));
+				Assert.AreEqual(false, MathF.IsNearlyLessEqual(2.0f, 1.0f, 0.9f));
+				Assert.AreEqual(true, MathF.IsNearlyLessEqual(2.0f, 1.0f, 1.0f));
+				Assert.AreEqual(true, MathF.IsNearlyLessEqual(2.0f, 1.0f, 1.1f));
 			}
 
 			[Test]
@@ -568,7 +644,19 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 			[Test]
 			public void Mul ()
 			{
-				Assert.Fail();
+				Assert.AreEqual(6.0f * 5.0f, MathF.Mul(6.0f, 5.0f));
+				Assert.AreEqual(2.0f * 5.0f, MathF.Mul(2.0f, 5.0f));
+				Assert.AreEqual(6.0f * 2.0f, MathF.Mul(6.0f, 2.0f));
+				Assert.AreEqual(2.0f * 2.0f, MathF.Mul(2.0f, 2.0f));
+
+				float a = 6.0f;
+				float b = 2.0f;
+				float c = 6.0f;
+				float d = 2.0f;
+				Assert.AreEqual(6.0f * 5.0f, MathF.Mul(ref a, 5.0f));
+				Assert.AreEqual(2.0f * 5.0f, MathF.Mul(ref b, 5.0f));
+				Assert.AreEqual(6.0f * 2.0f, MathF.Mul(ref c, 2.0f));
+				Assert.AreEqual(2.0f * 2.0f, MathF.Mul(ref d, 2.0f));
 			}
 
 			[Test]
@@ -780,6 +868,24 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 				Assert.AreEqual(16.0f, MathF.Square(-4.0f));
 				Assert.AreEqual(64.0f, MathF.Square(8.0f));
 				Assert.AreEqual(64.0f, MathF.Square(-8.0f));
+			}
+
+			[Test]
+			public void Sub ()
+			{
+				Assert.AreEqual(6.0f - 5.0f, MathF.Sub(6.0f, 5.0f));
+				Assert.AreEqual(2.0f - 5.0f, MathF.Sub(2.0f, 5.0f));
+				Assert.AreEqual(6.0f - 2.0f, MathF.Sub(6.0f, 2.0f));
+				Assert.AreEqual(2.0f - 2.0f, MathF.Sub(2.0f, 2.0f));
+
+				float a = 6.0f;
+				float b = 2.0f;
+				float c = 6.0f;
+				float d = 2.0f;
+				Assert.AreEqual(6.0f - 5.0f, MathF.Sub(ref a, 5.0f));
+				Assert.AreEqual(2.0f - 5.0f, MathF.Sub(ref b, 5.0f));
+				Assert.AreEqual(6.0f - 2.0f, MathF.Sub(ref c, 2.0f));
+				Assert.AreEqual(2.0f - 2.0f, MathF.Sub(ref d, 2.0f));
 			}
 
 			[Test]
