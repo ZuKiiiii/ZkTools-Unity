@@ -67,6 +67,12 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Back (float p_scale = 1.0f)
+			{
+				return new Vector3(0.0f, 0.0f, -p_scale);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector3 Ceil (Vector3 p_vector)
 			{
 				return new Vector3(MathF.Ceil(p_vector.x), MathF.Ceil(p_vector.y), MathF.Ceil(p_vector.z));
@@ -160,6 +166,18 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Direction (Vector3 p_from, Vector3 p_to)
+			{
+				return FromTo(p_from, p_to).normalized;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 DirectionTo (this Vector3 p_this, Vector3 p_to)
+			{
+				return Direction(p_this, p_to);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector3 Div (Vector3 p_lhs, Vector3 p_rhs)
 			{
 				return new Vector3(p_lhs.x / p_rhs.x, p_lhs.y / p_rhs.y, p_lhs.z / p_rhs.z);
@@ -245,13 +263,13 @@ namespace ZkTools.Mathematics.Extensions
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Dot (Vector3 p_lhs, Vector3 p_rhs)
 			{
-				return p_lhs.x * p_rhs.x + p_lhs.y * p_rhs.y + + p_lhs.z * p_rhs.z;
+				return p_lhs.x * p_rhs.x + p_lhs.y * p_rhs.y + p_lhs.z * p_rhs.z;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Vector3 Direction (Vector3 p_from, Vector3 p_to)
+			public static Vector3 Down (float p_scale = 1.0f)
 			{
-				return FromTo(p_from, p_to).normalized;
+				return new Vector3(0.0f, p_scale, 0.0f);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -296,6 +314,12 @@ namespace ZkTools.Mathematics.Extensions
 			public static Vector3Int FloorToInt (Vector3 p_vector)
 			{
 				return new Vector3Int(MathF.FloorToInt(p_vector.x), MathF.FloorToInt(p_vector.y), MathF.FloorToInt(p_vector.z));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Forward (float p_scale = 1.0f)
+			{
+				return new Vector3(0.0f, 0.0f, p_scale);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -370,14 +394,16 @@ namespace ZkTools.Mathematics.Extensions
 				return (direction, magnitude);
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float GetMax (this Vector3 p_this)
 			{
-				return MathF.Max(p_this.x, p_this.y, p_this.z);
+				return Max(p_this);
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float GetMin (this Vector3 p_this)
 			{
-				return MathF.Max(p_this.x, p_this.y, p_this.z);
+				return Min(p_this);
 			}
 
 			public static bool IsCollinear (Vector3 p_lhs, Vector3 p_rhs)
@@ -447,6 +473,12 @@ namespace ZkTools.Mathematics.Extensions
 			public static bool IsZero (this Vector3 p_this)
 			{
 				return p_this == Vector3.zero;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Left (float p_scale = 1.0f)
+			{
+				return new Vector3(-p_scale, 0.0f, 0.0f);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -620,6 +652,12 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Right (float p_scale = 1.0f)
+			{
+				return new Vector3(p_scale, 0.0f, 0.0f);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector3 Round (Vector3 p_vector)
 			{
 				return new Vector3(MathF.Round(p_vector.x), MathF.Round(p_vector.y), MathF.Round(p_vector.z));
@@ -748,6 +786,18 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 To (this Vector3 p_this, Vector3 p_target)
+			{
+				return FromTo(p_this, p_target);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Up (float p_scale = 1.0f)
+			{
+				return new Vector3(0.0f, p_scale, 0.0f);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector3 WeightedSum (Vector2 p_weight, Vector3 p_a, Vector3 p_b)
 			{
 				return WeightedSum(p_weight.x, p_weight.y, p_a, p_b);
@@ -781,6 +831,12 @@ namespace ZkTools.Mathematics.Extensions
 			public static Vector3 WeightedSum (float p_weightA, float p_weightB, float p_weightC, float p_weightD, Vector3 p_a, Vector3 p_b, Vector3 p_c, Vector3 p_d)
 			{
 				return p_a * p_weightA + p_b * p_weightB + p_c * p_weightC + p_d * p_weightD;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 WithMagnitude (this Vector3 p_this, float p_magnitude)
+			{
+				return p_this.normalized * p_magnitude;
 			}
 
 		#endregion

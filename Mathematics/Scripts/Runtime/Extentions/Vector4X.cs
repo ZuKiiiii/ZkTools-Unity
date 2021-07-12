@@ -123,9 +123,15 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float Det (Vector3 p_a, Vector3 p_b, Vector3 p_c)
+			public static Vector4 Direction (Vector4 p_from, Vector4 p_to)
 			{
-				return (p_a.x * p_b.y * p_c.z) + (p_a.y * p_b.z * p_c.x) + (p_a.z * p_b.x * p_c.y) - (p_a.z * p_b.y * p_c.x) - (p_a.y * p_b.x * p_c.z) - (p_a.x * p_b.z * p_c.y);
+				return FromTo(p_from, p_to).normalized;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 DirectionTo (this Vector4 p_this, Vector4 p_to)
+			{
+				return Direction(p_this, p_to);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -213,6 +219,12 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Dot (Vector4 p_lhs, Vector4 p_rhs)
+			{
+				return p_lhs.x * p_rhs.x + p_lhs.y * p_rhs.y + p_lhs.z * p_rhs.z + p_lhs.w * p_rhs.w;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector4 Floor (Vector4 p_vector)
 			{
 				return new Vector4(MathF.Floor(p_vector.x), MathF.Floor(p_vector.y), MathF.Floor(p_vector.z), MathF.Floor(p_vector.w));
@@ -222,6 +234,24 @@ namespace ZkTools.Mathematics.Extensions
 			public static Vector4 Frac (Vector4 p_value)
 			{
 				return p_value - Floor(p_value);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 FromTo (Vector4 p_from, Vector4 p_to)
+			{
+				return p_to - p_from;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float GetMax (this Vector3 p_this)
+			{
+				return Max(p_this);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float GetMin (this Vector3 p_this)
+			{
+				return Min(p_this);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -372,33 +402,33 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Vector3 Mul (Vector3 p_lhs, Vector3 p_rhs)
+			public static Vector4 Mul (Vector4 p_lhs, Vector4 p_rhs)
 			{
-				return new Vector3(p_lhs.x * p_rhs.x, p_lhs.y * p_rhs.y, p_lhs.z * p_rhs.z);
+				return new Vector4(p_lhs.x * p_rhs.x, p_lhs.y * p_rhs.y, p_lhs.z * p_rhs.z, p_lhs.w * p_rhs.w);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Vector3 Mul (ref Vector3 p_lhs, Vector3 p_rhs)
+			public static Vector4 Mul (ref Vector4 p_lhs, Vector4 p_rhs)
 			{
 				p_lhs = Mul(p_lhs, p_rhs);
 				return p_lhs;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Vector3 Mul (Vector3 p_lhs, float p_rhs)
+			public static Vector4 Mul (Vector4 p_lhs, float p_rhs)
 			{
 				return p_lhs * p_rhs;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Vector3 Mul (ref Vector3 p_lhs, float p_rhs)
+			public static Vector4 Mul (ref Vector4 p_lhs, float p_rhs)
 			{
 				p_lhs *= p_rhs;
 				return p_lhs;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Vector3 Mul (float p_lhs, Vector3 p_rhs)
+			public static Vector4 Mul (float p_lhs, Vector4 p_rhs)
 			{
 				return p_lhs * p_rhs;
 			}
@@ -496,6 +526,12 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 To (this Vector4 p_this, Vector4 p_target)
+			{
+				return FromTo(p_this, p_target);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector4 WeightedSum (Vector2 p_weight, Vector4 p_a, Vector4 p_b)
 			{
 				return WeightedSum(p_weight.x, p_weight.y, p_a, p_b);
@@ -529,6 +565,12 @@ namespace ZkTools.Mathematics.Extensions
 			public static Vector4 WeightedSum (float p_weightA, float p_weightB, float p_weightC, float p_weightD, Vector4 p_a, Vector4 p_b, Vector4 p_c, Vector4 p_d)
 			{
 				return p_a * p_weightA + p_b * p_weightB + p_c * p_weightC + p_d * p_weightD;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 WithMagnitude (this Vector4 p_this, float p_magnitude)
+			{
+				return p_this.normalized * p_magnitude;
 			}
 
 		#endregion

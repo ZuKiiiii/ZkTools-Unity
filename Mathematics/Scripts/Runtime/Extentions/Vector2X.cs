@@ -152,12 +152,6 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float Dot (Vector2 p_lhs, Vector2 p_rhs)
-			{
-				return p_lhs.x * p_rhs.x + p_lhs.y * p_rhs.y;
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector2 Direction (Radian p_angle)
 			{
 				return new Vector2(Trigo.Cos(p_angle), Trigo.Sin(p_angle));
@@ -167,6 +161,12 @@ namespace ZkTools.Mathematics.Extensions
 			public static Vector2 Direction (Vector2 p_from, Vector2 p_to)
 			{
 				return FromTo(p_from, p_to).normalized;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector2 DirectionTo (this Vector2 p_this, Vector2 p_to)
+			{
+				return Direction(p_this, p_to);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -261,6 +261,18 @@ namespace ZkTools.Mathematics.Extensions
 			{
 				p_dividend = DivSafe(p_dividend, p_divisor, p_defaultValue);
 				return p_dividend;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Dot (Vector2 p_lhs, Vector2 p_rhs)
+			{
+				return p_lhs.x * p_rhs.x + p_lhs.y * p_rhs.y;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector2 Down (float p_scale = 1.0f)
+			{
+				return new Vector2(0.0f, p_scale);
 			}
 
 			public static void Exec (ref Vector2 p_vector, Func<float, float> p_action)
@@ -366,26 +378,31 @@ namespace ZkTools.Mathematics.Extensions
 				return (direction, magnitude);
 			}
 
-			public static float GetMax (this Vector2 p_this)
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float GetMax (this Vector3 p_this)
 			{
-				return MathF.Max(p_this.x, p_this.y);
+				return Max(p_this);
 			}
 
-			public static float GetMin (this Vector2 p_this)
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float GetMin (this Vector3 p_this)
 			{
-				return MathF.Max(p_this.x, p_this.y);
+				return Min(p_this);
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static bool IsCollinear (Vector2 p_lhs, Vector2 p_rhs)
 			{
 				return Det(p_lhs, p_rhs).IsZero();
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static bool IsNormalized (this Vector3 p_this)
 			{
 				return p_this.sqrMagnitude == 1.0f;
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static bool IsUnit (this Vector3 p_this, float p_epsilon = float.Epsilon)
 			{
 				return p_this.sqrMagnitude == 1.0f;
@@ -443,6 +460,12 @@ namespace ZkTools.Mathematics.Extensions
 			public static bool IsZero (this Vector2 p_this)
 			{
 				return p_this == Vector2.zero;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector2 Left (float p_scale = 1.0f)
+			{
+				return new Vector2(p_scale, 0.0f);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -580,14 +603,16 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			// Counter Clock Wise !!!
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector2 Perpendicular (this Vector2 p_this)
 			{
 				return Rotate90CCW(p_this);
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector2 PerpendicularInv (this Vector2 p_this)
 			{
-				return -p_this.Perpendicular();
+				return Rotate90CW(p_this);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -625,14 +650,36 @@ namespace ZkTools.Mathematics.Extensions
 				return new Vector2(p_value, p_value);
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector2 Right (float p_scale = 1.0f)
+			{
+				return new Vector2(p_scale, 0.0f);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector2 Rotate (Vector2 p_vector, Radian p_angle)
+			{
+				float cos = Trigo.Cos(p_angle);
+				float sin = Trigo.Sin(p_angle);
+				return new Vector2(cos * p_vector.x - sin * p_vector.y, sin * p_vector.x + cos * p_vector.y);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector2 Rotate90CW (Vector2 p_vector)
 			{
 				return new Vector2(p_vector.y, -p_vector.x);
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector2 Rotate90CCW (Vector2 p_vector)
 			{
 				return new Vector2(-p_vector.y, p_vector.x);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector2 RotateAround (Vector2 p_vector, Vector2 p_pivot, Radian p_angle)
+			{
+				return Rotate(p_vector - p_pivot, p_angle) + p_pivot;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -757,6 +804,19 @@ namespace ZkTools.Mathematics.Extensions
 				return Replicate(p_lhs) - p_rhs;
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector2 To (this Vector2 p_this, Vector2 p_target)
+			{
+				return FromTo(p_this, p_target);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector2 Up (float p_scale = 1.0f)
+			{
+				return new Vector2(0.0f, p_scale);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector2 WeightedSum (Vector2 p_weight, Vector2 p_a, Vector2 p_b)
 			{
 				return WeightedSum(p_weight.x, p_weight.y, p_a, p_b);
@@ -790,6 +850,12 @@ namespace ZkTools.Mathematics.Extensions
 			public static Vector2 WeightedSum (float p_weightA, float p_weightB, float p_weightC, float p_weightD, Vector2 p_a, Vector2 p_b, Vector2 p_c, Vector2 p_d)
 			{
 				return p_a * p_weightA + p_b * p_weightB + p_c * p_weightC + p_d * p_weightD;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector2 WithMagnitude (this Vector2 p_this, float p_magnitude)
+			{
+				return p_this.normalized * p_magnitude;
 			}
 
 		#endregion

@@ -10,6 +10,12 @@ namespace ZkTools.Mathematics.Extensions
 		#region ==============================[Static Methods]==============================
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Inv (this float p_this)
+			{
+				return MathF.Inv(p_this);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static bool IsNearlyEqual (this float p_this, float p_other, float p_tolerance = float.Epsilon)
 			{
 				return MathF.IsNearlyEqual(p_this, p_other, p_tolerance);
