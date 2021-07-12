@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using ZkTools.Mathematics.Angles;
@@ -8,6 +9,12 @@ namespace ZkTools.Mathematics.Extensions
 	public static class Vector3X
 	{
 		#region ==============================[Static Methods]==============================
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Abs (Vector3 p_vector)
+			{
+				return new Vector3(MathF.Abs(p_vector.x), MathF.Abs(p_vector.y), MathF.Abs(p_vector.z));
+			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Radian Angle (Vector3 p_from, Vector3 p_to)
@@ -70,7 +77,7 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Vector3 Clamp (Vector3 p_vector, float p_min, float p_max)
+			public static Vector3 Clamp (Vector3 p_vector, float p_min = 0.0f, float p_max = 1.0f)
 			{
 				return new Vector3(MathF.Clamp(p_vector.x, p_min, p_max), MathF.Clamp(p_vector.y, p_min, p_max), MathF.Clamp(p_vector.z, p_min, p_max));
 			}
@@ -201,13 +208,19 @@ namespace ZkTools.Mathematics.Extensions
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector3 Floor (Vector3 p_vector)
 			{
-				return new Vector3(MathF.Floor(p_vector.x), MathF.Floor(p_vector.y));
+				return new Vector3(MathF.Floor(p_vector.x), MathF.Floor(p_vector.y), MathF.Floor(p_vector.z));
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector3Int FloorToInt (Vector3 p_vector)
 			{
 				return new Vector3Int(MathF.FloorToInt(p_vector.x), MathF.FloorToInt(p_vector.y), MathF.FloorToInt(p_vector.z));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Frac (Vector3 p_value)
+			{
+				return p_value - Floor(p_value);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -330,14 +343,52 @@ namespace ZkTools.Mathematics.Extensions
 				return new Vector3(MathF.LerpClamped(p_a.x, p_b.x, p_t.x), MathF.LerpClamped(p_a.y, p_b.y, p_t.y), MathF.LerpClamped(p_a.z, p_b.z, p_t.z));
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector3 Max (Vector3 p_lhs, Vector3 p_rhs)
 			{
 				return new Vector3(MathF.Max(p_lhs.x, p_rhs.x), MathF.Max(p_lhs.y, p_rhs.y), MathF.Max(p_lhs.z, p_rhs.z));
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Max (Vector3 p_a, Vector3 p_b, Vector3 p_c)
+			{
+				return Max(Max(p_a, p_b), p_c);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Max (Vector3 p_a, Vector3 p_b, Vector3 p_c, Vector3 p_d)
+			{
+				return Max(Max(Max(p_a, p_b), p_c), p_d);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Max (params Vector3[] p_values)
+			{
+				return p_values.Max();
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector3 Min (Vector3 p_lhs, Vector3 p_rhs)
 			{
 				return new Vector3(MathF.Min(p_lhs.x, p_rhs.x), MathF.Min(p_lhs.y, p_rhs.y), MathF.Min(p_lhs.z, p_rhs.z));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Min (Vector3 p_a, Vector3 p_b, Vector3 p_c)
+			{
+				return Min(Min(p_a, p_b), p_c);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Min (Vector3 p_a, Vector3 p_b, Vector3 p_c, Vector3 p_d)
+			{
+				return Min(Min(Min(p_a, p_b), p_c), p_d);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Min (params Vector3[] p_values)
+			{
+				return p_values.Min();
 			}
 
 			public static Vector3 Remap (Vector3 p_value, Vector3 p_inMin, Vector3 p_inMax, Vector3 p_outMin, Vector3 p_outMax)

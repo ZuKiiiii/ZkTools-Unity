@@ -216,9 +216,21 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Crd (float p_value)
+			{
+				return 2.0f * (float)Math.Sin(p_value / 2.0f);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Csc (float p_value)
 			{
 				return 1.0f / Sin(p_value);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float CscH (float p_value)
+			{
+				return 1.0f / SinH(p_value);
 			}
 
 			// coversine
@@ -226,12 +238,6 @@ namespace ZkTools.Mathematics
 			public static float Cvs (float p_value)
 			{
 				return 1.0f - Sin(p_value);
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float CscH (float p_value)
-			{
-				return 1.0f / SinH(p_value);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

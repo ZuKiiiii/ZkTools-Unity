@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace ZkTools.Mathematics.Angles
 {
@@ -107,6 +108,62 @@ namespace ZkTools.Mathematics.Angles
 					p_gradian += One;
 
 				return p_gradian;
+			}
+
+			public static Gradian Delta (Gradian p_lhs, Gradian p_rhs)
+			{
+				return MathF.Repeat(p_rhs - p_lhs + Half, One) - Half;
+			}
+
+			public static float InverseLerp (Gradian p_a, Gradian p_b, Gradian p_value)
+			{
+				float angle = Delta(p_a, p_b);
+				float h = p_a + angle * 0.5f;
+
+				p_b = p_a + angle;
+				p_value = h + Delta (h, p_value);
+
+				return MathF.InverseLerpClamped(p_a, p_b, p_value);
+			}
+
+			public static Gradian Lerp (Gradian p_from, Gradian p_to, float p_t)
+			{
+				float delta = MathF.Repeat(p_to - p_from, One);
+				if (delta > Half)
+					delta -= One;
+				return p_from + delta * MathF.Clamp(p_t);
+			}
+
+			public static Gradian MoveTowards (Gradian p_current, Gradian p_target, Gradian p_maxDelta)
+			{
+				float deltaAngle = Delta(p_current, p_target);
+
+				if (-p_maxDelta < deltaAngle && deltaAngle < p_maxDelta)
+					return p_target;
+
+				p_target = p_current + deltaAngle;
+				return MathF.MoveTowards(p_current, p_target, p_maxDelta);
+			}
+
+			public static Gradian SmoothDampAngle (Gradian p_current, Gradian p_target, ref Gradian p_currentVelocity, float p_smoothTime)
+			{
+				return SmoothDampAngle(p_current, p_target, ref p_currentVelocity, p_smoothTime, Time.deltaTime, MathF.Infinity);
+			}
+
+			public static Gradian SmoothDampAngle (Gradian p_current, Gradian p_target, ref Gradian p_currentVelocity, float p_smoothTime, Gradian p_maxSpeed)
+			{
+				return SmoothDampAngle(p_current, p_target, ref p_currentVelocity, p_smoothTime, Time.deltaTime);
+			}
+
+			public static Gradian SmoothDampAngle (Gradian p_current, Gradian p_target, ref Gradian p_currentVelocity, float p_smoothTime, float p_deltaTime)
+			{
+				return SmoothDampAngle(p_current, p_target, ref p_currentVelocity, p_smoothTime, Time.deltaTime, MathF.Infinity);
+			}
+
+			public static Gradian SmoothDampAngle (Gradian p_current, Gradian p_target, ref Gradian p_currentVelocity, float p_smoothTime, float p_deltaTime, Gradian p_maxSpeed)
+			{
+				p_target = p_current + Delta(p_current, p_target);
+				return MathF.SmoothDamp(p_current, p_target, ref p_currentVelocity.gradian, p_smoothTime, p_deltaTime, p_maxSpeed);
 			}
 
 		#endregion

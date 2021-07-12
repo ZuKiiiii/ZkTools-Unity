@@ -225,6 +225,12 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int Max (int p_a, int p_b, int p_c, int p_d)
+			{
+				return Max(Max(Max(p_a, p_b), p_c), p_d);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int Max (params int[] p_values)
 			{
 				return p_values.Max();
@@ -243,9 +249,21 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int Min (int p_a, int p_b, int p_c, int p_d)
+			{
+				return Min(Min(Min(p_a, p_b), p_c), p_d);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int Min (params int[] p_values)
 			{
 				return p_values.Min();
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int Mod (int p_value, int p_length)
+			{
+				return (p_value % p_length + p_length) % p_length;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

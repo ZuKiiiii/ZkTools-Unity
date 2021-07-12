@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using UnityEngine;
 
 namespace ZkTools.Mathematics
 {
@@ -24,6 +25,10 @@ namespace ZkTools.Mathematics
 			public const float GoldenRatio = 1.618033988749894848204586834365638117e+00f;
 
 			public const float Half = 5e-01f;
+
+			public const float Infinity = Single.PositiveInfinity;
+
+			public const float NegativeInfinity = Single.NegativeInfinity;
 
 			public const float OneDivE = EPowMinusOne;
 
@@ -414,6 +419,12 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Max (float p_a, float p_b, float p_c, float p_d)
+			{
+				return Max(Max(Max(p_a, p_b), p_c), p_d);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Max (params float[] p_values)
 			{
 				return p_values.Max();
@@ -429,6 +440,12 @@ namespace ZkTools.Mathematics
 			public static float Min (float p_a, float p_b, float p_c)
 			{
 				return Min(Min(p_a, p_b), p_c);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Min (float p_a, float p_b, float p_c, float p_d)
+			{
+				return Min(Min(Min(p_a, p_b), p_c), p_d);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -602,7 +619,12 @@ namespace ZkTools.Mathematics
 				return p_value >= 0.0 ? 1f : -1f;
 			}
 
-			public static float SmoothDamp (float p_current, float p_target, ref float p_currentVelocity, float p_smoothTime, float p_deltaTime, float p_maxSpeed = float.PositiveInfinity)
+			public static float SmoothDamp (float p_current, float p_target, ref float p_currentVelocity, float p_smoothTime, float p_maxSpeed = Infinity)
+			{
+				return SmoothDamp(p_current, p_target, ref p_currentVelocity, p_smoothTime, Time.deltaTime, p_maxSpeed);
+			}
+
+			public static float SmoothDamp (float p_current, float p_target, ref float p_currentVelocity, float p_smoothTime, float p_deltaTime, float p_maxSpeed = Infinity)
 			{
 				p_smoothTime = Max(0.0001F, p_smoothTime);
 				float omega = 2F / p_smoothTime;

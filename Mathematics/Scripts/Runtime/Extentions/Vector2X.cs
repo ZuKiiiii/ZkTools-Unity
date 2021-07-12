@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using ZkTools.Mathematics.Angles;
@@ -8,6 +9,18 @@ namespace ZkTools.Mathematics.Extensions
 	public static class Vector2X
 	{
 		#region ==============================[Static Methods]==============================
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector2 Abs (Vector2 p_vector)
+			{
+				return new Vector2(MathF.Abs(p_vector.x), MathF.Abs(p_vector.y));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Radian Angle (Vector2 p_direction)
+			{
+				return Trigo.Atan2(p_direction.y, p_direction.x);
+			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Radian Angle (Vector2 p_from, Vector2 p_to)
@@ -20,7 +33,7 @@ namespace ZkTools.Mathematics.Extensions
 			{
 				return Det(p_from, p_to) > 0 ? Angle(p_from, p_to) :Radian.One - Angle(p_from, p_to);
 			}
-			
+
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Radian AngleCW (Vector2 p_from, Vector2 p_to)
 			{
@@ -70,7 +83,7 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Vector2 Clamp (Vector2 p_vector, float p_min, float p_max)
+			public static Vector2 Clamp (Vector2 p_vector, float p_min = 0.0f, float p_max = 1.0f)
 			{
 				return new Vector2(MathF.Clamp(p_vector.x, p_min, p_max), MathF.Clamp(p_vector.y, p_min, p_max));
 			}
@@ -112,7 +125,7 @@ namespace ZkTools.Mathematics.Extensions
 			{
 				return p_lhs.x * p_rhs.x + p_lhs.y * p_rhs.y;
 			}
-			
+
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector2 Direction (float p_angleRad)
 			{
@@ -141,17 +154,17 @@ namespace ZkTools.Mathematics.Extensions
 			{
 				return DivSafe(p_dividend, p_divisor, Replicate(p_defaultValue));
 			}
-		
+
 			public static Vector2 DivSafe (Vector2 p_dividend, float p_divisor, Vector2 p_defaultValue)
 			{
 				return p_divisor.IsZero() ? p_defaultValue : p_dividend / p_divisor;
 			}
-		
+
 			public static Vector2 DivSafe (Vector2 p_dividend, Vector2 p_divisor, float p_defaultValue = 0.0f)
 			{
 				return DivSafe(p_dividend, p_divisor, Replicate(p_defaultValue));
 			}
-		
+
 			public static Vector2 DivSafe (Vector2 p_dividend, Vector2 p_divisor, Vector2 p_defaultValue)
 			{
 				return new Vector2
@@ -166,7 +179,7 @@ namespace ZkTools.Mathematics.Extensions
 				p_vector.x = p_action?.Invoke(p_vector.x) ?? p_vector.x;
 				p_vector.y = p_action?.Invoke(p_vector.y) ?? p_vector.y;
 			}
-			
+
 			public static void Exec (ref Vector2 p_vector, Func<float, float> p_xAction, Func<float, float> p_yAction)
 			{
 				p_vector.x = p_xAction?.Invoke(p_vector.x) ?? p_vector.x;
@@ -190,6 +203,12 @@ namespace ZkTools.Mathematics.Extensions
 			public static Vector2Int FloorToInt (Vector2 p_vector)
 			{
 				return new Vector2Int(MathF.FloorToInt(p_vector.x), MathF.FloorToInt(p_vector.y));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector2 Frac (Vector2 p_value)
+			{
+				return p_value - Floor(p_value);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -237,7 +256,7 @@ namespace ZkTools.Mathematics.Extensions
 			{
 				return p_this.sqrMagnitude == 1.0f;
 			}
-			
+
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector2 InverseLerp (Vector2 p_a, Vector2 p_b, Vector2 p_value)
 			{
@@ -313,21 +332,59 @@ namespace ZkTools.Mathematics.Extensions
 			{
 				return new Vector2(MathF.LerpClamped(p_a.x, p_b.x, p_t.x), MathF.LerpClamped(p_a.y, p_b.y, p_t.y));
 			}
-			
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector2 Max (Vector2 p_lhs, Vector2 p_rhs)
 			{
 				return new Vector2(MathF.Max(p_lhs.x, p_rhs.x), MathF.Max(p_lhs.y, p_rhs.y));
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector2 Max (Vector2 p_a, Vector2 p_b, Vector2 p_c)
+			{
+				return Max(Max(p_a, p_b), p_c);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector2 Max (Vector2 p_a, Vector2 p_b, Vector2 p_c, Vector2 p_d)
+			{
+				return Max(Max(Max(p_a, p_b), p_c), p_d);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector2 Max (params Vector2[] p_values)
+			{
+				return p_values.Max();
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector2 Min (Vector2 p_lhs, Vector2 p_rhs)
 			{
 				return new Vector2(MathF.Min(p_lhs.x, p_rhs.x), MathF.Min(p_lhs.y, p_rhs.y));
 			}
 
-			// Clock Wise !!!
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector2 Min (Vector2 p_a, Vector2 p_b, Vector2 p_c)
+			{
+				return Min(Min(p_a, p_b), p_c);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector2 Min (Vector2 p_a, Vector2 p_b, Vector2 p_c, Vector2 p_d)
+			{
+				return Min(Min(Min(p_a, p_b), p_c), p_d);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector2 Min (params Vector2[] p_values)
+			{
+				return p_values.Min();
+			}
+
+			// Counter Clock Wise !!!
 			public static Vector2 Perpendicular (this Vector2 p_this)
 			{
-				return new Vector2(p_this.y, -p_this.x);
+				return Rotate90CCW(p_this);
 			}
 
 			public static Vector2 PerpendicularInv (this Vector2 p_this)
@@ -357,6 +414,16 @@ namespace ZkTools.Mathematics.Extensions
 				return new Vector2(p_value, p_value);
 			}
 
+			public static Vector2 Rotate90CW (Vector2 p_vector)
+			{
+				return new Vector2(p_vector.y, -p_vector.x);
+			}
+
+			public static Vector2 Rotate90CCW (Vector2 p_vector)
+			{
+				return new Vector2(-p_vector.y, p_vector.x);
+			}
+
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector2 Round (Vector2 p_vector)
 			{
@@ -374,7 +441,7 @@ namespace ZkTools.Mathematics.Extensions
 			{
 				return Dot(p_lhs, p_rhs) > 0f;
 			}
-			
+
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Radian SignedAngle (Vector2 p_from, Vector2 p_to)
 			{

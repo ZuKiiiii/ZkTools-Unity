@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace ZkTools.Mathematics.Angles
 {
@@ -107,6 +108,62 @@ namespace ZkTools.Mathematics.Angles
 					p_radian += One;
 
 				return p_radian;
+			}
+
+			public static Radian Delta (Radian p_lhs, Radian p_rhs)
+			{
+				return MathF.Repeat(p_rhs - p_lhs + Half, One) - Half;
+			}
+
+			public static float InverseLerp (Radian p_a, Radian p_b, Radian p_value)
+			{
+				float angle = Delta(p_a, p_b);
+				float h = p_a + angle * 0.5f;
+
+				p_b = p_a + angle;
+				p_value = h + Delta (h, p_value);
+
+				return MathF.InverseLerpClamped(p_a, p_b, p_value);
+			}
+
+			public static Radian Lerp (Radian p_from, Radian p_to, float p_t)
+			{
+				float delta = MathF.Repeat(p_to - p_from, One);
+				if (delta > Half)
+					delta -= One;
+				return p_from + delta * MathF.Clamp(p_t);
+			}
+
+			public static Radian MoveTowards (Radian p_current, Radian p_target, Radian p_maxDelta)
+			{
+				float deltaAngle = Delta(p_current, p_target);
+
+				if (-p_maxDelta < deltaAngle && deltaAngle < p_maxDelta)
+					return p_target;
+
+				p_target = p_current + deltaAngle;
+				return MathF.MoveTowards(p_current, p_target, p_maxDelta);
+			}
+
+			public static Radian SmoothDampAngle (Radian p_current, Radian p_target, ref Radian p_currentVelocity, float p_smoothTime)
+			{
+				return SmoothDampAngle(p_current, p_target, ref p_currentVelocity, p_smoothTime, Time.deltaTime, MathF.Infinity);
+			}
+
+			public static Radian SmoothDampAngle (Radian p_current, Radian p_target, ref Radian p_currentVelocity, float p_smoothTime, Radian p_maxSpeed)
+			{
+				return SmoothDampAngle(p_current, p_target, ref p_currentVelocity, p_smoothTime, Time.deltaTime);
+			}
+
+			public static Radian SmoothDampAngle (Radian p_current, Radian p_target, ref Radian p_currentVelocity, float p_smoothTime, float p_deltaTime)
+			{
+				return SmoothDampAngle(p_current, p_target, ref p_currentVelocity, p_smoothTime, Time.deltaTime, MathF.Infinity);
+			}
+
+			public static Radian SmoothDampAngle (Radian p_current, Radian p_target, ref Radian p_currentVelocity, float p_smoothTime, float p_deltaTime, Radian p_maxSpeed)
+			{
+				p_target = p_current + Delta(p_current, p_target);
+				return MathF.SmoothDamp(p_current, p_target, ref p_currentVelocity.radian, p_smoothTime, p_deltaTime, p_maxSpeed);
 			}
 
 		#endregion
