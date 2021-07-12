@@ -50,7 +50,7 @@ namespace ZkTools.Mathematics
 
 	public static class Easing
 	{
-		#region ====================================[]====================================
+		#region ====================================[Constant Variables]====================================
 
 			private const float C1 = 1.70158f;
 
@@ -130,12 +130,6 @@ namespace ZkTools.Mathematics
 			{
 				return Vector4X.Lerp(p_from, p_to, BackIn(p_t));
 			}
-
-			/// <summary>
-			///
-			/// </summary>
-			/// <param name="p_t"></param>
-			/// <returns></returns>
 
 			public static float BackInClamped (float p_t)
 			{
@@ -1855,6 +1849,102 @@ namespace ZkTools.Mathematics
 				}
 			}
 
+			public static float Ease1DClamped (EEase p_type, float p_t)
+			{
+				switch (p_type)
+				{
+					case EEase.BackIn : return BackInClamped(p_t);
+					case EEase.BackInOut :return BackInOutClamped(p_t);
+					case EEase.BackOut : return BackOutClamped(p_t);
+					case EEase.BounceIn : return BounceInClamped(p_t);
+					case EEase.BounceInOut : return BounceInOutClamped(p_t);
+					case EEase.BounceOut : return BounceOutClamped(p_t);
+					case EEase.BounceOutIn : return BounceOutInClamped(p_t);
+					case EEase.CircularIn : return CircularInClamped(p_t);
+					case EEase.CircularInOut : return CircularInOutClamped(p_t);
+					case EEase.CircularOut : return CircularOutClamped(p_t);
+					case EEase.CircularOutInt : return CircularOutInClamped(p_t);
+					case EEase.CubicIn : return CubicInClamped(p_t);
+					case EEase.CubicInOut : return CubicInOutClamped(p_t);
+					case EEase.CubicOut : return CubicOutClamped(p_t);
+					case EEase.CubicOutIn : return CubicOutInClamped(p_t);
+					case EEase.ElasticIn : return ElasticInClamped(p_t);
+					case EEase.ElasticInOut : return ElasticInOutClamped(p_t);
+					case EEase.ElasticOut : return ElasticOutClamped(p_t);
+					case EEase.ExponentialIn : return ExponentialInClamped(p_t);
+					case EEase.ExponentialInOut : return ExponentialInOutClamped(p_t);
+					case EEase.ExponentialOut : return ExponentialOutClamped(p_t);
+					case EEase.ExponentialOutIn : return ExponentialOutInClamped(p_t);
+					case EEase.Linear : return LerpClamped(p_t);
+					case EEase.QuadraticIn : return QuadraticInClamped(p_t);
+					case EEase.QuadraticInOut : return QuadraticInOutClamped(p_t);
+					case EEase.QuadraticOut : return QuadraticOutClamped(p_t);
+					case EEase.QuadraticOutIn : return QuadraticOutInClamped(p_t);
+					case EEase.QuarticIn : return QuarticInClamped(p_t);
+					case EEase.QuarticInOut : return QuarticInOutClamped(p_t);
+					case EEase.QuarticOut : return QuarticOutClamped(p_t);
+					case EEase.QuarticOutIn : return QuarticOutInClamped(p_t);
+					case EEase.QuinticIn : return QuinticInClamped(p_t);
+					case EEase.QuinticInOut : return QuinticInOutClamped(p_t);
+					case EEase.QuinticOut : return QuinticOutClamped(p_t);
+					case EEase.QuinticOutIn : return QuinticOutInClamped(p_t);
+					case EEase.SinusoidalIn : return SinusoidalInClamped(p_t);
+					case EEase.SinusoidalInOut : return SinusoidalInOutClamped(p_t);
+					case EEase.SinusoidalOut : return SinusoidalOutClamped(p_t);
+					case EEase.SinusoidalOutIn : return SinusoidalOutInClamped(p_t);
+					case EEase.SmoothStep : return SmoothStepClamped(p_t);
+					default : throw new System.ArgumentOutOfRangeException("p_type");
+				}
+			}
+
+			public static float Ease1DClamped (EEase p_type, float p_from, float p_to, float p_t)
+			{
+				switch (p_type)
+				{
+					case EEase.BackIn : return BackInClamped(p_from, p_to, p_t);
+					case EEase.BackInOut :return BackInOutClamped(p_from, p_to, p_t);
+					case EEase.BackOut : return BackOutClamped(p_from, p_to, p_t);
+					case EEase.BounceIn : return BounceInClamped(p_from, p_to, p_t);
+					case EEase.BounceInOut : return BounceInOutClamped(p_from, p_to, p_t);
+					case EEase.BounceOut : return BounceOutClamped(p_from, p_to, p_t);
+					case EEase.BounceOutIn : return BounceOutInClamped(p_from, p_to, p_t);
+					case EEase.CircularIn : return CircularInClamped(p_from, p_to, p_t);
+					case EEase.CircularInOut : return CircularInOutClamped(p_from, p_to, p_t);
+					case EEase.CircularOut : return CircularOutClamped(p_from, p_to, p_t);
+					case EEase.CircularOutInt : return CircularOutInClamped(p_from, p_to, p_t);
+					case EEase.CubicIn : return CubicInClamped(p_from, p_to, p_t);
+					case EEase.CubicInOut : return CubicInOutClamped(p_from, p_to, p_t);
+					case EEase.CubicOut : return CubicOutClamped(p_from, p_to, p_t);
+					case EEase.CubicOutIn : return CubicOutInClamped(p_from, p_to, p_t);
+					case EEase.ElasticIn : return ElasticInClamped(p_from, p_to, p_t);
+					case EEase.ElasticInOut : return ElasticInOutClamped(p_from, p_to, p_t);
+					case EEase.ElasticOut : return ElasticOutClamped(p_from, p_to, p_t);
+					case EEase.ExponentialIn : return ExponentialInClamped(p_from, p_to, p_t);
+					case EEase.ExponentialInOut : return ExponentialInOutClamped(p_from, p_to, p_t);
+					case EEase.ExponentialOut : return ExponentialOutClamped(p_from, p_to, p_t);
+					case EEase.ExponentialOutIn : return ExponentialOutInClamped(p_from, p_to, p_t);
+					case EEase.Linear : return LerpClamped(p_from, p_to, p_t);
+					case EEase.QuadraticIn : return QuadraticInClamped(p_from, p_to, p_t);
+					case EEase.QuadraticInOut : return QuadraticInOutClamped(p_from, p_to, p_t);
+					case EEase.QuadraticOut : return QuadraticOutClamped(p_from, p_to, p_t);
+					case EEase.QuadraticOutIn : return QuadraticOutInClamped(p_from, p_to, p_t);
+					case EEase.QuarticIn : return QuarticInClamped(p_from, p_to, p_t);
+					case EEase.QuarticInOut : return QuarticInOutClamped(p_from, p_to, p_t);
+					case EEase.QuarticOut : return QuarticOutClamped(p_from, p_to, p_t);
+					case EEase.QuarticOutIn : return QuarticOutInClamped(p_from, p_to, p_t);
+					case EEase.QuinticIn : return QuinticInClamped(p_from, p_to, p_t);
+					case EEase.QuinticInOut : return QuinticInOutClamped(p_from, p_to, p_t);
+					case EEase.QuinticOut : return QuinticOutClamped(p_from, p_to, p_t);
+					case EEase.QuinticOutIn : return QuinticOutInClamped(p_from, p_to, p_t);
+					case EEase.SinusoidalIn : return SinusoidalInClamped(p_from, p_to, p_t);
+					case EEase.SinusoidalInOut : return SinusoidalInOutClamped(p_from, p_to, p_t);
+					case EEase.SinusoidalOut : return SinusoidalOutClamped(p_from, p_to, p_t);
+					case EEase.SinusoidalOutIn : return SinusoidalOutInClamped(p_from, p_to, p_t);
+					case EEase.SmoothStep : return SmoothStepClamped(p_from, p_to, p_t);
+					default : throw new System.ArgumentOutOfRangeException("p_type");
+				}
+			}
+
 			public static Func<float, float> Ease1D_01 (EEase p_type)
 			{
 				switch (p_type)
@@ -1947,6 +2037,102 @@ namespace ZkTools.Mathematics
 					case EEase.SinusoidalOut : return SinusoidalOut;
 					case EEase.SinusoidalOutIn : return SinusoidalOutIn;
 					case EEase.SmoothStep : return SmoothStep;
+					default : return null;
+				}
+			}
+
+			public static Func<float, float> Ease1D_01Clamped (EEase p_type)
+			{
+				switch (p_type)
+				{
+					case EEase.BackIn : return BackInClamped;
+					case EEase.BackInOut :return BackInOutClamped;
+					case EEase.BackOut : return BackOutClamped;
+					case EEase.BounceIn : return BounceInClamped;
+					case EEase.BounceInOut : return BounceInOutClamped;
+					case EEase.BounceOut : return BounceOutClamped;
+					case EEase.BounceOutIn : return BounceOutInClamped;
+					case EEase.CircularIn : return CircularInClamped;
+					case EEase.CircularInOut : return CircularInOutClamped;
+					case EEase.CircularOut : return CircularOutClamped;
+					case EEase.CircularOutInt : return CircularOutInClamped;
+					case EEase.CubicIn : return CubicInClamped;
+					case EEase.CubicInOut : return CubicInOutClamped;
+					case EEase.CubicOut : return CubicOutClamped;
+					case EEase.CubicOutIn : return CubicOutInClamped;
+					case EEase.ElasticIn : return ElasticInClamped;
+					case EEase.ElasticInOut : return ElasticInOutClamped;
+					case EEase.ElasticOut : return ElasticOutClamped;
+					case EEase.ExponentialIn : return ExponentialInClamped;
+					case EEase.ExponentialInOut : return ExponentialInOutClamped;
+					case EEase.ExponentialOut : return ExponentialOutClamped;
+					case EEase.ExponentialOutIn : return ExponentialOutInClamped;
+					case EEase.Linear : return LerpClamped;
+					case EEase.QuadraticIn : return QuadraticInClamped;
+					case EEase.QuadraticInOut : return QuadraticInOutClamped;
+					case EEase.QuadraticOut : return QuadraticOutClamped;
+					case EEase.QuadraticOutIn : return QuadraticOutInClamped;
+					case EEase.QuarticIn : return QuarticInClamped;
+					case EEase.QuarticInOut : return QuarticInOutClamped;
+					case EEase.QuarticOut : return QuarticOutClamped;
+					case EEase.QuarticOutIn : return QuarticOutInClamped;
+					case EEase.QuinticIn : return QuinticInClamped;
+					case EEase.QuinticInOut : return QuinticInOutClamped;
+					case EEase.QuinticOut : return QuinticOutClamped;
+					case EEase.QuinticOutIn : return QuinticOutInClamped;
+					case EEase.SinusoidalIn : return SinusoidalInClamped;
+					case EEase.SinusoidalInOut : return SinusoidalInOutClamped;
+					case EEase.SinusoidalOut : return SinusoidalOutClamped;
+					case EEase.SinusoidalOutIn : return SinusoidalOutInClamped;
+					case EEase.SmoothStep : return SmoothStepClamped;
+					default : return null;
+				}
+			}
+
+			public static Func<float, float, float, float> Ease1D_02Clamped (EEase p_type)
+			{
+				switch (p_type)
+				{
+					case EEase.BackIn : return BackInClamped;
+					case EEase.BackInOut :return BackInOutClamped;
+					case EEase.BackOut : return BackOutClamped;
+					case EEase.BounceIn : return BounceInClamped;
+					case EEase.BounceInOut : return BounceInOutClamped;
+					case EEase.BounceOut : return BounceOutClamped;
+					case EEase.BounceOutIn : return BounceOutInClamped;
+					case EEase.CircularIn : return CircularInClamped;
+					case EEase.CircularInOut : return CircularInOutClamped;
+					case EEase.CircularOut : return CircularOutClamped;
+					case EEase.CircularOutInt : return CircularOutInClamped;
+					case EEase.CubicIn : return CubicInClamped;
+					case EEase.CubicInOut : return CubicInOutClamped;
+					case EEase.CubicOut : return CubicOutClamped;
+					case EEase.CubicOutIn : return CubicOutInClamped;
+					case EEase.ElasticIn : return ElasticInClamped;
+					case EEase.ElasticInOut : return ElasticInOutClamped;
+					case EEase.ElasticOut : return ElasticOutClamped;
+					case EEase.ExponentialIn : return ExponentialInClamped;
+					case EEase.ExponentialInOut : return ExponentialInOutClamped;
+					case EEase.ExponentialOut : return ExponentialOutClamped;
+					case EEase.ExponentialOutIn : return ExponentialOutInClamped;
+					case EEase.Linear : return LerpClamped;
+					case EEase.QuadraticIn : return QuadraticInClamped;
+					case EEase.QuadraticInOut : return QuadraticInOutClamped;
+					case EEase.QuadraticOut : return QuadraticOutClamped;
+					case EEase.QuadraticOutIn : return QuadraticOutInClamped;
+					case EEase.QuarticIn : return QuarticInClamped;
+					case EEase.QuarticInOut : return QuarticInOutClamped;
+					case EEase.QuarticOut : return QuarticOutClamped;
+					case EEase.QuarticOutIn : return QuarticOutInClamped;
+					case EEase.QuinticIn : return QuinticInClamped;
+					case EEase.QuinticInOut : return QuinticInOutClamped;
+					case EEase.QuinticOut : return QuinticOutClamped;
+					case EEase.QuinticOutIn : return QuinticOutInClamped;
+					case EEase.SinusoidalIn : return SinusoidalInClamped;
+					case EEase.SinusoidalInOut : return SinusoidalInOutClamped;
+					case EEase.SinusoidalOut : return SinusoidalOutClamped;
+					case EEase.SinusoidalOutIn : return SinusoidalOutInClamped;
+					case EEase.SmoothStep : return SmoothStepClamped;
 					default : return null;
 				}
 			}
@@ -2095,146 +2281,434 @@ namespace ZkTools.Mathematics
 				}
 			}
 
-			public static Func<Vector2, Vector2> Ease2D_01 (EEase p_type)
+			public static Vector2 Ease2DClamped (EEase p_type, Vector2 p_t)
 			{
 				switch (p_type)
 				{
-					case EEase.BackIn : return BackIn;
-					case EEase.BackInOut :return BackInOut;
-					case EEase.BackOut : return BackOut;
-					case EEase.BounceIn : return BounceIn;
-					case EEase.BounceInOut : return BounceInOut;
-					case EEase.BounceOut : return BounceOut;
-					case EEase.BounceOutIn : return BounceOutIn;
-					case EEase.CircularIn : return CircularIn;
-					case EEase.CircularInOut : return CircularInOut;
-					case EEase.CircularOut : return CircularOut;
-					case EEase.CircularOutInt : return CircularOutIn;
-					case EEase.CubicIn : return CubicIn;
-					case EEase.CubicInOut : return CubicInOut;
-					case EEase.CubicOut : return CubicOut;
-					case EEase.CubicOutIn : return CubicOutIn;
-					case EEase.ElasticIn : return ElasticIn;
-					case EEase.ElasticInOut : return ElasticInOut;
-					case EEase.ElasticOut : return ElasticOut;
-					case EEase.ExponentialIn : return ExponentialIn;
-					case EEase.ExponentialInOut : return ExponentialInOut;
-					case EEase.ExponentialOut : return ExponentialOut;
-					case EEase.ExponentialOutIn : return ExponentialOutIn;
-					case EEase.Linear : return Lerp;
-					case EEase.QuadraticIn : return QuadraticIn;
-					case EEase.QuadraticInOut : return QuadraticInOut;
-					case EEase.QuadraticOut : return QuadraticOut;
-					case EEase.QuadraticOutIn : return QuadraticOutIn;
-					case EEase.QuarticIn : return QuarticIn;
-					case EEase.QuarticInOut : return QuarticInOut;
-					case EEase.QuarticOut : return QuarticOut;
-					case EEase.QuarticOutIn : return QuarticOutIn;
-					case EEase.QuinticIn : return QuinticIn;
-					case EEase.QuinticInOut : return QuinticInOut;
-					case EEase.QuinticOut : return QuinticOut;
-					case EEase.QuinticOutIn : return QuinticOutIn;
-					case EEase.SinusoidalIn : return SinusoidalIn;
-					case EEase.SinusoidalInOut : return SinusoidalInOut;
-					case EEase.SinusoidalOut : return SinusoidalOut;
-					case EEase.SinusoidalOutIn : return SinusoidalOutIn;
-					case EEase.SmoothStep : return SmoothStep;
-					default : return null;
+					case EEase.BackIn : return BackInClamped(p_t);
+					case EEase.BackInOut :return BackInOutClamped(p_t);
+					case EEase.BackOut : return BackOutClamped(p_t);
+					case EEase.BounceIn : return BounceInClamped(p_t);
+					case EEase.BounceInOut : return BounceInOutClamped(p_t);
+					case EEase.BounceOut : return BounceOutClamped(p_t);
+					case EEase.BounceOutIn : return BounceOutInClamped(p_t);
+					case EEase.CircularIn : return CircularInClamped(p_t);
+					case EEase.CircularInOut : return CircularInOutClamped(p_t);
+					case EEase.CircularOut : return CircularOutClamped(p_t);
+					case EEase.CircularOutInt : return CircularOutInClamped(p_t);
+					case EEase.CubicIn : return CubicInClamped(p_t);
+					case EEase.CubicInOut : return CubicInOutClamped(p_t);
+					case EEase.CubicOut : return CubicOutClamped(p_t);
+					case EEase.CubicOutIn : return CubicOutInClamped(p_t);
+					case EEase.ElasticIn : return ElasticInClamped(p_t);
+					case EEase.ElasticInOut : return ElasticInOutClamped(p_t);
+					case EEase.ElasticOut : return ElasticOutClamped(p_t);
+					case EEase.ExponentialIn : return ExponentialInClamped(p_t);
+					case EEase.ExponentialInOut : return ExponentialInOutClamped(p_t);
+					case EEase.ExponentialOut : return ExponentialOutClamped(p_t);
+					case EEase.ExponentialOutIn : return ExponentialOutInClamped(p_t);
+					case EEase.Linear : return LerpClamped(p_t);
+					case EEase.QuadraticIn : return QuadraticInClamped(p_t);
+					case EEase.QuadraticInOut : return QuadraticInOutClamped(p_t);
+					case EEase.QuadraticOut : return QuadraticOutClamped(p_t);
+					case EEase.QuadraticOutIn : return QuadraticOutInClamped(p_t);
+					case EEase.QuarticIn : return QuarticInClamped(p_t);
+					case EEase.QuarticInOut : return QuarticInOutClamped(p_t);
+					case EEase.QuarticOut : return QuarticOutClamped(p_t);
+					case EEase.QuarticOutIn : return QuarticOutInClamped(p_t);
+					case EEase.QuinticIn : return QuinticInClamped(p_t);
+					case EEase.QuinticInOut : return QuinticInOutClamped(p_t);
+					case EEase.QuinticOut : return QuinticOutClamped(p_t);
+					case EEase.QuinticOutIn : return QuinticOutInClamped(p_t);
+					case EEase.SinusoidalIn : return SinusoidalInClamped(p_t);
+					case EEase.SinusoidalInOut : return SinusoidalInOutClamped(p_t);
+					case EEase.SinusoidalOut : return SinusoidalOutClamped(p_t);
+					case EEase.SinusoidalOutIn : return SinusoidalOutInClamped(p_t);
+					case EEase.SmoothStep : return SmoothStepClamped(p_t);
+					default : throw new System.ArgumentOutOfRangeException("p_type");
 				}
 			}
+
+			public static Vector2 Ease2DClamped (EEase p_type, Vector2 p_from, Vector2 p_to, float p_t)
+			{
+				switch (p_type)
+				{
+					case EEase.BackIn : return BackInClamped(p_from, p_to, p_t);
+					case EEase.BackInOut :return BackInOutClamped(p_from, p_to, p_t);
+					case EEase.BackOut : return BackOutClamped(p_from, p_to, p_t);
+					case EEase.BounceIn : return BounceInClamped(p_from, p_to, p_t);
+					case EEase.BounceInOut : return BounceInOutClamped(p_from, p_to, p_t);
+					case EEase.BounceOut : return BounceOutClamped(p_from, p_to, p_t);
+					case EEase.BounceOutIn : return BounceOutInClamped(p_from, p_to, p_t);
+					case EEase.CircularIn : return CircularInClamped(p_from, p_to, p_t);
+					case EEase.CircularInOut : return CircularInOutClamped(p_from, p_to, p_t);
+					case EEase.CircularOut : return CircularOutClamped(p_from, p_to, p_t);
+					case EEase.CircularOutInt : return CircularOutInClamped(p_from, p_to, p_t);
+					case EEase.CubicIn : return CubicInClamped(p_from, p_to, p_t);
+					case EEase.CubicInOut : return CubicInOutClamped(p_from, p_to, p_t);
+					case EEase.CubicOut : return CubicOutClamped(p_from, p_to, p_t);
+					case EEase.CubicOutIn : return CubicOutInClamped(p_from, p_to, p_t);
+					case EEase.ElasticIn : return ElasticInClamped(p_from, p_to, p_t);
+					case EEase.ElasticInOut : return ElasticInOutClamped(p_from, p_to, p_t);
+					case EEase.ElasticOut : return ElasticOutClamped(p_from, p_to, p_t);
+					case EEase.ExponentialIn : return ExponentialInClamped(p_from, p_to, p_t);
+					case EEase.ExponentialInOut : return ExponentialInOutClamped(p_from, p_to, p_t);
+					case EEase.ExponentialOut : return ExponentialOutClamped(p_from, p_to, p_t);
+					case EEase.ExponentialOutIn : return ExponentialOutInClamped(p_from, p_to, p_t);
+					case EEase.Linear : return LerpClamped(p_from, p_to, p_t);
+					case EEase.QuadraticIn : return QuadraticInClamped(p_from, p_to, p_t);
+					case EEase.QuadraticInOut : return QuadraticInOutClamped(p_from, p_to, p_t);
+					case EEase.QuadraticOut : return QuadraticOutClamped(p_from, p_to, p_t);
+					case EEase.QuadraticOutIn : return QuadraticOutInClamped(p_from, p_to, p_t);
+					case EEase.QuarticIn : return QuarticInClamped(p_from, p_to, p_t);
+					case EEase.QuarticInOut : return QuarticInOutClamped(p_from, p_to, p_t);
+					case EEase.QuarticOut : return QuarticOutClamped(p_from, p_to, p_t);
+					case EEase.QuarticOutIn : return QuarticOutInClamped(p_from, p_to, p_t);
+					case EEase.QuinticIn : return QuinticInClamped(p_from, p_to, p_t);
+					case EEase.QuinticInOut : return QuinticInOutClamped(p_from, p_to, p_t);
+					case EEase.QuinticOut : return QuinticOutClamped(p_from, p_to, p_t);
+					case EEase.QuinticOutIn : return QuinticOutInClamped(p_from, p_to, p_t);
+					case EEase.SinusoidalIn : return SinusoidalInClamped(p_from, p_to, p_t);
+					case EEase.SinusoidalInOut : return SinusoidalInOutClamped(p_from, p_to, p_t);
+					case EEase.SinusoidalOut : return SinusoidalOutClamped(p_from, p_to, p_t);
+					case EEase.SinusoidalOutIn : return SinusoidalOutInClamped(p_from, p_to, p_t);
+					case EEase.SmoothStep : return SmoothStepClamped(p_from, p_to, p_t);
+					default : throw new System.ArgumentOutOfRangeException("p_type");
+				}
+			}
+
+			public static Vector2 Ease2DClamped (EEase p_type, Vector2 p_from, Vector2 p_to, Vector2 p_t)
+			{
+				switch (p_type)
+				{
+					case EEase.BackIn : return BackInClamped(p_from, p_to, p_t);
+					case EEase.BackInOut :return BackInOutClamped(p_from, p_to, p_t);
+					case EEase.BackOut : return BackOutClamped(p_from, p_to, p_t);
+					case EEase.BounceIn : return BounceInClamped(p_from, p_to, p_t);
+					case EEase.BounceInOut : return BounceInOutClamped(p_from, p_to, p_t);
+					case EEase.BounceOut : return BounceOutClamped(p_from, p_to, p_t);
+					case EEase.BounceOutIn : return BounceOutInClamped(p_from, p_to, p_t);
+					case EEase.CircularIn : return CircularInClamped(p_from, p_to, p_t);
+					case EEase.CircularInOut : return CircularInOutClamped(p_from, p_to, p_t);
+					case EEase.CircularOut : return CircularOutClamped(p_from, p_to, p_t);
+					case EEase.CircularOutInt : return CircularOutInClamped(p_from, p_to, p_t);
+					case EEase.CubicIn : return CubicInClamped(p_from, p_to, p_t);
+					case EEase.CubicInOut : return CubicInOutClamped(p_from, p_to, p_t);
+					case EEase.CubicOut : return CubicOutClamped(p_from, p_to, p_t);
+					case EEase.CubicOutIn : return CubicOutInClamped(p_from, p_to, p_t);
+					case EEase.ElasticIn : return ElasticInClamped(p_from, p_to, p_t);
+					case EEase.ElasticInOut : return ElasticInOutClamped(p_from, p_to, p_t);
+					case EEase.ElasticOut : return ElasticOutClamped(p_from, p_to, p_t);
+					case EEase.ExponentialIn : return ExponentialInClamped(p_from, p_to, p_t);
+					case EEase.ExponentialInOut : return ExponentialInOutClamped(p_from, p_to, p_t);
+					case EEase.ExponentialOut : return ExponentialOutClamped(p_from, p_to, p_t);
+					case EEase.ExponentialOutIn : return ExponentialOutInClamped(p_from, p_to, p_t);
+					case EEase.Linear : return LerpClamped(p_from, p_to, p_t);
+					case EEase.QuadraticIn : return QuadraticInClamped(p_from, p_to, p_t);
+					case EEase.QuadraticInOut : return QuadraticInOutClamped(p_from, p_to, p_t);
+					case EEase.QuadraticOut : return QuadraticOutClamped(p_from, p_to, p_t);
+					case EEase.QuadraticOutIn : return QuadraticOutInClamped(p_from, p_to, p_t);
+					case EEase.QuarticIn : return QuarticInClamped(p_from, p_to, p_t);
+					case EEase.QuarticInOut : return QuarticInOutClamped(p_from, p_to, p_t);
+					case EEase.QuarticOut : return QuarticOutClamped(p_from, p_to, p_t);
+					case EEase.QuarticOutIn : return QuarticOutInClamped(p_from, p_to, p_t);
+					case EEase.QuinticIn : return QuinticInClamped(p_from, p_to, p_t);
+					case EEase.QuinticInOut : return QuinticInOutClamped(p_from, p_to, p_t);
+					case EEase.QuinticOut : return QuinticOutClamped(p_from, p_to, p_t);
+					case EEase.QuinticOutIn : return QuinticOutInClamped(p_from, p_to, p_t);
+					case EEase.SinusoidalIn : return SinusoidalInClamped(p_from, p_to, p_t);
+					case EEase.SinusoidalInOut : return SinusoidalInOutClamped(p_from, p_to, p_t);
+					case EEase.SinusoidalOut : return SinusoidalOutClamped(p_from, p_to, p_t);
+					case EEase.SinusoidalOutIn : return SinusoidalOutInClamped(p_from, p_to, p_t);
+					case EEase.SmoothStep : return SmoothStepClamped(p_from, p_to, p_t);
+					default : throw new System.ArgumentOutOfRangeException("p_type");
+				}
+			}
+
+			public static Func<Vector2, Vector2> Ease2D_01 (EEase p_type)
+             			{
+             				switch (p_type)
+             				{
+             					case EEase.BackIn : return BackIn;
+             					case EEase.BackInOut :return BackInOut;
+             					case EEase.BackOut : return BackOut;
+             					case EEase.BounceIn : return BounceIn;
+             					case EEase.BounceInOut : return BounceInOut;
+             					case EEase.BounceOut : return BounceOut;
+             					case EEase.BounceOutIn : return BounceOutIn;
+             					case EEase.CircularIn : return CircularIn;
+             					case EEase.CircularInOut : return CircularInOut;
+             					case EEase.CircularOut : return CircularOut;
+             					case EEase.CircularOutInt : return CircularOutIn;
+             					case EEase.CubicIn : return CubicIn;
+             					case EEase.CubicInOut : return CubicInOut;
+             					case EEase.CubicOut : return CubicOut;
+             					case EEase.CubicOutIn : return CubicOutIn;
+             					case EEase.ElasticIn : return ElasticIn;
+             					case EEase.ElasticInOut : return ElasticInOut;
+             					case EEase.ElasticOut : return ElasticOut;
+             					case EEase.ExponentialIn : return ExponentialIn;
+             					case EEase.ExponentialInOut : return ExponentialInOut;
+             					case EEase.ExponentialOut : return ExponentialOut;
+             					case EEase.ExponentialOutIn : return ExponentialOutIn;
+             					case EEase.Linear : return Lerp;
+             					case EEase.QuadraticIn : return QuadraticIn;
+             					case EEase.QuadraticInOut : return QuadraticInOut;
+             					case EEase.QuadraticOut : return QuadraticOut;
+             					case EEase.QuadraticOutIn : return QuadraticOutIn;
+             					case EEase.QuarticIn : return QuarticIn;
+             					case EEase.QuarticInOut : return QuarticInOut;
+             					case EEase.QuarticOut : return QuarticOut;
+             					case EEase.QuarticOutIn : return QuarticOutIn;
+             					case EEase.QuinticIn : return QuinticIn;
+             					case EEase.QuinticInOut : return QuinticInOut;
+             					case EEase.QuinticOut : return QuinticOut;
+             					case EEase.QuinticOutIn : return QuinticOutIn;
+             					case EEase.SinusoidalIn : return SinusoidalIn;
+             					case EEase.SinusoidalInOut : return SinusoidalInOut;
+             					case EEase.SinusoidalOut : return SinusoidalOut;
+             					case EEase.SinusoidalOutIn : return SinusoidalOutIn;
+             					case EEase.SmoothStep : return SmoothStep;
+             					default : return null;
+             				}
+             			}
 
 			public static Func<Vector2, Vector2, float, Vector2> Ease2D_02 (EEase p_type)
+             			{
+             				switch (p_type)
+             				{
+             					case EEase.BackIn : return BackIn;
+             					case EEase.BackInOut :return BackInOut;
+             					case EEase.BackOut : return BackOut;
+             					case EEase.BounceIn : return BounceIn;
+             					case EEase.BounceInOut : return BounceInOut;
+             					case EEase.BounceOut : return BounceOut;
+             					case EEase.BounceOutIn : return BounceOutIn;
+             					case EEase.CircularIn : return CircularIn;
+             					case EEase.CircularInOut : return CircularInOut;
+             					case EEase.CircularOut : return CircularOut;
+             					case EEase.CircularOutInt : return CircularOutIn;
+             					case EEase.CubicIn : return CubicIn;
+             					case EEase.CubicInOut : return CubicInOut;
+             					case EEase.CubicOut : return CubicOut;
+             					case EEase.CubicOutIn : return CubicOutIn;
+             					case EEase.ElasticIn : return ElasticIn;
+             					case EEase.ElasticInOut : return ElasticInOut;
+             					case EEase.ElasticOut : return ElasticOut;
+             					case EEase.ExponentialIn : return ExponentialIn;
+             					case EEase.ExponentialInOut : return ExponentialInOut;
+             					case EEase.ExponentialOut : return ExponentialOut;
+             					case EEase.ExponentialOutIn : return ExponentialOutIn;
+             					case EEase.Linear : return Lerp;
+             					case EEase.QuadraticIn : return QuadraticIn;
+             					case EEase.QuadraticInOut : return QuadraticInOut;
+             					case EEase.QuadraticOut : return QuadraticOut;
+             					case EEase.QuadraticOutIn : return QuadraticOutIn;
+             					case EEase.QuarticIn : return QuarticIn;
+             					case EEase.QuarticInOut : return QuarticInOut;
+             					case EEase.QuarticOut : return QuarticOut;
+             					case EEase.QuarticOutIn : return QuarticOutIn;
+             					case EEase.QuinticIn : return QuinticIn;
+             					case EEase.QuinticInOut : return QuinticInOut;
+             					case EEase.QuinticOut : return QuinticOut;
+             					case EEase.QuinticOutIn : return QuinticOutIn;
+             					case EEase.SinusoidalIn : return SinusoidalIn;
+             					case EEase.SinusoidalInOut : return SinusoidalInOut;
+             					case EEase.SinusoidalOut : return SinusoidalOut;
+             					case EEase.SinusoidalOutIn : return SinusoidalOutIn;
+             					case EEase.SmoothStep : return SmoothStep;
+             					default : return null;
+             				}
+             			}
+
+			public static Func<Vector2, Vector2, Vector2, Vector2> Ease2D_03 (EEase p_type)
+             			{
+             				switch (p_type)
+             				{
+             					case EEase.BackIn : return BackIn;
+             					case EEase.BackInOut :return BackInOut;
+             					case EEase.BackOut : return BackOut;
+             					case EEase.BounceIn : return BounceIn;
+             					case EEase.BounceInOut : return BounceInOut;
+             					case EEase.BounceOut : return BounceOut;
+             					case EEase.BounceOutIn : return BounceOutIn;
+             					case EEase.CircularIn : return CircularIn;
+             					case EEase.CircularInOut : return CircularInOut;
+             					case EEase.CircularOut : return CircularOut;
+             					case EEase.CircularOutInt : return CircularOutIn;
+             					case EEase.CubicIn : return CubicIn;
+             					case EEase.CubicInOut : return CubicInOut;
+             					case EEase.CubicOut : return CubicOut;
+             					case EEase.CubicOutIn : return CubicOutIn;
+             					case EEase.ElasticIn : return ElasticIn;
+             					case EEase.ElasticInOut : return ElasticInOut;
+             					case EEase.ElasticOut : return ElasticOut;
+             					case EEase.ExponentialIn : return ExponentialIn;
+             					case EEase.ExponentialInOut : return ExponentialInOut;
+             					case EEase.ExponentialOut : return ExponentialOut;
+             					case EEase.ExponentialOutIn : return ExponentialOutIn;
+             					case EEase.Linear : return Lerp;
+             					case EEase.QuadraticIn : return QuadraticIn;
+             					case EEase.QuadraticInOut : return QuadraticInOut;
+             					case EEase.QuadraticOut : return QuadraticOut;
+             					case EEase.QuadraticOutIn : return QuadraticOutIn;
+             					case EEase.QuarticIn : return QuarticIn;
+             					case EEase.QuarticInOut : return QuarticInOut;
+             					case EEase.QuarticOut : return QuarticOut;
+             					case EEase.QuarticOutIn : return QuarticOutIn;
+             					case EEase.QuinticIn : return QuinticIn;
+             					case EEase.QuinticInOut : return QuinticInOut;
+             					case EEase.QuinticOut : return QuinticOut;
+             					case EEase.QuinticOutIn : return QuinticOutIn;
+             					case EEase.SinusoidalIn : return SinusoidalIn;
+             					case EEase.SinusoidalInOut : return SinusoidalInOut;
+             					case EEase.SinusoidalOut : return SinusoidalOut;
+             					case EEase.SinusoidalOutIn : return SinusoidalOutIn;
+             					case EEase.SmoothStep : return SmoothStep;
+             					default : return null;
+             				}
+             			}
+
+			public static Func<Vector2, Vector2> Ease2D_01Clamped (EEase p_type)
 			{
 				switch (p_type)
 				{
-					case EEase.BackIn : return BackIn;
-					case EEase.BackInOut :return BackInOut;
-					case EEase.BackOut : return BackOut;
-					case EEase.BounceIn : return BounceIn;
-					case EEase.BounceInOut : return BounceInOut;
-					case EEase.BounceOut : return BounceOut;
-					case EEase.BounceOutIn : return BounceOutIn;
-					case EEase.CircularIn : return CircularIn;
-					case EEase.CircularInOut : return CircularInOut;
-					case EEase.CircularOut : return CircularOut;
-					case EEase.CircularOutInt : return CircularOutIn;
-					case EEase.CubicIn : return CubicIn;
-					case EEase.CubicInOut : return CubicInOut;
-					case EEase.CubicOut : return CubicOut;
-					case EEase.CubicOutIn : return CubicOutIn;
-					case EEase.ElasticIn : return ElasticIn;
-					case EEase.ElasticInOut : return ElasticInOut;
-					case EEase.ElasticOut : return ElasticOut;
-					case EEase.ExponentialIn : return ExponentialIn;
-					case EEase.ExponentialInOut : return ExponentialInOut;
-					case EEase.ExponentialOut : return ExponentialOut;
-					case EEase.ExponentialOutIn : return ExponentialOutIn;
-					case EEase.Linear : return Lerp;
-					case EEase.QuadraticIn : return QuadraticIn;
-					case EEase.QuadraticInOut : return QuadraticInOut;
-					case EEase.QuadraticOut : return QuadraticOut;
-					case EEase.QuadraticOutIn : return QuadraticOutIn;
-					case EEase.QuarticIn : return QuarticIn;
-					case EEase.QuarticInOut : return QuarticInOut;
-					case EEase.QuarticOut : return QuarticOut;
-					case EEase.QuarticOutIn : return QuarticOutIn;
-					case EEase.QuinticIn : return QuinticIn;
-					case EEase.QuinticInOut : return QuinticInOut;
-					case EEase.QuinticOut : return QuinticOut;
-					case EEase.QuinticOutIn : return QuinticOutIn;
-					case EEase.SinusoidalIn : return SinusoidalIn;
-					case EEase.SinusoidalInOut : return SinusoidalInOut;
-					case EEase.SinusoidalOut : return SinusoidalOut;
-					case EEase.SinusoidalOutIn : return SinusoidalOutIn;
-					case EEase.SmoothStep : return SmoothStep;
+					case EEase.BackIn : return BackInClamped;
+					case EEase.BackInOut :return BackInOutClamped;
+					case EEase.BackOut : return BackOutClamped;
+					case EEase.BounceIn : return BounceInClamped;
+					case EEase.BounceInOut : return BounceInOutClamped;
+					case EEase.BounceOut : return BounceOutClamped;
+					case EEase.BounceOutIn : return BounceOutInClamped;
+					case EEase.CircularIn : return CircularInClamped;
+					case EEase.CircularInOut : return CircularInOutClamped;
+					case EEase.CircularOut : return CircularOutClamped;
+					case EEase.CircularOutInt : return CircularOutInClamped;
+					case EEase.CubicIn : return CubicInClamped;
+					case EEase.CubicInOut : return CubicInOutClamped;
+					case EEase.CubicOut : return CubicOutClamped;
+					case EEase.CubicOutIn : return CubicOutInClamped;
+					case EEase.ElasticIn : return ElasticInClamped;
+					case EEase.ElasticInOut : return ElasticInOutClamped;
+					case EEase.ElasticOut : return ElasticOutClamped;
+					case EEase.ExponentialIn : return ExponentialInClamped;
+					case EEase.ExponentialInOut : return ExponentialInOutClamped;
+					case EEase.ExponentialOut : return ExponentialOutClamped;
+					case EEase.ExponentialOutIn : return ExponentialOutInClamped;
+					case EEase.Linear : return LerpClamped;
+					case EEase.QuadraticIn : return QuadraticInClamped;
+					case EEase.QuadraticInOut : return QuadraticInOutClamped;
+					case EEase.QuadraticOut : return QuadraticOutClamped;
+					case EEase.QuadraticOutIn : return QuadraticOutInClamped;
+					case EEase.QuarticIn : return QuarticInClamped;
+					case EEase.QuarticInOut : return QuarticInOutClamped;
+					case EEase.QuarticOut : return QuarticOutClamped;
+					case EEase.QuarticOutIn : return QuarticOutInClamped;
+					case EEase.QuinticIn : return QuinticInClamped;
+					case EEase.QuinticInOut : return QuinticInOutClamped;
+					case EEase.QuinticOut : return QuinticOutClamped;
+					case EEase.QuinticOutIn : return QuinticOutInClamped;
+					case EEase.SinusoidalIn : return SinusoidalInClamped;
+					case EEase.SinusoidalInOut : return SinusoidalInOutClamped;
+					case EEase.SinusoidalOut : return SinusoidalOutClamped;
+					case EEase.SinusoidalOutIn : return SinusoidalOutInClamped;
+					case EEase.SmoothStep : return SmoothStepClamped;
 					default : return null;
 				}
 			}
 
-			public static Func<Vector2, Vector2, Vector2, Vector2> Ease2D_03 (EEase p_type)
+			public static Func<Vector2, Vector2, float, Vector2> Ease2D_02Clamped (EEase p_type)
 			{
 				switch (p_type)
 				{
-					case EEase.BackIn : return BackIn;
-					case EEase.BackInOut :return BackInOut;
-					case EEase.BackOut : return BackOut;
-					case EEase.BounceIn : return BounceIn;
-					case EEase.BounceInOut : return BounceInOut;
-					case EEase.BounceOut : return BounceOut;
-					case EEase.BounceOutIn : return BounceOutIn;
-					case EEase.CircularIn : return CircularIn;
-					case EEase.CircularInOut : return CircularInOut;
-					case EEase.CircularOut : return CircularOut;
-					case EEase.CircularOutInt : return CircularOutIn;
-					case EEase.CubicIn : return CubicIn;
-					case EEase.CubicInOut : return CubicInOut;
-					case EEase.CubicOut : return CubicOut;
-					case EEase.CubicOutIn : return CubicOutIn;
-					case EEase.ElasticIn : return ElasticIn;
-					case EEase.ElasticInOut : return ElasticInOut;
-					case EEase.ElasticOut : return ElasticOut;
-					case EEase.ExponentialIn : return ExponentialIn;
-					case EEase.ExponentialInOut : return ExponentialInOut;
-					case EEase.ExponentialOut : return ExponentialOut;
-					case EEase.ExponentialOutIn : return ExponentialOutIn;
-					case EEase.Linear : return Lerp;
-					case EEase.QuadraticIn : return QuadraticIn;
-					case EEase.QuadraticInOut : return QuadraticInOut;
-					case EEase.QuadraticOut : return QuadraticOut;
-					case EEase.QuadraticOutIn : return QuadraticOutIn;
-					case EEase.QuarticIn : return QuarticIn;
-					case EEase.QuarticInOut : return QuarticInOut;
-					case EEase.QuarticOut : return QuarticOut;
-					case EEase.QuarticOutIn : return QuarticOutIn;
-					case EEase.QuinticIn : return QuinticIn;
-					case EEase.QuinticInOut : return QuinticInOut;
-					case EEase.QuinticOut : return QuinticOut;
-					case EEase.QuinticOutIn : return QuinticOutIn;
-					case EEase.SinusoidalIn : return SinusoidalIn;
-					case EEase.SinusoidalInOut : return SinusoidalInOut;
-					case EEase.SinusoidalOut : return SinusoidalOut;
-					case EEase.SinusoidalOutIn : return SinusoidalOutIn;
-					case EEase.SmoothStep : return SmoothStep;
+					case EEase.BackIn : return BackInClamped;
+					case EEase.BackInOut :return BackInOutClamped;
+					case EEase.BackOut : return BackOutClamped;
+					case EEase.BounceIn : return BounceInClamped;
+					case EEase.BounceInOut : return BounceInOutClamped;
+					case EEase.BounceOut : return BounceOutClamped;
+					case EEase.BounceOutIn : return BounceOutInClamped;
+					case EEase.CircularIn : return CircularInClamped;
+					case EEase.CircularInOut : return CircularInOutClamped;
+					case EEase.CircularOut : return CircularOutClamped;
+					case EEase.CircularOutInt : return CircularOutInClamped;
+					case EEase.CubicIn : return CubicInClamped;
+					case EEase.CubicInOut : return CubicInOutClamped;
+					case EEase.CubicOut : return CubicOutClamped;
+					case EEase.CubicOutIn : return CubicOutInClamped;
+					case EEase.ElasticIn : return ElasticInClamped;
+					case EEase.ElasticInOut : return ElasticInOutClamped;
+					case EEase.ElasticOut : return ElasticOutClamped;
+					case EEase.ExponentialIn : return ExponentialInClamped;
+					case EEase.ExponentialInOut : return ExponentialInOutClamped;
+					case EEase.ExponentialOut : return ExponentialOutClamped;
+					case EEase.ExponentialOutIn : return ExponentialOutInClamped;
+					case EEase.Linear : return LerpClamped;
+					case EEase.QuadraticIn : return QuadraticInClamped;
+					case EEase.QuadraticInOut : return QuadraticInOutClamped;
+					case EEase.QuadraticOut : return QuadraticOutClamped;
+					case EEase.QuadraticOutIn : return QuadraticOutInClamped;
+					case EEase.QuarticIn : return QuarticInClamped;
+					case EEase.QuarticInOut : return QuarticInOutClamped;
+					case EEase.QuarticOut : return QuarticOutClamped;
+					case EEase.QuarticOutIn : return QuarticOutInClamped;
+					case EEase.QuinticIn : return QuinticInClamped;
+					case EEase.QuinticInOut : return QuinticInOutClamped;
+					case EEase.QuinticOut : return QuinticOutClamped;
+					case EEase.QuinticOutIn : return QuinticOutInClamped;
+					case EEase.SinusoidalIn : return SinusoidalInClamped;
+					case EEase.SinusoidalInOut : return SinusoidalInOutClamped;
+					case EEase.SinusoidalOut : return SinusoidalOutClamped;
+					case EEase.SinusoidalOutIn : return SinusoidalOutInClamped;
+					case EEase.SmoothStep : return SmoothStepClamped;
+					default : return null;
+				}
+			}
+
+			public static Func<Vector2, Vector2, Vector2, Vector2> Ease2D_03Clamped (EEase p_type)
+			{
+				switch (p_type)
+				{
+					case EEase.BackIn : return BackInClamped;
+					case EEase.BackInOut :return BackInOutClamped;
+					case EEase.BackOut : return BackOutClamped;
+					case EEase.BounceIn : return BounceInClamped;
+					case EEase.BounceInOut : return BounceInOutClamped;
+					case EEase.BounceOut : return BounceOutClamped;
+					case EEase.BounceOutIn : return BounceOutInClamped;
+					case EEase.CircularIn : return CircularInClamped;
+					case EEase.CircularInOut : return CircularInOutClamped;
+					case EEase.CircularOut : return CircularOutClamped;
+					case EEase.CircularOutInt : return CircularOutInClamped;
+					case EEase.CubicIn : return CubicInClamped;
+					case EEase.CubicInOut : return CubicInOutClamped;
+					case EEase.CubicOut : return CubicOutClamped;
+					case EEase.CubicOutIn : return CubicOutInClamped;
+					case EEase.ElasticIn : return ElasticInClamped;
+					case EEase.ElasticInOut : return ElasticInOutClamped;
+					case EEase.ElasticOut : return ElasticOutClamped;
+					case EEase.ExponentialIn : return ExponentialInClamped;
+					case EEase.ExponentialInOut : return ExponentialInOutClamped;
+					case EEase.ExponentialOut : return ExponentialOutClamped;
+					case EEase.ExponentialOutIn : return ExponentialOutInClamped;
+					case EEase.Linear : return LerpClamped;
+					case EEase.QuadraticIn : return QuadraticInClamped;
+					case EEase.QuadraticInOut : return QuadraticInOutClamped;
+					case EEase.QuadraticOut : return QuadraticOutClamped;
+					case EEase.QuadraticOutIn : return QuadraticOutInClamped;
+					case EEase.QuarticIn : return QuarticInClamped;
+					case EEase.QuarticInOut : return QuarticInOutClamped;
+					case EEase.QuarticOut : return QuarticOutClamped;
+					case EEase.QuarticOutIn : return QuarticOutInClamped;
+					case EEase.QuinticIn : return QuinticInClamped;
+					case EEase.QuinticInOut : return QuinticInOutClamped;
+					case EEase.QuinticOut : return QuinticOutClamped;
+					case EEase.QuinticOutIn : return QuinticOutInClamped;
+					case EEase.SinusoidalIn : return SinusoidalInClamped;
+					case EEase.SinusoidalInOut : return SinusoidalInOutClamped;
+					case EEase.SinusoidalOut : return SinusoidalOutClamped;
+					case EEase.SinusoidalOutIn : return SinusoidalOutInClamped;
+					case EEase.SmoothStep : return SmoothStepClamped;
 					default : return null;
 				}
 			}
@@ -2383,6 +2857,150 @@ namespace ZkTools.Mathematics
 				}
 			}
 
+			public static Vector3 Ease3DClamped (EEase p_type, Vector3 p_t)
+			{
+				switch (p_type)
+				{
+					case EEase.BackIn : return BackInClamped(p_t);
+					case EEase.BackInOut :return BackInOutClamped(p_t);
+					case EEase.BackOut : return BackOutClamped(p_t);
+					case EEase.BounceIn : return BounceInClamped(p_t);
+					case EEase.BounceInOut : return BounceInOutClamped(p_t);
+					case EEase.BounceOut : return BounceOutClamped(p_t);
+					case EEase.BounceOutIn : return BounceOutInClamped(p_t);
+					case EEase.CircularIn : return CircularInClamped(p_t);
+					case EEase.CircularInOut : return CircularInOutClamped(p_t);
+					case EEase.CircularOut : return CircularOutClamped(p_t);
+					case EEase.CircularOutInt : return CircularOutInClamped(p_t);
+					case EEase.CubicIn : return CubicInClamped(p_t);
+					case EEase.CubicInOut : return CubicInOutClamped(p_t);
+					case EEase.CubicOut : return CubicOutClamped(p_t);
+					case EEase.CubicOutIn : return CubicOutInClamped(p_t);
+					case EEase.ElasticIn : return ElasticInClamped(p_t);
+					case EEase.ElasticInOut : return ElasticInOutClamped(p_t);
+					case EEase.ElasticOut : return ElasticOutClamped(p_t);
+					case EEase.ExponentialIn : return ExponentialInClamped(p_t);
+					case EEase.ExponentialInOut : return ExponentialInOutClamped(p_t);
+					case EEase.ExponentialOut : return ExponentialOutClamped(p_t);
+					case EEase.ExponentialOutIn : return ExponentialOutInClamped(p_t);
+					case EEase.Linear : return LerpClamped(p_t);
+					case EEase.QuadraticIn : return QuadraticInClamped(p_t);
+					case EEase.QuadraticInOut : return QuadraticInOutClamped(p_t);
+					case EEase.QuadraticOut : return QuadraticOutClamped(p_t);
+					case EEase.QuadraticOutIn : return QuadraticOutInClamped(p_t);
+					case EEase.QuarticIn : return QuarticInClamped(p_t);
+					case EEase.QuarticInOut : return QuarticInOutClamped(p_t);
+					case EEase.QuarticOut : return QuarticOutClamped(p_t);
+					case EEase.QuarticOutIn : return QuarticOutInClamped(p_t);
+					case EEase.QuinticIn : return QuinticInClamped(p_t);
+					case EEase.QuinticInOut : return QuinticInOutClamped(p_t);
+					case EEase.QuinticOut : return QuinticOutClamped(p_t);
+					case EEase.QuinticOutIn : return QuinticOutInClamped(p_t);
+					case EEase.SinusoidalIn : return SinusoidalInClamped(p_t);
+					case EEase.SinusoidalInOut : return SinusoidalInOutClamped(p_t);
+					case EEase.SinusoidalOut : return SinusoidalOutClamped(p_t);
+					case EEase.SinusoidalOutIn : return SinusoidalOutInClamped(p_t);
+					case EEase.SmoothStep : return SmoothStepClamped(p_t);
+					default : throw new System.ArgumentOutOfRangeException("p_type");
+				}
+			}
+
+			public static Vector3 Ease3DClamped (EEase p_type, Vector3 p_from, Vector3 p_to, float p_t)
+			{
+				switch (p_type)
+				{
+					case EEase.BackIn : return BackInClamped(p_from, p_to, p_t);
+					case EEase.BackInOut :return BackInOutClamped(p_from, p_to, p_t);
+					case EEase.BackOut : return BackOutClamped(p_from, p_to, p_t);
+					case EEase.BounceIn : return BounceInClamped(p_from, p_to, p_t);
+					case EEase.BounceInOut : return BounceInOutClamped(p_from, p_to, p_t);
+					case EEase.BounceOut : return BounceOutClamped(p_from, p_to, p_t);
+					case EEase.BounceOutIn : return BounceOutInClamped(p_from, p_to, p_t);
+					case EEase.CircularIn : return CircularInClamped(p_from, p_to, p_t);
+					case EEase.CircularInOut : return CircularInOutClamped(p_from, p_to, p_t);
+					case EEase.CircularOut : return CircularOutClamped(p_from, p_to, p_t);
+					case EEase.CircularOutInt : return CircularOutInClamped(p_from, p_to, p_t);
+					case EEase.CubicIn : return CubicInClamped(p_from, p_to, p_t);
+					case EEase.CubicInOut : return CubicInOutClamped(p_from, p_to, p_t);
+					case EEase.CubicOut : return CubicOutClamped(p_from, p_to, p_t);
+					case EEase.CubicOutIn : return CubicOutInClamped(p_from, p_to, p_t);
+					case EEase.ElasticIn : return ElasticInClamped(p_from, p_to, p_t);
+					case EEase.ElasticInOut : return ElasticInOutClamped(p_from, p_to, p_t);
+					case EEase.ElasticOut : return ElasticOutClamped(p_from, p_to, p_t);
+					case EEase.ExponentialIn : return ExponentialInClamped(p_from, p_to, p_t);
+					case EEase.ExponentialInOut : return ExponentialInOutClamped(p_from, p_to, p_t);
+					case EEase.ExponentialOut : return ExponentialOutClamped(p_from, p_to, p_t);
+					case EEase.ExponentialOutIn : return ExponentialOutInClamped(p_from, p_to, p_t);
+					case EEase.Linear : return LerpClamped(p_from, p_to, p_t);
+					case EEase.QuadraticIn : return QuadraticInClamped(p_from, p_to, p_t);
+					case EEase.QuadraticInOut : return QuadraticInOutClamped(p_from, p_to, p_t);
+					case EEase.QuadraticOut : return QuadraticOutClamped(p_from, p_to, p_t);
+					case EEase.QuadraticOutIn : return QuadraticOutInClamped(p_from, p_to, p_t);
+					case EEase.QuarticIn : return QuarticInClamped(p_from, p_to, p_t);
+					case EEase.QuarticInOut : return QuarticInOutClamped(p_from, p_to, p_t);
+					case EEase.QuarticOut : return QuarticOutClamped(p_from, p_to, p_t);
+					case EEase.QuarticOutIn : return QuarticOutInClamped(p_from, p_to, p_t);
+					case EEase.QuinticIn : return QuinticInClamped(p_from, p_to, p_t);
+					case EEase.QuinticInOut : return QuinticInOutClamped(p_from, p_to, p_t);
+					case EEase.QuinticOut : return QuinticOutClamped(p_from, p_to, p_t);
+					case EEase.QuinticOutIn : return QuinticOutInClamped(p_from, p_to, p_t);
+					case EEase.SinusoidalIn : return SinusoidalInClamped(p_from, p_to, p_t);
+					case EEase.SinusoidalInOut : return SinusoidalInOutClamped(p_from, p_to, p_t);
+					case EEase.SinusoidalOut : return SinusoidalOutClamped(p_from, p_to, p_t);
+					case EEase.SinusoidalOutIn : return SinusoidalOutInClamped(p_from, p_to, p_t);
+					case EEase.SmoothStep : return SmoothStepClamped(p_from, p_to, p_t);
+					default : throw new System.ArgumentOutOfRangeException("p_type");
+				}
+			}
+
+			public static Vector3 Ease3DClamped (EEase p_type, Vector3 p_from, Vector3 p_to, Vector3 p_t)
+			{
+				switch (p_type)
+				{
+					case EEase.BackIn : return BackInClamped(p_from, p_to, p_t);
+					case EEase.BackInOut :return BackInOutClamped(p_from, p_to, p_t);
+					case EEase.BackOut : return BackOutClamped(p_from, p_to, p_t);
+					case EEase.BounceIn : return BounceInClamped(p_from, p_to, p_t);
+					case EEase.BounceInOut : return BounceInOutClamped(p_from, p_to, p_t);
+					case EEase.BounceOut : return BounceOutClamped(p_from, p_to, p_t);
+					case EEase.BounceOutIn : return BounceOutInClamped(p_from, p_to, p_t);
+					case EEase.CircularIn : return CircularInClamped(p_from, p_to, p_t);
+					case EEase.CircularInOut : return CircularInOutClamped(p_from, p_to, p_t);
+					case EEase.CircularOut : return CircularOutClamped(p_from, p_to, p_t);
+					case EEase.CircularOutInt : return CircularOutInClamped(p_from, p_to, p_t);
+					case EEase.CubicIn : return CubicInClamped(p_from, p_to, p_t);
+					case EEase.CubicInOut : return CubicInOutClamped(p_from, p_to, p_t);
+					case EEase.CubicOut : return CubicOutClamped(p_from, p_to, p_t);
+					case EEase.CubicOutIn : return CubicOutInClamped(p_from, p_to, p_t);
+					case EEase.ElasticIn : return ElasticInClamped(p_from, p_to, p_t);
+					case EEase.ElasticInOut : return ElasticInOutClamped(p_from, p_to, p_t);
+					case EEase.ElasticOut : return ElasticOutClamped(p_from, p_to, p_t);
+					case EEase.ExponentialIn : return ExponentialInClamped(p_from, p_to, p_t);
+					case EEase.ExponentialInOut : return ExponentialInOutClamped(p_from, p_to, p_t);
+					case EEase.ExponentialOut : return ExponentialOutClamped(p_from, p_to, p_t);
+					case EEase.ExponentialOutIn : return ExponentialOutInClamped(p_from, p_to, p_t);
+					case EEase.Linear : return LerpClamped(p_from, p_to, p_t);
+					case EEase.QuadraticIn : return QuadraticInClamped(p_from, p_to, p_t);
+					case EEase.QuadraticInOut : return QuadraticInOutClamped(p_from, p_to, p_t);
+					case EEase.QuadraticOut : return QuadraticOutClamped(p_from, p_to, p_t);
+					case EEase.QuadraticOutIn : return QuadraticOutInClamped(p_from, p_to, p_t);
+					case EEase.QuarticIn : return QuarticInClamped(p_from, p_to, p_t);
+					case EEase.QuarticInOut : return QuarticInOutClamped(p_from, p_to, p_t);
+					case EEase.QuarticOut : return QuarticOutClamped(p_from, p_to, p_t);
+					case EEase.QuarticOutIn : return QuarticOutInClamped(p_from, p_to, p_t);
+					case EEase.QuinticIn : return QuinticInClamped(p_from, p_to, p_t);
+					case EEase.QuinticInOut : return QuinticInOutClamped(p_from, p_to, p_t);
+					case EEase.QuinticOut : return QuinticOutClamped(p_from, p_to, p_t);
+					case EEase.QuinticOutIn : return QuinticOutInClamped(p_from, p_to, p_t);
+					case EEase.SinusoidalIn : return SinusoidalInClamped(p_from, p_to, p_t);
+					case EEase.SinusoidalInOut : return SinusoidalInOutClamped(p_from, p_to, p_t);
+					case EEase.SinusoidalOut : return SinusoidalOutClamped(p_from, p_to, p_t);
+					case EEase.SinusoidalOutIn : return SinusoidalOutInClamped(p_from, p_to, p_t);
+					case EEase.SmoothStep : return SmoothStepClamped(p_from, p_to, p_t);
+					default : throw new System.ArgumentOutOfRangeException("p_type");
+				}
+			}
+
 			public static Func<Vector3, Vector3> Ease3D_01 (EEase p_type)
 			{
 				switch (p_type)
@@ -2523,6 +3141,150 @@ namespace ZkTools.Mathematics
 					case EEase.SinusoidalOut : return SinusoidalOut;
 					case EEase.SinusoidalOutIn : return SinusoidalOutIn;
 					case EEase.SmoothStep : return SmoothStep;
+					default : return null;
+				}
+			}
+
+			public static Func<Vector3, Vector3> Ease3D_01Clamped (EEase p_type)
+			{
+				switch (p_type)
+				{
+					case EEase.BackIn : return BackInClamped;
+					case EEase.BackInOut :return BackInOutClamped;
+					case EEase.BackOut : return BackOutClamped;
+					case EEase.BounceIn : return BounceInClamped;
+					case EEase.BounceInOut : return BounceInOutClamped;
+					case EEase.BounceOut : return BounceOutClamped;
+					case EEase.BounceOutIn : return BounceOutInClamped;
+					case EEase.CircularIn : return CircularInClamped;
+					case EEase.CircularInOut : return CircularInOutClamped;
+					case EEase.CircularOut : return CircularOutClamped;
+					case EEase.CircularOutInt : return CircularOutInClamped;
+					case EEase.CubicIn : return CubicInClamped;
+					case EEase.CubicInOut : return CubicInOutClamped;
+					case EEase.CubicOut : return CubicOutClamped;
+					case EEase.CubicOutIn : return CubicOutInClamped;
+					case EEase.ElasticIn : return ElasticInClamped;
+					case EEase.ElasticInOut : return ElasticInOutClamped;
+					case EEase.ElasticOut : return ElasticOutClamped;
+					case EEase.ExponentialIn : return ExponentialInClamped;
+					case EEase.ExponentialInOut : return ExponentialInOutClamped;
+					case EEase.ExponentialOut : return ExponentialOutClamped;
+					case EEase.ExponentialOutIn : return ExponentialOutInClamped;
+					case EEase.Linear : return LerpClamped;
+					case EEase.QuadraticIn : return QuadraticInClamped;
+					case EEase.QuadraticInOut : return QuadraticInOutClamped;
+					case EEase.QuadraticOut : return QuadraticOutClamped;
+					case EEase.QuadraticOutIn : return QuadraticOutInClamped;
+					case EEase.QuarticIn : return QuarticInClamped;
+					case EEase.QuarticInOut : return QuarticInOutClamped;
+					case EEase.QuarticOut : return QuarticOutClamped;
+					case EEase.QuarticOutIn : return QuarticOutInClamped;
+					case EEase.QuinticIn : return QuinticInClamped;
+					case EEase.QuinticInOut : return QuinticInOutClamped;
+					case EEase.QuinticOut : return QuinticOutClamped;
+					case EEase.QuinticOutIn : return QuinticOutInClamped;
+					case EEase.SinusoidalIn : return SinusoidalInClamped;
+					case EEase.SinusoidalInOut : return SinusoidalInOutClamped;
+					case EEase.SinusoidalOut : return SinusoidalOutClamped;
+					case EEase.SinusoidalOutIn : return SinusoidalOutInClamped;
+					case EEase.SmoothStep : return SmoothStepClamped;
+					default : return null;
+				}
+			}
+
+			public static Func<Vector3, Vector3, float, Vector3> Ease3D_02Clamped (EEase p_type)
+			{
+				switch (p_type)
+				{
+					case EEase.BackIn : return BackInClamped;
+					case EEase.BackInOut :return BackInOutClamped;
+					case EEase.BackOut : return BackOutClamped;
+					case EEase.BounceIn : return BounceInClamped;
+					case EEase.BounceInOut : return BounceInOutClamped;
+					case EEase.BounceOut : return BounceOutClamped;
+					case EEase.BounceOutIn : return BounceOutInClamped;
+					case EEase.CircularIn : return CircularInClamped;
+					case EEase.CircularInOut : return CircularInOutClamped;
+					case EEase.CircularOut : return CircularOutClamped;
+					case EEase.CircularOutInt : return CircularOutInClamped;
+					case EEase.CubicIn : return CubicInClamped;
+					case EEase.CubicInOut : return CubicInOutClamped;
+					case EEase.CubicOut : return CubicOutClamped;
+					case EEase.CubicOutIn : return CubicOutInClamped;
+					case EEase.ElasticIn : return ElasticInClamped;
+					case EEase.ElasticInOut : return ElasticInOutClamped;
+					case EEase.ElasticOut : return ElasticOutClamped;
+					case EEase.ExponentialIn : return ExponentialInClamped;
+					case EEase.ExponentialInOut : return ExponentialInOutClamped;
+					case EEase.ExponentialOut : return ExponentialOutClamped;
+					case EEase.ExponentialOutIn : return ExponentialOutInClamped;
+					case EEase.Linear : return LerpClamped;
+					case EEase.QuadraticIn : return QuadraticInClamped;
+					case EEase.QuadraticInOut : return QuadraticInOutClamped;
+					case EEase.QuadraticOut : return QuadraticOutClamped;
+					case EEase.QuadraticOutIn : return QuadraticOutInClamped;
+					case EEase.QuarticIn : return QuarticInClamped;
+					case EEase.QuarticInOut : return QuarticInOutClamped;
+					case EEase.QuarticOut : return QuarticOutClamped;
+					case EEase.QuarticOutIn : return QuarticOutInClamped;
+					case EEase.QuinticIn : return QuinticInClamped;
+					case EEase.QuinticInOut : return QuinticInOutClamped;
+					case EEase.QuinticOut : return QuinticOutClamped;
+					case EEase.QuinticOutIn : return QuinticOutInClamped;
+					case EEase.SinusoidalIn : return SinusoidalInClamped;
+					case EEase.SinusoidalInOut : return SinusoidalInOutClamped;
+					case EEase.SinusoidalOut : return SinusoidalOutClamped;
+					case EEase.SinusoidalOutIn : return SinusoidalOutInClamped;
+					case EEase.SmoothStep : return SmoothStepClamped;
+					default : return null;
+				}
+			}
+
+			public static Func<Vector3, Vector3, Vector3, Vector3> Ease3D_03Clamped (EEase p_type)
+			{
+				switch (p_type)
+				{
+					case EEase.BackIn : return BackInClamped;
+					case EEase.BackInOut :return BackInOutClamped;
+					case EEase.BackOut : return BackOutClamped;
+					case EEase.BounceIn : return BounceInClamped;
+					case EEase.BounceInOut : return BounceInOutClamped;
+					case EEase.BounceOut : return BounceOutClamped;
+					case EEase.BounceOutIn : return BounceOutInClamped;
+					case EEase.CircularIn : return CircularInClamped;
+					case EEase.CircularInOut : return CircularInOutClamped;
+					case EEase.CircularOut : return CircularOutClamped;
+					case EEase.CircularOutInt : return CircularOutInClamped;
+					case EEase.CubicIn : return CubicInClamped;
+					case EEase.CubicInOut : return CubicInOutClamped;
+					case EEase.CubicOut : return CubicOutClamped;
+					case EEase.CubicOutIn : return CubicOutInClamped;
+					case EEase.ElasticIn : return ElasticInClamped;
+					case EEase.ElasticInOut : return ElasticInOutClamped;
+					case EEase.ElasticOut : return ElasticOutClamped;
+					case EEase.ExponentialIn : return ExponentialInClamped;
+					case EEase.ExponentialInOut : return ExponentialInOutClamped;
+					case EEase.ExponentialOut : return ExponentialOutClamped;
+					case EEase.ExponentialOutIn : return ExponentialOutInClamped;
+					case EEase.Linear : return LerpClamped;
+					case EEase.QuadraticIn : return QuadraticInClamped;
+					case EEase.QuadraticInOut : return QuadraticInOutClamped;
+					case EEase.QuadraticOut : return QuadraticOutClamped;
+					case EEase.QuadraticOutIn : return QuadraticOutInClamped;
+					case EEase.QuarticIn : return QuarticInClamped;
+					case EEase.QuarticInOut : return QuarticInOutClamped;
+					case EEase.QuarticOut : return QuarticOutClamped;
+					case EEase.QuarticOutIn : return QuarticOutInClamped;
+					case EEase.QuinticIn : return QuinticInClamped;
+					case EEase.QuinticInOut : return QuinticInOutClamped;
+					case EEase.QuinticOut : return QuinticOutClamped;
+					case EEase.QuinticOutIn : return QuinticOutInClamped;
+					case EEase.SinusoidalIn : return SinusoidalInClamped;
+					case EEase.SinusoidalInOut : return SinusoidalInOutClamped;
+					case EEase.SinusoidalOut : return SinusoidalOutClamped;
+					case EEase.SinusoidalOutIn : return SinusoidalOutInClamped;
+					case EEase.SmoothStep : return SmoothStepClamped;
 					default : return null;
 				}
 			}
@@ -2671,6 +3433,150 @@ namespace ZkTools.Mathematics
 				}
 			}
 
+			public static Vector4 Ease4DClamped (EEase p_type, Vector4 p_t)
+			{
+				switch (p_type)
+				{
+					case EEase.BackIn : return BackInClamped(p_t);
+					case EEase.BackInOut :return BackInOutClamped(p_t);
+					case EEase.BackOut : return BackOutClamped(p_t);
+					case EEase.BounceIn : return BounceInClamped(p_t);
+					case EEase.BounceInOut : return BounceInOutClamped(p_t);
+					case EEase.BounceOut : return BounceOutClamped(p_t);
+					case EEase.BounceOutIn : return BounceOutInClamped(p_t);
+					case EEase.CircularIn : return CircularInClamped(p_t);
+					case EEase.CircularInOut : return CircularInOutClamped(p_t);
+					case EEase.CircularOut : return CircularOutClamped(p_t);
+					case EEase.CircularOutInt : return CircularOutInClamped(p_t);
+					case EEase.CubicIn : return CubicInClamped(p_t);
+					case EEase.CubicInOut : return CubicInOutClamped(p_t);
+					case EEase.CubicOut : return CubicOutClamped(p_t);
+					case EEase.CubicOutIn : return CubicOutInClamped(p_t);
+					case EEase.ElasticIn : return ElasticInClamped(p_t);
+					case EEase.ElasticInOut : return ElasticInOutClamped(p_t);
+					case EEase.ElasticOut : return ElasticOutClamped(p_t);
+					case EEase.ExponentialIn : return ExponentialInClamped(p_t);
+					case EEase.ExponentialInOut : return ExponentialInOutClamped(p_t);
+					case EEase.ExponentialOut : return ExponentialOutClamped(p_t);
+					case EEase.ExponentialOutIn : return ExponentialOutInClamped(p_t);
+					case EEase.Linear : return LerpClamped(p_t);
+					case EEase.QuadraticIn : return QuadraticInClamped(p_t);
+					case EEase.QuadraticInOut : return QuadraticInOutClamped(p_t);
+					case EEase.QuadraticOut : return QuadraticOutClamped(p_t);
+					case EEase.QuadraticOutIn : return QuadraticOutInClamped(p_t);
+					case EEase.QuarticIn : return QuarticInClamped(p_t);
+					case EEase.QuarticInOut : return QuarticInOutClamped(p_t);
+					case EEase.QuarticOut : return QuarticOutClamped(p_t);
+					case EEase.QuarticOutIn : return QuarticOutInClamped(p_t);
+					case EEase.QuinticIn : return QuinticInClamped(p_t);
+					case EEase.QuinticInOut : return QuinticInOutClamped(p_t);
+					case EEase.QuinticOut : return QuinticOutClamped(p_t);
+					case EEase.QuinticOutIn : return QuinticOutInClamped(p_t);
+					case EEase.SinusoidalIn : return SinusoidalInClamped(p_t);
+					case EEase.SinusoidalInOut : return SinusoidalInOutClamped(p_t);
+					case EEase.SinusoidalOut : return SinusoidalOutClamped(p_t);
+					case EEase.SinusoidalOutIn : return SinusoidalOutInClamped(p_t);
+					case EEase.SmoothStep : return SmoothStepClamped(p_t);
+					default : throw new System.ArgumentOutOfRangeException("p_type");
+				}
+			}
+
+			public static Vector4 Ease4DClamped (EEase p_type, Vector4 p_from, Vector4 p_to, float p_t)
+			{
+				switch (p_type)
+				{
+					case EEase.BackIn : return BackInClamped(p_from, p_to, p_t);
+					case EEase.BackInOut :return BackInOutClamped(p_from, p_to, p_t);
+					case EEase.BackOut : return BackOutClamped(p_from, p_to, p_t);
+					case EEase.BounceIn : return BounceInClamped(p_from, p_to, p_t);
+					case EEase.BounceInOut : return BounceInOutClamped(p_from, p_to, p_t);
+					case EEase.BounceOut : return BounceOutClamped(p_from, p_to, p_t);
+					case EEase.BounceOutIn : return BounceOutInClamped(p_from, p_to, p_t);
+					case EEase.CircularIn : return CircularInClamped(p_from, p_to, p_t);
+					case EEase.CircularInOut : return CircularInOutClamped(p_from, p_to, p_t);
+					case EEase.CircularOut : return CircularOutClamped(p_from, p_to, p_t);
+					case EEase.CircularOutInt : return CircularOutInClamped(p_from, p_to, p_t);
+					case EEase.CubicIn : return CubicInClamped(p_from, p_to, p_t);
+					case EEase.CubicInOut : return CubicInOutClamped(p_from, p_to, p_t);
+					case EEase.CubicOut : return CubicOutClamped(p_from, p_to, p_t);
+					case EEase.CubicOutIn : return CubicOutInClamped(p_from, p_to, p_t);
+					case EEase.ElasticIn : return ElasticInClamped(p_from, p_to, p_t);
+					case EEase.ElasticInOut : return ElasticInOutClamped(p_from, p_to, p_t);
+					case EEase.ElasticOut : return ElasticOutClamped(p_from, p_to, p_t);
+					case EEase.ExponentialIn : return ExponentialInClamped(p_from, p_to, p_t);
+					case EEase.ExponentialInOut : return ExponentialInOutClamped(p_from, p_to, p_t);
+					case EEase.ExponentialOut : return ExponentialOutClamped(p_from, p_to, p_t);
+					case EEase.ExponentialOutIn : return ExponentialOutInClamped(p_from, p_to, p_t);
+					case EEase.Linear : return LerpClamped(p_from, p_to, p_t);
+					case EEase.QuadraticIn : return QuadraticInClamped(p_from, p_to, p_t);
+					case EEase.QuadraticInOut : return QuadraticInOutClamped(p_from, p_to, p_t);
+					case EEase.QuadraticOut : return QuadraticOutClamped(p_from, p_to, p_t);
+					case EEase.QuadraticOutIn : return QuadraticOutInClamped(p_from, p_to, p_t);
+					case EEase.QuarticIn : return QuarticInClamped(p_from, p_to, p_t);
+					case EEase.QuarticInOut : return QuarticInOutClamped(p_from, p_to, p_t);
+					case EEase.QuarticOut : return QuarticOutClamped(p_from, p_to, p_t);
+					case EEase.QuarticOutIn : return QuarticOutInClamped(p_from, p_to, p_t);
+					case EEase.QuinticIn : return QuinticInClamped(p_from, p_to, p_t);
+					case EEase.QuinticInOut : return QuinticInOutClamped(p_from, p_to, p_t);
+					case EEase.QuinticOut : return QuinticOutClamped(p_from, p_to, p_t);
+					case EEase.QuinticOutIn : return QuinticOutInClamped(p_from, p_to, p_t);
+					case EEase.SinusoidalIn : return SinusoidalInClamped(p_from, p_to, p_t);
+					case EEase.SinusoidalInOut : return SinusoidalInOutClamped(p_from, p_to, p_t);
+					case EEase.SinusoidalOut : return SinusoidalOutClamped(p_from, p_to, p_t);
+					case EEase.SinusoidalOutIn : return SinusoidalOutInClamped(p_from, p_to, p_t);
+					case EEase.SmoothStep : return SmoothStepClamped(p_from, p_to, p_t);
+					default : throw new System.ArgumentOutOfRangeException("p_type");
+				}
+			}
+
+			public static Vector4 Ease4DClamped (EEase p_type, Vector4 p_from, Vector4 p_to, Vector4 p_t)
+			{
+				switch (p_type)
+				{
+					case EEase.BackIn : return BackInClamped(p_from, p_to, p_t);
+					case EEase.BackInOut :return BackInOutClamped(p_from, p_to, p_t);
+					case EEase.BackOut : return BackOutClamped(p_from, p_to, p_t);
+					case EEase.BounceIn : return BounceInClamped(p_from, p_to, p_t);
+					case EEase.BounceInOut : return BounceInOutClamped(p_from, p_to, p_t);
+					case EEase.BounceOut : return BounceOutClamped(p_from, p_to, p_t);
+					case EEase.BounceOutIn : return BounceOutInClamped(p_from, p_to, p_t);
+					case EEase.CircularIn : return CircularInClamped(p_from, p_to, p_t);
+					case EEase.CircularInOut : return CircularInOutClamped(p_from, p_to, p_t);
+					case EEase.CircularOut : return CircularOutClamped(p_from, p_to, p_t);
+					case EEase.CircularOutInt : return CircularOutInClamped(p_from, p_to, p_t);
+					case EEase.CubicIn : return CubicInClamped(p_from, p_to, p_t);
+					case EEase.CubicInOut : return CubicInOutClamped(p_from, p_to, p_t);
+					case EEase.CubicOut : return CubicOutClamped(p_from, p_to, p_t);
+					case EEase.CubicOutIn : return CubicOutInClamped(p_from, p_to, p_t);
+					case EEase.ElasticIn : return ElasticInClamped(p_from, p_to, p_t);
+					case EEase.ElasticInOut : return ElasticInOutClamped(p_from, p_to, p_t);
+					case EEase.ElasticOut : return ElasticOutClamped(p_from, p_to, p_t);
+					case EEase.ExponentialIn : return ExponentialInClamped(p_from, p_to, p_t);
+					case EEase.ExponentialInOut : return ExponentialInOutClamped(p_from, p_to, p_t);
+					case EEase.ExponentialOut : return ExponentialOutClamped(p_from, p_to, p_t);
+					case EEase.ExponentialOutIn : return ExponentialOutInClamped(p_from, p_to, p_t);
+					case EEase.Linear : return LerpClamped(p_from, p_to, p_t);
+					case EEase.QuadraticIn : return QuadraticInClamped(p_from, p_to, p_t);
+					case EEase.QuadraticInOut : return QuadraticInOutClamped(p_from, p_to, p_t);
+					case EEase.QuadraticOut : return QuadraticOutClamped(p_from, p_to, p_t);
+					case EEase.QuadraticOutIn : return QuadraticOutInClamped(p_from, p_to, p_t);
+					case EEase.QuarticIn : return QuarticInClamped(p_from, p_to, p_t);
+					case EEase.QuarticInOut : return QuarticInOutClamped(p_from, p_to, p_t);
+					case EEase.QuarticOut : return QuarticOutClamped(p_from, p_to, p_t);
+					case EEase.QuarticOutIn : return QuarticOutInClamped(p_from, p_to, p_t);
+					case EEase.QuinticIn : return QuinticInClamped(p_from, p_to, p_t);
+					case EEase.QuinticInOut : return QuinticInOutClamped(p_from, p_to, p_t);
+					case EEase.QuinticOut : return QuinticOutClamped(p_from, p_to, p_t);
+					case EEase.QuinticOutIn : return QuinticOutInClamped(p_from, p_to, p_t);
+					case EEase.SinusoidalIn : return SinusoidalInClamped(p_from, p_to, p_t);
+					case EEase.SinusoidalInOut : return SinusoidalInOutClamped(p_from, p_to, p_t);
+					case EEase.SinusoidalOut : return SinusoidalOutClamped(p_from, p_to, p_t);
+					case EEase.SinusoidalOutIn : return SinusoidalOutInClamped(p_from, p_to, p_t);
+					case EEase.SmoothStep : return SmoothStepClamped(p_from, p_to, p_t);
+					default : throw new System.ArgumentOutOfRangeException("p_type");
+				}
+			}
+
 			public static Func<Vector4, Vector4> Ease4D_01 (EEase p_type)
 			{
 				switch (p_type)
@@ -2811,6 +3717,150 @@ namespace ZkTools.Mathematics
 					case EEase.SinusoidalOut : return SinusoidalOut;
 					case EEase.SinusoidalOutIn : return SinusoidalOutIn;
 					case EEase.SmoothStep : return SmoothStep;
+					default : return null;
+				}
+			}
+
+			public static Func<Vector4, Vector4> Ease4D_01Clamped (EEase p_type)
+			{
+				switch (p_type)
+				{
+					case EEase.BackIn : return BackInClamped;
+					case EEase.BackInOut :return BackInOutClamped;
+					case EEase.BackOut : return BackOutClamped;
+					case EEase.BounceIn : return BounceInClamped;
+					case EEase.BounceInOut : return BounceInOutClamped;
+					case EEase.BounceOut : return BounceOutClamped;
+					case EEase.BounceOutIn : return BounceOutInClamped;
+					case EEase.CircularIn : return CircularInClamped;
+					case EEase.CircularInOut : return CircularInOutClamped;
+					case EEase.CircularOut : return CircularOutClamped;
+					case EEase.CircularOutInt : return CircularOutInClamped;
+					case EEase.CubicIn : return CubicInClamped;
+					case EEase.CubicInOut : return CubicInOutClamped;
+					case EEase.CubicOut : return CubicOutClamped;
+					case EEase.CubicOutIn : return CubicOutInClamped;
+					case EEase.ElasticIn : return ElasticInClamped;
+					case EEase.ElasticInOut : return ElasticInOutClamped;
+					case EEase.ElasticOut : return ElasticOutClamped;
+					case EEase.ExponentialIn : return ExponentialInClamped;
+					case EEase.ExponentialInOut : return ExponentialInOutClamped;
+					case EEase.ExponentialOut : return ExponentialOutClamped;
+					case EEase.ExponentialOutIn : return ExponentialOutInClamped;
+					case EEase.Linear : return LerpClamped;
+					case EEase.QuadraticIn : return QuadraticInClamped;
+					case EEase.QuadraticInOut : return QuadraticInOutClamped;
+					case EEase.QuadraticOut : return QuadraticOutClamped;
+					case EEase.QuadraticOutIn : return QuadraticOutInClamped;
+					case EEase.QuarticIn : return QuarticInClamped;
+					case EEase.QuarticInOut : return QuarticInOutClamped;
+					case EEase.QuarticOut : return QuarticOutClamped;
+					case EEase.QuarticOutIn : return QuarticOutInClamped;
+					case EEase.QuinticIn : return QuinticInClamped;
+					case EEase.QuinticInOut : return QuinticInOutClamped;
+					case EEase.QuinticOut : return QuinticOutClamped;
+					case EEase.QuinticOutIn : return QuinticOutInClamped;
+					case EEase.SinusoidalIn : return SinusoidalInClamped;
+					case EEase.SinusoidalInOut : return SinusoidalInOutClamped;
+					case EEase.SinusoidalOut : return SinusoidalOutClamped;
+					case EEase.SinusoidalOutIn : return SinusoidalOutInClamped;
+					case EEase.SmoothStep : return SmoothStepClamped;
+					default : return null;
+				}
+			}
+
+			public static Func<Vector4, Vector4, float, Vector4> Ease4D_02Clamped (EEase p_type)
+			{
+				switch (p_type)
+				{
+					case EEase.BackIn : return BackInClamped;
+					case EEase.BackInOut :return BackInOutClamped;
+					case EEase.BackOut : return BackOutClamped;
+					case EEase.BounceIn : return BounceInClamped;
+					case EEase.BounceInOut : return BounceInOutClamped;
+					case EEase.BounceOut : return BounceOutClamped;
+					case EEase.BounceOutIn : return BounceOutInClamped;
+					case EEase.CircularIn : return CircularInClamped;
+					case EEase.CircularInOut : return CircularInOutClamped;
+					case EEase.CircularOut : return CircularOutClamped;
+					case EEase.CircularOutInt : return CircularOutInClamped;
+					case EEase.CubicIn : return CubicInClamped;
+					case EEase.CubicInOut : return CubicInOutClamped;
+					case EEase.CubicOut : return CubicOutClamped;
+					case EEase.CubicOutIn : return CubicOutInClamped;
+					case EEase.ElasticIn : return ElasticInClamped;
+					case EEase.ElasticInOut : return ElasticInOutClamped;
+					case EEase.ElasticOut : return ElasticOutClamped;
+					case EEase.ExponentialIn : return ExponentialInClamped;
+					case EEase.ExponentialInOut : return ExponentialInOutClamped;
+					case EEase.ExponentialOut : return ExponentialOutClamped;
+					case EEase.ExponentialOutIn : return ExponentialOutInClamped;
+					case EEase.Linear : return LerpClamped;
+					case EEase.QuadraticIn : return QuadraticInClamped;
+					case EEase.QuadraticInOut : return QuadraticInOutClamped;
+					case EEase.QuadraticOut : return QuadraticOutClamped;
+					case EEase.QuadraticOutIn : return QuadraticOutInClamped;
+					case EEase.QuarticIn : return QuarticInClamped;
+					case EEase.QuarticInOut : return QuarticInOutClamped;
+					case EEase.QuarticOut : return QuarticOutClamped;
+					case EEase.QuarticOutIn : return QuarticOutInClamped;
+					case EEase.QuinticIn : return QuinticInClamped;
+					case EEase.QuinticInOut : return QuinticInOutClamped;
+					case EEase.QuinticOut : return QuinticOutClamped;
+					case EEase.QuinticOutIn : return QuinticOutInClamped;
+					case EEase.SinusoidalIn : return SinusoidalInClamped;
+					case EEase.SinusoidalInOut : return SinusoidalInOutClamped;
+					case EEase.SinusoidalOut : return SinusoidalOutClamped;
+					case EEase.SinusoidalOutIn : return SinusoidalOutInClamped;
+					case EEase.SmoothStep : return SmoothStepClamped;
+					default : return null;
+				}
+			}
+
+			public static Func<Vector4, Vector4, Vector4, Vector4> Ease4D_03Clamped (EEase p_type)
+			{
+				switch (p_type)
+				{
+					case EEase.BackIn : return BackInClamped;
+					case EEase.BackInOut :return BackInOutClamped;
+					case EEase.BackOut : return BackOutClamped;
+					case EEase.BounceIn : return BounceInClamped;
+					case EEase.BounceInOut : return BounceInOutClamped;
+					case EEase.BounceOut : return BounceOutClamped;
+					case EEase.BounceOutIn : return BounceOutInClamped;
+					case EEase.CircularIn : return CircularInClamped;
+					case EEase.CircularInOut : return CircularInOutClamped;
+					case EEase.CircularOut : return CircularOutClamped;
+					case EEase.CircularOutInt : return CircularOutInClamped;
+					case EEase.CubicIn : return CubicInClamped;
+					case EEase.CubicInOut : return CubicInOutClamped;
+					case EEase.CubicOut : return CubicOutClamped;
+					case EEase.CubicOutIn : return CubicOutInClamped;
+					case EEase.ElasticIn : return ElasticInClamped;
+					case EEase.ElasticInOut : return ElasticInOutClamped;
+					case EEase.ElasticOut : return ElasticOutClamped;
+					case EEase.ExponentialIn : return ExponentialInClamped;
+					case EEase.ExponentialInOut : return ExponentialInOutClamped;
+					case EEase.ExponentialOut : return ExponentialOutClamped;
+					case EEase.ExponentialOutIn : return ExponentialOutInClamped;
+					case EEase.Linear : return LerpClamped;
+					case EEase.QuadraticIn : return QuadraticInClamped;
+					case EEase.QuadraticInOut : return QuadraticInOutClamped;
+					case EEase.QuadraticOut : return QuadraticOutClamped;
+					case EEase.QuadraticOutIn : return QuadraticOutInClamped;
+					case EEase.QuarticIn : return QuarticInClamped;
+					case EEase.QuarticInOut : return QuarticInOutClamped;
+					case EEase.QuarticOut : return QuarticOutClamped;
+					case EEase.QuarticOutIn : return QuarticOutInClamped;
+					case EEase.QuinticIn : return QuinticInClamped;
+					case EEase.QuinticInOut : return QuinticInOutClamped;
+					case EEase.QuinticOut : return QuinticOutClamped;
+					case EEase.QuinticOutIn : return QuinticOutInClamped;
+					case EEase.SinusoidalIn : return SinusoidalInClamped;
+					case EEase.SinusoidalInOut : return SinusoidalInOutClamped;
+					case EEase.SinusoidalOut : return SinusoidalOutClamped;
+					case EEase.SinusoidalOutIn : return SinusoidalOutInClamped;
+					case EEase.SmoothStep : return SmoothStepClamped;
 					default : return null;
 				}
 			}
