@@ -816,9 +816,9 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 			[Test]
 			public void Sign ()
 			{
-				Assert.AreEqual(1.0f, MathF.Sign(1.0f));
-				Assert.AreEqual(0.0f, MathF.Sign(0.0f));
-				Assert.AreEqual(-1.0f, MathF.Sign(-21.0f));
+				Assert.AreEqual(1.0f, MathF.SignAsInt(1.0f));
+				Assert.AreEqual(0.0f, MathF.SignAsInt(0.0f));
+				Assert.AreEqual(-1.0f, MathF.SignAsInt(-21.0f));
 			}
 
 			[Test]

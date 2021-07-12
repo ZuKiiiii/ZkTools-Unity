@@ -17,21 +17,53 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Add (Vector3 p_lhs, Vector3 p_rhs)
+			{
+				return p_lhs + p_rhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Add (ref Vector3 p_lhs, Vector3 p_rhs)
+			{
+				p_lhs += p_rhs;
+				return p_lhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Add (Vector3 p_lhs, float p_rhs)
+			{
+				return p_lhs + Replicate(p_rhs);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Add (ref Vector3 p_lhs, float p_rhs)
+			{
+				p_lhs += Replicate(p_rhs);
+				return p_lhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Add (float p_lhs, Vector3 p_rhs)
+			{
+				return Replicate(p_lhs) + p_rhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Radian Angle (Vector3 p_from, Vector3 p_to)
 			{
 				return Trigo.Acos(Dot(p_from, p_to) / MathF.Sqrt(p_from.sqrMagnitude * p_to.sqrMagnitude));
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Radian AngleCCW (Vector2 p_from, Vector2 p_to, Vector3 p_axis)
+			public static Radian AngleCCW (Vector3 p_from, Vector3 p_to, Vector3 p_axis)
 			{
-				return Det(p_from, p_to, p_axis) > 0 ? Angle(p_from, p_to) :Radian.One - Angle(p_from, p_to);
+				return Det(p_from, p_to, p_axis) > 0 ? Angle(p_from, p_to) : Radian.One - Angle(p_from, p_to);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Radian AngleCW (Vector2 p_from, Vector2 p_to, Vector3 p_axis)
+			public static Radian AngleCW (Vector3 p_from, Vector3 p_to, Vector3 p_axis)
 			{
-				return Det(p_from, p_to, p_axis) < 0 ? Angle(p_from, p_to) :Radian.One - Angle(p_from, p_to);
+				return Det(p_from, p_to, p_axis) < 0 ? Angle(p_from, p_to) : Radian.One - Angle(p_from, p_to);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -82,29 +114,26 @@ namespace ZkTools.Mathematics.Extensions
 				return new Vector3(MathF.Clamp(p_vector.x, p_min, p_max), MathF.Clamp(p_vector.y, p_min, p_max), MathF.Clamp(p_vector.z, p_min, p_max));
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector3 ClampMagnitude (Vector3 p_vector, float p_minMagnitude, float p_maxMagnitude)
 			{
 				float thisMagnitude = p_vector.magnitude;
-				if (thisMagnitude.IsNearlyZero())
-					return Vector3.zero;
-
-				return MathF.Clamp(thisMagnitude, p_minMagnitude, p_maxMagnitude) * p_vector / thisMagnitude;
+				return thisMagnitude < p_minMagnitude ? (p_vector / thisMagnitude) * p_minMagnitude :
+					thisMagnitude > p_maxMagnitude ? (p_vector / thisMagnitude) * p_maxMagnitude : p_vector;
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector3 ClampMaxMagnitude (Vector3 p_vector, float p_maxMagnitude)
 			{
-				p_maxMagnitude = MathF.Max(p_maxMagnitude, 0.0f);
-				float magnitudeSquared = p_vector.sqrMagnitude;
-
+				float magnitudeSquared = p_vector.magnitude;
 				return magnitudeSquared > MathF.Square(p_maxMagnitude) ? p_vector * (MathF.InvSqrt(magnitudeSquared) * p_maxMagnitude) : p_vector;
 			}
 
-			public static Vector3 ClampMinMagnitude (this Vector3 p_this, float p_minMagnitude)
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 ClampMinMagnitude (Vector3 p_vector, float p_minMagnitude)
 			{
-				p_minMagnitude = MathF.Max(p_minMagnitude, 0.0f);
-				float magnitudeSquared = p_this.sqrMagnitude;
-
-				return magnitudeSquared < MathF.Square(p_minMagnitude) ? p_this * (MathF.InvSqrt(magnitudeSquared) * p_minMagnitude) : p_this;
+				float magnitudeSquared = p_vector.sqrMagnitude;
+				return magnitudeSquared < MathF.Square(p_minMagnitude) ? p_vector * (MathF.InvSqrt(magnitudeSquared) * p_minMagnitude) : p_vector;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -131,9 +160,86 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Vector3 Div (Vector3 p_a, Vector3 p_b)
+			public static Vector3 Div (Vector3 p_lhs, Vector3 p_rhs)
 			{
-				return new Vector3(p_a.x / p_b.x, p_a.y / p_b.y, p_a.z / p_b.z);
+				return new Vector3(p_lhs.x / p_rhs.x, p_lhs.y / p_rhs.y, p_lhs.z / p_rhs.z);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Div (ref Vector3 p_lhs, Vector3 p_rhs)
+			{
+				p_lhs = Div(p_lhs, p_rhs);
+				return p_lhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Div (Vector3 p_lhs, float p_rhs)
+			{
+				return p_lhs / p_rhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Div (ref Vector3 p_lhs, float p_rhs)
+			{
+				p_lhs /= p_rhs;
+				return p_lhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 DivSafe (Vector3 p_dividend, float p_divisor, float p_defaultValue = 0.0f)
+			{
+				return DivSafe(p_dividend, p_divisor, Replicate(p_defaultValue));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 DivSafe (ref Vector3 p_dividend, float p_divisor, float p_defaultValue = 0.0f)
+			{
+				p_dividend = DivSafe(p_dividend, p_divisor, Replicate(p_defaultValue));
+				return p_dividend;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 DivSafe (Vector3 p_dividend, float p_divisor, Vector3 p_defaultValue)
+			{
+				return p_divisor.IsZero() ? p_defaultValue : p_dividend / p_divisor;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 DivSafe (ref Vector3 p_dividend, float p_divisor, Vector3 p_defaultValue)
+			{
+				p_dividend = DivSafe(p_dividend, p_divisor, p_defaultValue);
+				return p_dividend;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 DivSafe (Vector3 p_dividend, Vector3 p_divisor, float p_defaultValue = 0.0f)
+			{
+				return DivSafe(p_dividend, p_divisor, Replicate(p_defaultValue));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 DivSafe (ref Vector3 p_dividend, Vector3 p_divisor, float p_defaultValue = 0.0f)
+			{
+				p_dividend = DivSafe(p_dividend, p_divisor, Replicate(p_defaultValue));
+				return p_dividend;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 DivSafe (Vector3 p_dividend, Vector3 p_divisor, Vector3 p_defaultValue)
+			{
+				return new Vector3
+				(
+					MathF.DivSafe(p_dividend.x, p_divisor.x, p_defaultValue.x),
+					MathF.DivSafe(p_dividend.y, p_divisor.y, p_defaultValue.y),
+					MathF.DivSafe(p_dividend.z, p_divisor.z, p_defaultValue.z)
+				);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 DivSafe (ref Vector3 p_dividend, Vector3 p_divisor, Vector3 p_defaultValue)
+			{
+				p_dividend = DivSafe(p_dividend, p_divisor, p_defaultValue);
+				return p_dividend;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -158,31 +264,6 @@ namespace ZkTools.Mathematics.Extensions
 			public static float DistanceSqr (Vector3 p_lhs, Vector3 p_rhs)
 			{
 				return MathF.Square(p_rhs.x - p_lhs.x) + MathF.Square(p_rhs.y - p_lhs.y) + MathF.Square(p_rhs.z - p_lhs.z);
-			}
-
-			public static Vector3 DivSafe (Vector3 p_dividend, float p_divisor, float p_defaultValue = 0.0f)
-			{
-				return DivSafe(p_dividend, p_divisor, Replicate(p_defaultValue));
-			}
-
-			public static Vector3 DivSafe (Vector3 p_dividend, float p_divisor, Vector3 p_defaultValue)
-			{
-				return p_divisor.IsZero() ? p_defaultValue : p_dividend / p_divisor;
-			}
-
-			public static Vector3 DivSafe (Vector3 p_dividend, Vector3 p_divisor, float p_defaultValue = 0.0f)
-			{
-				return DivSafe(p_dividend, p_divisor, Replicate(p_defaultValue));
-			}
-
-			public static Vector3 DivSafe (Vector3 p_dividend, Vector3 p_divisor, Vector3 p_defaultValue)
-			{
-				return new Vector3
-				(
-					MathF.DivSafe(p_dividend.x, p_divisor.x, p_defaultValue.x),
-					MathF.DivSafe(p_dividend.y, p_divisor.y, p_defaultValue.y),
-					MathF.DivSafe(p_dividend.z, p_divisor.z, p_defaultValue.z)
-				);
 			}
 
 			public static void Exec (ref Vector3 p_vector, Func<float, float> p_action)
@@ -242,6 +323,51 @@ namespace ZkTools.Mathematics.Extensions
 			public static float GetAbsMin(this Vector3 p_this)
 			{
 				return MathF.Min(MathF.Abs(p_this.x), MathF.Abs(p_this.y), MathF.Abs(p_this.z));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static void GetDirectionAndMagnitude (this Vector3 p_this, out Vector3 p_direction, out float p_magnitude)
+			{
+				p_magnitude = p_this.magnitude;
+				p_direction = p_this / p_magnitude;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static (Vector3 p_direction, float p_magnitude) GetDirectionAndMagnitude (this Vector3 p_this)
+			{
+				float magnitude = p_this.magnitude;
+				Vector3 direction = p_this / magnitude;
+				return (direction, magnitude);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static void GetDirectionAndMagnitudeSafe (this Vector3 p_this, out Vector3 p_direction, out float p_magnitude, float p_defaultValue = 0.0f)
+			{
+				p_magnitude = p_this.magnitude;
+				p_direction = DivSafe(p_this, p_magnitude, p_defaultValue);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static void GetDirectionAndMagnitudeSafe (this Vector3 p_this, out Vector3 p_direction, out float p_magnitude, Vector3 p_defaultValue)
+			{
+				p_magnitude = p_this.magnitude;
+				p_direction = DivSafe(p_this, p_magnitude, p_defaultValue);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static (Vector3 p_direction, float p_magnitude) GetDirectionAndMagnitudeSafe (this Vector3 p_this, float p_defaultValue = 0.0f)
+			{
+				float magnitude = p_this.magnitude;
+				Vector3 direction = DivSafe(p_this, magnitude, p_defaultValue);
+				return (direction, magnitude);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static (Vector3 p_direction, float p_magnitude) GetDirectionAndMagnitudeSafe (this Vector3 p_this, Vector3 p_defaultValue)
+			{
+				float magnitude = p_this.magnitude;
+				Vector3 direction = DivSafe(p_this, magnitude, p_defaultValue);
+				return (direction, magnitude);
 			}
 
 			public static float GetMax (this Vector3 p_this)
@@ -323,24 +449,34 @@ namespace ZkTools.Mathematics.Extensions
 				return p_this == Vector3.zero;
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector3 Lerp (Vector3 p_a, Vector3 p_b, float p_t)
 			{
 				return p_a + (p_b - p_a) * p_t;
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector3 Lerp (Vector3 p_a, Vector3 p_b, Vector3 p_t)
 			{
 				return new Vector3(MathF.Lerp(p_a.x, p_b.x, p_t.x), MathF.Lerp(p_a.y, p_b.y, p_t.y), MathF.Lerp(p_a.z, p_b.z, p_t.z));
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector3 LerpClamped (Vector3 p_a, Vector3 p_b, float p_t)
 			{
 				return LerpClamped(p_a, p_b, new Vector3(p_t, p_t, p_t));
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector3 LerpClamped (Vector3 p_a, Vector3 p_b, Vector3 p_t)
 			{
 				return new Vector3(MathF.LerpClamped(p_a.x, p_b.x, p_t.x), MathF.LerpClamped(p_a.y, p_b.y, p_t.y), MathF.LerpClamped(p_a.z, p_b.z, p_t.z));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Max (Vector3 p_vector)
+			{
+				return MathF.Max(p_vector.x, p_vector.y, p_vector.z);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -368,6 +504,12 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Min (Vector3 p_vector)
+			{
+				return MathF.Min(p_vector.x, p_vector.y, p_vector.z);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector3 Min (Vector3 p_lhs, Vector3 p_rhs)
 			{
 				return new Vector3(MathF.Min(p_lhs.x, p_rhs.x), MathF.Min(p_lhs.y, p_rhs.y), MathF.Min(p_lhs.z, p_rhs.z));
@@ -391,9 +533,66 @@ namespace ZkTools.Mathematics.Extensions
 				return p_values.Min();
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Mul (Vector3 p_lhs, Vector3 p_rhs)
+			{
+				return new Vector3(p_lhs.x * p_rhs.x, p_lhs.y * p_rhs.y, p_lhs.z * p_rhs.z);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Mul (ref Vector3 p_lhs, Vector3 p_rhs)
+			{
+				p_lhs = Mul(p_lhs, p_rhs);
+				return p_lhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Mul (Vector3 p_lhs, float p_rhs)
+			{
+				return p_lhs * p_rhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Mul (ref Vector3 p_lhs, float p_rhs)
+			{
+				p_lhs *= p_rhs;
+				return p_lhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Mul (float p_lhs, Vector3 p_rhs)
+			{
+				return p_lhs * p_rhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Normalized (this Vector3 p_vector)
+			{
+				return p_vector / p_vector.magnitude;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 NormalizedSafe(this Vector3 p_vector, float p_defaultValue = 0.0f)
+			{
+				return NormalizedSafe(p_vector, Replicate(p_defaultValue));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 NormalizedSafe(this Vector3 p_vector, Vector3 p_defaultValue)
+			{
+				return p_vector.IsZero() ? p_defaultValue : Normalized(p_vector);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector3 Remap (Vector3 p_value, Vector3 p_inMin, Vector3 p_inMax, Vector3 p_outMin, Vector3 p_outMax)
 			{
 				return Lerp(p_outMin, p_outMax, InverseLerp(p_inMin, p_inMax, p_value));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Remap (Vector3 p_value, Bounds p_in, Bounds p_out)
+			{
+				return Remap(p_value, p_in.min, p_in.max, p_out.min, p_out.max);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -402,6 +601,13 @@ namespace ZkTools.Mathematics.Extensions
 				return Lerp(p_outMin, p_outMax, InverseLerpClamped(p_inMin, p_inMax, p_value, Vector3.zero, Vector3.one));
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 RemapClamped (Vector3 p_value, Bounds p_in, Bounds p_out)
+			{
+				return RemapClamped(p_value, p_in.min, p_in.max, p_out.min, p_out.max);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector3 RemoveDotVector (Vector3 p_vector, Vector3 p_direction)
 			{
 				return p_vector - ExtractDotVector(p_vector, p_direction);
@@ -420,6 +626,18 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Round (Vector3 p_value, float p_snapInterval)
+			{
+				return Round(p_value / p_snapInterval) * p_snapInterval;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Round (Vector3 p_value, Vector3 p_snapInterval)
+			{
+				return Mul(Round(Div(p_value, p_snapInterval)), p_snapInterval);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector3Int RoundToInt (Vector3 p_vector)
 			{
 				return new Vector3Int(MathF.RoundToInt(p_vector.x), MathF.RoundToInt(p_vector.y), MathF.RoundToInt(p_vector.z));
@@ -429,6 +647,42 @@ namespace ZkTools.Mathematics.Extensions
 			public static bool SameDirection (Vector3 p_lhs, Vector3 p_rhs)
 			{
 				return Dot(p_lhs, p_rhs) > 0f;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Sign (Vector3 p_value)
+			{
+				return new Vector3(MathF.Sign(p_value.x), MathF.Sign(p_value.y), MathF.Sign(p_value.z));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Sign (Vector3 p_value, float p_tolerance)
+			{
+				return new Vector3(MathF.Sign(p_value.x, p_tolerance), MathF.Sign(p_value.y, p_tolerance), MathF.Sign(p_value.z, p_tolerance));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Sign (Vector3 p_value, Vector3 p_tolerance)
+			{
+				return new Vector3(MathF.Sign(p_value.x, p_tolerance.x), MathF.Sign(p_value.y, p_tolerance.y), MathF.Sign(p_value.z, p_tolerance.z));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3Int SignAsInt (Vector3 p_value)
+			{
+				return new Vector3Int(MathF.SignAsInt(p_value.x), MathF.SignAsInt(p_value.y), MathF.SignAsInt(p_value.z));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3Int SignAsInt (Vector3 p_value, float p_tolerance)
+			{
+				return new Vector3Int(MathF.SignAsInt(p_value.x, p_tolerance), MathF.SignAsInt(p_value.y, p_tolerance), MathF.SignAsInt(p_value.z, p_tolerance));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3Int SignAsInt (Vector3 p_value, Vector3 p_tolerance)
+			{
+				return new Vector3Int(MathF.SignAsInt(p_value.x, p_tolerance.x), MathF.SignAsInt(p_value.y, p_tolerance.y), MathF.SignAsInt(p_value.z, p_tolerance.z));
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -444,9 +698,89 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Vector3 WithMagnitude (this Vector3 p_this, float p_magnitude)
+			public static Vector3 SignPos (Vector3 p_value)
 			{
-				return p_this.normalized * p_magnitude;
+				return new Vector3(MathF.SignPos(p_value.x), MathF.SignPos(p_value.y), MathF.SignPos(p_value.z));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3Int SignPosAsInt (Vector3 p_value)
+			{
+				return new Vector3Int(MathF.SignPosAsInt(p_value.x), MathF.SignPosAsInt(p_value.y), MathF.SignPosAsInt(p_value.z));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Sqrt (Vector3 p_vector)
+			{
+				return new Vector3(MathF.Sqrt(p_vector.x), MathF.Sqrt(p_vector.y), MathF.Sqrt(p_vector.z));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Sub (Vector3 p_lhs, Vector3 p_rhs)
+			{
+				return p_lhs - p_rhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Sub (ref Vector3 p_lhs, Vector3 p_rhs)
+			{
+				p_lhs -= p_rhs;
+				return p_lhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Sub (Vector3 p_lhs, float p_rhs)
+			{
+				return p_lhs - Replicate(p_rhs);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Sub (ref Vector3 p_lhs, float p_rhs)
+			{
+				p_lhs -= Replicate(p_rhs);
+				return p_lhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Sub (float p_lhs, Vector3 p_rhs)
+			{
+				return Replicate(p_lhs) - p_rhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 WeightedSum (Vector2 p_weight, Vector3 p_a, Vector3 p_b)
+			{
+				return WeightedSum(p_weight.x, p_weight.y, p_a, p_b);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 WeightedSum (float p_weightA, float p_weightB, Vector3 p_a, Vector3 p_b)
+			{
+				return p_a * p_weightA + p_b * p_weightB;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 WeightedSum (Vector3 p_weight, Vector3 p_a, Vector3 p_b, Vector3 p_c)
+			{
+				return WeightedSum(p_weight.x, p_weight.y, p_weight.z, p_a, p_b, p_c);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 WeightedSum (float p_weightA, float p_weightB, float p_weightC, Vector3 p_a, Vector3 p_b, Vector3 p_c)
+			{
+				return p_a * p_weightA + p_b * p_weightB + p_c * p_weightC;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 WeightedSum (Vector4 p_weight, Vector3 p_a, Vector3 p_b, Vector3 p_c, Vector3 p_d)
+			{
+				return WeightedSum(p_weight.x, p_weight.y, p_weight.z, p_weight.w, p_a, p_b, p_c, p_d);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 WeightedSum (float p_weightA, float p_weightB, float p_weightC, float p_weightD, Vector3 p_a, Vector3 p_b, Vector3 p_c, Vector3 p_d)
+			{
+				return p_a * p_weightA + p_b * p_weightB + p_c * p_weightC + p_d * p_weightD;
 			}
 
 		#endregion

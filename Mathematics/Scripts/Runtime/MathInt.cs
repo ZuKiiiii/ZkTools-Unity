@@ -309,6 +309,12 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float SignAsFloat (int p_value)
+			{
+				return Math.Sign(p_value);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int SignedDistance (int p_from, int p_to)
 			{
 				return p_to - p_from;
@@ -321,9 +327,27 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float SignPosAsFloat (int p_value)
+			{
+				return p_value >= 0 ? 1f : -1f;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int Square (int p_value)
 			{
 				return p_value * p_value;
+			}
+
+			public static int Sub (int p_lhs, int p_rhs)
+			{
+				return p_lhs - p_rhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int Sub (ref int p_lhs, int p_rhs)
+			{
+				p_lhs -= p_rhs;
+				return p_lhs;
 			}
 
 		#endregion
