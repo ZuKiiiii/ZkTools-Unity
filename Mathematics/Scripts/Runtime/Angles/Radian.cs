@@ -168,6 +168,15 @@ namespace ZkTools.Mathematics.Angles
 
 		#endregion
 
+		#region ==============================[Methods]==============================
+
+			public void Unwind ()
+			{
+				radian = Unwinded;
+			}
+
+		#endregion
+
 		#region ==============================[Inherited Methods]==============================
 
 			public int CompareTo (Radian p_other)
@@ -204,11 +213,6 @@ namespace ZkTools.Mathematics.Angles
 			public string ToString (string p_format, IFormatProvider p_formatProvider)
 			{
 				return $"{radian.ToString(p_format, p_formatProvider)} rad";
-			}
-
-			public void Unwind ()
-			{
-				radian = Unwinded;
 			}
 
 		#endregion

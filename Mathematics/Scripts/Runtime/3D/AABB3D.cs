@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AABB3D : MonoBehaviour
+namespace ZkTools.Mathematics.Geometry3D
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public class AABB3D : MonoBehaviour
+	{
+		#region ==============================[Variables]==============================
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+			public Vector3 min;
+
+			public Vector3 max;
+
+		#endregion
+	}
 }
+
+
+
