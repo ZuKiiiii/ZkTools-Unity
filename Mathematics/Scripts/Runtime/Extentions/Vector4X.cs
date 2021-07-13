@@ -243,15 +243,45 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float GetMax (this Vector3 p_this)
+			public static Vector4 GetAbs (this Vector4 p_this)
+			{
+				return Abs(p_this);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float GetAbsMax (this Vector4 p_this)
+			{
+				return Max(Abs(p_this));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float GetAbsMin (this Vector4 p_this)
+			{
+				return Min(Abs(p_this));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float GetMax (this Vector4 p_this)
 			{
 				return Max(p_this);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float GetMin (this Vector3 p_this)
+			public static float GetMaxAbs (this Vector4 p_this)
+			{
+				return MathF.Abs(Max(p_this));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float GetMin (this Vector4 p_this)
 			{
 				return Min(p_this);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float GetMinAbs (this Vector4 p_this)
+			{
+				return MathF.Abs(Min(p_this));
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -440,13 +470,13 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Vector4 NormalizedSafe(this Vector4 p_vector, float p_defaultValue = 0.0f)
+			public static Vector4 NormalizedSafe (this Vector4 p_vector, float p_defaultValue = 0.0f)
 			{
 				return NormalizedSafe(p_vector, Replicate(p_defaultValue));
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Vector4 NormalizedSafe(this Vector4 p_vector, Vector4 p_defaultValue)
+			public static Vector4 NormalizedSafe (this Vector4 p_vector, Vector4 p_defaultValue)
 			{
 				return p_vector.IsZero() ? p_defaultValue : Normalized(p_vector);
 			}

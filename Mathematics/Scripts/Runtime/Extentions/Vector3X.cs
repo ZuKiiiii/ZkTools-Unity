@@ -284,6 +284,7 @@ namespace ZkTools.Mathematics.Extensions
 				return MathF.Square(p_rhs.x - p_lhs.x) + MathF.Square(p_rhs.y - p_lhs.y) + MathF.Square(p_rhs.z - p_lhs.z);
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static void Exec (ref Vector3 p_vector, Func<float, float> p_action)
 			{
 				p_vector.x = p_action?.Invoke(p_vector.x) ?? p_vector.x;
@@ -291,6 +292,7 @@ namespace ZkTools.Mathematics.Extensions
 				p_vector.z = p_action?.Invoke(p_vector.z) ?? p_vector.z;
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static void Exec (ref Vector3 p_vector, Func<float, float> p_xAction, Func<float, float> p_yAction, Func<float, float> p_zAction)
 			{
 				p_vector.x = p_xAction?.Invoke(p_vector.x) ?? p_vector.x;
@@ -299,6 +301,7 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			// p_direction must be normalized !!!;
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector3 ExtractDotVector (Vector3 p_vector, Vector3 p_direction)
 			{
 				return p_direction * Vector3.Dot(p_vector, p_direction);
@@ -334,19 +337,22 @@ namespace ZkTools.Mathematics.Extensions
 				return p_to - p_from;
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector3 GetAbs (this Vector3 p_this)
 			{
-				return new Vector3(MathF.Abs(p_this.x), MathF.Abs(p_this.y), MathF.Abs(p_this.z));
+				return Abs(p_this);
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float GetAbsMax (this Vector3 p_this)
 			{
-				return MathF.Max(MathF.Abs(p_this.x), MathF.Abs(p_this.y), MathF.Abs(p_this.z));
+				return Max(Abs(p_this));
 			}
 
-			public static float GetAbsMin(this Vector3 p_this)
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float GetAbsMin (this Vector3 p_this)
 			{
-				return MathF.Min(MathF.Abs(p_this.x), MathF.Abs(p_this.y), MathF.Abs(p_this.z));
+				return Max(Abs(p_this));
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -401,24 +407,39 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float GetMaxAbs (this Vector3 p_this)
+			{
+				return MathF.Abs(Max(p_this));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float GetMin (this Vector3 p_this)
 			{
 				return Min(p_this);
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float GetMinAbs (this Vector3 p_this)
+			{
+				return MathF.Abs(Min(p_this));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static bool IsCollinear (Vector3 p_lhs, Vector3 p_rhs)
 			{
 				return Cross(p_lhs, p_rhs).IsZero();
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static bool IsNormalized (this Vector3 p_this)
 			{
 				return p_this.sqrMagnitude == 1.0f;
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static bool IsUnit (this Vector3 p_this, float p_epsilon = float.Epsilon)
 			{
-				return p_this.sqrMagnitude == 1.0f;
+				return MathF.IsNearlyEqual(p_this.sqrMagnitude, 1.0f, p_epsilon);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -604,13 +625,13 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Vector3 NormalizedSafe(this Vector3 p_vector, float p_defaultValue = 0.0f)
+			public static Vector3 NormalizedSafe (this Vector3 p_vector, float p_defaultValue = 0.0f)
 			{
 				return NormalizedSafe(p_vector, Replicate(p_defaultValue));
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Vector3 NormalizedSafe(this Vector3 p_vector, Vector3 p_defaultValue)
+			public static Vector3 NormalizedSafe (this Vector3 p_vector, Vector3 p_defaultValue)
 			{
 				return p_vector.IsZero() ? p_defaultValue : Normalized(p_vector);
 			}

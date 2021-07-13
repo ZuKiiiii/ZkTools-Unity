@@ -275,12 +275,14 @@ namespace ZkTools.Mathematics.Extensions
 				return new Vector2(0.0f, p_scale);
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static void Exec (ref Vector2 p_vector, Func<float, float> p_action)
 			{
 				p_vector.x = p_action?.Invoke(p_vector.x) ?? p_vector.x;
 				p_vector.y = p_action?.Invoke(p_vector.y) ?? p_vector.y;
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static void Exec (ref Vector2 p_vector, Func<float, float> p_xAction, Func<float, float> p_yAction)
 			{
 				p_vector.x = p_xAction?.Invoke(p_vector.x) ?? p_vector.x;
@@ -288,10 +290,10 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			// p_direction must be normalized !!!;
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector2 ExtractDotVector (Vector2 p_vector, Vector2 p_direction)
 			{
-				float amount = Vector2.Dot(p_vector, p_direction);
-				return p_direction * amount;
+				return p_direction * Vector2.Dot(p_vector, p_direction);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -318,19 +320,22 @@ namespace ZkTools.Mathematics.Extensions
 				return p_to - p_from;
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector2 GetAbs (this Vector2 p_this)
 			{
-				return new Vector2(MathF.Abs(p_this.x), MathF.Abs(p_this.y));
+				return Abs(p_this);
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float GetAbsMax (this Vector2 p_this)
 			{
-				return MathF.Max(MathF.Abs(p_this.x), MathF.Abs(p_this.y));
+				return Max(Abs(p_this));
 			}
 
-			public static float GetAbsMin(this Vector2 p_this)
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float GetAbsMin (this Vector2 p_this)
 			{
-				return MathF.Min(MathF.Abs(p_this.x), MathF.Abs(p_this.y));
+				return Min(Abs(p_this));
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -379,15 +384,27 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float GetMax (this Vector3 p_this)
+			public static float GetMax (this Vector2 p_this)
 			{
 				return Max(p_this);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float GetMin (this Vector3 p_this)
+			public static float GetMaxAbs (this Vector2 p_this)
+			{
+				return MathF.Abs(Max(p_this));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float GetMin (this Vector2 p_this)
 			{
 				return Min(p_this);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float GetMinAbs (this Vector2 p_this)
+			{
+				return MathF.Abs(Min(p_this));
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -397,13 +414,13 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static bool IsNormalized (this Vector3 p_this)
+			public static bool IsNormalized (this Vector2 p_this)
 			{
 				return p_this.sqrMagnitude == 1.0f;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static bool IsUnit (this Vector3 p_this, float p_epsilon = float.Epsilon)
+			public static bool IsUnit (this Vector2 p_this, float p_epsilon = float.Epsilon)
 			{
 				return p_this.sqrMagnitude == 1.0f;
 			}

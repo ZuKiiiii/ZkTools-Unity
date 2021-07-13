@@ -37,6 +37,7 @@ namespace ZkTools.Mathematics.Randoms
 			public static Vector2 OnUnitCircle {get => Vector2X.Direction(Angle);}
 
 			public static Vector3 OnUnitCube {get => throw new System.NotImplementedException();}
+
 			public static Vector2 OnUnitSphere {get => URandom.onUnitSphere;}
 
 			public static Vector2 OnUnitSquare {get => throw new System.NotImplementedException();}
