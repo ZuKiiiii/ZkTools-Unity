@@ -328,44 +328,6 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static (Vector4 p_direction, float p_magnitude) GetDirectionAndMagnitude (this Vector4 p_this)
-			{
-				float magnitude = p_this.magnitude;
-				Vector4 direction = p_this / magnitude;
-				return (direction, magnitude);
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static void GetDirectionAndMagnitudeSafe (this Vector4 p_this, out Vector4 p_direction, out float p_magnitude, float p_defaultValue = 0.0f)
-			{
-				p_magnitude = p_this.magnitude;
-				p_direction = DivSafe(p_this, p_magnitude, p_defaultValue);
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static void GetDirectionAndMagnitudeSafe (this Vector4 p_this, out Vector4 p_direction, out float p_magnitude, Vector4 p_defaultValue)
-			{
-				p_magnitude = p_this.magnitude;
-				p_direction = DivSafe(p_this, p_magnitude, p_defaultValue);
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static (Vector4 p_direction, float p_magnitude) GetDirectionAndMagnitudeSafe (this Vector4 p_this, float p_defaultValue = 0.0f)
-			{
-				float magnitude = p_this.magnitude;
-				Vector4 direction = DivSafe(p_this, magnitude, p_defaultValue);
-				return (direction, magnitude);
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static (Vector4 p_direction, float p_magnitude) GetDirectionAndMagnitudeSafe (this Vector4 p_this, Vector4 p_defaultValue)
-			{
-				float magnitude = p_this.magnitude;
-				Vector4 direction = DivSafe(p_this, magnitude, p_defaultValue);
-				return (direction, magnitude);
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static bool IsZero (this Vector4 p_this)
 			{
 				return p_this == Vector4.zero;
@@ -464,21 +426,105 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Vector4 Normalized (this Vector4 p_vector)
+			public static Vector4 Normalize (ref Vector4 p_vector)
 			{
-				return p_vector / p_vector.magnitude;
+				p_vector = p_vector.Normalized();
+				return p_vector;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Vector4 NormalizedSafe (this Vector4 p_vector, float p_defaultValue = 0.0f)
+			public static Vector4 Normalize (ref Vector4 p_vector, out float p_magnitude)
 			{
-				return NormalizedSafe(p_vector, Replicate(p_defaultValue));
+				p_vector = p_vector.Normalized(out p_magnitude);
+				return p_vector;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Vector4 NormalizedSafe (this Vector4 p_vector, Vector4 p_defaultValue)
+			public static Vector4 Normalized (this Vector4 p_this)
 			{
-				return p_vector.IsZero() ? p_defaultValue : Normalized(p_vector);
+				return p_this / p_this.magnitude;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 Normalized (this Vector4 p_this, out float p_magnitude)
+			{
+				p_this = Normalized(p_this, out p_magnitude);
+				return p_this;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static void Normalized (this Vector4 p_this, out Vector4 p_direction, out float p_magnitude)
+			{
+				p_magnitude = p_this.magnitude;
+				p_direction = p_this / p_magnitude;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 NormalizedSafe (this Vector4 p_this, float p_defaultValue = 0.0f)
+			{
+				return NormalizedSafe(p_this, Replicate(p_defaultValue));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 NormalizedSafe (this Vector4 p_this, Vector4 p_defaultValue)
+			{
+				return p_this.IsZero() ? p_defaultValue : Normalized(p_this);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 NormalizedSafe (this Vector4 p_this, out float p_magnitude, float p_defaultValue = 0.0f)
+			{
+				p_magnitude = p_this.magnitude;
+				return DivSafe(p_this, p_magnitude, p_defaultValue);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 NormalizedSafe (this Vector4 p_this, out float p_magnitude, Vector4 p_defaultValue)
+			{
+				p_magnitude = p_this.magnitude;
+				return DivSafe(p_this, p_magnitude, p_defaultValue);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static void NormalizedSafe (this Vector4 p_this, out Vector4 p_direction, out float p_magnitude, float p_defaultValue = 0.0f)
+			{
+				p_magnitude = p_this.magnitude;
+				p_direction = DivSafe(p_this, p_magnitude, p_defaultValue);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static void NormalizedSafe (this Vector4 p_this, out Vector4 p_direction, out float p_magnitude, Vector4 p_defaultValue)
+			{
+				p_magnitude = p_this.magnitude;
+				p_direction = DivSafe(p_this, p_magnitude, p_defaultValue);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 NormalizeSafe (ref Vector4 p_vector, float p_defaultValue = 0.0f)
+			{
+				p_vector = p_vector.NormalizedSafe(p_defaultValue);
+				return p_vector;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 NormalizeSafe (ref Vector4 p_vector, Vector4 p_defaultValue)
+			{
+				p_vector = p_vector.NormalizedSafe(p_defaultValue);
+				return p_vector;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 NormalizeSafe (ref Vector4 p_vector, out float p_magnitude, float p_defaultValue = 0.0f)
+			{
+				p_vector = p_vector.NormalizedSafe(out p_magnitude, p_defaultValue);
+				return p_vector;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 NormalizeSafe (ref Vector4 p_vector, out float p_magnitude, Vector4 p_defaultValue)
+			{
+				p_vector = p_vector.NormalizedSafe(out p_magnitude, p_defaultValue);
+				return p_vector;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -320,23 +320,9 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float InverseLerp (ref float p_a, float p_b, float p_value)
-			{
-				p_a = InverseLerp(p_a, p_b, p_value);
-				return p_a;
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float InverseLerpClamped (float p_a, float p_b, float p_value, float p_min = 0.0f, float p_max = 1.0f)
 			{
 				return Clamp(InverseLerp(p_a, p_b, p_value), p_min, p_max);
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float InverseLerpClamped (ref float p_a, float p_b, float p_value, float p_min = 0.0f, float p_max = 1.0f)
-			{
-				p_a = InverseLerpClamped(p_a, p_b, p_value, p_min, p_max);
-				return p_a;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

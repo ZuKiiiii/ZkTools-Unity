@@ -356,51 +356,6 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static void GetDirectionAndMagnitude (this Vector3 p_this, out Vector3 p_direction, out float p_magnitude)
-			{
-				p_magnitude = p_this.magnitude;
-				p_direction = p_this / p_magnitude;
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static (Vector3 p_direction, float p_magnitude) GetDirectionAndMagnitude (this Vector3 p_this)
-			{
-				float magnitude = p_this.magnitude;
-				Vector3 direction = p_this / magnitude;
-				return (direction, magnitude);
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static void GetDirectionAndMagnitudeSafe (this Vector3 p_this, out Vector3 p_direction, out float p_magnitude, float p_defaultValue = 0.0f)
-			{
-				p_magnitude = p_this.magnitude;
-				p_direction = DivSafe(p_this, p_magnitude, p_defaultValue);
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static void GetDirectionAndMagnitudeSafe (this Vector3 p_this, out Vector3 p_direction, out float p_magnitude, Vector3 p_defaultValue)
-			{
-				p_magnitude = p_this.magnitude;
-				p_direction = DivSafe(p_this, p_magnitude, p_defaultValue);
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static (Vector3 p_direction, float p_magnitude) GetDirectionAndMagnitudeSafe (this Vector3 p_this, float p_defaultValue = 0.0f)
-			{
-				float magnitude = p_this.magnitude;
-				Vector3 direction = DivSafe(p_this, magnitude, p_defaultValue);
-				return (direction, magnitude);
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static (Vector3 p_direction, float p_magnitude) GetDirectionAndMagnitudeSafe (this Vector3 p_this, Vector3 p_defaultValue)
-			{
-				float magnitude = p_this.magnitude;
-				Vector3 direction = DivSafe(p_this, magnitude, p_defaultValue);
-				return (direction, magnitude);
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float GetMax (this Vector3 p_this)
 			{
 				return Max(p_this);
@@ -619,21 +574,105 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Vector3 Normalized (this Vector3 p_vector)
+			public static Vector3 Normalize (ref Vector3 p_vector)
 			{
-				return p_vector / p_vector.magnitude;
+				p_vector = p_vector.Normalized();
+				return p_vector;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Vector3 NormalizedSafe (this Vector3 p_vector, float p_defaultValue = 0.0f)
+			public static Vector3 Normalize (ref Vector3 p_vector, out float p_magnitude)
 			{
-				return NormalizedSafe(p_vector, Replicate(p_defaultValue));
+				p_vector = p_vector.Normalized(out p_magnitude);
+				return p_vector;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Vector3 NormalizedSafe (this Vector3 p_vector, Vector3 p_defaultValue)
+			public static Vector3 Normalized (this Vector3 p_this)
 			{
-				return p_vector.IsZero() ? p_defaultValue : Normalized(p_vector);
+				return p_this / p_this.magnitude;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 Normalized (this Vector3 p_this, out float p_magnitude)
+			{
+				p_this = Normalized(p_this, out p_magnitude);
+				return p_this;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static void Normalized (this Vector3 p_this, out Vector3 p_direction, out float p_magnitude)
+			{
+				p_magnitude = p_this.magnitude;
+				p_direction = p_this / p_magnitude;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 NormalizedSafe (this Vector3 p_this, float p_defaultValue = 0.0f)
+			{
+				return NormalizedSafe(p_this, Replicate(p_defaultValue));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 NormalizedSafe (this Vector3 p_this, Vector3 p_defaultValue)
+			{
+				return p_this.IsZero() ? p_defaultValue : Normalized(p_this);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 NormalizedSafe (this Vector3 p_this, out float p_magnitude, float p_defaultValue = 0.0f)
+			{
+				p_magnitude = p_this.magnitude;
+				return DivSafe(p_this, p_magnitude, p_defaultValue);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 NormalizedSafe (this Vector3 p_this, out float p_magnitude, Vector3 p_defaultValue)
+			{
+				p_magnitude = p_this.magnitude;
+				return DivSafe(p_this, p_magnitude, p_defaultValue);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static void NormalizedSafe (this Vector3 p_this, out Vector3 p_direction, out float p_magnitude, float p_defaultValue = 0.0f)
+			{
+				p_magnitude = p_this.magnitude;
+				p_direction = DivSafe(p_this, p_magnitude, p_defaultValue);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static void NormalizedSafe (this Vector3 p_this, out Vector3 p_direction, out float p_magnitude, Vector3 p_defaultValue)
+			{
+				p_magnitude = p_this.magnitude;
+				p_direction = DivSafe(p_this, p_magnitude, p_defaultValue);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 NormalizeSafe (ref Vector3 p_vector, float p_defaultValue = 0.0f)
+			{
+				p_vector = p_vector.NormalizedSafe(p_defaultValue);
+				return p_vector;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 NormalizeSafe (ref Vector3 p_vector, Vector3 p_defaultValue)
+			{
+				p_vector = p_vector.NormalizedSafe(p_defaultValue);
+				return p_vector;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 NormalizeSafe (ref Vector3 p_vector, out float p_magnitude, float p_defaultValue = 0.0f)
+			{
+				p_vector = p_vector.NormalizedSafe(out p_magnitude, p_defaultValue);
+				return p_vector;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector3 NormalizeSafe (ref Vector3 p_vector, out float p_magnitude, Vector3 p_defaultValue)
+			{
+				p_vector = p_vector.NormalizedSafe(out p_magnitude, p_defaultValue);
+				return p_vector;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
