@@ -133,22 +133,22 @@ namespace ZkTools.Mathematics.UnitTests.Editor
 			public void DivRem ()
 			{
 				// Assert 01
-				DivRemResult r1Result = MathInt.DivRem(5, 2);
-				DivRemResult r1Expected = new DivRemResult(2,1);
-				Assert.AreEqual(r1Expected.result, r1Result.result);
-				Assert.AreEqual(r1Expected.remainder, r1Result.remainder);
+				(int, int) r1Result = MathInt.DivRem(5, 2);
+				(int, int) r1Expected = (2,1);
+				Assert.AreEqual(r1Expected.Item1, r1Result.Item1);
+				Assert.AreEqual(r1Expected.Item2, r1Result.Item2);
 
 				// Assert 02
-				DivRemResult r2Result = MathInt.DivRem(14, 4);
-				DivRemResult r2Expected = new DivRemResult(3,2);
-				Assert.AreEqual(r2Expected.result, r2Result.result);
-				Assert.AreEqual(r2Expected.remainder, r2Result.remainder);
+				(int, int) r2Result = MathInt.DivRem(14, 4);
+				(int, int) r2Expected = (3,2);
+				Assert.AreEqual(r2Expected.Item1, r2Result.Item1);
+				Assert.AreEqual(r2Expected.Item2, r2Result.Item2);
 
 				// Assert 02
-				DivRemResult r3Result = MathInt.DivRem(25, 4);
-				DivRemResult r3Expected = new DivRemResult(6,1);
-				Assert.AreEqual(r3Expected.result, r3Result.result);
-				Assert.AreEqual(r3Expected.remainder, r3Result.remainder);
+				(int, int) r3Result = MathInt.DivRem(25, 4);
+				(int, int) r3Expected = (6,1);
+				Assert.AreEqual(r3Expected.Item1, r3Result.Item1);
+				Assert.AreEqual(r3Expected.Item2, r3Result.Item2);
 			}
 
 			[Test]

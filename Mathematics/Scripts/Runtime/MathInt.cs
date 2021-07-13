@@ -16,13 +16,20 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int Abs (ref int p_value)
+			{
+				p_value = Abs(p_value);
+				return p_value;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int Add (int p_lhs, int p_rhs)
 			{
 				return p_lhs + p_rhs;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float Add (ref int p_lhs, int p_rhs)
+			public static int Add (ref int p_lhs, int p_rhs)
 			{
 				p_lhs += p_rhs;
 				return p_lhs;
@@ -32,6 +39,13 @@ namespace ZkTools.Mathematics
 			public static int Clamp (int p_value, int p_min = 0, int p_max = 1)
 			{
 				return Min(Max(p_value, p_min), p_max);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int Clamp (ref int p_value, int p_min = 0, int p_max = 1)
+			{
+				p_value = Clamp(p_value, p_min, p_max);
+				return p_value;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -47,9 +61,23 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int CopySign (ref int p_value, int p_sign)
+			{
+				p_value = CopySign(p_value, p_sign);
+				return p_value;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int Cube (int p_value)
 			{
 				return Square(p_value) * p_value;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int Cube (ref int p_value)
+			{
+				p_value = Cube(p_value);
+				return p_value;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -84,11 +112,16 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static DivRemResult DivRem (int p_dividend, int p_divisor)
+			public static int DivRem (ref int p_dividend, int p_divisor, out int p_remainder)
 			{
-				DivRemResult result = new DivRemResult();
-				result.result = DivRem(p_dividend, p_divisor, out result.remainder);
-				return result;
+				p_dividend = DivRem(p_dividend, p_divisor, out p_remainder);
+				return p_dividend;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static (int result, int reminder) DivRem (int p_dividend, int p_divisor)
+			{
+				return (DivRem(p_dividend, p_divisor, out int remainder), remainder);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -219,15 +252,36 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int Max (ref int p_a, int p_b)
+			{
+				p_a = Max(p_a, p_b);
+				return p_a;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int Max (int p_a, int p_b, int p_c)
 			{
 				return Max(Max(p_a, p_b), p_c);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int Max (ref int p_a, int p_b, int p_c)
+			{
+				p_a = Max(p_a, p_b, p_c);
+				return p_a;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int Max (int p_a, int p_b, int p_c, int p_d)
 			{
 				return Max(Max(Max(p_a, p_b), p_c), p_d);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int Max (ref int p_a, int p_b, int p_c, int p_d)
+			{
+				p_a = Max(p_a, p_b, p_c, p_d);
+				return p_a;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -243,15 +297,36 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int Min (ref int p_a, int p_b)
+			{
+				p_a = Min(p_a, p_b);
+				return p_a;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int Min (int p_a, int p_b, int p_c)
 			{
 				return Min(Min(p_a, p_b), p_c);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int Min (ref int p_a, int p_b, int p_c)
+			{
+				p_a = Min(p_a, p_b, p_c);
+				return p_a;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int Min (int p_a, int p_b, int p_c, int p_d)
 			{
 				return Min(Min(Min(p_a, p_b), p_c), p_d);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int Min (ref int p_a, int p_b, int p_c, int p_d)
+			{
+				p_a = Min(p_a, p_b, p_c, p_d);
+				return p_a;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -264,6 +339,13 @@ namespace ZkTools.Mathematics
 			public static int Mod (int p_value, int p_length)
 			{
 				return (p_value % p_length + p_length) % p_length;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int Mod (ref int p_value, int p_length)
+			{
+				p_value = Mod(p_value, p_length);
+				return p_value;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -285,6 +367,13 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int Negate (ref int p_value)
+			{
+				p_value = Negate(p_value);
+				return p_value;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int NextPowerOfTwo (int p_value)
 			{
 				return Mathf.NextPowerOfTwo(p_value);
@@ -297,9 +386,23 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int PingPong (ref int p_value, int p_length)
+			{
+				p_value = PingPong(p_value, p_length);
+				return p_value;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int Repeat (int p_value, int p_length)
 			{
 				return Clamp(p_value - MathF.FloorToInt(p_value / (float)p_length) * p_length, 0, p_length);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int Repeat (ref int p_value, int p_length)
+			{
+				p_value = Repeat(p_value, p_length);
+				return p_value;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -338,6 +441,13 @@ namespace ZkTools.Mathematics
 				return p_value * p_value;
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static int Square (ref int p_value)
+			{
+				p_value = Square(p_value);
+				return p_value;
+			}
+
 			public static int Sub (int p_lhs, int p_rhs)
 			{
 				return p_lhs - p_rhs;
@@ -348,27 +458,6 @@ namespace ZkTools.Mathematics
 			{
 				p_lhs -= p_rhs;
 				return p_lhs;
-			}
-
-		#endregion
-	}
-
-	public struct DivRemResult
-	{
-		#region ==============================[Variables]==============================
-
-			public int remainder;
-
-			public int result;
-
-		#endregion
-
-		#region ==============================[Constructor + Destructor]==============================
-
-			public DivRemResult (int p_result, int p_remainder)
-			{
-				remainder = p_remainder;
-				result = p_result;
 			}
 
 		#endregion
