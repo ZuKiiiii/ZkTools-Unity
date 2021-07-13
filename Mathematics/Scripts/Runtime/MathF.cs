@@ -61,6 +61,13 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Abs (ref float p_value)
+			{
+				p_value = Abs(p_value);
+				return p_value;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Add (float p_lhs, float p_rhs)
 			{
 				return p_lhs + p_rhs;
@@ -97,6 +104,13 @@ namespace ZkTools.Mathematics
 				return (float)Math.Ceiling(p_value);
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Ceil (ref float p_value)
+			{
+				p_value = Ceil(p_value);
+				return p_value;
+			}
+
 			/// <summary>
 			/// Converts a value given to the nearest greater or equal integer.
 			/// </summary>
@@ -121,6 +135,13 @@ namespace ZkTools.Mathematics
 				return Min(Max(p_value, p_min), p_max);
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Clamp (ref float p_value, float p_min = 0.0f, float p_max = 1.0f)
+			{
+				p_value = Clamp(p_value, p_min, p_max);
+				return p_value;
+			}
+
 			/// <summary>
 			/// Computes a value with the magnitude of first argument with the sign of the second.
 			/// </summary>
@@ -131,6 +152,13 @@ namespace ZkTools.Mathematics
 			public static float CopySign (float p_value, float p_sign)
 			{
 				return (float)CopySign((double)p_value, (double)p_sign);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float CopySign (ref float p_value, float p_sign)
+			{
+				p_value = CopySign(p_value, p_sign);
+				return p_value;
 			}
 
 			/// <summary>
@@ -154,6 +182,13 @@ namespace ZkTools.Mathematics
 				return BitConverter.Int64BitsToDouble(valueBits | signBits);
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static double CopySign (ref double p_value, double p_sign)
+			{
+				p_value = CopySign(p_value, p_sign);
+				return p_value;
+			}
+
 			/// <summary>
 			/// Computes the cube of the value.
 			/// </summary>
@@ -163,6 +198,13 @@ namespace ZkTools.Mathematics
 			public static float Cube (float p_value)
 			{
 				return Square(p_value) * p_value;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Cube (ref float p_value)
+			{
+				p_value = Cube(p_value);
+				return p_value;
 			}
 
 			/// <summary>
@@ -228,6 +270,13 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Floor (ref float p_value)
+			{
+				p_value = Floor(p_value);
+				return p_value;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static int FloorToInt (float p_value)
 			{
 				return (int)Floor(p_value);
@@ -258,9 +307,23 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Inv (ref float p_value)
+			{
+				p_value = Inv(p_value);
+				return p_value;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float InverseLerp (float p_a, float p_b, float p_value)
 			{
 				return (p_value - p_a) / (p_b - p_a);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float InverseLerp (ref float p_a, float p_b, float p_value)
+			{
+				p_a = InverseLerp(p_a, p_b, p_value);
+				return p_a;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -270,9 +333,23 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float InverseLerpClamped (ref float p_a, float p_b, float p_value, float p_min = 0.0f, float p_max = 1.0f)
+			{
+				p_a = InverseLerpClamped(p_a, p_b, p_value, p_min, p_max);
+				return p_a;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float InvSqrt (float p_value)
 			{
 				return 1.0f / Sqrt(p_value);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float InvSqrt (ref float p_value)
+			{
+				p_value = InvSqrt(p_value);
+				return p_value;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -372,9 +449,23 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Lerp (ref float p_a, float p_b, float p_t)
+			{
+				p_a = Lerp(p_a, p_b, p_t);
+				return p_a;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float LerpClamped (float p_a, float p_b, float p_t)
 			{
 				return Lerp(p_a, p_b, Clamp(p_t));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float LerpClamped (ref float p_a, float p_b, float p_t)
+			{
+				p_a = LerpClamped(p_a, p_b, p_t);
+				return p_a;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -414,15 +505,36 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Max (ref float p_a, float p_b)
+			{
+				p_a = Max(p_a, p_b);
+				return p_a;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Max (float p_a, float p_b, float p_c)
 			{
 				return Max(Max(p_a, p_b), p_c);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Max (ref float p_a, float p_b, float p_c)
+			{
+				p_a = Max(p_a, p_b, p_c);
+				return p_a;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Max (float p_a, float p_b, float p_c, float p_d)
 			{
 				return Max(Max(Max(p_a, p_b), p_c), p_d);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Max (ref float p_a, float p_b, float p_c, float p_d)
+			{
+				p_a = Max(p_a, p_b, p_c, p_d);
+				return p_a;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -438,15 +550,36 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Min (ref float p_a, float p_b)
+			{
+				p_a = Min(p_a, p_b);
+				return p_a;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Min (float p_a, float p_b, float p_c)
 			{
 				return Min(Min(p_a, p_b), p_c);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Min (ref float p_a, float p_b, float p_c)
+			{
+				p_a = Min(p_a, p_b, p_c);
+				return p_a;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Min (float p_a, float p_b, float p_c, float p_d)
 			{
 				return Min(Min(Min(p_a, p_b), p_c), p_d);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Min (ref float p_a, float p_b, float p_c, float p_d)
+			{
+				p_a = Min(p_a, p_b, p_c, p_d);
+				return p_a;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -491,6 +624,13 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float MoveTowards (ref float p_current, float p_target, float p_maxDelta)
+			{
+				p_current = MoveTowards(p_current, p_target, p_maxDelta);
+				return p_current;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Mul (float p_lhs, float p_rhs)
 			{
 				return p_lhs * p_rhs;
@@ -509,15 +649,36 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Negate (ref float p_value)
+			{
+				p_value = Negate(p_value);
+				return p_value;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float PingPong (float p_value, float p_length)
 			{
 				return p_length - Abs(Repeat(p_value, p_length * 2f) - p_length);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float PingPong (ref float p_value, float p_length)
+			{
+				p_value = PingPong(p_value, p_length);
+				return p_value;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Pow (float p_base, float p_exponent)
 			{
 				return (float)Math.Pow(p_base, p_exponent);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Pow (ref float p_base, float p_exponent)
+			{
+				p_base = Pow(p_base, p_exponent);
+				return p_base;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -549,9 +710,23 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Quartic (ref float p_value)
+			{
+				p_value = Quartic(p_value);
+				return p_value;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Quintic (float p_value)
 			{
 				return p_value * p_value * p_value * p_value * p_value;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Quintic (ref float p_value)
+			{
+				p_value = Quintic(p_value);
+				return p_value;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -567,9 +742,23 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Remap (ref float p_value, float p_inMin, float p_inMax, float p_outMin, float p_outMax)
+			{
+				p_value = Remap(p_value, p_inMin, p_inMax, p_outMin, p_outMax);
+				return p_value;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Remap (float p_value, Range p_in, Range p_out)
 			{
 				return Remap(p_value, p_in.min, p_in.max, p_out.min, p_out.max);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Remap (ref float p_value, Range p_in, Range p_out)
+			{
+				p_value = Remap(p_value, p_in, p_out);
+				return p_value;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -579,9 +768,23 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float RemapClamped (ref float p_value, float p_inMin, float p_inMax, float p_outMin, float p_outMax)
+			{
+				p_value = RemapClamped(p_value, p_inMin, p_inMax, p_outMin, p_outMax);
+				return p_value;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float RemapClamped (float p_value, Range p_in, Range p_out)
 			{
 				return RemapClamped(p_value, p_in.min, p_in.max, p_out.min, p_out.max);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float RemapClamped (ref float p_value, Range p_in, Range p_out)
+			{
+				p_value = RemapClamped(p_value, p_in, p_out);
+				return p_value;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -591,15 +794,36 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Repeat (ref float p_value, float p_length)
+			{
+				p_value = Repeat(p_value, p_length);
+				return p_value;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Round (float p_value)
 			{
 				return (float)Math.Round(p_value);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Round (ref float p_value)
+			{
+				p_value = Round(p_value);
+				return p_value;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Round (float p_value, float p_snapInterval)
 			{
 				return Round(p_value / p_snapInterval) * p_snapInterval;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Round (ref float p_value, float p_snapInterval)
+			{
+				p_value = Round(p_value, p_snapInterval);
+				return p_value;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -662,9 +886,17 @@ namespace ZkTools.Mathematics
 				return p_value >= 0.0f ? 1 : -1;
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float SmoothDamp (float p_current, float p_target, ref float p_currentVelocity, float p_smoothTime, float p_maxSpeed = Infinity)
 			{
 				return SmoothDamp(p_current, p_target, ref p_currentVelocity, p_smoothTime, Time.deltaTime, p_maxSpeed);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float SmoothDamp (ref float p_current, float p_target, ref float p_currentVelocity, float p_smoothTime, float p_maxSpeed = Infinity)
+			{
+				p_current = SmoothDamp(p_current, p_target, ref p_currentVelocity, p_smoothTime, p_maxSpeed);
+				return p_current;
 			}
 
 			public static float SmoothDamp (float p_current, float p_target, ref float p_currentVelocity, float p_smoothTime, float p_deltaTime, float p_maxSpeed = Infinity)
@@ -697,6 +929,13 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float SmoothDamp (ref float p_current, float p_target, ref float p_currentVelocity, float p_smoothTime, float p_deltaTime, float p_maxSpeed = Infinity)
+			{
+				p_current = SmoothDamp(p_current, p_target, ref p_currentVelocity, p_smoothTime, p_deltaTime, p_maxSpeed);
+				return p_current;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Sqrt (float p_value)
 			{
 				return (float)Math.Sqrt(p_value);
@@ -708,6 +947,14 @@ namespace ZkTools.Mathematics
 				return p_value * p_value;
 			}
 
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Square (ref float p_value)
+			{
+				p_value = Square(p_value);
+				return p_value;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Sub (float p_lhs, float p_rhs)
 			{
 				return p_lhs - p_rhs;
@@ -727,45 +974,104 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Trunc (ref float p_value)
+			{
+				p_value = Trunc(p_value);
+				return p_value;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float TruncToInt (float p_value)
 			{
 				return (int)Trunc(p_value);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float WeightedSum (Vector2 p_weight, float p_a, float p_b)
+			public static float WeightedSum (float p_a, float p_b, Vector2 p_weight)
 			{
-				return WeightedSum(p_weight.x, p_weight.y, p_a, p_b);
+				return WeightedSum(p_a, p_b, p_weight.x, p_weight.y);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float WeightedSum (float p_weightA, float p_weightB, float p_a, float p_b)
+			public static float WeightedSum (ref float p_a, float p_b, Vector2 p_weight)
+			{
+				p_a = WeightedSum(p_a, p_b, p_weight);
+				return p_a;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float WeightedSum (float p_a, float p_b, float p_weightA, float p_weightB)
 			{
 				return p_a * p_weightA + p_b * p_weightB;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float WeightedSum (Vector3 p_weight, float p_a, float p_b, float p_c)
+			public static float WeightedSum (ref float p_a, float p_b, float p_weightA, float p_weightB)
 			{
-				return WeightedSum(p_weight.x, p_weight.y, p_weight.z, p_a, p_b, p_c);
+				p_a = WeightedSum(p_a, p_b, p_weightA, p_weightB);
+				return p_a;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float WeightedSum (float p_weightA, float p_weightB, float p_weightC, float p_a, float p_b, float p_c)
+			public static float WeightedSum (float p_a, float p_b, float p_c, Vector3 p_weight)
+			{
+				return WeightedSum(p_a, p_b, p_c, p_weight.x, p_weight.y, p_weight.z);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float WeightedSum (ref float p_a, float p_b, float p_c, Vector3 p_weight)
+			{
+				p_a = WeightedSum(p_a, p_b, p_c, p_weight);
+				return p_a;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float WeightedSum (float p_a, float p_b, float p_c, float p_weightA, float p_weightB, float p_weightC)
 			{
 				return p_a * p_weightA + p_b * p_weightB + p_c * p_weightC;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float WeightedSum (Vector4 p_weight, float p_a, float p_b, float p_c, float p_d)
+			public static float WeightedSum (ref float p_a, float p_b, float p_c, float p_weightA, float p_weightB, float p_weightC)
 			{
-				return WeightedSum(p_weight.x, p_weight.y, p_weight.z, p_weight.w, p_a, p_b, p_c, p_d);
+				p_a = WeightedSum(p_a, p_b, p_c, p_weightA, p_weightB, p_weightC);
+				return p_a;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float WeightedSum (float p_weightA, float p_weightB, float p_weightC, float p_weightD, float p_a, float p_b, float p_c, float p_d)
+			public static float WeightedSum (float p_a, float p_b, float p_c, float p_d, Vector4 p_weight)
+			{
+				return WeightedSum(p_a, p_b, p_c, p_d, p_weight.x, p_weight.y, p_weight.z, p_weight.w);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float WeightedSum (ref float p_a, float p_b, float p_c, float p_d, Vector4 p_weight)
+			{
+				p_a = WeightedSum(p_a, p_b, p_c, p_d, p_weight);
+				return p_a;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float WeightedSum (float p_a, float p_b, float p_c, float p_d, float p_weightA, float p_weightB, float p_weightC, float p_weightD)
 			{
 				return p_a * p_weightA + p_b * p_weightB + p_c * p_weightC + p_d * p_weightD;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float WeightedSum (ref float p_a, float p_b, float p_c, float p_d, float p_weightA, float p_weightB, float p_weightC, float p_weightD)
+			{
+				p_a = WeightedSum(p_a, p_b, p_c, p_d, p_weightA, p_weightB, p_weightC, p_weightD);
+				return p_a;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float WeightedSum (float[] p_values, float[] p_weights)
+			{
+				int count = MathInt.Min(p_values.Length, p_values.Length);
+				float result = 0;
+				for (int index = 0; index < count; ++index)
+					result += p_values[index] * p_weights[index];
+				return result;
 			}
 
 		#endregion
