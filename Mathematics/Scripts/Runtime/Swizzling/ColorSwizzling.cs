@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace BkTools.Mathematics.Swizzling
 {
-	public static class Vector4Swizzling
+	public static class ColorSwizzling
 	{
 		#region ==============================[Static Methods]==============================
 

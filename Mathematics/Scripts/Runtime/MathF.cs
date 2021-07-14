@@ -6,13 +6,6 @@ using ZkTools.Mathematics.Ranges;
 
 namespace ZkTools.Mathematics
 {
-	/**
-	 * TODO :
-	 * - IsNearlyGreater
-	 * - IsNearlyLess
-	 * - IsNearlyGreaterEqual
-	 * - IsNearlyLess Equal
-	 */
 	public static class MathF
 	{
 		#region ==============================[Static Variables]==============================
@@ -336,6 +329,18 @@ namespace ZkTools.Mathematics
 			{
 				p_value = InvSqrt(p_value);
 				return p_value;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsDifferent (float p_lhs, float p_rhs)
+			{
+				return !IsEqual(p_lhs, p_rhs);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsEqual (float p_lhs, float p_rhs)
+			{
+				return p_lhs == p_rhs;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

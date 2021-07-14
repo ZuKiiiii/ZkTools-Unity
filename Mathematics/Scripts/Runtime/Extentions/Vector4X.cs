@@ -297,6 +297,391 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsDifferent (Vector4 p_lhs, Vector4 p_rhs)
+			{
+				return !IsEqual(p_lhs, p_rhs);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4b IsDifferent4D (Vector4 p_lhs, Vector4 p_rhs)
+			{
+				return !IsEqual4D(p_lhs, p_rhs);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsEqual (Vector4 p_lhs, Vector4 p_rhs)
+			{
+				return p_lhs == p_rhs;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4b IsEqual4D (Vector4 p_lhs, Vector4 p_rhs)
+			{
+				return new Vector4b(p_lhs.x == p_rhs.x, p_lhs.y == p_rhs.y, p_lhs.z == p_rhs.z, p_lhs.w == p_rhs.w);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsGreater (Vector4 p_lhs, Vector4 p_rhs)
+			{
+				return p_lhs.x > p_rhs.x && p_lhs.y > p_rhs.y && p_lhs.z > p_rhs.z && p_lhs.w > p_rhs.w;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4b IsGreater4D (Vector4 p_lhs, Vector4 p_rhs)
+			{
+				return new Vector4b(p_lhs.x > p_rhs.x, p_lhs.y > p_rhs.y, p_lhs.z > p_rhs.z, p_lhs.w > p_rhs.w);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsGreaterEqual (Vector4 p_lhs, Vector4 p_rhs)
+			{
+				return p_lhs.x >= p_rhs.x && p_lhs.y >= p_rhs.y && p_lhs.z >= p_rhs.z && p_lhs.w >= p_rhs.w;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4b IsGreaterEqual4D (Vector4 p_lhs, Vector4 p_rhs)
+			{
+				return new Vector4b(p_lhs.x >= p_rhs.x, p_lhs.y >= p_rhs.y, p_lhs.z >= p_rhs.z, p_lhs.w >= p_rhs.w);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsLess (Vector4 p_lhs, Vector4 p_rhs)
+			{
+				return p_lhs.x < p_rhs.x && p_lhs.y < p_rhs.y && p_lhs.z < p_rhs.z && p_lhs.w < p_rhs.w;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4b IsLess4D (Vector4 p_lhs, Vector4 p_rhs)
+			{
+				return new Vector4b(p_lhs.x < p_rhs.x, p_lhs.y < p_rhs.y, p_lhs.z < p_rhs.z, p_lhs.w < p_rhs.w);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsLessEqual (Vector4 p_lhs, Vector4 p_rhs)
+			{
+				return p_lhs.x <= p_rhs.x && p_lhs.y <= p_rhs.y && p_lhs.z <= p_rhs.z && p_lhs.w <= p_rhs.w;
+
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4b IsLessEqual4D (Vector4 p_lhs, Vector4 p_rhs)
+			{
+				return new Vector4b(p_lhs.x <= p_rhs.x, p_lhs.y <= p_rhs.y, p_lhs.z <= p_rhs.z, p_lhs.w <= p_rhs.w);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsNearlyEqual (Vector4 p_lhs, Vector4 p_rhs, float p_tolerance = float.Epsilon)
+			{
+				return MathF.IsNearlyEqual(p_lhs.x, p_rhs.x, p_tolerance) && MathF.IsNearlyEqual(p_lhs.y, p_rhs.y, p_tolerance) && MathF.IsNearlyEqual(p_lhs.z, p_rhs.z, p_tolerance) && MathF.IsNearlyEqual(p_lhs.w, p_rhs.w, p_tolerance);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4b IsNearlyEqual4D (Vector4 p_lhs, Vector4 p_rhs, float p_tolerance = float.Epsilon)
+			{
+				return new Vector4b
+				(
+					MathF.IsNearlyEqual(p_lhs.x, p_rhs.x, p_tolerance),
+					MathF.IsNearlyEqual(p_lhs.y, p_rhs.y, p_tolerance),
+					MathF.IsNearlyEqual(p_lhs.z, p_rhs.z, p_tolerance),
+					MathF.IsNearlyEqual(p_lhs.w, p_rhs.w, p_tolerance)
+				);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsNearlyEqual (Vector4 p_lhs, Vector4 p_rhs, Vector4 p_tolerance)
+			{
+				return MathF.IsNearlyEqual(p_lhs.x, p_rhs.x, p_tolerance.x) && MathF.IsNearlyEqual(p_lhs.y, p_rhs.y, p_tolerance.y) && MathF.IsNearlyEqual(p_lhs.z, p_rhs.z, p_tolerance.z) && MathF.IsNearlyEqual(p_lhs.w, p_rhs.w, p_tolerance.w);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4b IsNearlyEqual4D (Vector4 p_lhs, Vector4 p_rhs, Vector4 p_tolerance)
+			{
+				return new Vector4b
+				(
+					MathF.IsNearlyEqual(p_lhs.x, p_rhs.x, p_tolerance.x),
+					MathF.IsNearlyEqual(p_lhs.y, p_rhs.y, p_tolerance.y),
+					MathF.IsNearlyEqual(p_lhs.z, p_rhs.z, p_tolerance.z),
+					MathF.IsNearlyEqual(p_lhs.w, p_rhs.w, p_tolerance.w)
+				);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsNearlyGreater (Vector4 p_lhs, Vector4 p_rhs, float p_tolerance = float.Epsilon)
+			{
+				return MathF.IsNearlyGreater(p_lhs.x, p_rhs.x, p_tolerance) && MathF.IsNearlyGreater(p_lhs.y, p_rhs.y, p_tolerance) && MathF.IsNearlyGreater(p_lhs.z, p_rhs.z, p_tolerance) && MathF.IsNearlyGreater(p_lhs.w, p_rhs.w, p_tolerance);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4b IsNearlyGreater4D (Vector4 p_lhs, Vector4 p_rhs, float p_tolerance = float.Epsilon)
+			{
+				return new Vector4b
+				(
+					MathF.IsNearlyGreater(p_lhs.x, p_rhs.x, p_tolerance),
+					MathF.IsNearlyGreater(p_lhs.y, p_rhs.y, p_tolerance),
+					MathF.IsNearlyGreater(p_lhs.z, p_rhs.z, p_tolerance),
+					MathF.IsNearlyGreater(p_lhs.w, p_rhs.w, p_tolerance)
+				);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsNearlyGreater (Vector4 p_lhs, Vector4 p_rhs, Vector4 p_tolerance)
+			{
+				return new Vector4b
+				(
+					MathF.IsNearlyGreater(p_lhs.x, p_rhs.x, p_tolerance.x),
+					MathF.IsNearlyGreater(p_lhs.y, p_rhs.y, p_tolerance.y),
+					MathF.IsNearlyGreater(p_lhs.z, p_rhs.z, p_tolerance.z),
+					MathF.IsNearlyGreater(p_lhs.w, p_rhs.w, p_tolerance.w)
+				);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4b IsNearlyGreater4D (Vector4 p_lhs, Vector4 p_rhs, Vector4 p_tolerance)
+			{
+				return new Vector4b
+				(
+					MathF.IsNearlyGreater(p_lhs.x, p_rhs.x, p_tolerance.x),
+					MathF.IsNearlyGreater(p_lhs.y, p_rhs.y, p_tolerance.y),
+					MathF.IsNearlyGreater(p_lhs.z, p_rhs.z, p_tolerance.z),
+					MathF.IsNearlyGreater(p_lhs.w, p_rhs.w, p_tolerance.w)
+				);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsNearlyGreaterEqual (Vector4 p_lhs, Vector4 p_rhs, float p_tolerance = float.Epsilon)
+			{
+				return MathF.IsNearlyGreaterEqual(p_lhs.x, p_rhs.x, p_tolerance) && MathF.IsNearlyGreaterEqual(p_lhs.y, p_rhs.y, p_tolerance) && MathF.IsNearlyGreaterEqual(p_lhs.z, p_rhs.z, p_tolerance) && MathF.IsNearlyGreaterEqual(p_lhs.w, p_rhs.w, p_tolerance);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4b IsNearlyGreaterEqual4D (Vector4 p_lhs, Vector4 p_rhs, float p_tolerance = float.Epsilon)
+			{
+				return new Vector4b
+				(
+					MathF.IsNearlyGreaterEqual(p_lhs.x, p_rhs.x, p_tolerance),
+					MathF.IsNearlyGreaterEqual(p_lhs.y, p_rhs.y, p_tolerance),
+					MathF.IsNearlyGreaterEqual(p_lhs.z, p_rhs.z, p_tolerance),
+					MathF.IsNearlyGreaterEqual(p_lhs.w, p_rhs.w, p_tolerance)
+				);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsNearlyGreaterEqual (Vector4 p_lhs, Vector4 p_rhs, Vector4 p_tolerance)
+			{
+				return MathF.IsNearlyGreaterEqual(p_lhs.x, p_rhs.x, p_tolerance.x) && MathF.IsNearlyGreaterEqual(p_lhs.y, p_rhs.y, p_tolerance.y) && MathF.IsNearlyGreaterEqual(p_lhs.z, p_rhs.z, p_tolerance.z) && MathF.IsNearlyGreaterEqual(p_lhs.w, p_rhs.w, p_tolerance.w);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4b IsNearlyGreaterEqual4D (Vector4 p_lhs, Vector4 p_rhs, Vector4 p_tolerance)
+			{
+				return new Vector4b
+				(
+					MathF.IsNearlyGreaterEqual(p_lhs.x, p_rhs.x, p_tolerance.x),
+					MathF.IsNearlyGreaterEqual(p_lhs.y, p_rhs.y, p_tolerance.y),
+					MathF.IsNearlyGreaterEqual(p_lhs.z, p_rhs.z, p_tolerance.z),
+					MathF.IsNearlyGreaterEqual(p_lhs.w, p_rhs.w, p_tolerance.w)
+				);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsNearlyLess (Vector4 p_lhs, Vector4 p_rhs, float p_tolerance = float.Epsilon)
+			{
+				return MathF.IsNearlyLess(p_lhs.x, p_rhs.x, p_tolerance) && MathF.IsNearlyLess(p_lhs.y, p_rhs.y, p_tolerance) && MathF.IsNearlyLess(p_lhs.z, p_rhs.z, p_tolerance) && MathF.IsNearlyLess(p_lhs.w, p_rhs.w, p_tolerance);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4b IsNearlyLess4D (Vector4 p_lhs, Vector4 p_rhs, float p_tolerance = float.Epsilon)
+			{
+				return new Vector4b
+				(
+					MathF.IsNearlyLess(p_lhs.x, p_rhs.x, p_tolerance),
+					MathF.IsNearlyLess(p_lhs.y, p_rhs.y, p_tolerance),
+					MathF.IsNearlyLess(p_lhs.z, p_rhs.z, p_tolerance),
+					MathF.IsNearlyLess(p_lhs.w, p_rhs.w, p_tolerance)
+				);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsNearlyLess (Vector4 p_lhs, Vector4 p_rhs, Vector4 p_tolerance)
+			{
+				return MathF.IsNearlyLess(p_lhs.x, p_rhs.x, p_tolerance.x) && MathF.IsNearlyLess(p_lhs.y, p_rhs.y, p_tolerance.y) && MathF.IsNearlyLess(p_lhs.z, p_rhs.z, p_tolerance.z) && MathF.IsNearlyLess(p_lhs.w, p_rhs.w, p_tolerance.w);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4b IsNearlyLess4D (Vector4 p_lhs, Vector4 p_rhs, Vector4 p_tolerance)
+			{
+				return new Vector4b
+				(
+					MathF.IsNearlyLess(p_lhs.x, p_rhs.x, p_tolerance.x),
+					MathF.IsNearlyLess(p_lhs.y, p_rhs.y, p_tolerance.y),
+					MathF.IsNearlyLess(p_lhs.z, p_rhs.z, p_tolerance.z),
+					MathF.IsNearlyLess(p_lhs.w, p_rhs.w, p_tolerance.w)
+				);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsNearlyLessEqual (Vector4 p_lhs, Vector4 p_rhs, float p_tolerance = float.Epsilon)
+			{
+				return MathF.IsNearlyLessEqual(p_lhs.x, p_rhs.x, p_tolerance) && MathF.IsNearlyLessEqual(p_lhs.y, p_rhs.y, p_tolerance) && MathF.IsNearlyLessEqual(p_lhs.z, p_rhs.z, p_tolerance) && MathF.IsNearlyLessEqual(p_lhs.w, p_rhs.w, p_tolerance);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4b IsNearlyLessEqual4D (Vector4 p_lhs, Vector4 p_rhs, float p_tolerance = float.Epsilon)
+			{
+				return new Vector4b
+				(
+					MathF.IsNearlyLessEqual(p_lhs.x, p_rhs.x, p_tolerance),
+					MathF.IsNearlyLessEqual(p_lhs.y, p_rhs.y, p_tolerance),
+					MathF.IsNearlyLessEqual(p_lhs.z, p_rhs.z, p_tolerance),
+					MathF.IsNearlyLessEqual(p_lhs.w, p_rhs.w, p_tolerance)
+				);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsNearlyLessEqual (Vector4 p_lhs, Vector4 p_rhs, Vector4 p_tolerance)
+			{
+				return MathF.IsNearlyLessEqual(p_lhs.x, p_rhs.x, p_tolerance.x) && MathF.IsNearlyLessEqual(p_lhs.y, p_rhs.y, p_tolerance.y) && MathF.IsNearlyLessEqual(p_lhs.z, p_rhs.z, p_tolerance.z) && MathF.IsNearlyLessEqual(p_lhs.w, p_rhs.w, p_tolerance.w);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4b IsNearlyLessEqual4D (Vector4 p_lhs, Vector4 p_rhs, Vector4 p_tolerance)
+			{
+				return new Vector4b
+				(
+					MathF.IsNearlyLessEqual(p_lhs.x, p_rhs.x, p_tolerance.x),
+					MathF.IsNearlyLessEqual(p_lhs.y, p_rhs.y, p_tolerance.y),
+					MathF.IsNearlyLessEqual(p_lhs.z, p_rhs.z, p_tolerance.z),
+					MathF.IsNearlyLessEqual(p_lhs.w, p_rhs.w, p_tolerance.w)
+				);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsNearlyZero (this Vector4 p_this, float p_tolerance = float.Epsilon)
+			{
+				return MathF.IsNearlyZero(p_this.x, p_tolerance) && MathF.IsNearlyZero(p_this.y, p_tolerance) && MathF.IsNearlyZero(p_this.z, p_tolerance) && MathF.IsNearlyZero(p_this.w, p_tolerance);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4b IsNearlyZero4D (this Vector4 p_value, float p_tolerance = float.Epsilon)
+			{
+				return new Vector4b
+				(
+					MathF.IsNearlyZero(p_value.x, p_tolerance),
+					MathF.IsNearlyZero(p_value.y, p_tolerance),
+					MathF.IsNearlyZero(p_value.z, p_tolerance),
+					MathF.IsNearlyZero(p_value.w, p_tolerance)
+				);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsNearlyZero (this Vector4 p_this, Vector4 p_tolerance)
+			{
+				return MathF.IsNearlyZero(p_this.x, p_tolerance.x) && MathF.IsNearlyZero(p_this.y, p_tolerance.y) && MathF.IsNearlyZero(p_this.z, p_tolerance.z) && MathF.IsNearlyZero(p_this.w, p_tolerance.w);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4b IsNearlyZero4D (this Vector4 p_value, Vector4 p_tolerance)
+			{
+				return new Vector4b
+				(
+					MathF.IsNearlyZero(p_value.x, p_tolerance.x),
+					MathF.IsNearlyZero(p_value.y, p_tolerance.y),
+					MathF.IsNearlyZero(p_value.z, p_tolerance.z),
+					MathF.IsNearlyZero(p_value.w, p_tolerance.w)
+				);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsNegative (this Vector4 p_this)
+			{
+				return MathF.IsNegative(p_this.x) && MathF.IsNegative(p_this.y) && MathF.IsNegative(p_this.z) && MathF.IsNegative(p_this.w);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4b IsNegative4D (this Vector4 p_value)
+			{
+				return new Vector4b
+				(
+					MathF.IsNegative(p_value.x),
+					MathF.IsNegative(p_value.y),
+					MathF.IsNegative(p_value.z),
+					MathF.IsNegative(p_value.w)
+				);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsNegativeOrZero (this Vector4 p_this)
+			{
+				return MathF.IsNegativeOrZero(p_this.x) && MathF.IsNegativeOrZero(p_this.y) && MathF.IsNegativeOrZero(p_this.z) && MathF.IsNegativeOrZero(p_this.w);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4b IsNegativeOrZero4D (this Vector4 p_value)
+			{
+				return new Vector4b
+				(
+					MathF.IsNegativeOrZero(p_value.x),
+					MathF.IsNegativeOrZero(p_value.y),
+					MathF.IsNegativeOrZero(p_value.z),
+					MathF.IsNegativeOrZero(p_value.w)
+				);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsPositive (this Vector4 p_this)
+			{
+				return MathF.IsPositive(p_this.x) && MathF.IsPositive(p_this.y) && MathF.IsPositive(p_this.z) && MathF.IsPositive(p_this.w);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4b IsPositive4D (this Vector4 p_this)
+			{
+				return new Vector4b
+				(
+					MathF.IsPositive(p_this.x),
+					MathF.IsPositive(p_this.y),
+					MathF.IsPositive(p_this.z),
+					MathF.IsPositive(p_this.w)
+				);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsPositiveOrZero (this Vector4 p_this)
+			{
+				return MathF.IsPositiveOrZero(p_this.x) && MathF.IsPositiveOrZero(p_this.y) && MathF.IsPositiveOrZero(p_this.z) && MathF.IsPositiveOrZero(p_this.w);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4b IsPositiveOrZero4D (this Vector4 p_this)
+			{
+				return new Vector4b
+				(
+					MathF.IsPositiveOrZero(p_this.x),
+					MathF.IsPositiveOrZero(p_this.y),
+					MathF.IsPositiveOrZero(p_this.z),
+					MathF.IsPositiveOrZero(p_this.w)
+				);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static bool IsZero (this Vector4 p_this)
+			{
+				return MathF.IsZero(p_this.x) && MathF.IsZero(p_this.y) && MathF.IsZero(p_this.z) && MathF.IsZero(p_this.w);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4b IsZero4D (this Vector4 p_value)
+			{
+				return new Vector4b
+				(
+					MathF.IsZero(p_value.x),
+					MathF.IsZero(p_value.y),
+					MathF.IsZero(p_value.z),
+					MathF.IsZero(p_value.w)
+				);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector4 Lerp (Vector4 p_a, Vector4 p_b, float p_t)
 			{
 				return p_a + (p_b - p_a) * p_t;
@@ -318,19 +703,6 @@ namespace ZkTools.Mathematics.Extensions
 			public static Vector4 LerpClamped (Vector4 p_a, Vector4 p_b, Vector4 p_t)
 			{
 				return new Vector4(MathF.LerpClamped(p_a.x, p_b.x, p_t.x), MathF.LerpClamped(p_a.y, p_b.y, p_t.y), MathF.LerpClamped(p_a.z, p_b.z, p_t.z), MathF.LerpClamped(p_a.w, p_b.w, p_t.w));
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static void GetDirectionAndMagnitude (this Vector4 p_this, out Vector4 p_direction, out float p_magnitude)
-			{
-				p_magnitude = p_this.magnitude;
-				p_direction = p_this / p_magnitude;
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static bool IsZero (this Vector4 p_this)
-			{
-				return p_this == Vector4.zero;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

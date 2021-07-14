@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using UnityEditorInternal;
 using UnityEngine;
 using ZkTools.Mathematics.Angles;
 using ZkTools.Mathematics.Geometry2D;
-using ZkTools.Mathematics.Ranges;
 
 namespace ZkTools.Mathematics.Extensions
 {

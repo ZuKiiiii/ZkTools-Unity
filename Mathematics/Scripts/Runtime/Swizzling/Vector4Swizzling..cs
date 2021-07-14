@@ -1690,7 +1690,7 @@ namespace ZkTools.Mathematics.Swizzling
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector2 GetWW (this Vector4 p_this)
 			{
-				return new Vector3(p_this.w, p_this.w);
+				return new Vector2(p_this.w, p_this.w);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
