@@ -63,7 +63,7 @@ namespace ZkTools.Mathematics.Randoms
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Radian GetAngle (Range p_range)
+			public static Radian GetAngle (Interval p_range)
 			{
 				return GetAngle(p_range.min, p_range.max);
 			}
@@ -117,7 +117,7 @@ namespace ZkTools.Mathematics.Randoms
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Vector2 InCircle (Range p_range)
+			public static Vector2 InCircle (Interval p_range)
 			{
 				return InCircle(p_range.min, p_range.max);
 			}
@@ -183,7 +183,7 @@ namespace ZkTools.Mathematics.Randoms
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Vector2 InSphere (Range p_range)
+			public static Vector2 InSphere (Interval p_range)
 			{
 				return InSphere(p_range.min, p_range.max);
 			}
@@ -279,7 +279,7 @@ namespace ZkTools.Mathematics.Randoms
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float Range1D (Range p_range)
+			public static float Range1D (Interval p_range)
 			{
 				return URandom.Range(p_range.min, p_range.max);
 			}
