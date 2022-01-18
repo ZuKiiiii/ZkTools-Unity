@@ -118,7 +118,7 @@ namespace ZkTools.Mathematics
 
 		#endregion
 
-		#region ==============================[Inherited Methods]==============================
+		#region ==============================[Static Methods]==============================
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector4b And (Vector4b p_lhs, Vector4b p_rhs)
