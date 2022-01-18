@@ -596,15 +596,14 @@ namespace ZkTools.Mathematics.Extensions
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector3 Normalized (this Vector3 p_this, out float p_magnitude)
 			{
-				p_this = Normalized(p_this, out p_magnitude);
-				return p_this;
+				p_magnitude = p_this.magnitude;
+				return p_this / p_magnitude;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static void Normalized (this Vector3 p_this, out Vector3 p_direction, out float p_magnitude)
 			{
-				p_magnitude = p_this.magnitude;
-				p_direction = p_this / p_magnitude;
+				p_direction = p_this.Normalized(out p_magnitude);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
