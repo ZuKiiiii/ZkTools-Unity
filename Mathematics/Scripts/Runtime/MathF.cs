@@ -740,13 +740,13 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float Remap (float p_value, Range p_in, Range p_out)
+			public static float Remap (float p_value, Interval p_in, Interval p_out)
 			{
 				return Remap(p_value, p_in.min, p_in.max, p_out.min, p_out.max);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float Remap (ref float p_value, Range p_in, Range p_out)
+			public static float Remap (ref float p_value, Interval p_in, Interval p_out)
 			{
 				p_value = Remap(p_value, p_in, p_out);
 				return p_value;
@@ -766,13 +766,13 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float RemapClamped (float p_value, Range p_in, Range p_out)
+			public static float RemapClamped (float p_value, Interval p_in, Interval p_out)
 			{
 				return RemapClamped(p_value, p_in.min, p_in.max, p_out.min, p_out.max);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float RemapClamped (ref float p_value, Range p_in, Range p_out)
+			public static float RemapClamped (ref float p_value, Interval p_in, Interval p_out)
 			{
 				p_value = RemapClamped(p_value, p_in, p_out);
 				return p_value;

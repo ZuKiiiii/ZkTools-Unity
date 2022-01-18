@@ -331,12 +331,12 @@ namespace ZkTools.Mathematics.Geometry2D
 
 			public static bool IsOverlappingX (AABB2D p_lhs, AABB2D p_rhs)
 			{
-				return Range.IsOverlapping(p_lhs.min.x, p_lhs.max.x, p_rhs.min.x, p_rhs.max.x);
+				return Interval.IsOverlapping(p_lhs.min.x, p_lhs.max.x, p_rhs.min.x, p_rhs.max.x);
 			}
 
 			public static bool IsOverlappingY (AABB2D p_lhs, AABB2D p_rhs)
 			{
-				return Range.IsOverlapping(p_lhs.min.y, p_lhs.max.y, p_rhs.min.y, p_rhs.max.y);
+				return Interval.IsOverlapping(p_lhs.min.y, p_lhs.max.y, p_rhs.min.y, p_rhs.max.y);
 			}
 
 			

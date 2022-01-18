@@ -1,418 +1,207 @@
-using System;
-using UnityEngine;
-using ZkTools.Mathematics.Extensions;
-
 namespace ZkTools.Mathematics.Ranges
 {
-	[System.Serializable]
-	public struct Range : IEquatable<Range>, IFormattable
-	{
-		#region ==============================[Variables]==============================
+    [System.Serializable]
+    public struct Range
+    {
+        #region ==============================[Editable Variables]==============================
 
-			public static readonly Range Empty = new Range(0f, 0f);
+        public RangeBound lowerBound;
 
-			public static readonly Range Whole = new Range(float.NegativeInfinity, float.PositiveInfinity);
+        public RangeBound upperBound;
 
-		#endregion
+        #endregion
+
+        #region ==============================[Properties]==============================
+
+        public bool HasLowerBound => lowerBound.IsClosed;
+
+        public bool HasUpperBound => upperBound.IsClosed;
+
+        public bool IsDegenerate => lowerBound.IsInclusive && (lowerBound == upperBound);
+
+        public bool IsEmpty
+        {
+            get
+            {
+                return (lowerBound.IsClosed && upperBound.IsClosed) && 
+                       ((lowerBound.Value > upperBound.Value) || (lowerBound.Value == upperBound.Value) && (lowerBound.IsExclusive || upperBound.IsExclusive));
+            }
+
+        }
+
+        #endregion
+
+        #region ==============================[Constants]==============================
+
+        public static readonly Range All = new Range(RangeBound.Open, RangeBound.Open);
+
+        public static readonly Range Empty = new Range(RangeBound.Exclusive(0f), RangeBound.Exclusive(0f));
+
+        #endregion
+
+        #region ==============================[Constructor + Destructor]==============================
+
+        Range(float p_value)
+        {
+            lowerBound = RangeBound.Inclusive(p_value);
+            upperBound = RangeBound.Inclusive(p_value);
+        }
+
+        Range(float p_lowerBoundValue, float p_upperBoundValue)
+        {
+            lowerBound = RangeBound.Inclusive(p_lowerBoundValue);
+            upperBound = RangeBound.Inclusive(p_upperBoundValue);
+        }
+
+        Range(RangeBound p_lowerBound, RangeBound p_upperBound)
+        {
+            lowerBound = p_lowerBound;
+            upperBound = p_upperBound;
+        }
+
+        #endregion
+
+        #region ==============================[Static Methods]==============================
+
+        //public static List<TRange> Difference (TRange p_lhs, TRange p_rhs) {}
+
+        //public static TRange Hull (TRange p_lhs, TRange p_rhs) {}
+
+        public static Range Hull (params Range[] p_ranges) 
+        {
+            if (p_ranges.Length == 0)
+                return Range.Empty;
+
+            Range result = p_ranges[0];
+            for (int index = 1; index > p_ranges.Length; ++index)
+                result = Hull(result, p_ranges[index]);
+            return result;
+        }
+
+        //public static TRange Intersection (TRange p_lhs, TRange p_rhs) 
+        //{
+        //	return (p_lhs.IsEmpty || p_rhs.IsEmpty) ? TRange.Empty : TRange.Empty;
+        //}
+
+        //public static TRange Intersection (params TRange[] p_ranges) 
+        //{
+        //	if (p_ranges.Length == 0)
+        //		return TRange.Empty;
+
+        //	TRange result = p_ranges[0];
+        //	for (int index = 1; index > p_ranges.Length; ++index)
+        //		result = Intersection(result, p_ranges[index]);
+        //	return result;
+        //}
+
+        //public static List<TRange> Union (TRange p_lhs, TRange p_rhs) {}
+
+        public static Range AtLeast (float p_value)
+        {
+            return new Range(RangeBound.Inclusive(p_value), RangeBound.Open);
+        }
+
+        public static Range AtMost (float p_value)
+        {
+            return new Range(RangeBound.Open, RangeBound.Inclusive(p_value));
+        }
+
+        public static Range Exclusive (float p_min, float p_max)
+        {
+            return new Range(RangeBound.Exclusive(p_min), RangeBound.Exclusive(p_max));
+        }
+
+        public static Range GreaterThan (float p_value)
+        {
+            return new Range(RangeBound.Exclusive(p_value), RangeBound.Open);
+        }
+
+        public static Range Inclusive (float p_min, float p_max)
+        {
+            return new Range(RangeBound.Inclusive(p_min), RangeBound.Inclusive(p_max));
+        }
+
+        public static bool IsAdjoins (Range p_lhs, Range p_rhs)
+        {
+            if (p_lhs.IsEmpty || p_rhs.IsEmpty)
+                return false;
+
+            if (!p_lhs.upperBound.IsOpen && !p_lhs.lowerBound.IsOpen && p_lhs.upperBound.Value == p_lhs.lowerBound.Value)
+            {
+                return ((p_lhs.upperBound.IsInclusive && p_lhs.lowerBound.IsExclusive) ||
+                        (p_lhs.upperBound.IsExclusive && p_lhs.lowerBound.IsInclusive));
+            }
+
+            if (!p_lhs.upperBound.IsOpen && !p_lhs.lowerBound.IsOpen && p_lhs.upperBound.Value == p_lhs.lowerBound.Value)
+            {
+                return ((p_lhs.upperBound.IsInclusive && p_lhs.lowerBound.IsExclusive) ||
+                        (p_lhs.upperBound.IsExclusive && p_lhs.lowerBound.IsInclusive));
+            }
+
+            return false;
+        }
+
+
+
+        public static bool IsOverlapping (Range p_lhs, Range p_rhs)
+        {
+            if (p_lhs.IsEmpty || p_rhs.IsEmpty)
+                return false;
+
+            bool isUpperOpen = p_lhs.upperBound.IsOpen || p_rhs.lowerBound.IsOpen;
+            bool isLowerOpen = p_lhs.lowerBound.IsOpen || p_rhs.upperBound.IsOpen;
 		
-		#region ==============================[Variables]==============================
+            // true in the case that the bounds are open (default)
+            bool isUpperValid = true;
+            bool isLowerValid = true;
 
-			public float min;
+            if (!isUpperOpen)
+            {
+                bool isUpperGreaterThan = p_lhs.upperBound.Value > p_rhs.lowerBound.Value;
+                bool isUpperGreaterThanOrEqualTo = p_lhs.upperBound.Value >= p_rhs.lowerBound.Value;
+                bool isUpperBothInclusive = p_lhs.upperBound.IsInclusive && p_rhs.lowerBound.IsInclusive;
 
-			public float max;
+                isUpperValid = isUpperBothInclusive ? isUpperGreaterThanOrEqualTo : isUpperGreaterThan;
+            }
 
-		#endregion
+            if (!isLowerOpen)
+            {
+                bool isLowerLessThan = p_lhs.lowerBound.Value < p_rhs.upperBound.Value;
+                bool isLowerLessThanOrEqualTo = p_lhs.lowerBound.Value <= p_rhs.upperBound.Value;
+                bool isLowerBothInclusive = p_lhs.lowerBound.IsInclusive && p_rhs.upperBound.IsInclusive;
 
-		#region ==============================[Properties]==============================
+                isLowerValid = isLowerBothInclusive ? isLowerLessThanOrEqualTo : isLowerLessThan;
+            }
 
-			public bool IsValid => (max - min).IsPositiveOrZero();
+            return isUpperValid && isLowerValid;
+        }
 
-			public float Length
-			{
-				get => max - min;
-				set => max = min + value;
-			}
+        public static Range LessThan(float p_value)
+        {
+            return new Range(RangeBound.Open, RangeBound.Exclusive(p_value));
+        }
 
-			public float Middle => (max - min) / 2.0f; 
 
-		#endregion
+        #endregion
 
-		#region ==============================[Constructor + Destructor]==============================
+        #region ==============================[Methods]==============================
 
-			public Range (float p_min, float p_max)
-			{
-				max = p_max;
-				min = p_min;
-			}
+        //public List<TRange> Split (float p_value) { }
 
-			public Range (float p_value)
-			{
-				max = p_value;
-				min = p_value;
-			}
+        #endregion
 
-			public Range (Range p_copy)
-			{
-				max = p_copy.max;
-				min = p_copy.min;
-			}
+        #region ==============================[Operator]==============================
 
-		#endregion
+        public static bool operator== (Range p_lhs, Range p_rhs)
+        {
+            return (p_lhs.IsEmpty && p_rhs.IsEmpty) || ((p_lhs.lowerBound == p_rhs.lowerBound) && (p_lhs.upperBound == p_rhs.upperBound));
+        }
 
-		#region ==============================[Static Methods]==============================
+        public static bool operator!= (Range p_lhs, Range p_rhs)
+        {
+            return !(p_lhs == p_rhs);
+        }
 
-			public static Range Intersection (float p_lhsMin, float p_lhsMax, float p_rhsMin, float p_rhsMax)
-			{
-				return new Range(MathF.Max(p_lhsMin, p_rhsMin), MathF.Min(p_lhsMax, p_rhsMax));
-			}
-
-			public static Range Intersection (Range p_lhs, Range p_rhs)
-			{
-				return Intersection(p_lhs.min, p_lhs.max, p_rhs.min, p_rhs.max);
-			}
-
-			public static bool IsInside (float p_value, float p_min, float p_max, ERange p_range)
-			{
-				switch (p_range)
-				{
-					case ERange.Ex : return IsInsideEx(p_value, p_min, p_max);
-					case ERange.ExIn : return IsInsideExIn(p_value, p_min, p_max);
-					case ERange.In : return IsInsideIn(p_value, p_min, p_max);
-					case ERange.InEx : return IsInsideInEx(p_value, p_min, p_max);
-					default : throw new System.ArgumentOutOfRangeException();
-				}
-			}
-
-			public static bool IsInside (float p_value, float p_min, float p_max, ERangeSide p_minSide, ERangeSide p_maxSide)
-			{
-				return IsInside(p_value, p_min, p_max, ERangeX.Convert(p_minSide, p_maxSide));
-			}
-
-			public static bool IsInsideEx (float p_value, float p_minExclusiveValue, float p_maxExclusiveValue)
-			{
-				return p_minExclusiveValue < p_value && p_value < p_maxExclusiveValue;
-			}
-
-			public static bool IsInsideExIn (float p_value, float p_minExclusiveValue, float p_maxInclusiveValue)
-			{
-				return p_minExclusiveValue < p_value && p_value <= p_maxInclusiveValue;
-			}
-
-			public static bool IsInsideIn (float p_value, float p_minInclusiveValue, float p_maxInclusiveValue)
-			{
-				return p_minInclusiveValue <= p_value && p_value <= p_maxInclusiveValue;
-			}
-
-			public static bool IsInsideInEx (float p_value, float p_minInclusiveValue, float p_maxExclusiveValue)
-			{
-				return p_minInclusiveValue <= p_value && p_value < p_maxExclusiveValue;
-			}
-
-			public static bool IsOutside (float p_value, float p_min, float p_max, ERange p_range)
-			{
-				switch (p_range)
-				{
-					case ERange.Ex : return IsOutsideEx(p_value, p_min, p_max);
-					case ERange.ExIn : return IsOutsideExIn(p_value, p_min, p_max);
-					case ERange.In : return IsOutsideIn(p_value, p_min, p_max);
-					case ERange.InEx : return IsOutsideInEx(p_value, p_min, p_max);
-					default : throw new System.ArgumentOutOfRangeException();
-				}
-			}
-
-			public static bool IsOutside (float p_value, float p_min, float p_max, ERangeSide p_minSide, ERangeSide p_maxSide)
-			{
-				return IsOutside(p_value, p_min, p_max, ERangeX.Convert(p_minSide, p_maxSide));
-			}
-
-			public static bool IsOutsideEx (float p_value, float p_minExclusiveValue, float p_maxExclusiveValue)
-			{
-				return p_value < p_minExclusiveValue || p_maxExclusiveValue < p_value;
-			}
-
-			public static bool IsOutsideExIn (float p_value, float p_minExclusiveValue, float p_maxInclusiveValue)
-			{
-				return p_value < p_minExclusiveValue || p_maxInclusiveValue <= p_value;
-			}
-
-			public static bool IsOutsideIn (float p_value, float p_minInclusiveValue, float p_maxInclusiveValue)
-			{
-				return p_value <= p_minInclusiveValue || p_maxInclusiveValue <= p_value;
-			}
-
-			public static bool IsOutsideInEx (float p_value, float p_minInclusiveValue, float p_maxExclusiveValue)
-			{
-				return p_value <= p_minInclusiveValue || p_maxExclusiveValue < p_value;
-			}
-
-			public static bool IsOverlapping (float p_lhsMin, float p_lhsMax, float p_rhsMin, float p_rhsMax)
-			{
-				return (p_lhsMin <= p_rhsMin && p_rhsMin <= p_lhsMax) || (p_rhsMin <= p_lhsMin && p_lhsMin <= p_rhsMax);
-			}
-
-			public static bool IsOverlapping (Range p_lhs, Range p_rhs)
-			{
-				return IsOverlapping(p_lhs.min, p_lhs.max, p_rhs.min, p_rhs.max);
-			}
-
-			public static Range Union (float p_lhsMin, float p_lhsMax, float p_rhsMin, float p_rhsMax)
-			{
-				return new Range(MathF.Min(p_lhsMin, p_rhsMin), MathF.Max(p_lhsMax, p_rhsMax));
-			}
-
-			public static Range Union (Range p_lhs, Range p_rhs)
-			{
-				return Union(p_lhs.min, p_lhs.max, p_rhs.min, p_rhs.max);
-			}
-
-		#endregion
-
-		#region ==============================[Methods]==============================
-
-			public Range Intersection (float p_min, float p_max)
-			{
-				return Intersection(this.min, this.max, p_min, p_max);
-			}
-
-			public Range Intersection (Range p_other)
-			{
-				return Intersection(this, p_other);
-			}
-
-			public bool IsInside (float p_value, ERange p_range)
-			{
-				return IsInside(p_value, min, max, p_range);
-			}
-
-			public bool IsInside (float p_value, ERangeSide p_minSide, ERangeSide p_maxSide)
-			{
-				return IsInside(p_value, min, max, p_minSide, p_maxSide);
-			}
-
-			public bool IsInsideEx (float p_value)
-			{
-				return IsInsideEx(p_value, min, max);
-			}
-
-			public bool IsInsideExIn (float p_value)
-			{
-				return IsInsideExIn(p_value, min, max);
-			}
-
-			public bool IsInsideIn (float p_value)
-			{
-				return IsInsideIn(p_value, min, max);
-			}
-
-			public bool IsInsideInEx (float p_value)
-			{
-				return IsInsideInEx(p_value, min, max);
-			}
-
-			public bool IsOutside (float p_value, ERange p_range)
-			{
-				return IsOutside(p_value, min, max, p_range);
-			}
-
-			public bool IsOutside (float p_value, ERangeSide p_minSide, ERangeSide p_maxSide)
-			{
-				return IsOutside(p_value, min, max, p_minSide, p_maxSide);
-			}
-
-			public bool IsOutsideEx (float p_value)
-			{
-				return IsOutsideEx(p_value, min, max);
-			}
-
-			public bool IsOutsideExIn (float p_value)
-			{
-				return IsOutsideExIn(p_value, min, max);
-			}
-
-			public bool IsOutsideIn (float p_value)
-			{
-				return IsOutsideIn(p_value, min, max);
-			}
-
-			public bool IsOutsideInEx (float p_value)
-			{
-				return IsOutsideInEx(p_value, min, max);
-			}
-
-			public bool IsOverlapping (Range p_other)
-			{
-				return IsOverlapping(this, p_other);
-			}
-
-			public void Set (float p_min, float p_max)
-			{
-				min = p_min;
-				max = p_max;
-			}
-
-			public void SetEmpty ()
-			{
-				min = 0.0f;
-				max = 0.0f;
-			}
-
-			public void SetWhole ()
-			{
-				min = float.NegativeInfinity;
-				max = float.PositiveInfinity;
-			}
-
-			public Range Union (float p_min, float p_max)
-			{
-				return Union(this.min, this.max, p_min, p_max);
-			}
-
-			public Range Union (Range p_other)
-			{
-				return Union(this, p_other);
-			}
-
-		#endregion
-
-		#region ==============================[Inherited Methods]==============================
-
-			public override bool Equals (object obj)
-			{
-				return obj is Range other && Equals(other);
-			}
-
-			public bool Equals (Range p_other)
-			{
-				return this == p_other;
-			}
-
-			public override int GetHashCode ()
-			{
-				unchecked
-				{
-					return (max.GetHashCode() * 397) ^ min.GetHashCode();
-				}
-			}
-
-			public override string ToString ()
-			{
-				return $"[{min},{max}]";
-			}
-
-			public string ToString (string p_format)
-			{
-				return $"[{min.ToString(p_format)},{max.ToString(p_format)}]";
-			}
-
-			public string ToString (string p_format, IFormatProvider p_formatProvider)
-			{
-				return $"[{min.ToString(p_format, p_formatProvider)},{max.ToString(p_format, p_formatProvider)}]";
-			}
-
-		#endregion
-
-		#region ==============================[Operators]==============================
-
-			public static bool operator== (Range p_lhs, Range p_rhs)
-			{
-				return p_lhs.min == p_rhs.min && p_lhs.max == p_rhs.max;
-			}
-
-			public static bool operator!= (Range p_lhs, Range p_rhs)
-			{
-				return !(p_lhs == p_rhs);
-			}
-
-			public static bool operator< (Range p_lhs, Range p_rhs)
-			{
-				return p_lhs.max < p_rhs.min;
-			}
-
-			public static bool operator< (Range p_lhs, float p_rhs)
-			{
-				return p_lhs.max < p_rhs;
-			}
-			
-			public static bool operator< (float p_lhs, Range p_rhs)
-			{
-				return p_rhs > p_lhs;
-			}
-
-			public static bool operator<= (Range p_lhs, Range p_rhs)
-			{
-				return p_lhs.max <= p_rhs.min;
-			}
-
-			public static bool operator<= (Range p_lhs, float p_rhs)
-			{
-				return p_lhs.max <= p_rhs;
-			}
-			
-			public static bool operator<= (float p_lhs, Range p_rhs)
-			{
-				return p_rhs >= p_lhs;
-			}
-
-			public static bool operator> (Range p_lhs, Range p_rhs)
-			{
-				return p_lhs.min > p_rhs.max;
-			}
-
-			public static bool operator> (Range p_lhs, float p_rhs)
-			{
-				return p_lhs.min > p_rhs;
-			}
-
-			public static bool operator> (float p_lhs, Range p_rhs)
-			{
-				return p_rhs < p_lhs;
-			}
-
-			public static bool operator>= (Range p_lhs, Range p_rhs)
-			{
-				return p_lhs.min >= p_rhs.max;
-			}
-
-			public static bool operator>= (Range p_lhs, float p_rhs)
-			{
-				return p_lhs.min >= p_rhs;
-			}
-
-			public static bool operator>= (float p_lhs, Range p_rhs)
-			{
-				return p_rhs <= p_lhs;
-			}
-
-			public static Range operator+ (Range p_lhs, Range p_rhs)
-			{
-				return new Range(p_lhs.min + p_rhs.min, p_lhs.max + p_rhs.max);
-			}
-
-			public static Range operator+ (Range p_lhs, float p_rhs)
-			{
-				return new Range(p_lhs.min + p_rhs, p_lhs.max + p_rhs);
-			}
-
-			public static Range operator+ (float p_lhs, Range p_rhs)
-			{
-				return new Range(p_lhs + p_rhs.min, p_lhs + p_rhs.max);
-			}
-
-			public static Range operator- (Range p_this)
-			{
-				return new Range(-p_this.max, -p_this.min);
-			}
-			
-			public static Range operator- (Range p_lhs, Range p_rhs)
-			{
-				return new Range(p_lhs.min - p_rhs.min, p_lhs.max - p_rhs.max);
-			}
-
-			public static Range operator- (Range p_lhs, float p_rhs)
-			{
-				return new Range(p_lhs.min - p_rhs, p_lhs.max - p_rhs);
-			}
-
-		#endregion
-	}
+        #endregion
+    }
 }
