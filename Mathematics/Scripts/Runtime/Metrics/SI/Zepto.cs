@@ -1,5 +1,4 @@
 ﻿namespace ZkTools.Mathematics.Metrics.SI
-
 {
 	public static class Zepto
 	{

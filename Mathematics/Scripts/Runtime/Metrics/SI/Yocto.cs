@@ -1,16 +1,16 @@
 ﻿namespace ZkTools.Mathematics.Metrics.SI
 {
-	public static class Zepto
+	public static class Yocto
 	{
 		#region ==============================[Constants]==============================
 
-			public const string Base10 = "10e-21";
+			public const string Base10 = "10e-24";
 
-			public const string Name = "zepto";
+			public const string Name = "yocto";
 
-			public const string Symbole = "z";
+			public const string Symbole = "t";
 
-			public const float Value = 10e-21f;
+			public const float Value = 10e-24f;
 
 		#endregion
 	}
