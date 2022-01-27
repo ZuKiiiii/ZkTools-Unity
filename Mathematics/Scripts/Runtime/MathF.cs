@@ -250,6 +250,38 @@ namespace ZkTools.Mathematics
 				return p_dividend;
 			}
 
+			/// <summary>
+			/// Computes the exponential interpolation.
+			/// </summary>
+			/// <param name="p_a"> TODO. </param>
+			/// <param name="p_b"> TODO. </param>
+			/// <returns> TODO. </returns>
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Eerp (float p_a, float p_b , float p_t)
+			{
+				return Pow(p_a, 1.0f - p_t) * Pow(p_b, p_t);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float Eerp (ref float p_a, float p_b , float p_t)
+			{
+				p_a = Eerp(p_a, p_b, p_t);
+				return p_a;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float EerpClamped (float p_a, float p_b , float p_t)
+			{
+				return Eerp(p_a, p_b, Clamp(p_t));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float EerpClamped (ref float p_a, float p_b , float p_t)
+			{
+				p_a = EerpClamped(p_a, p_b, p_t);
+				return p_a;
+			}
+
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float Exp (float p_value)
 			{
@@ -307,6 +339,17 @@ namespace ZkTools.Mathematics
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float InverseEerp (float p_a, float p_b, float p_value)
+			{
+				return LogE(p_a / p_value) / LogE(p_a / p_b);
+			}
+
+			public static float InverseEerpClamped (float p_a, float p_b, float p_value, float p_min = 0.0f, float p_max = 1.0f)
+			{
+				return Clamp(InverseEerp(p_a, p_b, p_value), p_min, p_max);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float InverseLerp (float p_a, float p_b, float p_value)
 			{
 				return (p_value - p_a) / (p_b - p_a);
@@ -316,6 +359,20 @@ namespace ZkTools.Mathematics
 			public static float InverseLerpClamped (float p_a, float p_b, float p_value, float p_min = 0.0f, float p_max = 1.0f)
 			{
 				return Clamp(InverseLerp(p_a, p_b, p_value), p_min, p_max);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float InverseLerpSafe (float p_a, float p_b, float p_value)
+			{
+				float den = (p_b - p_a);
+				return den == 0.0f ? 0.0f : (p_value - p_a) / den;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static float InverseLerpSafeClamped (float p_a, float p_b, float p_value, float p_min = 0.0f, float p_max = 1.0f)
+			{
+				float den = (p_b - p_a);
+				return den == 0.0f ? 0.0f : Clamp((p_value - p_a) / den, p_min, p_max);
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
