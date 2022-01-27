@@ -225,6 +225,58 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 Eerp (Vector4 p_a, Vector4 p_b, float p_t)
+			{
+				return new Vector4(MathF.Eerp(p_a.x, p_b.x, p_t), MathF.Eerp(p_a.y, p_b.y, p_t), MathF.Eerp(p_a.z, p_b.z, p_t));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 Eerp (ref Vector4 p_a, Vector4 p_b, float p_t)
+			{
+				p_a = Eerp(p_a, p_b, p_t);
+				return p_a;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 Eerp (Vector4 p_a, Vector4 p_b, Vector4 p_t)
+			{
+				return new Vector4(MathF.Eerp(p_a.x, p_b.x, p_t.x), MathF.Eerp(p_a.y, p_b.y, p_t.y), MathF.Eerp(p_a.z, p_b.z, p_t.z), MathF.Eerp(p_a.w, p_b.w, p_t.w));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 Eerp (ref Vector4 p_a, Vector4 p_b, Vector4 p_t)
+			{
+				p_a = Eerp(p_a, p_b, p_t);
+				return p_a;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 EerpClamped (Vector4 p_a, Vector4 p_b, float p_t)
+			{
+				return EerpClamped(p_a, p_b, MathF.Clamp(p_t));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 EerpClamped (ref Vector4 p_a, Vector4 p_b, float p_t)
+			{
+				p_a = EerpClamped(p_a, p_b, p_t);
+				return p_a;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 EerpClamped (Vector4 p_a, Vector4 p_b, Vector4 p_t)
+			{
+				return EerpClamped(p_a, p_b, Clamp(p_t));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 EerpClamped (ref Vector4 p_a, Vector4 p_b, Vector4 p_t)
+			{
+				p_a = EerpClamped(p_a, p_b, p_t);
+				return p_a;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector4 Floor (Vector4 p_vector)
 			{
 				return new Vector4(MathF.Floor(p_vector.x), MathF.Floor(p_vector.y), MathF.Floor(p_vector.z), MathF.Floor(p_vector.w));
@@ -285,13 +337,91 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Vector4 InverseLerp (Vector4 p_a, Vector4 p_b, Vector4 p_value)
+			public static Vector4 InverseEerp (Vector4 p_a, Vector4 p_b, Vector4 p_value)
 			{
-				return Div(p_value - p_a, p_b - p_a);
+				return new Vector4(MathF.Eerp(p_a.x, p_b.x, p_value.x), MathF.Eerp(p_a.y, p_b.y, p_value.y), MathF.Eerp(p_a.z, p_b.z, p_value.z), MathF.Eerp(p_a.w, p_b.w, p_value.w));
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static Vector4 InverseLerpClamped (Vector4 p_a, Vector4 p_b, Vector4 p_value, Vector4 p_min, Vector4 p_max)
+			public static Vector4 InverseEerpClamped (Vector4 p_a, Vector4 p_b, Vector4 p_value, float p_min = 0.0f, float p_max = 1.0f)
+			{
+				return Clamp(InverseEerp(p_a, p_b, p_value), p_min, p_max);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 InverseEerpClamped (Vector4 p_a, Vector4 p_b, Vector4 p_value, Vector4 p_min, float p_max = 1.0f)
+			{
+				return Clamp(InverseEerp(p_a, p_b, p_value), p_min, p_max);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 InverseEerpClamped (Vector4 p_a, Vector4 p_b, Vector4 p_value, float p_min, Vector4 p_max )
+			{
+				return Clamp(InverseEerp(p_a, p_b, p_value), p_min, p_max);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 InverseEerpClamped (Vector4 p_a, Vector4 p_b, Vector4 p_value, Vector4 p_min, Vector4 p_max)
+			{
+				return Clamp(InverseEerp(p_a, p_b, p_value), p_min, p_max);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 InverseLerp(Vector4 p_a, Vector4 p_b, Vector4 p_value)
+			{
+				return Div((p_value - p_a), (p_b - p_a));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 InverseLerpSafe (Vector4 p_a, Vector4 p_b, Vector4 p_value)
+			{
+				return new Vector4(MathF.InverseLerpSafe(p_a.x, p_b.x, p_value.x), MathF.InverseLerpSafe(p_a.y, p_b.y, p_value.y), MathF.InverseLerpSafe(p_a.z, p_b.z, p_value.z), MathF.InverseLerpSafe(p_a.w, p_b.w, p_value.w));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 InverseLerpClamped(Vector4 p_a, Vector4 p_b, Vector4 p_value, float p_min = 0.0f, float p_max = 1.0f)
+			{
+				return Clamp(InverseLerp(p_a, p_b, p_value), p_min, p_max);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 InverseLerpClamped(Vector4 p_a, Vector4 p_b, Vector4 p_value, Vector4 p_min, float p_max = 1.0f)
+			{
+				return Clamp(InverseLerp(p_a, p_b, p_value), p_min, p_max);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 InverseLerpClamped(Vector4 p_a, Vector4 p_b, Vector4 p_value, float p_min, Vector4 p_max)
+			{
+				return Clamp(InverseLerp(p_a, p_b, p_value), p_min, p_max);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 InverseLerpClamped(Vector4 p_a, Vector4 p_b, Vector4 p_value, Vector4 p_min, Vector4 p_max)
+			{
+				return Clamp(InverseLerp(p_a, p_b, p_value), p_min, p_max);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 InverseLerpClampedSafe (Vector4 p_a, Vector4 p_b, Vector4 p_value, float p_min = 0.0f, float p_max = 1.0f)
+			{
+				return Clamp(InverseLerp(p_a, p_b, p_value), p_min, p_max);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 InverseLerpClampedSafe (Vector4 p_a, Vector4 p_b, Vector4 p_value, Vector4 p_min, float p_max = 1.0f)
+			{
+				return Clamp(InverseLerp(p_a, p_b, p_value), p_min, p_max);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 InverseLerpClampedSafe (Vector4 p_a, Vector4 p_b, Vector4 p_value, float p_min, Vector4 p_max )
+			{
+				return Clamp(InverseLerp(p_a, p_b, p_value), p_min, p_max);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 InverseLerpClampedSafe (Vector4 p_a, Vector4 p_b, Vector4 p_value, Vector4 p_min, Vector4 p_max)
 			{
 				return Clamp(InverseLerp(p_a, p_b, p_value), p_min, p_max);
 			}
@@ -688,21 +818,49 @@ namespace ZkTools.Mathematics.Extensions
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 Lerp (ref Vector4 p_a, Vector4 p_b, float p_t)
+			{
+				p_a = Lerp(p_a, p_b, p_t);
+				return p_a;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector4 Lerp (Vector4 p_a, Vector4 p_b, Vector4 p_t)
 			{
 				return new Vector4(MathF.Lerp(p_a.x, p_b.x, p_t.x), MathF.Lerp(p_a.y, p_b.y, p_t.y), MathF.Lerp(p_a.z, p_b.z, p_t.z), MathF.Lerp(p_a.w, p_b.w, p_t.w));
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 Lerp (ref Vector4 p_a, Vector4 p_b, Vector4 p_t)
+			{
+				p_a = Lerp(p_a, p_b, p_t);
+				return p_a;
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector4 LerpClamped (Vector4 p_a, Vector4 p_b, float p_t)
 			{
-				return LerpClamped(p_a, p_b, new Vector4(p_t, p_t, p_t, p_t));
+				return p_a + (p_b - p_a) * MathF.Clamp(p_t);
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 LerpClamped (ref Vector4 p_a, Vector4 p_b, float p_t)
+			{
+				p_a = LerpClamped(p_a, p_b, p_t);
+				return p_a;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static Vector4 LerpClamped (Vector4 p_a, Vector4 p_b, Vector4 p_t)
 			{
 				return new Vector4(MathF.LerpClamped(p_a.x, p_b.x, p_t.x), MathF.LerpClamped(p_a.y, p_b.y, p_t.y), MathF.LerpClamped(p_a.z, p_b.z, p_t.z), MathF.LerpClamped(p_a.w, p_b.w, p_t.w));
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static Vector4 LerpClamped (ref Vector4 p_a, Vector4 p_b, Vector4 p_t)
+			{
+				p_a = LerpClamped(p_a, p_b, p_t);
+				return p_a;
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
